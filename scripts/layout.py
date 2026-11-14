@@ -37,8 +37,11 @@ def header(page: str) -> str:
 
     sheet = []
     if home:
+        sheet.append('<span class="sheet-label">On this page</span>')
         sheet += [f'<a href="{h}"><img src="assets/{SECTION_ICONS[h]}.png" alt="">{t}</a>' for h, t in HOME_SECTIONS]
+        sheet.append('<span class="sheet-label">Pages</span>')
     else:
+        sheet.append('<span class="sheet-label">Pages</span>')
         sheet.append(f'<a href="index.html"><img src="assets/{SHEET_ICONS["index.html"]}.png" alt="">Home</a>')
     for h, t in PAGES_NAV:
         cur = ' aria-current="page"' if h == page else ""
@@ -59,7 +62,7 @@ def header(page: str) -> str:
   </div>
   <nav class="menu-sheet" id="menuSheet" aria-label="Menu">
     {"".join(sheet)}
-    <a class="btn" href="{get}">Get it for Mac</a>
+    <a class="btn sheet-cta" href="{get}">Get it for Mac</a>
   </nav>
 </header>
 <!--/HEADER-->"""
@@ -95,6 +98,19 @@ def footer(page: str) -> str:
 <!--/FOOTER-->"""
 
 
+BOOT = """<!--BOOT-->
+<script>try{if(sessionStorage.getItem("wd-curtain")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("wd-enter")}catch(e){}</script>
+<!--/BOOT-->"""
+
+
+def fill_boot(text: str) -> str:
+    if "<!--BOOT-->" in text:
+        return re.sub(r"<!--BOOT-->.*?<!--/BOOT-->", lambda _: BOOT, text, count=1, flags=re.S)
+    anchor = '<link rel="stylesheet" href="site.css">'
+    assert anchor in text, "missing site.css link"
+    return text.replace(anchor, anchor + "\n" + BOOT, 1)
+
+
 def fill(text: str, name: str, block: str) -> str:
     full = re.compile(rf"<!--{name}-->.*?<!--/{name}-->", re.S)
     if full.search(text):
@@ -106,6 +122,7 @@ def fill(text: str, name: str, block: str) -> str:
 for p in PAGES:
     path = ROOT / p
     t = path.read_text()
+    t = fill_boot(t)
     t = fill(t, "HEADER", header(p))
     t = fill(t, "FOOTER", footer(p))
     path.write_text(t)
