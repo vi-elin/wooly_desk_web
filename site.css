@@ -173,8 +173,8 @@ p { margin: 0; }
 .site-foot { position: relative; background: var(--night); color: var(--night-soft); padding: 70px 0 130px; font-size: .95rem; }
 .site-foot.hill::before {
   content: ""; position: absolute; left: 0; right: 0; top: -25px; height: 26px; background: var(--night);
-  -webkit-mask: radial-gradient(14px 12px at 14px 0, transparent 98%, #000) 0 0 / 28px 26px repeat-x;
-          mask: radial-gradient(14px 12px at 14px 0, transparent 98%, #000) 0 0 / 28px 26px repeat-x;
+  -webkit-mask: radial-gradient(14px 12px at 14px 0, #000 98%, transparent) 0 0 / 28px 26px repeat-x;
+          mask: radial-gradient(14px 12px at 14px 0, #000 98%, transparent) 0 0 / 28px 26px repeat-x;
   transform: scaleY(-1);
 }
 .foot-grid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 34px 28px; }
@@ -200,8 +200,8 @@ p { margin: 0; }
 .page-hero { position: relative; padding: 46px 0 70px; background: var(--meadow); margin-top: calc(-1 * (var(--bar-h) + 10px)); padding-top: calc(var(--bar-h) + 56px); }
 .page-hero::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: -25px; height: 26px; background: var(--meadow);
-  -webkit-mask: radial-gradient(14px 12px at 14px 0, transparent 98%, #000) 0 0 / 28px 26px repeat-x;
-          mask: radial-gradient(14px 12px at 14px 0, transparent 98%, #000) 0 0 / 28px 26px repeat-x;
+  -webkit-mask: radial-gradient(14px 12px at 14px 0, #000 98%, transparent) 0 0 / 28px 26px repeat-x;
+          mask: radial-gradient(14px 12px at 14px 0, #000 98%, transparent) 0 0 / 28px 26px repeat-x;
 }
 .page-hero .wrap { display: grid; grid-template-columns: 1.3fr .7fr; gap: 30px; align-items: end; }
 .page-hero h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; margin: 6px 0 14px; }
@@ -357,8 +357,8 @@ html.wd-enter.wd-lift::before { display: none; }
 }
 .wd-curtain .sheet::before, .wd-curtain .sheet::after {
   content: ""; position: absolute; left: 0; right: 0; height: 28px; background: var(--meadow);
-  -webkit-mask: radial-gradient(14px 12px at 14px 0, transparent 98%, #000) 0 0 / 28px 28px repeat-x;
-          mask: radial-gradient(14px 12px at 14px 0, transparent 98%, #000) 0 0 / 28px 28px repeat-x;
+  -webkit-mask: radial-gradient(14px 12px at 14px 0, #000 98%, transparent) 0 0 / 28px 28px repeat-x;
+          mask: radial-gradient(14px 12px at 14px 0, #000 98%, transparent) 0 0 / 28px 28px repeat-x;
 }
 .wd-curtain .sheet::before { top: -27px; transform: scaleY(-1); }
 .wd-curtain .sheet::after { bottom: -27px; }
@@ -379,7 +379,7 @@ html.wd-enter.wd-lift::before { display: none; }
 @keyframes wd-drift { from { transform: translateX(-25vw); } to { transform: translateX(115vw); } }
 @keyframes wd-hop { 0%, 100% { translate: 0 0; } 40% { translate: 0 -34px; } 70% { translate: 0 0; } 82% { translate: 0 -6px; } }
 @keyframes wd-sway { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-1.6deg); } }
-.page-hero { overflow: hidden; }
+.page-hero { overflow-x: clip; overflow-y: visible; }
 .page-hero .eyebrow { animation: wd-pop .7s calc(var(--enter, 0s) + .05s) cubic-bezier(.3,.7,.4,1.3) both; }
 .page-hero h1 .w { display: inline-block; animation: wd-rise .75s calc(var(--enter, 0s) + .15s + var(--i) * 70ms) cubic-bezier(.3,.7,.4,1.2) both; }
 .page-hero .lede { animation: wd-fade-up .8s calc(var(--enter, 0s) + .5s) ease both; }

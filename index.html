@@ -178,8 +178,8 @@ section[id] { scroll-margin-top: 90px; }
 .band.meadow::before, .band.meadow::after {
   content: ""; position: absolute; left: 0; right: 0; height: 26px;
   background: var(--meadow);
-  -webkit-mask: radial-gradient(14px 12px at 14px 0, transparent 98%, #000) 0 0 / 28px 26px repeat-x;
-          mask: radial-gradient(14px 12px at 14px 0, transparent 98%, #000) 0 0 / 28px 26px repeat-x;
+  -webkit-mask: radial-gradient(14px 12px at 14px 0, #000 98%, transparent) 0 0 / 28px 26px repeat-x;
+          mask: radial-gradient(14px 12px at 14px 0, #000 98%, transparent) 0 0 / 28px 26px repeat-x;
 }
 .band.meadow::before { top: -25px; transform: scaleY(-1); }
 .band.meadow::after { bottom: -25px; }
