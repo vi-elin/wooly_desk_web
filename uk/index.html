@@ -563,9 +563,9 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
               <div class="win win-shop" aria-hidden="true">
                 <div class="bar"><i></i><i></i><i></i><span>Woolly Desk · Магазин</span></div>
                 <div class="body">
-                  <div class="item"><img src="../assets/house_pinkCottage_summer.png" alt="">Рожевий котедж<b>120 монет</b></div>
-                  <div class="item"><img src="../assets/house_logCabin_summer.png" alt="">Будиночок біля моря<b>160 монет</b></div>
-                  <div class="item"><img src="../assets/house_lantern_summer.png" alt="">Ліхтар<b>14 монет</b></div>
+                  <div class="item"><img src="../assets/house_pinkCottage_summer.png" alt="">Рожевий котедж<b>новинка</b></div>
+                  <div class="item"><img src="../assets/house_logCabin_summer.png" alt="">Будиночок біля моря<b>новинка</b></div>
+                  <div class="item"><img src="../assets/house_lantern_summer.png" alt="">Ліхтар<b>новинка</b></div>
                 </div>
               </div>
             </div>
@@ -637,7 +637,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
         <div class="feature">
           <div class="pic"><img src="../assets/broom.png" alt="" style="height:96px"><img src="../assets/snowdrift.png" alt="" style="height:50px"></div>
           <h3>Прибирайте справжніми інструментами</h3>
-          <p>Курсор перетворюється на мітлу або лопату для снігу. Змітайте листя зі свистом — і часом знаходьте загублену монетку.</p>
+          <p>Курсор перетворюється на мітлу або лопату для снігу. Змітайте листя зі свистом і дивіться, як воно летить.</p>
         </div>
         <div class="feature">
           <div class="pic"><img src="../assets/sheep_grey_idle.png" alt="" style="height:96px"><img src="../assets/flower_2.png" alt="" style="height:44px"><img src="../assets/flower_0.png" alt="" style="height:40px"></div>
@@ -721,7 +721,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
           <button class="chip" id="tidyWinter" aria-pressed="false">Зимовий сніг</button>
           <button class="chip" id="tidyReset">Знову насмітити</button>
         </div>
-        <p class="tidy-count" aria-live="polite">купок: <b id="tidyLeft">0</b> · знайдено монет: <b id="tidyCoins">0</b></p>
+        <p class="tidy-count" aria-live="polite">залишилося купок: <b id="tidyLeft">0</b></p>
       </div>
       <div class="tidy" id="tidyScene">
         <canvas id="tidyCanvas" aria-label="Ферма, вкрита купками листя. Затисніть і ведіть, щоб змести їх."></canvas>
@@ -783,7 +783,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
       <div class="deco">
         <div class="deco-mac" aria-label="Робочий стіл Mac із зірочками під рядком меню і фермерськими значками папок" role="img">
           <div class="deco-bar"><span class="l"><b>Finder</b><span>Файл</span><span>Редагувати</span><span>Перегляд</span></span><span class="r">☁︎ <span id="decoClock">9:41</span></span></div>
-          <div class="deco-desk" id="decoDesk">
+          <div class="deco-desk over" id="decoDesk">
             <div class="deco-stars" id="decoStars"></div>
             <div class="deco-win"><div class="bar"><i></i><i></i><i></i><span>Нотатки</span></div><div class="body">повісити зірочки<br><s>загорнути подарунки</s><br>сплести светр Конюшинці</div></div>
             <div class="deco-folders" id="decoFolders"></div>
@@ -792,15 +792,15 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
         <div class="deco-controls">
           <div class="deco-card">
             <h4><img src="../assets/star_0.png" alt="" style="transform:scale(2.3)">Зірочки на нитках</h4>
-            <p>50 монет на вкладці Holiday. Вони легенько гойдаються і світяться вночі.</p>
+            <p>На вкладці Holiday у магазині. Вони легенько гойдаються і світяться вночі.</p>
             <div class="toggles" role="group" aria-label="Де висять зірочки">
-              <button class="chip" id="starsBehind" aria-pressed="true">За вікнами</button>
-              <button class="chip" id="starsOver" aria-pressed="false">Над усіма вікнами</button>
+              <button class="chip" id="starsBehind" aria-pressed="false">За вікнами</button>
+              <button class="chip" id="starsOver" aria-pressed="true">Над усіма вікнами</button>
             </div>
           </div>
           <div class="deco-card">
             <h4><img src="../assets/folder_c4.png" alt="">Фермерські папки</h4>
-            <p>Безкоштовно, у Settings → Desktop. Папки з власними значками залишаються як є.</p>
+            <p>Увімкніть їх у Settings → Desktop. Папки з власними значками залишаються як є.</p>
             <div class="toggles" role="group" aria-label="Кольори папок">
               <button class="chip" id="folderSeason" aria-pressed="true">За сезоном</button>
               <button class="chip" id="folderMixed" aria-pressed="false">Різні кольори</button>
@@ -811,14 +811,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
         </div>
       </div>
       <div class="holiday-prices">
-        <span class="price-tag"><b>Ялинка</b> 60 монет</span>
-        <span class="price-tag"><b>Гірлянди</b> 22–30 монет</span>
-        <span class="price-tag"><b>Шкарпетки на мотузці</b> 26 монет</span>
-        <span class="price-tag"><b>Вінки на двері</b> 15 монет</span>
-        <span class="price-tag"><b>Светри</b> 18 монет</span>
-        <span class="price-tag"><b>Зірочки на нитках</b> 50 монет</span>
-        <span class="price-tag"><b>Фермерські папки</b> безкоштовно</span>
-        <a class="btn ghost" href="guide.html#holidays">Усі святкові ціни</a>
+        <a class="btn ghost" href="guide.html#holidays">Як ними користуватися</a>
       </div>
     </div>
   </section>
@@ -859,7 +852,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
       </div>
       <div>
         <h4>Дізнатися</h4>
-        <ul><li><a href="guide.html">Посібник</a></li><li><a href="guide.html#shop">Магазин і ціни</a></li><li><a href="guide.html#settings">Налаштування</a></li><li><a href="faq.html">Питання</a></li></ul>
+        <ul><li><a href="guide.html">Посібник</a></li><li><a href="guide.html#shop">Магазин</a></li><li><a href="guide.html#settings">Налаштування</a></li><li><a href="faq.html">Питання</a></li></ul>
       </div>
       <div>
         <h4>Допомога</h4>
@@ -1116,7 +1109,7 @@ requestAnimationFrame(seasonFx);
 /* Village: the real shop entries. */
 const houses = [
   ["barn", "Хлів", "Укриття для 4 овець у дощ, сніг і вночі. Ще 30 порцій сіна.", 110, 15],
-  ["tradingPost", "Крамничка", "Маленька лавка для вовни. Кращі ціни: +25 %.", 45, 8],
+  ["tradingPost", "Крамничка", "Маленька лавка для вовни. Вигідніша угода за вовну.", 45, 8],
   ["woolStorage", "Комора для вовни", "Місце ще для 40 клубків.", 60, 20],
   ["gardenShed", "Садовий сарайчик", "Затишний блакитний сарайчик із вазонами.", 90, 35],
   ["lineHouse", "Маленький білий будиночок", "Біленький будиночок із молодим деревцем.", 100, 40],
@@ -1130,7 +1123,7 @@ for (const [k, n, d, c, w] of houses) {
   const el = document.createElement("div");
   el.className = "house";
   el.innerHTML = `<div class="pics"><img class="d" src="${A(`house_${k}_summer`)}" alt=""><img class="n" src="${A(`house_${k}_night`)}" alt="" loading="lazy"></div><div><h3>${n}</h3><p>${d}</p>
-    <div class="price"><span class="c">${c} монет</span><span>з ${w} клубків вовни</span></div></div>`;
+    <div class="price"><span>з ${w} клубків вовни</span></div></div>`;
   vg.appendChild(el);
 }
 
@@ -1177,11 +1170,10 @@ function tidyReset() {
     if (T.piles.some(q => Math.hypot((q.x - p.x) * 2.4, q.y - p.y) < .17)) continue;
     T.piles.push(p);
   }
-  for (const i of [0, 4, 9]) if (T.piles[i]) T.piles[i].coin = T.mode === "autumn";
   document.getElementById("tidyDone").hidden = true;
   tidyCount();
 }
-function tidyCount() { document.getElementById("tidyLeft").textContent = T.piles.length; document.getElementById("tidyCoins").textContent = T.coins; }
+function tidyCount() { document.getElementById("tidyLeft").textContent = T.piles.length;  }
 function tidyMode(m) {
   T.mode = m;
   document.getElementById("tidyAutumn").setAttribute("aria-pressed", m === "autumn");

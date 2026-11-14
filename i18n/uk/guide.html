@@ -1,4 +1,4 @@
-<!-- en-sha256: b29bb05c78620c3973078ebb9108810460db522185689a543f5c877c0cda8bd2 -->
+<!-- en-sha256: ca0309ef5914551e513dabc8fd1b977a726481d4a2ce867bd10e487ecf00d84d -->
 
 
 <main>
@@ -28,8 +28,8 @@
           <li><a href="#desktop">На робочому столі</a></li>
           <li><a href="#sheep">Ваші вівці</a></li>
           <li><a href="#wool">Вовна і стрижка</a></li>
-          <li><a href="#trade">Монети й торгівля</a></li>
-          <li><a href="#shop">Магазин і ціни</a></li>
+          <li><a href="#trade">Продаж вовни</a></li>
+          <li><a href="#shop">Магазин</a></li>
           <li><a href="#tools">Інструменти</a></li>
           <li><a href="#buildings">Будівлі й паркани</a></li>
           <li><a href="#seasons">Погода, сезони, ніч</a></li>
@@ -50,8 +50,8 @@
             <option value="#desktop">На робочому столі</option>
             <option value="#sheep">Ваші вівці</option>
             <option value="#wool">Вовна і стрижка</option>
-            <option value="#trade">Монети й торгівля</option>
-            <option value="#shop">Магазин і ціни</option>
+            <option value="#trade">Продаж вовни</option>
+            <option value="#shop">Магазин</option>
             <option value="#tools">Інструменти</option>
             <option value="#buildings">Будівлі й паркани</option>
             <option value="#seasons">Погода, сезони, ніч</option>
@@ -69,9 +69,9 @@
           <p>Woolly Desk — це застосунок у рядку меню для macOS 14 Sonoma або новішої. У нього немає значка в Dock і немає великого вікна. Після запуску ферма з'являється <b>на шпалерах робочого столу</b>, за всіма вікнами застосунків. Закрийте або посуньте вікно, щоб побачити своїх овець.</p>
           <ol>
             <li>Відкрийте Woolly Desk. У рядку меню вгорі екрана з'явиться маленький значок із хмаринкою і сонцем.</li>
-            <li>Ваша ферма починається з кількох овець, <b>20 монет</b> і <b>однієї напувалки</b>.</li>
+            <li>Ваша ферма починається з кількох овець і <b>однієї напувалки</b>.</li>
             <li>Клацніть вівцю, щоб познайомитися. Клацніть ще раз, щоб її погладити.</li>
-            <li>Дочекайтеся, поки виросте вовна, пострижіть овець і продайте вовну за монети.</li>
+            <li>Дочекайтеся, поки виросте вовна, пострижіть овець і продайте вовну, щоб купувати нове в магазині.</li>
             <li>Кожен зібраний клубок вовни наближає нові товари в магазині. Огляд ферми завжди показує вашу наступну мету.</li>
           </ol>
           <div class="tip"><b>Не хвилюйтеся через зайнятий тиждень.</b> Поки ваш Mac закритий або спить, нічого поганого не стається. Вівці не хворіють і не помирають, поки вас немає.</div>
@@ -84,8 +84,8 @@
             <table>
               <tr><th>Пункт</th><th>Що робить</th></tr>
               <tr><td><b>Farm Overview…</b> <kbd>⌘F</kbd></td><td>Огляд ферми: день, сезон, погода, наступне відкриття, вівці, яким потрібна допомога, напувалки та годівниці.</td></tr>
-              <tr><td><b>Shop &amp; Items…</b></td><td>Магазин: купуйте товари за монети або вовну, дивіться, що у вас є, і ставте речі на робочий стіл.</td></tr>
-              <tr><td><b>Trade Wool…</b></td><td>Продаж вовни за монети та історія угод.</td></tr>
+              <tr><td><b>Shop &amp; Items…</b></td><td>Магазин: отримуйте нові речі, дивіться, що у вас є, і ставте речі на робочий стіл.</td></tr>
+              <tr><td><b>Trade Wool…</b></td><td>Продаж вовни та історія угод.</td></tr>
               <tr><td><b>Build Fences &amp; Gates…</b> <kbd>⌘B</kbd></td><td>Відкриває палітру будівництва: паркан, ворота, косіння, підмітання, лопата, переміщення і видалення.</td></tr>
               <tr><td><b>Sheep ▸</b></td><td>Вибрати одну вівцю, побачити всіх овець або відкрити Спогади.</td></tr>
               <tr><td><b>Weather / Season</b></td><td>Автоматично, або виберіть погоду чи сезон самостійно.</td></tr>
@@ -179,85 +179,78 @@
             <li>Ножиці у вас є з самого початку, тож стригти можна вже першого дня.</li>
           </ul>
           <h3>Світла і темна вовна</h3>
-          <p>Білі та кремові вівці дають <b>світлу вовну</b>. Сірі, коричневі та чорні дають <b>темну вовну</b>, і вона дорожча.</p>
+          <p>Білі та кремові вівці дають <b>світлу вовну</b>. Сірі, коричневі та чорні дають <b>темну вовну</b>, і вона цінніша.</p>
         </section>
 
         <section class="doc-sec" id="trade" data-reveal>
-          <h2><img src="assets/house_tradingPost_summer.png" alt="">Монети й торгівля</h2>
-          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Продаж вовни</div><div class="body table-scroll">
-            <table>
-              <tr><th>Вовна</th><th class="num">Ціна за клубок</th><th class="num">З крамничкою</th></tr>
-              <tr><td><div class="item"><img src="assets/sheep_white_idle.png" alt="">Світла вовна (біла, кремова)</div></td><td class="num"><span class="pill c">6 монет</span></td><td class="num"><span class="pill c">+25 %</span></td></tr>
-              <tr><td><div class="item"><img src="assets/sheep_black_idle.png" alt="">Темна вовна (сіра, коричнева, чорна)</div></td><td class="num"><span class="pill c">8 монет</span></td><td class="num"><span class="pill c">+25 %</span></td></tr>
-            </table>
-          </div></div>
+          <h2><img src="assets/house_tradingPost_summer.png" alt="">Продаж вовни</h2>
+          <p>Продавайте вовну, щоб отримувати нове в магазині. Темна вовна цінніша за світлу, а крамничка дає вигіднішу угоду.</p>
           <ul>
             <li>Продавайте вовну через <b>Trade Wool…</b> у меню або клацніть свою крамничку (Trading Post).</li>
-            <li>За багато товарів у магазині можна заплатити <b>вовною</b> замість монет.</li>
+            <li>За багато товарів у магазині можна заплатити <b>вовною</b>.</li>
             <li>Спочатку ферма зберігає <b>12 клубків вовни</b>. Кожна комора для вовни додає місце ще на 40.</li>
             <li>У сховищі вміщується <b>20 порцій сіна</b>. Кожен хлів додає місце ще на 30.</li>
-            <li>Мітла часом знаходить під листям загублену монетку.</li>
           </ul>
           <div class="tip"><b>Відкриття залежать від усієї вовни, яку ви колись зібрали</b>, а не від тієї, що є зараз. Продавайте скільки хочете: прогрес не втрачається.</div>
         </section>
 
         <section class="doc-sec" id="shop" data-reveal>
-          <h2><img src="assets/house_woolStorage_summer.png" alt="">Магазин і ціни</h2>
-          <p>У магазині сім вкладок. Святкові товари — на вкладці <a href="#holidays">Holiday</a>. Кожен товар відкривається, коли загальна кількість зібраної вовни досягає його числа. Риска в колонці вовни означає, що товар продається лише за монети. Англійська назва — це назва в застосунку.</p>
+          <h2><img src="assets/house_woolStorage_summer.png" alt="">Магазин</h2>
+          <p>У магазині сім вкладок. Святкові товари — на вкладці <a href="#holidays">Holiday</a>. Кожен товар відкривається, коли загальна кількість зібраної вовни досягає його числа. Англійська назва — це назва в застосунку.</p>
 
           <h3>Будівництво</h3>
           <div class="win-card"><div class="bar"><i></i><i></i><i></i>Магазин · Build</div><div class="body table-scroll"><table>
-            <tr><th>Товар</th><th class="num">Відкривається з</th><th class="num">Монети</th><th class="num">або вовна</th></tr>
-            <tr><td><div class="item"><span>Напувалка<small>Water Trough. Її наповнює дощ, або клацніть, щоб наповнити. Узимку вода зникає.</small></span></div></td><td class="num">початку</td><td class="num"><span class="pill c">12</span></td><td class="num"><span class="pill w">2</span></td></tr>
-            <tr><td><div class="item"><span>Годівниця для сіна<small>Hay Feeder. Вміщує 8 порцій сіна. Важлива взимку.</small></span></div></td><td class="num">3 клубків</td><td class="num"><span class="pill c">20</span></td><td class="num"><span class="pill w">3</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_tradingPost_summer.png" alt=""><span>Крамничка<small>Trading Post. Кращі ціни на вовну: +25 %.</small></span></div></td><td class="num">8 клубків</td><td class="num"><span class="pill c">45</span></td><td class="num"><span class="pill w">7</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_barn_summer.png" alt=""><span>Хлів<small>Barn. Укриття для 4 овець. Ще 30 порцій сіна.</small></span></div></td><td class="num">15 клубків</td><td class="num"><span class="pill c">110</span></td><td class="num"><span class="pill w">16</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_woolStorage_summer.png" alt=""><span>Комора для вовни<small>Wool Storage. Місце ще для 40 клубків.</small></span></div></td><td class="num">20 клубків</td><td class="num"><span class="pill c">60</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><span>Штахетник<small>Picket Fence Style. Білі паркани зі штахет.</small></span></div></td><td class="num">25 клубків</td><td class="num"><span class="pill c">40</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><span>Кам'яна стіна<small>Stone Wall Style. Старі сухі кам'яні мури.</small></span></div></td><td class="num">40 клубків</td><td class="num"><span class="pill c">70</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><th>Товар</th><th class="num">Відкривається з</th></tr>
+            <tr><td><div class="item"><span>Напувалка<small>Water Trough. Її наповнює дощ, або клацніть, щоб наповнити. Узимку вода зникає.</small></span></div></td><td class="num">початку</td></tr>
+            <tr><td><div class="item"><span>Годівниця для сіна<small>Hay Feeder. Вміщує 8 порцій сіна. Важлива взимку.</small></span></div></td><td class="num">3 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/house_tradingPost_summer.png" alt=""><span>Крамничка<small>Trading Post. Вигідніша угода за вашу вовну.</small></span></div></td><td class="num">8 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/house_barn_summer.png" alt=""><span>Хлів<small>Barn. Укриття для 4 овець. Ще 30 порцій сіна.</small></span></div></td><td class="num">15 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/house_woolStorage_summer.png" alt=""><span>Комора для вовни<small>Wool Storage. Місце ще для 40 клубків.</small></span></div></td><td class="num">20 клубків</td></tr>
+            <tr><td><div class="item"><span>Штахетник<small>Picket Fence Style. Білі паркани зі штахет.</small></span></div></td><td class="num">25 клубків</td></tr>
+            <tr><td><div class="item"><span>Кам'яна стіна<small>Stone Wall Style. Старі сухі кам'яні мури.</small></span></div></td><td class="num">40 клубків</td></tr>
           </table></div></div>
 
           <h3>Тварини</h3>
           <p>Молода вівця з сусідньої ферми приєднається до вашої отари (відкривається з 12 клубків вовни). Виберіть її колір, а також вівцю, барана або будь-кого.</p>
           <div class="win-card"><div class="bar"><i></i><i></i><i></i>Магазин · Animals</div><div class="body table-scroll"><table>
-            <tr><th>Молода вівця</th><th class="num">Монети</th><th>Яку вовну дає</th></tr>
-            <tr><td><div class="item"><img src="assets/sheep_white_idle.png" alt="">Біла</div></td><td class="num"><span class="pill c">80</span></td><td>світлу</td></tr>
-            <tr><td><div class="item"><img src="assets/sheep_cream_idle.png" alt="">Кремова</div></td><td class="num"><span class="pill c">85</span></td><td>світлу</td></tr>
-            <tr><td><div class="item"><img src="assets/sheep_grey_idle.png" alt="">Сіра</div></td><td class="num"><span class="pill c">90</span></td><td>темну</td></tr>
-            <tr><td><div class="item"><img src="assets/sheep_brown_idle.png" alt="">Коричнева</div></td><td class="num"><span class="pill c">95</span></td><td>темну</td></tr>
-            <tr><td><div class="item"><img src="assets/sheep_black_idle.png" alt="">Чорна</div></td><td class="num"><span class="pill c">100</span></td><td>темну</td></tr>
+            <tr><th>Молода вівця</th><th>Яку вовну дає</th></tr>
+            <tr><td><div class="item"><img src="assets/sheep_white_idle.png" alt="">Біла</div></td><td>світлу</td></tr>
+            <tr><td><div class="item"><img src="assets/sheep_cream_idle.png" alt="">Кремова</div></td><td>світлу</td></tr>
+            <tr><td><div class="item"><img src="assets/sheep_grey_idle.png" alt="">Сіра</div></td><td>темну</td></tr>
+            <tr><td><div class="item"><img src="assets/sheep_brown_idle.png" alt="">Коричнева</div></td><td>темну</td></tr>
+            <tr><td><div class="item"><img src="assets/sheep_black_idle.png" alt="">Чорна</div></td><td>темну</td></tr>
           </table></div></div>
 
           <h3>Догляд</h3>
           <div class="win-card"><div class="bar"><i></i><i></i><i></i>Магазин · Care</div><div class="body table-scroll"><table>
-            <tr><th>Товар</th><th class="num">Відкривається з</th><th class="num">Монети</th><th class="num">або вовна</th></tr>
-            <tr><td><div class="item"><span>В'язанка сіна<small>Hay Bundle. 5 порцій сіна до сховища.</small></span></div></td><td class="num">початку</td><td class="num"><span class="pill c">6</span></td><td class="num"><span class="pill w">1</span></td></tr>
-            <tr><td><div class="item"><span>Трав'яні ласощі<small>Herbal Treat. Більше здоров'я і щастя для ослабленої вівці.</small></span></div></td><td class="num">5 клубків</td><td class="num"><span class="pill c">10</span></td><td class="num"><span class="pill w">2</span></td></tr>
+            <tr><th>Товар</th><th class="num">Відкривається з</th></tr>
+            <tr><td><div class="item"><span>В'язанка сіна<small>Hay Bundle. 5 порцій сіна до сховища.</small></span></div></td><td class="num">початку</td></tr>
+            <tr><td><div class="item"><span>Трав'яні ласощі<small>Herbal Treat. Більше здоров'я і щастя для ослабленої вівці.</small></span></div></td><td class="num">5 клубків</td></tr>
           </table></div></div>
 
           <h3>Інструменти</h3>
           <p>Кожен інструмент купується один раз і залишається назавжди.</p>
           <div class="win-card"><div class="bar"><i></i><i></i><i></i>Магазин · Tools</div><div class="body table-scroll"><table>
-            <tr><th>Інструмент</th><th class="num">Відкривається з</th><th class="num">Монети</th><th class="num">або вовна</th></tr>
-            <tr><td><div class="item"><span>Ножиці<small>Shears. Є у вас із самого початку.</small></span></div></td><td class="num">початку</td><td class="num"><span class="pill none">безкоштовно</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><img src="assets/broom.png" alt=""><span>Мітла<small>Broom. Змітає листя і трохи снігу.</small></span></div></td><td class="num">початку</td><td class="num"><span class="pill c">8</span></td><td class="num"><span class="pill w">1</span></td></tr>
-            <tr><td><div class="item"><span>Коса<small>Scythe. Скошує високу траву на сіно.</small></span></div></td><td class="num">2 клубків</td><td class="num"><span class="pill c">15</span></td><td class="num"><span class="pill w">2</span></td></tr>
-            <tr><td><div class="item"><img src="assets/shovel.png" alt=""><span>Лопата для снігу<small>Snow Shovel. Прибирає замет за один раз.</small></span></div></td><td class="num">3 клубків</td><td class="num"><span class="pill c">16</span></td><td class="num"><span class="pill w">2</span></td></tr>
+            <tr><th>Інструмент</th><th class="num">Відкривається з</th></tr>
+            <tr><td><div class="item"><span>Ножиці<small>Shears. Є у вас із самого початку.</small></span></div></td><td class="num">початку</td></tr>
+            <tr><td><div class="item"><img src="assets/broom.png" alt=""><span>Мітла<small>Broom. Змітає листя і трохи снігу.</small></span></div></td><td class="num">початку</td></tr>
+            <tr><td><div class="item"><span>Коса<small>Scythe. Скошує високу траву на сіно.</small></span></div></td><td class="num">2 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/shovel.png" alt=""><span>Лопата для снігу<small>Snow Shovel. Прибирає замет за один раз.</small></span></div></td><td class="num">3 клубків</td></tr>
           </table></div></div>
 
           <h3>Декор</h3>
           <div class="win-card"><div class="bar"><i></i><i></i><i></i>Магазин · Decoration</div><div class="body table-scroll"><table>
-            <tr><th>Товар</th><th class="num">Відкривається з</th><th class="num">Монети</th><th class="num">або вовна</th></tr>
-            <tr><td><div class="item"><img src="assets/flower_2.png" alt=""><span>Клумба<small>Flower Bed. Квіти за сезоном.</small></span></div></td><td class="num">5 клубків</td><td class="num"><span class="pill c">8</span></td><td class="num"><span class="pill w">1</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_lantern_summer.png" alt=""><span>Ліхтар<small>Lantern. Світиться вночі.</small></span></div></td><td class="num">8 клубків</td><td class="num"><span class="pill c">14</span></td><td class="num"><span class="pill w">2</span></td></tr>
-            <tr><td><div class="item"><img src="assets/decor_blossomTree_summer.png" alt=""><span>Яблуня<small>Apple Tree. Допитливі вівці її обожнюють.</small></span></div></td><td class="num">30 клубків</td><td class="num"><span class="pill c">45</span></td><td class="num"><span class="pill w">6</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_gardenShed_summer.png" alt=""><span>Садовий сарайчик<small>Garden Shed. Затишний блакитний сарайчик.</small></span></div></td><td class="num">35 клубків</td><td class="num"><span class="pill c">90</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_lineHouse_summer.png" alt=""><span>Маленький білий будиночок<small>Little White House. З молодим деревцем поруч.</small></span></div></td><td class="num">40 клубків</td><td class="num"><span class="pill c">100</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_pinkCottage_summer.png" alt=""><span>Рожевий котедж<small>Pink Cottage. Дах із лусочками, ромашки біля дверей.</small></span></div></td><td class="num">45 клубків</td><td class="num"><span class="pill c">120</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_lavenderCottage_summer.png" alt=""><span>Лавандовий котедж<small>Lavender Cottage. Шиферний дах, лаванда під стінами.</small></span></div></td><td class="num">50 клубків</td><td class="num"><span class="pill c">120</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_whiteCottage_summer.png" alt=""><span>Білий котедж<small>White Cottage. Бірюзові віконниці та ящики з квітами.</small></span></div></td><td class="num">55 клубків</td><td class="num"><span class="pill c">130</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_aFrameCabin_summer.png" alt=""><span>Хатинка-курінь<small>A-Frame Cabin. Велике трикутне вікно.</small></span></div></td><td class="num">60 клубків</td><td class="num"><span class="pill c">140</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_logCabin_summer.png" alt=""><span>Будиночок біля моря<small>Seaside Cottage. Червоні двері, віконце в даху, лампи вночі.</small></span></div></td><td class="num">70 клубків</td><td class="num"><span class="pill c">160</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><th>Товар</th><th class="num">Відкривається з</th></tr>
+            <tr><td><div class="item"><img src="assets/flower_2.png" alt=""><span>Клумба<small>Flower Bed. Квіти за сезоном.</small></span></div></td><td class="num">5 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/house_lantern_summer.png" alt=""><span>Ліхтар<small>Lantern. Світиться вночі.</small></span></div></td><td class="num">8 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/decor_blossomTree_summer.png" alt=""><span>Яблуня<small>Apple Tree. Допитливі вівці її обожнюють.</small></span></div></td><td class="num">30 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/house_gardenShed_summer.png" alt=""><span>Садовий сарайчик<small>Garden Shed. Затишний блакитний сарайчик.</small></span></div></td><td class="num">35 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/house_lineHouse_summer.png" alt=""><span>Маленький білий будиночок<small>Little White House. З молодим деревцем поруч.</small></span></div></td><td class="num">40 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/house_pinkCottage_summer.png" alt=""><span>Рожевий котедж<small>Pink Cottage. Дах із лусочками, ромашки біля дверей.</small></span></div></td><td class="num">45 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/house_lavenderCottage_summer.png" alt=""><span>Лавандовий котедж<small>Lavender Cottage. Шиферний дах, лаванда під стінами.</small></span></div></td><td class="num">50 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/house_whiteCottage_summer.png" alt=""><span>Білий котедж<small>White Cottage. Бірюзові віконниці та ящики з квітами.</small></span></div></td><td class="num">55 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/house_aFrameCabin_summer.png" alt=""><span>Хатинка-курінь<small>A-Frame Cabin. Велике трикутне вікно.</small></span></div></td><td class="num">60 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/house_logCabin_summer.png" alt=""><span>Будиночок біля моря<small>Seaside Cottage. Червоні двері, віконце в даху, лампи вночі.</small></span></div></td><td class="num">70 клубків</td></tr>
           </table></div></div>
           <p class="muted">Будиночки — це декор: вони прикрашають село і світяться вночі.</p>
         </section>
@@ -307,7 +300,7 @@
             <li>Поки ваш Mac закритий, нічого нового не накопичується.</li>
             <li>Восени листя може падати і на значки робочого столу та на Dock. Проведіть по ньому курсором, щоб здмухнути. Це можна вимкнути в налаштуваннях.</li>
           </ul>
-          <div class="tip"><b>Беріть мітлу</b> (8 монет) на початку осені. Кілька швидких змахів на день — і ферма чиста, а часом ще й монетку знайдете.</div>
+          <div class="tip"><b>Беріть мітлу</b> на початку осені. Кілька швидких змахів на день — і ферма чиста.</div>
         </section>
 
         <section class="doc-sec" id="holidays" data-reveal>
@@ -324,17 +317,17 @@
           <h3>Прикраси</h3>
           <p>Ставте їх як будь-яку іншу річ: за курсором рухається попередній вигляд, клацніть, щоб поставити.</p>
           <div class="win-card"><div class="bar"><i></i><i></i><i></i>Магазин · Holiday</div><div class="body table-scroll"><table>
-            <tr><th>Товар</th><th class="num">Відкривається з</th><th class="num">Монети</th><th class="num">або вовна</th></tr>
-            <tr><td><div class="item"><img src="assets/holiday_christmasTree.png" alt=""><span>Ялинка<small>Christmas Tree. Вогники, кульки, золота зірка і подарунки. 2×2 клітинки.</small></span></div></td><td class="num">6 клубків</td><td class="num"><span class="pill c">60</span></td><td class="num"><span class="pill w">8</span></td></tr>
-            <tr><td><div class="item"><img src="assets/holiday_garlandWarm.png" alt=""><span>Тепла гірлянда<small>Warm Light Garland. Теплі вогники на трьох стовпчиках. 4×1 клітинки.</small></span></div></td><td class="num">3 клубків</td><td class="num"><span class="pill c">22</span></td><td class="num"><span class="pill w">3</span></td></tr>
-            <tr><td><div class="item"><img src="assets/holiday_garlandColor.png" alt=""><span>Кольорова гірлянда<small>Coloured Light Garland. Червоні, зелені, золоті, сині й рожеві вогники. 4×1 клітинки.</small></span></div></td><td class="num">3 клубків</td><td class="num"><span class="pill c">22</span></td><td class="num"><span class="pill w">3</span></td></tr>
-            <tr><td><div class="item"><img src="assets/holiday_garlandGreen.png" alt=""><span>Ялинкова гірлянда<small>Fir Garland. Гілочки ялини, червоні бантики і теплі вогники. 4×1 клітинки.</small></span></div></td><td class="num">8 клубків</td><td class="num"><span class="pill c">30</span></td><td class="num"><span class="pill w">4</span></td></tr>
-            <tr><td><div class="item"><img src="assets/holiday_stockingLine.png" alt=""><span>Мотузка зі шкарпетками<small>Stocking Line. Чотири в'язані шкарпетки на мотузці з вогниками. 4×1 клітинки.</small></span></div></td><td class="num">6 клубків</td><td class="num"><span class="pill c">26</span></td><td class="num"><span class="pill w">4</span></td></tr>
-            <tr><td><div class="item"><img src="assets/star_1.png" alt="" style="transform:scale(2.4)"><span>Зірочки на нитках<small>Hanging Stars. Зірочки під рядком меню. Купуються один раз.</small></span></div></td><td class="num">10 клубків</td><td class="num"><span class="pill c">50</span></td><td class="num"><span class="pill w">7</span></td></tr>
+            <tr><th>Товар</th><th class="num">Відкривається з</th></tr>
+            <tr><td><div class="item"><img src="assets/holiday_christmasTree.png" alt=""><span>Ялинка<small>Christmas Tree. Вогники, кульки, золота зірка і подарунки. 2×2 клітинки.</small></span></div></td><td class="num">6 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/holiday_garlandWarm.png" alt=""><span>Тепла гірлянда<small>Warm Light Garland. Теплі вогники на трьох стовпчиках. 4×1 клітинки.</small></span></div></td><td class="num">3 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/holiday_garlandColor.png" alt=""><span>Кольорова гірлянда<small>Coloured Light Garland. Червоні, зелені, золоті, сині й рожеві вогники. 4×1 клітинки.</small></span></div></td><td class="num">3 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/holiday_garlandGreen.png" alt=""><span>Ялинкова гірлянда<small>Fir Garland. Гілочки ялини, червоні бантики і теплі вогники. 4×1 клітинки.</small></span></div></td><td class="num">8 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/holiday_stockingLine.png" alt=""><span>Мотузка зі шкарпетками<small>Stocking Line. Чотири в'язані шкарпетки на мотузці з вогниками. 4×1 клітинки.</small></span></div></td><td class="num">6 клубків</td></tr>
+            <tr><td><div class="item"><img src="assets/star_1.png" alt="" style="transform:scale(2.4)"><span>Зірочки на нитках<small>Hanging Stars. Зірочки під рядком меню. Отримуєте один раз.</small></span></div></td><td class="num">10 клубків</td></tr>
           </table></div></div>
 
           <h3>Вінки на двері</h3>
-          <p>Є три вінки: <b>ялиновий</b> (Fir), <b>евкаліптовий</b> (Eucalyptus) і <b>апельсиновий</b> (Orange). Кожен коштує <b>15 монет</b> або 2 клубки вовни і відкривається з 4 клубків. Вінок вішають на двері декоративного будиночка (маленький білий будиночок, котеджі та хатинка-курінь).</p>
+          <p>Є три вінки: <b>ялиновий</b> (Fir), <b>евкаліптовий</b> (Eucalyptus) і <b>апельсиновий</b> (Orange). Вони відкриваються з 4 клубків. Вінок вішають на двері декоративного будиночка (маленький білий будиночок, котеджі та хатинка-курінь).</p>
           <div class="grid-3">
             <div class="mini"><h4><img src="assets/wreath_0_logCabin.png" alt="">Повісити</h4><p>Клацніть будиночок і натисніть <b>Wreath</b>. Картка покаже, який вінок висить на дверях.</p></div>
             <div class="mini"><h4><img src="assets/wreath_1_pinkCottage.png" alt="">Замінити</h4><p>Натисніть <b>Next wreath</b>, щоб приміряти наступний ваш вінок. Старий повертається до інвентаря.</p></div>
@@ -342,7 +335,7 @@
           </div>
 
           <h3>Светри для овець</h3>
-          <p>Шість в'язаних кольорів: <b>червоний</b>, <b>ялиново-зелений</b>, <b>кремовий</b>, <b>синій</b>, <b>гірчичний</b> і <b>рожевий</b>. Кожен коштує <b>18 монет</b> або 3 клубки вовни і відкривається з 5 клубків.</p>
+          <p>Шість в'язаних кольорів: <b>червоний</b>, <b>ялиново-зелений</b>, <b>кремовий</b>, <b>синій</b>, <b>гірчичний</b> і <b>рожевий</b>. Вони відкриваються з 5 клубків.</p>
           <div class="stage-row">
             <figure><img src="assets/sweater_red_idle.png" alt="">червоний</figure>
             <figure><img src="assets/sweater_green_idle.png" alt="">ялиново-зелений</figure>

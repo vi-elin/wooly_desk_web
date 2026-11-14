@@ -313,7 +313,7 @@
     if (!head) return;
     head.classList.add("head");
     const labels = [...head.children].map(th => th.textContent.trim());
-    if (labels.length >= 3) t.classList.add("cols3");
+    if (labels.length >= 3 || head.querySelector("th.num")) t.classList.add("cols3");
     t.querySelectorAll("tr").forEach(r => [...r.children].forEach((c, i) => { if (c.tagName === "TD" && labels[i]) c.dataset.label = labels[i]; }));
   });
 

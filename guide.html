@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Woolly Desk Guide</title>
-<meta name="description" content="How to play Woolly Desk: the menu bar, desktop buttons, sheep care, shearing, the shop with every price, tools, buildings, seasons and all settings.">
+<meta name="description" content="How to play Woolly Desk: the menu bar, desktop buttons, sheep care, shearing, the shop and unlocks, tools, buildings, seasons and all settings.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700;800&family=Nunito:wght@400;600;700;800&family=Caveat:wght@500;700&display=swap">
@@ -66,8 +66,8 @@
           <li><a href="#desktop">On the desktop</a></li>
           <li><a href="#sheep">Your sheep</a></li>
           <li><a href="#wool">Wool and shearing</a></li>
-          <li><a href="#trade">Coins and trading</a></li>
-          <li><a href="#shop">Shop and prices</a></li>
+          <li><a href="#trade">Selling wool</a></li>
+          <li><a href="#shop">The shop</a></li>
           <li><a href="#tools">Tools</a></li>
           <li><a href="#buildings">Buildings and fences</a></li>
           <li><a href="#seasons">Weather, seasons, night</a></li>
@@ -88,8 +88,8 @@
             <option value="#desktop">On the desktop</option>
             <option value="#sheep">Your sheep</option>
             <option value="#wool">Wool and shearing</option>
-            <option value="#trade">Coins and trading</option>
-            <option value="#shop">Shop and prices</option>
+            <option value="#trade">Selling wool</option>
+            <option value="#shop">The shop</option>
             <option value="#tools">Tools</option>
             <option value="#buildings">Buildings and fences</option>
             <option value="#seasons">Weather, seasons, night</option>
@@ -107,9 +107,9 @@
           <p>Woolly Desk is a menu bar app for macOS 14 Sonoma or later. It has no Dock icon and no big window. After you open it, the farm appears <b>on your desktop wallpaper</b>, behind all your app windows. Close or move a window to see your sheep.</p>
           <ol>
             <li>Open Woolly Desk. A small cloud-and-sun icon appears in the menu bar at the top of the screen.</li>
-            <li>Your farm starts with a few sheep, <b>20 coins</b> and <b>one water trough</b>.</li>
+            <li>Your farm starts with a few sheep and <b>one water trough</b>.</li>
             <li>Click a sheep to meet it. Click it again to pet it.</li>
-            <li>Wait for the wool to grow, shear the sheep, and sell the wool for coins.</li>
+            <li>Wait for the wool to grow, shear the sheep, and sell the wool to buy things in the shop.</li>
             <li>Every bag of wool you collect counts toward new items in the shop. The Farm Overview always shows your next goal.</li>
           </ol>
           <div class="tip"><b>Do not worry about a busy week.</b> Nothing bad happens while your Mac is closed or asleep. Sheep never get ill or die while you are away.</div>
@@ -122,8 +122,8 @@
             <table>
               <tr><th>Item</th><th>What it does</th></tr>
               <tr><td><b>Farm Overview…</b> <kbd>⌘F</kbd></td><td>Day, season, weather, your next unlock, sheep that need help, troughs and feeders.</td></tr>
-              <tr><td><b>Shop &amp; Items…</b></td><td>Buy items for coins or wool, see what you own, and place items on the desktop.</td></tr>
-              <tr><td><b>Trade Wool…</b></td><td>Sell wool for coins and see your trade history.</td></tr>
+              <tr><td><b>Shop &amp; Items…</b></td><td>Get new items, see what you own, and place items on the desktop.</td></tr>
+              <tr><td><b>Trade Wool…</b></td><td>Sell wool and see your trade history.</td></tr>
               <tr><td><b>Build Fences &amp; Gates…</b> <kbd>⌘B</kbd></td><td>Opens the build palette: Fence, Gate, Mow, Sweep, Shovel, Move and Remove.</td></tr>
               <tr><td><b>Sheep ▸</b></td><td>Pick one sheep, see all sheep, or open Memories.</td></tr>
               <tr><td><b>Weather / Season</b></td><td>Automatic, or choose a weather or a season yourself.</td></tr>
@@ -217,85 +217,78 @@
             <li>You start with shears, so you can shear from the first day.</li>
           </ul>
           <h3>Light and dark wool</h3>
-          <p>White and cream sheep give <b>light wool</b>. Grey, brown and black sheep give <b>dark wool</b>, which sells for more.</p>
+          <p>White and cream sheep give <b>light wool</b>. Grey, brown and black sheep give <b>dark wool</b>, which is worth more.</p>
         </section>
 
         <section class="doc-sec" id="trade" data-reveal>
-          <h2><img src="assets/house_tradingPost_summer.png" alt="">Coins and trading</h2>
-          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Trade Wool</div><div class="body table-scroll">
-            <table>
-              <tr><th>Wool</th><th class="num">Price per wool</th><th class="num">With a Trading Post</th></tr>
-              <tr><td><div class="item"><img src="assets/sheep_white_idle.png" alt="">Light wool (white, cream)</div></td><td class="num"><span class="pill c">6 coins</span></td><td class="num"><span class="pill c">+25 %</span></td></tr>
-              <tr><td><div class="item"><img src="assets/sheep_black_idle.png" alt="">Dark wool (grey, brown, black)</div></td><td class="num"><span class="pill c">8 coins</span></td><td class="num"><span class="pill c">+25 %</span></td></tr>
-            </table>
-          </div></div>
+          <h2><img src="assets/house_tradingPost_summer.png" alt="">Selling wool</h2>
+          <p>Sell your wool to get new things in the shop. Dark wool is worth more than light wool, and a Trading Post gives you a better deal.</p>
           <ul>
             <li>Sell wool from <b>Trade Wool…</b> in the menu, or click your Trading Post.</li>
-            <li>You can also pay for many shop items <b>with wool</b> instead of coins.</li>
+            <li>You can also pay for many shop items <b>with wool</b>.</li>
             <li>Your farm stores <b>12 wool</b> at first. Each Wool Storage adds room for 40 more.</li>
             <li>Your hay store holds <b>20 hay</b>. Each barn adds room for 30 more.</li>
-            <li>The broom sometimes finds a lost coin under the leaves.</li>
           </ul>
           <div class="tip"><b>Unlocks follow all the wool you ever collect</b>, not the wool you have now. Sell as much as you like: you never lose progress.</div>
         </section>
 
         <section class="doc-sec" id="shop" data-reveal>
-          <h2><img src="assets/house_woolStorage_summer.png" alt="">Shop and prices</h2>
-          <p>The shop has seven tabs. The holiday items are on the <a href="#holidays">Holiday</a> tab. Each item unlocks when your lifetime wool reaches its number. A dash in the wool column means the item costs coins only.</p>
+          <h2><img src="assets/house_woolStorage_summer.png" alt="">The shop</h2>
+          <p>The shop has seven tabs. The holiday items are on the <a href="#holidays">Holiday</a> tab. Each item unlocks when your lifetime wool reaches its number.</p>
 
           <h3>Build</h3>
           <div class="win-card"><div class="bar"><i></i><i></i><i></i>Shop · Build</div><div class="body table-scroll"><table>
-            <tr><th>Item</th><th class="num">Unlocks at</th><th class="num">Coins</th><th class="num">or wool</th></tr>
-            <tr><td><div class="item"><span>Water Trough<small>Rain fills it. Click it to refill it. In winter it drains.</small></span></div></td><td class="num">start</td><td class="num"><span class="pill c">12</span></td><td class="num"><span class="pill w">2</span></td></tr>
-            <tr><td><div class="item"><span>Hay Feeder<small>Holds 8 hay. Important in winter.</small></span></div></td><td class="num">3 wool</td><td class="num"><span class="pill c">20</span></td><td class="num"><span class="pill w">3</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_tradingPost_summer.png" alt=""><span>Trading Post<small>Better wool prices: +25 %.</small></span></div></td><td class="num">8 wool</td><td class="num"><span class="pill c">45</span></td><td class="num"><span class="pill w">7</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_barn_summer.png" alt=""><span>Barn<small>Shelter for 4 sheep. Stores 30 more hay.</small></span></div></td><td class="num">15 wool</td><td class="num"><span class="pill c">110</span></td><td class="num"><span class="pill w">16</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_woolStorage_summer.png" alt=""><span>Wool Storage<small>Room for 40 more wool.</small></span></div></td><td class="num">20 wool</td><td class="num"><span class="pill c">60</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><span>Picket Fence Style<small>White picket fences.</small></span></div></td><td class="num">25 wool</td><td class="num"><span class="pill c">40</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><span>Stone Wall Style<small>Old dry-stone walls.</small></span></div></td><td class="num">40 wool</td><td class="num"><span class="pill c">70</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><th>Item</th><th class="num">Unlocks at</th></tr>
+            <tr><td><div class="item"><span>Water Trough<small>Rain fills it. Click it to refill it. In winter it drains.</small></span></div></td><td class="num">start</td></tr>
+            <tr><td><div class="item"><span>Hay Feeder<small>Holds 8 hay. Important in winter.</small></span></div></td><td class="num">3 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/house_tradingPost_summer.png" alt=""><span>Trading Post<small>A better deal for your wool.</small></span></div></td><td class="num">8 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/house_barn_summer.png" alt=""><span>Barn<small>Shelter for 4 sheep. Stores 30 more hay.</small></span></div></td><td class="num">15 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/house_woolStorage_summer.png" alt=""><span>Wool Storage<small>Room for 40 more wool.</small></span></div></td><td class="num">20 wool</td></tr>
+            <tr><td><div class="item"><span>Picket Fence Style<small>White picket fences.</small></span></div></td><td class="num">25 wool</td></tr>
+            <tr><td><div class="item"><span>Stone Wall Style<small>Old dry-stone walls.</small></span></div></td><td class="num">40 wool</td></tr>
           </table></div></div>
 
           <h3>Animals</h3>
           <p>A young sheep from the neighbour's farm joins your flock (unlocks at 12 wool). Choose its colour, and choose a ewe, a ram or either.</p>
           <div class="win-card"><div class="bar"><i></i><i></i><i></i>Shop · Animals</div><div class="body table-scroll"><table>
-            <tr><th>Young sheep</th><th class="num">Coins</th><th>Wool it gives</th></tr>
-            <tr><td><div class="item"><img src="assets/sheep_white_idle.png" alt="">White</div></td><td class="num"><span class="pill c">80</span></td><td>light</td></tr>
-            <tr><td><div class="item"><img src="assets/sheep_cream_idle.png" alt="">Cream</div></td><td class="num"><span class="pill c">85</span></td><td>light</td></tr>
-            <tr><td><div class="item"><img src="assets/sheep_grey_idle.png" alt="">Grey</div></td><td class="num"><span class="pill c">90</span></td><td>dark</td></tr>
-            <tr><td><div class="item"><img src="assets/sheep_brown_idle.png" alt="">Brown</div></td><td class="num"><span class="pill c">95</span></td><td>dark</td></tr>
-            <tr><td><div class="item"><img src="assets/sheep_black_idle.png" alt="">Black</div></td><td class="num"><span class="pill c">100</span></td><td>dark</td></tr>
+            <tr><th>Young sheep</th><th>Wool it gives</th></tr>
+            <tr><td><div class="item"><img src="assets/sheep_white_idle.png" alt="">White</div></td><td>light</td></tr>
+            <tr><td><div class="item"><img src="assets/sheep_cream_idle.png" alt="">Cream</div></td><td>light</td></tr>
+            <tr><td><div class="item"><img src="assets/sheep_grey_idle.png" alt="">Grey</div></td><td>dark</td></tr>
+            <tr><td><div class="item"><img src="assets/sheep_brown_idle.png" alt="">Brown</div></td><td>dark</td></tr>
+            <tr><td><div class="item"><img src="assets/sheep_black_idle.png" alt="">Black</div></td><td>dark</td></tr>
           </table></div></div>
 
           <h3>Care</h3>
           <div class="win-card"><div class="bar"><i></i><i></i><i></i>Shop · Care</div><div class="body table-scroll"><table>
-            <tr><th>Item</th><th class="num">Unlocks at</th><th class="num">Coins</th><th class="num">or wool</th></tr>
-            <tr><td><div class="item"><span>Hay Bundle<small>5 hay for your store.</small></span></div></td><td class="num">start</td><td class="num"><span class="pill c">6</span></td><td class="num"><span class="pill w">1</span></td></tr>
-            <tr><td><div class="item"><span>Herbal Treat<small>More health and happiness for a weak sheep.</small></span></div></td><td class="num">5 wool</td><td class="num"><span class="pill c">10</span></td><td class="num"><span class="pill w">2</span></td></tr>
+            <tr><th>Item</th><th class="num">Unlocks at</th></tr>
+            <tr><td><div class="item"><span>Hay Bundle<small>5 hay for your store.</small></span></div></td><td class="num">start</td></tr>
+            <tr><td><div class="item"><span>Herbal Treat<small>More health and happiness for a weak sheep.</small></span></div></td><td class="num">5 wool</td></tr>
           </table></div></div>
 
           <h3>Tools</h3>
           <p>You buy each tool once and keep it forever.</p>
           <div class="win-card"><div class="bar"><i></i><i></i><i></i>Shop · Tools</div><div class="body table-scroll"><table>
-            <tr><th>Tool</th><th class="num">Unlocks at</th><th class="num">Coins</th><th class="num">or wool</th></tr>
-            <tr><td><div class="item"><span>Shears<small>You have them from the start.</small></span></div></td><td class="num">start</td><td class="num"><span class="pill none">free</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><img src="assets/broom.png" alt=""><span>Broom<small>Sweeps leaves and a little snow.</small></span></div></td><td class="num">start</td><td class="num"><span class="pill c">8</span></td><td class="num"><span class="pill w">1</span></td></tr>
-            <tr><td><div class="item"><span>Scythe<small>Mows tall grass into hay.</small></span></div></td><td class="num">2 wool</td><td class="num"><span class="pill c">15</span></td><td class="num"><span class="pill w">2</span></td></tr>
-            <tr><td><div class="item"><img src="assets/shovel.png" alt=""><span>Snow Shovel<small>Clears snow drifts in one pass.</small></span></div></td><td class="num">3 wool</td><td class="num"><span class="pill c">16</span></td><td class="num"><span class="pill w">2</span></td></tr>
+            <tr><th>Tool</th><th class="num">Unlocks at</th></tr>
+            <tr><td><div class="item"><span>Shears<small>You have them from the start.</small></span></div></td><td class="num">start</td></tr>
+            <tr><td><div class="item"><img src="assets/broom.png" alt=""><span>Broom<small>Sweeps leaves and a little snow.</small></span></div></td><td class="num">start</td></tr>
+            <tr><td><div class="item"><span>Scythe<small>Mows tall grass into hay.</small></span></div></td><td class="num">2 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/shovel.png" alt=""><span>Snow Shovel<small>Clears snow drifts in one pass.</small></span></div></td><td class="num">3 wool</td></tr>
           </table></div></div>
 
           <h3>Decoration</h3>
           <div class="win-card"><div class="bar"><i></i><i></i><i></i>Shop · Decoration</div><div class="body table-scroll"><table>
-            <tr><th>Item</th><th class="num">Unlocks at</th><th class="num">Coins</th><th class="num">or wool</th></tr>
-            <tr><td><div class="item"><img src="assets/flower_2.png" alt=""><span>Flower Bed<small>Seasonal flowers.</small></span></div></td><td class="num">5 wool</td><td class="num"><span class="pill c">8</span></td><td class="num"><span class="pill w">1</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_lantern_summer.png" alt=""><span>Lantern<small>Glows at night.</small></span></div></td><td class="num">8 wool</td><td class="num"><span class="pill c">14</span></td><td class="num"><span class="pill w">2</span></td></tr>
-            <tr><td><div class="item"><img src="assets/decor_blossomTree_summer.png" alt=""><span>Apple Tree<small>Curious sheep love it.</small></span></div></td><td class="num">30 wool</td><td class="num"><span class="pill c">45</span></td><td class="num"><span class="pill w">6</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_gardenShed_summer.png" alt=""><span>Garden Shed<small>A cosy blue shed.</small></span></div></td><td class="num">35 wool</td><td class="num"><span class="pill c">90</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_lineHouse_summer.png" alt=""><span>Little White House<small>With a young tree beside it.</small></span></div></td><td class="num">40 wool</td><td class="num"><span class="pill c">100</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_pinkCottage_summer.png" alt=""><span>Pink Cottage<small>Scalloped roof, daisies at the door.</small></span></div></td><td class="num">45 wool</td><td class="num"><span class="pill c">120</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_lavenderCottage_summer.png" alt=""><span>Lavender Cottage<small>Slate roof, lavender by the walls.</small></span></div></td><td class="num">50 wool</td><td class="num"><span class="pill c">120</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_whiteCottage_summer.png" alt=""><span>White Cottage<small>Teal shutters and flower boxes.</small></span></div></td><td class="num">55 wool</td><td class="num"><span class="pill c">130</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_aFrameCabin_summer.png" alt=""><span>A-Frame Cabin<small>A big triangle window.</small></span></div></td><td class="num">60 wool</td><td class="num"><span class="pill c">140</span></td><td class="num"><span class="pill none">—</span></td></tr>
-            <tr><td><div class="item"><img src="assets/house_logCabin_summer.png" alt=""><span>Seaside Cottage<small>Red door, dormer window, lamps at night.</small></span></div></td><td class="num">70 wool</td><td class="num"><span class="pill c">160</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><th>Item</th><th class="num">Unlocks at</th></tr>
+            <tr><td><div class="item"><img src="assets/flower_2.png" alt=""><span>Flower Bed<small>Seasonal flowers.</small></span></div></td><td class="num">5 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/house_lantern_summer.png" alt=""><span>Lantern<small>Glows at night.</small></span></div></td><td class="num">8 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/decor_blossomTree_summer.png" alt=""><span>Apple Tree<small>Curious sheep love it.</small></span></div></td><td class="num">30 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/house_gardenShed_summer.png" alt=""><span>Garden Shed<small>A cosy blue shed.</small></span></div></td><td class="num">35 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/house_lineHouse_summer.png" alt=""><span>Little White House<small>With a young tree beside it.</small></span></div></td><td class="num">40 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/house_pinkCottage_summer.png" alt=""><span>Pink Cottage<small>Scalloped roof, daisies at the door.</small></span></div></td><td class="num">45 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/house_lavenderCottage_summer.png" alt=""><span>Lavender Cottage<small>Slate roof, lavender by the walls.</small></span></div></td><td class="num">50 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/house_whiteCottage_summer.png" alt=""><span>White Cottage<small>Teal shutters and flower boxes.</small></span></div></td><td class="num">55 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/house_aFrameCabin_summer.png" alt=""><span>A-Frame Cabin<small>A big triangle window.</small></span></div></td><td class="num">60 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/house_logCabin_summer.png" alt=""><span>Seaside Cottage<small>Red door, dormer window, lamps at night.</small></span></div></td><td class="num">70 wool</td></tr>
           </table></div></div>
           <p class="muted">The houses are decoration: they make the village pretty and glow at night.</p>
         </section>
@@ -345,7 +338,7 @@
             <li>Nothing new piles up while your Mac is closed.</li>
             <li>In autumn, leaves can also land on your desktop icons and the Dock. Move the pointer over them to blow them away. You can turn this off in Settings.</li>
           </ul>
-          <div class="tip"><b>Grab the broom</b> (8 coins) early in autumn. A few quick sweeps a day keep the farm clean, and sometimes you find a coin.</div>
+          <div class="tip"><b>Grab the broom</b> early in autumn. A few quick sweeps a day keep the farm clean.</div>
         </section>
 
         <section class="doc-sec" id="holidays" data-reveal>
@@ -362,17 +355,17 @@
           <h3>Decorations</h3>
           <p>Place them like any other item. A preview follows your pointer; click to place it.</p>
           <div class="win-card"><div class="bar"><i></i><i></i><i></i>Shop · Holiday</div><div class="body table-scroll"><table>
-            <tr><th>Item</th><th class="num">Unlocks at</th><th class="num">Coins</th><th class="num">or wool</th></tr>
-            <tr><td><div class="item"><img src="assets/holiday_christmasTree.png" alt=""><span>Christmas Tree<small>Lights, baubles, a gold star and presents. 2×2 tiles.</small></span></div></td><td class="num">6 wool</td><td class="num"><span class="pill c">60</span></td><td class="num"><span class="pill w">8</span></td></tr>
-            <tr><td><div class="item"><img src="assets/holiday_garlandWarm.png" alt=""><span>Warm Light Garland<small>Warm little lights on three posts. 4×1 tiles.</small></span></div></td><td class="num">3 wool</td><td class="num"><span class="pill c">22</span></td><td class="num"><span class="pill w">3</span></td></tr>
-            <tr><td><div class="item"><img src="assets/holiday_garlandColor.png" alt=""><span>Coloured Light Garland<small>Red, green, gold, blue and pink lights. 4×1 tiles.</small></span></div></td><td class="num">3 wool</td><td class="num"><span class="pill c">22</span></td><td class="num"><span class="pill w">3</span></td></tr>
-            <tr><td><div class="item"><img src="assets/holiday_garlandGreen.png" alt=""><span>Fir Garland<small>Fir branches, red bows and warm lights. 4×1 tiles.</small></span></div></td><td class="num">8 wool</td><td class="num"><span class="pill c">30</span></td><td class="num"><span class="pill w">4</span></td></tr>
-            <tr><td><div class="item"><img src="assets/holiday_stockingLine.png" alt=""><span>Stocking Line<small>Four knitted stockings on a rope with small lights. 4×1 tiles.</small></span></div></td><td class="num">6 wool</td><td class="num"><span class="pill c">26</span></td><td class="num"><span class="pill w">4</span></td></tr>
-            <tr><td><div class="item"><img src="assets/star_1.png" alt="" style="transform:scale(2.4)"><span>Hanging Stars<small>Stars on threads under the menu bar. You buy them once.</small></span></div></td><td class="num">10 wool</td><td class="num"><span class="pill c">50</span></td><td class="num"><span class="pill w">7</span></td></tr>
+            <tr><th>Item</th><th class="num">Unlocks at</th></tr>
+            <tr><td><div class="item"><img src="assets/holiday_christmasTree.png" alt=""><span>Christmas Tree<small>Lights, baubles, a gold star and presents. 2×2 tiles.</small></span></div></td><td class="num">6 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/holiday_garlandWarm.png" alt=""><span>Warm Light Garland<small>Warm little lights on three posts. 4×1 tiles.</small></span></div></td><td class="num">3 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/holiday_garlandColor.png" alt=""><span>Coloured Light Garland<small>Red, green, gold, blue and pink lights. 4×1 tiles.</small></span></div></td><td class="num">3 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/holiday_garlandGreen.png" alt=""><span>Fir Garland<small>Fir branches, red bows and warm lights. 4×1 tiles.</small></span></div></td><td class="num">8 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/holiday_stockingLine.png" alt=""><span>Stocking Line<small>Four knitted stockings on a rope with small lights. 4×1 tiles.</small></span></div></td><td class="num">6 wool</td></tr>
+            <tr><td><div class="item"><img src="assets/star_1.png" alt="" style="transform:scale(2.4)"><span>Hanging Stars<small>Stars on threads under the menu bar. You get them once.</small></span></div></td><td class="num">10 wool</td></tr>
           </table></div></div>
 
           <h3>Door wreaths</h3>
-          <p>There are three wreaths: <b>Fir</b>, <b>Eucalyptus</b> and <b>Orange</b>. Each costs <b>15 coins</b> or 2 wool and unlocks at 4 wool. A wreath goes on the door of a decorative house (Little White House, the cottages and the A-Frame Cabin).</p>
+          <p>There are three wreaths: <b>Fir</b>, <b>Eucalyptus</b> and <b>Orange</b>. They unlock at 4 wool. A wreath goes on the door of a decorative house (Little White House, the cottages and the A-Frame Cabin).</p>
           <div class="grid-3">
             <div class="mini"><h4><img src="assets/wreath_0_logCabin.png" alt="">Hang it</h4><p>Click a house and press <b>Wreath</b>. The card then shows which wreath is on the door.</p></div>
             <div class="mini"><h4><img src="assets/wreath_1_pinkCottage.png" alt="">Change it</h4><p>Press <b>Next wreath</b> to try the next one you own. The old wreath goes back to your inventory.</p></div>
@@ -380,7 +373,7 @@
           </div>
 
           <h3>Sweaters for your sheep</h3>
-          <p>Six knitted colours: <b>Red</b>, <b>Fir Green</b>, <b>Cream</b>, <b>Blue</b>, <b>Mustard</b> and <b>Pink</b>. Each costs <b>18 coins</b> or 3 wool and unlocks at 5 wool.</p>
+          <p>Six knitted colours: <b>Red</b>, <b>Fir Green</b>, <b>Cream</b>, <b>Blue</b>, <b>Mustard</b> and <b>Pink</b>. They unlock at 5 wool.</p>
           <div class="stage-row">
             <figure><img src="assets/sweater_red_idle.png" alt="">red</figure>
             <figure><img src="assets/sweater_green_idle.png" alt="">fir green</figure>
@@ -481,7 +474,7 @@
       </div>
       <div>
         <h4>Learn</h4>
-        <ul><li><a href="guide.html">Guide</a></li><li><a href="guide.html#shop">Shop and prices</a></li><li><a href="guide.html#settings">Settings</a></li><li><a href="faq.html">FAQ</a></li></ul>
+        <ul><li><a href="guide.html">Guide</a></li><li><a href="guide.html#shop">The shop</a></li><li><a href="guide.html#settings">Settings</a></li><li><a href="faq.html">FAQ</a></li></ul>
       </div>
       <div>
         <h4>Help</h4>
