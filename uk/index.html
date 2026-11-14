@@ -387,6 +387,71 @@ section[id] { scroll-margin-top: 90px; }
 }
 @media (prefers-reduced-motion: reduce) { .hang { animation: none; } }
 
+/* decorate your desktop: stars and farm folders */
+.deco-head { margin-top: 64px; display: grid; gap: 4px; }
+.deco-head h3 { font-size: 1.6rem; }
+.deco-head p { color: var(--ink-soft); max-width: 40em; }
+#holidays.night .deco-head p { color: #CFC8E3; }
+.deco { display: grid; grid-template-columns: 1.45fr 1fr; gap: 28px; align-items: start; margin-top: 18px; }
+.deco > * { min-width: 0; }
+.deco-mac { border: 3px solid var(--ink); border-radius: 16px; overflow: hidden; background: var(--ink); box-shadow: 9px 11px 0 rgba(58,47,42,.2); }
+#holidays.night .deco-mac { border-color: var(--on-night); box-shadow: 9px 11px 0 rgba(0,0,0,.25); }
+.deco-bar { display: flex; justify-content: space-between; gap: 10px; height: 26px; align-items: center; padding: 0 10px; font-size: .76rem; font-weight: 600; color: var(--ink);
+  background: rgba(251,248,241,.9); border-bottom: 1px solid rgba(58,47,42,.15); position: relative; z-index: 6; white-space: nowrap; overflow: hidden; }
+.deco-bar .l { display: flex; gap: 12px; } .deco-bar .r { font-variant-numeric: tabular-nums; }
+#holidays.night .deco-bar { background: rgba(38,44,76,.92); color: var(--on-night); border-color: rgba(243,238,223,.15); }
+.deco-desk { position: relative; aspect-ratio: 16 / 10; background: var(--meadow) url("../assets/farm_day_empty.jpg") 30% 40% / cover no-repeat; transition: background-image .6s; }
+#holidays.night .deco-desk { background-image: url("../assets/farm_night_empty.jpg"); }
+.deco-stars { position: absolute; inset: 0 0 auto 0; height: 60%; z-index: 1; pointer-events: none; }
+.deco-desk.over .deco-stars { z-index: 4; }
+.deco-stars .hang { width: 96px; margin-left: -48px; }
+.deco-stars .hang img { width: 96px; top: calc(var(--len, 60px) - 48px); }
+.deco-stars .hang::before { left: 50%; }
+.deco-win { position: absolute; z-index: 3; left: 9%; top: 14%; width: 44%; background: var(--window); border: 2px solid var(--ink); border-radius: 10px; overflow: hidden; box-shadow: 5px 6px 0 rgba(58,47,42,.2); }
+.deco-win .bar { display: flex; align-items: center; gap: 5px; height: 20px; padding: 0 8px; background: var(--chrome); border-bottom: 2px solid var(--ink); font-size: .68rem; font-weight: 700; }
+.deco-win .bar i { width: 8px; height: 8px; border-radius: 50%; border: 1.3px solid var(--ink); background: #E8857A; }
+.deco-win .bar i:nth-child(2) { background: var(--lamp); } .deco-win .bar i:nth-child(3) { background: #9CC08A; }
+.deco-win .bar span { margin-left: 4px; }
+.deco-win .body { padding: 8px 12px 10px; font: 700 clamp(.85rem, 1.4vw, 1.15rem) / 1.2 var(--hand); color: var(--ink); }
+.deco-win s { text-decoration-color: var(--barn); text-decoration-thickness: 2px; }
+.deco-folders { position: absolute; z-index: 2; right: 4%; top: 10%; bottom: 6%; display: grid; grid-template-columns: repeat(2, minmax(0, 72px)); grid-auto-rows: min-content; gap: 6px 10px; align-content: start; }
+.deco-folder { display: grid; justify-items: center; gap: 0; font-size: .66rem; font-weight: 700; text-align: center; color: var(--ink); text-shadow: 0 1px 0 rgba(255,255,255,.7); }
+#holidays.night .deco-folder { color: var(--on-night); text-shadow: 0 1px 2px rgba(0,0,0,.6); }
+.deco-folder img { width: 58px; transition: transform .35s cubic-bezier(.3,.7,.4,1.6); }
+.deco-folder img.pop { animation: wd-folder .5s cubic-bezier(.3,.7,.4,1.6); }
+@keyframes wd-folder { 0% { transform: scale(.7) rotate(-6deg); } 60% { transform: scale(1.12) rotate(3deg); } 100% { transform: none; } }
+#holidays.night .deco-folder img { filter: brightness(.82) saturate(.9); }
+.deco-controls { display: grid; gap: 16px; }
+.deco-card { background: var(--window); border: 2.5px solid var(--ink); border-radius: 16px; padding: 14px 16px 16px; box-shadow: 4px 5px 0 rgba(58,47,42,.14); display: grid; gap: 8px; }
+#holidays.night .deco-card { background: var(--night-2); border-color: var(--on-night); color: var(--on-night); box-shadow: 4px 5px 0 rgba(0,0,0,.25); }
+.deco-card h4 { display: flex; align-items: center; gap: 8px; font-size: 1.15rem; }
+.deco-card h4 img { width: 34px; }
+.deco-card p { font-size: .93rem; color: var(--ink-soft); }
+#holidays.night .deco-card p { color: #CFC8E3; }
+.season-dots { display: flex; gap: 6px; flex-wrap: wrap; }
+.season-dots button { font: 700 .78rem var(--display); border: 2px solid var(--ink); border-radius: 999px; padding: .15em .7em; background: transparent; color: inherit; cursor: pointer; }
+.season-dots button[aria-pressed="true"] { background: var(--lamp); color: var(--ink); }
+#holidays.night .season-dots button { border-color: var(--on-night); }
+.season-dots[hidden] { display: none; }
+.swatches { display: flex; flex-wrap: wrap; gap: 7px; }
+.swatches button { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--ink); background: var(--c); cursor: pointer; padding: 0; transition: transform .2s cubic-bezier(.3,.7,.4,1.6); }
+.swatches button:hover { transform: scale(1.15) rotate(-6deg); }
+.swatches button[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--window), 0 0 0 5px var(--ink); }
+#holidays.night .swatches button { border-color: var(--on-night); }
+#holidays.night .swatches button[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--night-2), 0 0 0 5px var(--on-night); }
+#holidays.night .deco-card .chip { background: transparent; color: var(--on-night); border-color: var(--on-night); }
+#holidays.night .deco-card .chip[aria-pressed="true"] { background: var(--lamp); color: var(--ink); border-color: var(--lamp); }
+@media (max-width: 900px) { .deco { grid-template-columns: 1fr; } }
+@media (max-width: 520px) {
+  .deco-stars .hang { width: 70px; margin-left: -35px; } .deco-stars .hang img { width: 70px; top: calc(var(--len, 60px) * .7 - 35px); }
+  .deco-stars .hang::before { height: calc(var(--len, 60px) * .7); }
+  .deco-desk { aspect-ratio: 4 / 3.4; }
+  .deco-win { width: 52%; left: 5%; }
+  .deco-folder img { width: 44px; }
+  .deco-folders { grid-template-columns: repeat(2, minmax(0, 56px)); gap: 4px 6px; }
+  .deco-bar .l span:nth-child(n+3) { display: none; }
+}
+
 /* scroll reveal: only for blocks that start below the fold */
 .reveal { opacity: 0; transform: translateY(40px) scale(.98); transition: opacity .75s ease, transform .9s cubic-bezier(.2,.75,.2,1); transition-delay: var(--d, 0s); }
 .reveal.in { opacity: 1; transform: none; }
@@ -711,6 +776,40 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
         <p>Шість в'язаних кольорів. Клацніть вівцю, щоб приміряти наступний.</p>
       </div>
       <div class="sweater-row" id="sweaterRow"></div>
+      <div class="deco-head">
+        <h3>Прикрасьте і робочий стіл</h3>
+        <p>Дві дрібниці поза фермою: зірочки на нитках під рядком меню і фермерські значки для папок на робочому столі.</p>
+      </div>
+      <div class="deco">
+        <div class="deco-mac" aria-label="Робочий стіл Mac із зірочками під рядком меню і фермерськими значками папок" role="img">
+          <div class="deco-bar"><span class="l"><b>Finder</b><span>Файл</span><span>Редагувати</span><span>Перегляд</span></span><span class="r">☁︎ <span id="decoClock">9:41</span></span></div>
+          <div class="deco-desk" id="decoDesk">
+            <div class="deco-stars" id="decoStars"></div>
+            <div class="deco-win"><div class="bar"><i></i><i></i><i></i><span>Нотатки</span></div><div class="body">повісити зірочки<br><s>загорнути подарунки</s><br>сплести светр Конюшинці</div></div>
+            <div class="deco-folders" id="decoFolders"></div>
+          </div>
+        </div>
+        <div class="deco-controls">
+          <div class="deco-card">
+            <h4><img src="../assets/star_0.png" alt="" style="transform:scale(2.3)">Зірочки на нитках</h4>
+            <p>50 монет на вкладці Holiday. Вони легенько гойдаються і світяться вночі.</p>
+            <div class="toggles" role="group" aria-label="Де висять зірочки">
+              <button class="chip" id="starsBehind" aria-pressed="true">За вікнами</button>
+              <button class="chip" id="starsOver" aria-pressed="false">Над усіма вікнами</button>
+            </div>
+          </div>
+          <div class="deco-card">
+            <h4><img src="../assets/folder_c4.png" alt="">Фермерські папки</h4>
+            <p>Безкоштовно, у Settings → Desktop. Папки з власними значками залишаються як є.</p>
+            <div class="toggles" role="group" aria-label="Кольори папок">
+              <button class="chip" id="folderSeason" aria-pressed="true">За сезоном</button>
+              <button class="chip" id="folderMixed" aria-pressed="false">Різні кольори</button>
+            </div>
+            <div class="season-dots" id="folderSeasons" role="group" aria-label="Сезон"></div>
+            <div class="swatches" id="folderSwatches" role="group" aria-label="Один колір для всіх папок"></div>
+          </div>
+        </div>
+      </div>
       <div class="holiday-prices">
         <span class="price-tag"><b>Ялинка</b> 60 монет</span>
         <span class="price-tag"><b>Гірлянди</b> 22–30 монет</span>
@@ -718,6 +817,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
         <span class="price-tag"><b>Вінки на двері</b> 15 монет</span>
         <span class="price-tag"><b>Светри</b> 18 монет</span>
         <span class="price-tag"><b>Зірочки на нитках</b> 50 монет</span>
+        <span class="price-tag"><b>Фермерські папки</b> безкоштовно</span>
         <a class="btn ghost" href="guide.html#holidays">Усі святкові ціни</a>
       </div>
     </div>
@@ -1259,9 +1359,61 @@ hToggle.addEventListener("click", () => {
   });
 })();
 
+/* Decorate your desktop: hanging stars and farm-style folders. */
+(() => {
+  const desk = document.getElementById("decoDesk"), stars = document.getElementById("decoStars");
+  [[12, 46, 1], [27, 74, 0], [41, 40, 2], [57, 90, 1], [70, 56, 0], [86, 80, 2]].forEach(([x, len, k], i) => {
+    const h = document.createElement("span");
+    h.className = "hang"; h.style.left = x + "%"; h.style.setProperty("--len", len + "px");
+    h.style.animationDelay = (-i * 1.1) + "s"; h.style.animationDuration = (4.2 + (i % 3) * .6) + "s";
+    h.innerHTML = `<img class="d" src="${A("star_" + k)}" alt=""><img class="n" src="${A("star_" + k + "_night")}" alt="">`;
+    stars.appendChild(h);
+  });
+  const sB = document.getElementById("starsBehind"), sO = document.getElementById("starsOver");
+  const setOver = on => { desk.classList.toggle("over", on); sB.setAttribute("aria-pressed", !on); sO.setAttribute("aria-pressed", on); };
+  sB.onclick = () => setOver(false); sO.onclick = () => setOver(true);
+  const clock = document.getElementById("decoClock");
+  const tick = () => { clock.textContent = new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }); };
+  tick(); setInterval(tick, 30000);
+
+  // folders: the colours of the game (Settings → Desktop → Folder colour)
+  const NAMES = ["Проєкти", "Фото", "Рецепти", "Рахунки", "Музика", "Город"];
+  const PALETTE = [["Лучна зелень", "#93B784"], ["Шавлія", "#B9C995"], ["Небесно-блакитний", "#8FB0CF"], ["Кремова вовна", "#EFE3CC"], ["Рожевий котедж", "#EFB3BE"],
+    ["Лаванда", "#BBA9D6"], ["Жовте сіно", "#F2D27A"], ["Гарбуз", "#D98A5E"], ["Червоний хлів", "#C9645B"], ["Крафтовий", "#C9A47A"], ["Сніжно-сірий", "#D9DFE6"]];
+  const SEASONS = [["spring", "Весна"], ["summer", "Літо"], ["autumn", "Осінь"], ["winter", "Зима"]];
+  const box = document.getElementById("decoFolders");
+  const imgs = NAMES.map(n => {
+    const f = document.createElement("div"); f.className = "deco-folder";
+    f.innerHTML = `<img alt="">${n}`; box.appendChild(f); return f.querySelector("img");
+  });
+  let mode = "season", season = "winter", color = 0;
+  const src = i => mode === "season" ? A(`folder_${season}_${i % 2}`) : mode === "mixed" ? A(`folder_c${[0, 4, 6, 2, 8, 5][i]}`) : A(`folder_c${color}`);
+  const draw = () => imgs.forEach((im, i) => {
+    const s2 = src(i); if (im.getAttribute("src") === s2) return;
+    im.src = s2; im.classList.remove("pop"); void im.offsetWidth;
+    setTimeout(() => im.classList.add("pop"), i * 60);
+  });
+  const fS = document.getElementById("folderSeason"), fM = document.getElementById("folderMixed");
+  const seasonBox = document.getElementById("folderSeasons"), sw = document.getElementById("folderSwatches");
+  const mark = () => {
+    fS.setAttribute("aria-pressed", mode === "season"); fM.setAttribute("aria-pressed", mode === "mixed");
+    seasonBox.hidden = mode !== "season";
+    seasonBox.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.s === season));
+    sw.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", mode === "one" && +b.dataset.c === color));
+    draw();
+  };
+  SEASONS.forEach(([k, n]) => { const b = document.createElement("button"); b.type = "button"; b.dataset.s = k; b.textContent = n; b.onclick = () => { season = k; mark(); }; seasonBox.appendChild(b); });
+  PALETTE.forEach(([n, c], i) => { const b = document.createElement("button"); b.type = "button"; b.dataset.c = i; b.title = n; b.setAttribute("aria-label", n); b.style.setProperty("--c", c); b.onclick = () => { mode = "one"; color = i; mark(); }; sw.appendChild(b); });
+  fS.onclick = () => { mode = "season"; mark(); }; fM.onclick = () => { mode = "mixed"; mark(); };
+  mark();
+  // preload all folder pictures, so switching is instant
+  PALETTE.forEach((_, i) => { new Image().src = A(`folder_c${i}`); });
+  SEASONS.forEach(([k]) => [0, 1].forEach(v => { new Image().src = A(`folder_${k}_${v}`); }));
+})();
+
 /* Scroll reveal: blocks below the fold rise in as they come into view. */
 if ("IntersectionObserver" in window && !reduce) {
-  const targets = document.querySelectorAll(".sec-head, .live, .caption, .feature, .compare, .sheep-btn, .stage, .arrow, .tabs, .season-scene, .tidy-bar, .tidy, .house, .switch, .spirit-wrap, .holiday-yard, .sweater-head, .holiday-prices, .final .wrap > *");
+  const targets = document.querySelectorAll(".sec-head, .live, .caption, .feature, .compare, .sheep-btn, .stage, .arrow, .tabs, .season-scene, .tidy-bar, .tidy, .house, .switch, .spirit-wrap, .holiday-yard, .sweater-head, .holiday-prices, .deco-head, .deco-mac, .deco-card, .final .wrap > *");
   const io = new IntersectionObserver(entries => {
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
   }, { threshold: .12, rootMargin: "0px 0px -6% 0px" });
