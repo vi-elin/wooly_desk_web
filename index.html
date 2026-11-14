@@ -306,6 +306,73 @@ section[id] { scroll-margin-top: 90px; }
 .tidy-done { position: absolute; left: 50%; top: 12%; transform: translateX(-50%); background: var(--window); border: 2.5px solid var(--ink); border-radius: 14px; padding: .1em .8em; font: 700 1.6rem var(--hand); white-space: nowrap; box-shadow: 4px 5px 0 var(--ink); }
 .tidy-hint { position: absolute; left: 16px; bottom: 12px; font: 700 1.25rem var(--hand); color: var(--ink); background: rgba(251,248,241,.85); border-radius: 10px; padding: 0 .5em; pointer-events: none; transition: opacity .5s; }
 
+/* holidays */
+#holidays { overflow: hidden; background: #E7EEF1; transition: background-color .9s ease, color .9s ease; padding-top: 150px; }
+#holidays.night { background: var(--night); color: var(--on-night); }
+#holidays.night .lede, #holidays.night .sweater-head p, #holidays.night .caption { color: #CFC8E3; }
+#holidays.night .eyebrow { color: var(--lamp); }
+.holiday-snow { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.star-line { position: absolute; left: 0; right: 0; top: 0; height: 170px; pointer-events: none; }
+.hang { position: absolute; top: 0; width: 78px; transform-origin: 50% 0; animation: swing 4.6s ease-in-out infinite; pointer-events: auto; cursor: pointer; }
+.hang::before { content: ""; position: absolute; left: 50%; top: 0; width: 1.5px; height: var(--len, 60px); background: rgba(58,47,42,.45); transform: translateX(-50%); }
+#holidays.night .hang::before { background: rgba(243,238,223,.4); }
+.hang img { position: absolute; left: 0; top: calc(var(--len, 60px) - 39px); width: 78px; transition: opacity .8s; }
+.hang img.n { opacity: 0; }
+#holidays.night .hang img.n { opacity: 1; }
+#holidays.night .hang img.d { opacity: 0; }
+.hang.spin { animation: swing-hard 1.2s cubic-bezier(.3,.7,.4,1); }
+@keyframes swing { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+@keyframes swing-hard { 0% { transform: rotate(0); } 20% { transform: rotate(22deg); } 45% { transform: rotate(-14deg); } 70% { transform: rotate(7deg); } 100% { transform: rotate(0); } }
+.holiday-yard {
+  position: relative; aspect-ratio: 1000 / 330; border: 3px solid var(--ink); border-radius: 18px; overflow: hidden;
+  background: #EEF2F2 url("assets/ground_winter.png") center / cover no-repeat; box-shadow: 9px 11px 0 rgba(58,47,42,.2);
+  transition: filter .9s;
+}
+#holidays.night .holiday-yard { border-color: var(--on-night); box-shadow: 9px 11px 0 rgba(0,0,0,.25); }
+.holiday-yard::after { content: ""; position: absolute; inset: 0; background: #1E2547; opacity: 0; transition: opacity .9s; pointer-events: none; z-index: 1; }
+#holidays.night .holiday-yard::after { opacity: .68; }
+.holiday-yard figure { position: absolute; bottom: 4%; margin: 0; z-index: 2; transform-origin: 50% 100%; transition: transform .3s cubic-bezier(.3,.7,.4,1.5); }
+.holiday-yard figure:hover { transform: rotate(-2deg) scale(1.05); }
+.holiday-yard figure img { width: 100%; height: auto; transition: opacity .9s, filter .9s; }
+.holiday-yard figure img.n { position: absolute; left: 0; top: 0; opacity: 0; }
+#holidays.night .holiday-yard figure img.n { opacity: 1; }
+#holidays.night .holiday-yard figure img.d { opacity: 0; }
+#holidays.night .holiday-yard figure.hy-house img.d { opacity: 1; filter: brightness(.55) saturate(.75) hue-rotate(-8deg); }
+#holidays.night .holiday-yard figure.hy-house::after {
+  content: ""; position: absolute; left: 20%; right: 20%; bottom: 8%; height: 40%; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 213, 138, .55), transparent); mix-blend-mode: screen; pointer-events: none;
+}
+.hy-glow { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; transition: opacity 1s;
+  background: radial-gradient(40% 60% at 10% 70%, rgba(255,213,138,.25), transparent), radial-gradient(40% 60% at 90% 70%, rgba(255,213,138,.2), transparent); }
+#holidays.night .hy-glow { opacity: 1; }
+.holiday-cap { margin-top: 14px; }
+.hy-track { position: absolute; inset: 0; }
+.sweater-head { margin-top: 56px; display: grid; gap: 4px; }
+.sweater-head h3 { font-size: 1.6rem; }
+.sweater-head p { color: var(--ink-soft); }
+.sweater-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items: end; margin-top: 10px; }
+.sweater-row .sheep-btn img { max-width: 220px; }
+#holidays.night .sweater-row .sheep-btn { color: var(--on-night); }
+#holidays.night .sweater-row .sheep-btn img { filter: brightness(.82) saturate(.9); }
+.sweater-row .sheep-btn .say { top: -14px; }
+#holidays.night .sweater-row .sheep-btn .say { background: var(--night-2); color: var(--on-night); border-color: var(--on-night); }
+.holiday-prices { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 40px; }
+.price-tag { border: 2px solid var(--ink); border-radius: 999px; padding: .2em .9em; background: var(--window); font-size: .92rem; font-variant-numeric: tabular-nums; }
+.price-tag b { font-family: var(--display); }
+#holidays.night .price-tag { background: var(--night-2); border-color: var(--on-night); color: var(--on-night); }
+.holiday-prices .btn { font-size: .95rem; padding: .5em 1em .45em; }
+#holidays.night .holiday-prices .btn { --b: var(--on-night); }
+@media (max-width: 700px) {
+  #holidays { padding-top: 130px; }
+  .hang { width: 60px; } .hang img { width: 60px; top: calc(var(--len, 60px) - 30px); }
+  .holiday-yard { aspect-ratio: auto; height: 250px; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; background-size: auto 100%; }
+  .hy-track { position: relative; width: 760px; height: 100%; }
+  .holiday-yard::after, .hy-glow { width: 760px; }
+  .holiday-cap::before { content: "swipe the yard · "; }
+  .sweater-row .sheep-btn { font-size: 1.05rem; }
+}
+@media (prefers-reduced-motion: reduce) { .hang { animation: none; } }
+
 /* scroll reveal: only for blocks that start below the fold */
 .reveal { opacity: 0; transform: translateY(40px) scale(.98); transition: opacity .75s ease, transform .9s cubic-bezier(.2,.75,.2,1); transition-delay: var(--d, 0s); }
 .reveal.in { opacity: 1; transform: none; }
@@ -351,14 +418,14 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
     <a class="brand" href="#top" aria-label="Woolly Desk home"><img src="assets/sheep_white_happy.png" alt="">Woolly Desk</a>
     <nav class="nav-links" aria-label="Main">
       <span class="nav-blob" aria-hidden="true"></span>
-      <a href="#watch">Watch</a><a href="#flock">The flock</a><a href="#seasons">Seasons</a><a href="#tidy">Tidy up</a><a href="#village">Build</a><span class="sep" aria-hidden="true"></span><a href="guide.html">Guide</a><a href="faq.html">FAQ</a><a href="support.html">Support</a>
+      <a href="#watch">Watch</a><a href="#flock">The flock</a><a href="#seasons">Seasons</a><a href="#tidy">Tidy up</a><a href="#village">Build</a><a href="#holidays">Holidays</a><span class="sep" aria-hidden="true"></span><a href="guide.html">Guide</a><a href="faq.html">FAQ</a><a href="support.html">Support</a>
     </nav>
     <a class="btn bar-cta" href="#get">Get it for Mac</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menuSheet" aria-label="Menu"><svg viewBox="0 0 30 24" aria-hidden="true"><circle cx="9" cy="8" r="4.6" fill="#F6CF6A" stroke="#3A2F2A" stroke-width="1.8"/><path d="M8 20.5h15a4.3 4.3 0 0 0 .4-8.6 6 6 0 0 0-11.5 1.2A3.7 3.7 0 0 0 8 20.5Z" fill="#FBF8F1" stroke="#3A2F2A" stroke-width="1.8"/></svg></button>
     <div class="trail" aria-hidden="true"><span class="trail-sheep"><img src="assets/sheep_white_graze0.png" alt=""></span></div>
   </div>
   <nav class="menu-sheet" id="menuSheet" aria-label="Menu">
-    <span class="sheet-label">On this page</span><a href="#watch"><img src="assets/cloud_0.png" alt="">Watch</a><a href="#flock"><img src="assets/sheep_cream_idle.png" alt="">The flock</a><a href="#seasons"><img src="assets/decor_tree_autumn.png" alt="">Seasons</a><a href="#tidy"><img src="assets/broom.png" alt="">Tidy up</a><a href="#village"><img src="assets/house_pinkCottage_summer.png" alt="">Build</a><span class="sheet-label">Pages</span><a href="guide.html"><img src="assets/house_barn_summer.png" alt="">Guide</a><a href="faq.html"><img src="assets/sheep_lamb_happy.png" alt="">FAQ</a><a href="support.html"><img src="assets/house_whiteCottage_summer.png" alt="">Support</a>
+    <span class="sheet-label">On this page</span><a href="#watch"><img src="assets/cloud_0.png" alt="">Watch</a><a href="#flock"><img src="assets/sheep_cream_idle.png" alt="">The flock</a><a href="#seasons"><img src="assets/decor_tree_autumn.png" alt="">Seasons</a><a href="#tidy"><img src="assets/broom.png" alt="">Tidy up</a><a href="#village"><img src="assets/house_pinkCottage_summer.png" alt="">Build</a><a href="#holidays"><img src="assets/holiday_christmasTree.png" alt="">Holidays</a><span class="sheet-label">Pages</span><a href="guide.html"><img src="assets/house_barn_summer.png" alt="">Guide</a><a href="faq.html"><img src="assets/sheep_lamb_happy.png" alt="">FAQ</a><a href="support.html"><img src="assets/house_whiteCottage_summer.png" alt="">Support</a>
     <a class="btn sheet-cta" href="#get">Get it for Mac</a>
   </nav>
 </header>
@@ -595,6 +662,48 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
         <button class="switch" id="villageToggle" aria-pressed="false"><span class="track"><span class="thumb"></span></span><span id="villageLabel">Day</span></button>
       </div>
       <div class="village" id="villageGrid"></div>
+    </div>
+  </section>
+
+  <section class="band holiday" id="holidays">
+    <canvas class="holiday-snow" id="holidaySnow" aria-hidden="true"></canvas>
+    <div class="star-line" id="starLine" aria-hidden="true"></div>
+    <div class="wrap" style="position:relative">
+      <div class="village-head">
+        <div class="sec-head">
+          <span class="eyebrow">winter holidays</span>
+          <h2>Deck the farm</h2>
+          <p class="lede">The shop has a Holiday tab: a Christmas tree with presents, light garlands, knitted stockings, door wreaths, cosy sweaters for your sheep and stars that hang under your menu bar. Everything glows at night. Turn the lights on.</p>
+        </div>
+        <button class="switch" id="holidayToggle" aria-pressed="false"><span class="track"><span class="thumb"></span></span><span id="holidayLabel">Lights off</span></button>
+      </div>
+      <div class="holiday-yard" id="holidayYard" role="img" aria-label="A snowy yard with a Christmas tree, light garlands, a stocking line and three houses with wreaths on their doors">
+        <div class="hy-glow" aria-hidden="true"></div>
+        <div class="hy-track">
+        <figure style="left:1%; width:15%"><img class="d" src="assets/holiday_christmasTree.png" alt=""><img class="n" src="assets/holiday_christmasTree_night.png" alt=""></figure>
+        <figure class="hy-house" style="left:14%; width:15%"><img class="d" src="assets/wreath_1_pinkCottage.png" alt=""></figure>
+        <figure style="left:28.5%; width:15.5%"><img class="d" src="assets/holiday_garlandColor.png" alt=""><img class="n" src="assets/holiday_garlandColor_night.png" alt=""></figure>
+        <figure class="hy-house" style="left:43%; width:15%"><img class="d" src="assets/wreath_0_logCabin.png" alt=""></figure>
+        <figure style="left:57.5%; width:15.5%"><img class="d" src="assets/holiday_stockingLine.png" alt=""><img class="n" src="assets/holiday_stockingLine_night.png" alt=""></figure>
+        <figure class="hy-house" style="left:72%; width:15%"><img class="d" src="assets/wreath_2_aFrameCabin.png" alt=""></figure>
+        <figure style="left:85%; width:14%"><img class="d" src="assets/holiday_garlandWarm.png" alt=""><img class="n" src="assets/holiday_garlandWarm_night.png" alt=""></figure>
+        </div>
+      </div>
+      <p class="caption holiday-cap">three wreaths for the doors: fir, eucalyptus and orange</p>
+      <div class="sweater-head">
+        <h3>A sweater for every sheep</h3>
+        <p>Six knitted colours. Click a sheep to try the next one.</p>
+      </div>
+      <div class="sweater-row" id="sweaterRow"></div>
+      <div class="holiday-prices">
+        <span class="price-tag"><b>Christmas Tree</b> 60 coins</span>
+        <span class="price-tag"><b>Light garlands</b> 22–30 coins</span>
+        <span class="price-tag"><b>Stocking Line</b> 26 coins</span>
+        <span class="price-tag"><b>Door wreaths</b> 15 coins</span>
+        <span class="price-tag"><b>Sweaters</b> 18 coins</span>
+        <span class="price-tag"><b>Hanging Stars</b> 50 coins</span>
+        <a class="btn ghost" href="guide.html#holidays">All holiday prices</a>
+      </div>
     </div>
   </section>
 
@@ -1071,9 +1180,72 @@ function tidyDraw(now) {
 tidyMode("autumn");
 requestAnimationFrame(tidyDraw);
 
+/* Holidays: hanging stars, snow, lights on and off, sheep that try on sweaters. */
+const holidays = document.getElementById("holidays"), hToggle = document.getElementById("holidayToggle");
+hToggle.addEventListener("click", () => {
+  const on = holidays.classList.toggle("night");
+  hToggle.setAttribute("aria-pressed", on);
+  document.getElementById("holidayLabel").textContent = on ? "Lights on" : "Lights off";
+});
+(() => {
+  const line = document.getElementById("starLine");
+  [[6, 70, 0], [19, 110, 1], [33, 58, 2], [67, 96, 0], [81, 66, 2], [93, 118, 1]].forEach(([x, len, k], i) => {
+    const h = document.createElement("span");
+    h.className = "hang";
+    h.style.left = x + "%"; h.style.setProperty("--len", len + "px");
+    h.style.animationDelay = (-i * 1.3) + "s"; h.style.animationDuration = (4 + (i % 3) * .7) + "s";
+    h.innerHTML = `<img class="d" src="${A("star_" + k)}" alt=""><img class="n" src="${A("star_" + k + "_night")}" alt="">`;
+    h.addEventListener("click", () => { h.classList.remove("spin"); void h.offsetWidth; h.classList.add("spin"); setTimeout(() => h.classList.remove("spin"), 1300); });
+    line.appendChild(h);
+  });
+  // a light snowfall
+  const cv = document.getElementById("holidaySnow"), cx = cv.getContext("2d");
+  const flakes = Array.from({ length: 70 }, () => ({ x: Math.random(), y: Math.random(), r: 1 + Math.random() * 2.4, s: .02 + Math.random() * .04, w: Math.random() * 6 }));
+  let visible = false;
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(holidays);
+  const snow = t => {
+    if (visible) {
+      const r = holidays.getBoundingClientRect(), dpr = Math.min(2, devicePixelRatio || 1);
+      if (cv.width !== Math.round(r.width * dpr) || cv.height !== Math.round(r.height * dpr)) { cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr); }
+      cx.setTransform(dpr, 0, 0, dpr, 0, 0); cx.clearRect(0, 0, r.width, r.height);
+      cx.fillStyle = holidays.classList.contains("night") ? "rgba(243,238,223,.85)" : "rgba(255,255,255,.95)";
+      for (const f of flakes) {
+        if (!reduce) { f.y += f.s / 60 * 6; if (f.y > 1.02) { f.y = -.02; f.x = Math.random(); } }
+        const x = (f.x * r.width + Math.sin(t / 1200 + f.w) * 14 + r.width) % r.width;
+        cx.beginPath(); cx.arc(x, f.y * r.height, f.r, 0, 7); cx.fill();
+      }
+    }
+    requestAnimationFrame(snow);
+  };
+  requestAnimationFrame(snow);
+  // sheep that try on the next sweater when you click them
+  const COLORS = [["red", "Red"], ["green", "Fir Green"], ["cream", "Cream"], ["blue", "Blue"], ["mustard", "Mustard"], ["pink", "Pink"]];
+  COLORS.forEach(([c]) => ["idle", "happy", "jump"].forEach(p => { const i = new Image(); i.src = A(`sweater_${c}_${p}`); }));
+  const row = document.getElementById("sweaterRow");
+  [0, 3, 4].forEach(start => {
+    let k = start;
+    const b = document.createElement("button");
+    b.className = "sheep-btn";
+    b.innerHTML = `<span class="say"></span><img alt=""><span class="nm"></span>`;
+    const img = b.querySelector("img"), nm = b.querySelector(".nm"), say = b.querySelector(".say");
+    const show = () => { img.src = A(`sweater_${COLORS[k][0]}_idle`); nm.textContent = COLORS[k][1] + " Sweater"; img.alt = `A sheep in a ${COLORS[k][1].toLowerCase()} knitted sweater`; };
+    show();
+    b.addEventListener("click", () => {
+      k = (k + 1) % COLORS.length;
+      img.src = A(`sweater_${COLORS[k][0]}_jump`);
+      nm.textContent = COLORS[k][1] + " Sweater";
+      say.textContent = ["so cosy!", "baa!", "fits perfectly", "warm!", "new look!"][Math.floor(Math.random() * 5)];
+      b.classList.remove("hop", "talk"); void b.offsetWidth; b.classList.add("hop", "talk");
+      setTimeout(() => { img.src = A(`sweater_${COLORS[k][0]}_happy`); }, 420);
+      setTimeout(() => { b.classList.remove("hop", "talk"); show(); }, 1500);
+    });
+    row.appendChild(b);
+  });
+})();
+
 /* Scroll reveal: blocks below the fold rise in as they come into view. */
 if ("IntersectionObserver" in window && !reduce) {
-  const targets = document.querySelectorAll(".sec-head, .live, .caption, .feature, .compare, .sheep-btn, .stage, .arrow, .tabs, .season-scene, .tidy-bar, .tidy, .house, .switch, .spirit-wrap, .final .wrap > *");
+  const targets = document.querySelectorAll(".sec-head, .live, .caption, .feature, .compare, .sheep-btn, .stage, .arrow, .tabs, .season-scene, .tidy-bar, .tidy, .house, .switch, .spirit-wrap, .holiday-yard, .sweater-head, .holiday-prices, .final .wrap > *");
   const io = new IntersectionObserver(entries => {
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
   }, { threshold: .12, rootMargin: "0px 0px -6% 0px" });

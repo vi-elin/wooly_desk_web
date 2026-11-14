@@ -12,9 +12,9 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 PAGES = ["index.html", "guide.html", "faq.html", "support.html", "privacy.html"]
 
 HOME_SECTIONS = [("#watch", "Watch"), ("#flock", "The flock"), ("#seasons", "Seasons"),
-                 ("#tidy", "Tidy up"), ("#village", "Build")]
+                 ("#tidy", "Tidy up"), ("#village", "Build"), ("#holidays", "Holidays")]
 SECTION_ICONS = {"#watch": "cloud_0", "#flock": "sheep_cream_idle", "#seasons": "decor_tree_autumn",
-                 "#tidy": "broom", "#village": "house_pinkCottage_summer"}
+                 "#tidy": "broom", "#village": "house_pinkCottage_summer", "#holidays": "holiday_christmasTree"}
 PAGES_NAV = [("guide.html", "Guide"), ("faq.html", "FAQ"), ("support.html", "Support")]
 SHEET_ICONS = {"index.html": "sheep_white_happy", "guide.html": "house_barn_summer",
                "faq.html": "sheep_lamb_happy", "support.html": "house_whiteCottage_summer"}

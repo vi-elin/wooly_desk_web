@@ -78,7 +78,7 @@ p { margin: 0; }
   transition: max-width .55s cubic-bezier(.3,.8,.3,1.15), background .35s, border-color .35s, box-shadow .45s, transform .45s;
 }
 .topbar.scrolled .bar-inner {
-  max-width: 1060px;
+  max-width: 1140px;
   background: rgba(251, 248, 241, .86);
   -webkit-backdrop-filter: blur(12px) saturate(1.2); backdrop-filter: blur(12px) saturate(1.2);
   border-color: var(--ink);
@@ -155,7 +155,7 @@ p { margin: 0; }
 .menu-sheet a[aria-current]::after { content: ""; margin-left: auto; width: 8px; height: 8px; border-radius: 50%; background: var(--barn); }
 .menu-sheet a img { width: 28px; height: 24px; object-fit: contain; flex: none; transition: transform .3s cubic-bezier(.3,.7,.4,1.6); }
 .topbar .menu-sheet .sheet-cta { justify-content: center; margin: 10px 4px 4px; font-size: 1rem; padding: .55em 1em .5em; box-shadow: 3px 4px 0 var(--ink); }
-@media (max-width: 1040px) {
+@media (max-width: 1200px) {
   .nav-links { display: none; }
   .menu-btn { display: grid; margin-left: auto; }
 }
@@ -432,7 +432,7 @@ details.qa .a { overflow: hidden; }
 /* ───────── phone and tablet fixes ───────── */
 html { overflow-x: hidden; }
 .page-hero .eyebrow { line-height: 1.15; }
-@media (max-width: 1040px) {
+@media (max-width: 1200px) {
   .topbar .bar-cta { margin-left: auto; }
   .menu-btn { margin-left: 0; }
   .trail { right: 76px; }
@@ -467,3 +467,5 @@ html { overflow-x: hidden; }
 }
 @media (max-width: 520px) { .menu-btn { margin-left: auto; } }
 @media (hover: none) { .pasture .hint { display: none !important; } }
+
+@media (max-width: 1340px) { .nav-links a { padding: .32em .58em; font-size: .96rem; } .nav-links .sep { margin: 0 3px; } }
