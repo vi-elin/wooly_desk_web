@@ -1,0 +1,49 @@
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out the site
+        uses: actions/checkout@v4
+        with:
+          path: site
+
+      - name: Check out the pictures from the private game repo
+        uses: actions/checkout@v4
+        with:
+          repository: vi-elin/woolly_desk
+          ssh-key: ${{ secrets.GAME_REPO_DEPLOY_KEY }}
+          path: game
+          sparse-checkout: landing/assets
+
+      - name: Build the page folder
+        run: |
+          mkdir -p public
+          cp site/index.html public/
+          touch public/.nojekyll
+          cp -R game/landing/assets public/assets
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - id: deployment
+        uses: actions/deploy-pages@v4
