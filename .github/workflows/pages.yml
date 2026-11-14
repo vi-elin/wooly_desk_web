@@ -37,7 +37,7 @@ jobs:
       - name: Build the page folder
         run: |
           mkdir -p public
-          cp site/index.html public/
+          cp site/*.html site/*.css site/*.js public/
           touch public/.nojekyll
           cp -R game/landing/assets public/assets
 

@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Woolly Desk Guide</title>
+<meta name="description" content="How to play Woolly Desk: the menu bar, desktop buttons, sheep care, shearing, the shop with every price, tools, buildings, seasons and all settings.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700;800&family=Nunito:wght@400;600;700;800&family=Caveat:wght@500;700&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<!--HEADER-->
+<header class="topbar" id="topbar">
+  <div class="bar-inner">
+    <a class="brand" href="index.html" aria-label="Woolly Desk home"><img src="assets/sheep_white_happy.png" alt="">Woolly Desk</a>
+    <nav class="nav-links" aria-label="Main">
+      <span class="nav-blob" aria-hidden="true"></span>
+      <a href="index.html">Home</a><span class="sep" aria-hidden="true"></span><a href="guide.html" aria-current="page">Guide</a><a href="faq.html">FAQ</a><a href="support.html">Support</a>
+    </nav>
+    <a class="btn bar-cta" href="index.html#get">Get it for Mac</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menuSheet" aria-label="Menu"><svg viewBox="0 0 30 24" aria-hidden="true"><circle cx="9" cy="8" r="4.6" fill="#F6CF6A" stroke="#3A2F2A" stroke-width="1.8"/><path d="M8 20.5h15a4.3 4.3 0 0 0 .4-8.6 6 6 0 0 0-11.5 1.2A3.7 3.7 0 0 0 8 20.5Z" fill="#FBF8F1" stroke="#3A2F2A" stroke-width="1.8"/></svg></button>
+    <div class="trail" aria-hidden="true"><span class="trail-sheep"><img src="assets/sheep_white_graze0.png" alt=""></span></div>
+  </div>
+  <nav class="menu-sheet" id="menuSheet" aria-label="Menu">
+    <a href="index.html"><img src="assets/sheep_white_happy.png" alt="">Home</a><a href="guide.html" aria-current="page"><img src="assets/house_barn_summer.png" alt="">Guide</a><a href="faq.html"><img src="assets/sheep_lamb_happy.png" alt="">FAQ</a><a href="support.html"><img src="assets/house_whiteCottage_summer.png" alt="">Support</a>
+    <a class="btn" href="index.html#get">Get it for Mac</a>
+  </nav>
+</header>
+<!--/HEADER-->
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">the farmer's handbook</span>
+        <h1>How Woolly Desk works</h1>
+        <p class="lede">Everything about your little farm in one place: how to look after the sheep, what each tool does, what the shop sells and for how much, and what every setting means.</p>
+      </div>
+      <div class="art" aria-hidden="true">
+        <img src="assets/house_barn_summer.png" alt="" style="left:0; width:150px">
+        <img src="assets/sheep_white_graze0.png" alt="" style="left:44%; width:100px">
+        <img src="assets/sheep_lamb_happy.png" alt="" style="left:72%; width:66px">
+      </div>
+    </div>
+  </section>
+
+  <section class="page-body">
+    <div class="wrap doc-layout">
+      <nav class="toc" aria-label="Guide contents">
+        <p>on this page</p>
+        <ol>
+          <span class="toc-sheep" aria-hidden="true"><img src="assets/sheep_white_idle.png" alt=""></span>
+          <li><a href="#start">Getting started</a></li>
+          <li><a href="#menu">The menu bar</a></li>
+          <li><a href="#desktop">On the desktop</a></li>
+          <li><a href="#sheep">Your sheep</a></li>
+          <li><a href="#wool">Wool and shearing</a></li>
+          <li><a href="#trade">Coins and trading</a></li>
+          <li><a href="#shop">Shop and prices</a></li>
+          <li><a href="#tools">Tools</a></li>
+          <li><a href="#buildings">Buildings and fences</a></li>
+          <li><a href="#seasons">Weather, seasons, night</a></li>
+          <li><a href="#tidy">Leaves and snow</a></li>
+          <li><a href="#family">Pairs and lambs</a></li>
+          <li><a href="#gentle">Old age and Memories</a></li>
+          <li><a href="#settings">Settings</a></li>
+          <li><a href="#keys">Shortcuts</a></li>
+        </ol>
+      </nav>
+
+      <article>
+        <div class="toc-jump">
+          <select aria-label="Jump to a section">
+            <option value="#start">Getting started</option>
+            <option value="#menu">The menu bar</option>
+            <option value="#desktop">On the desktop</option>
+            <option value="#sheep">Your sheep</option>
+            <option value="#wool">Wool and shearing</option>
+            <option value="#trade">Coins and trading</option>
+            <option value="#shop">Shop and prices</option>
+            <option value="#tools">Tools</option>
+            <option value="#buildings">Buildings and fences</option>
+            <option value="#seasons">Weather, seasons, night</option>
+            <option value="#tidy">Leaves and snow</option>
+            <option value="#family">Pairs and lambs</option>
+            <option value="#gentle">Old age and Memories</option>
+            <option value="#settings">Settings</option>
+            <option value="#keys">Shortcuts</option>
+          </select>
+        </div>
+
+        <section class="doc-sec" id="start" data-reveal>
+          <h2><img src="assets/sheep_white_happy.png" alt="">Getting started</h2>
+          <p>Woolly Desk is a menu bar app for macOS 14 Sonoma or later. It has no Dock icon and no big window. After you open it, the farm appears <b>on your desktop wallpaper</b>, behind all your app windows. Close or move a window to see your sheep.</p>
+          <ol>
+            <li>Open Woolly Desk. A small cloud-and-sun icon appears in the menu bar at the top of the screen.</li>
+            <li>Your farm starts with a few sheep, <b>20 coins</b> and <b>one water trough</b>.</li>
+            <li>Click a sheep to meet it. Click it again to pet it.</li>
+            <li>Wait for the wool to grow, shear the sheep, and sell the wool for coins.</li>
+            <li>Every bag of wool you collect counts toward new items in the shop. The Farm Overview always shows your next goal.</li>
+          </ol>
+          <div class="tip"><b>Do not worry about a busy week.</b> Nothing bad happens while your Mac is closed or asleep. Sheep never get ill or die while you are away.</div>
+        </section>
+
+        <section class="doc-sec" id="menu" data-reveal>
+          <h2><img src="assets/cloud_0.png" alt="">The menu bar</h2>
+          <p>Click the cloud-and-sun icon in the menu bar. The header of the menu shows the farm day, the season and the number of sheep.</p>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Woolly Desk menu</div><div class="body table-scroll">
+            <table>
+              <tr><th>Item</th><th>What it does</th></tr>
+              <tr><td><b>Farm Overview…</b> <kbd>⌘F</kbd></td><td>Day, season, weather, your next unlock, sheep that need help, troughs and feeders.</td></tr>
+              <tr><td><b>Shop &amp; Items…</b></td><td>Buy items for coins or wool, see what you own, and place items on the desktop.</td></tr>
+              <tr><td><b>Trade Wool…</b></td><td>Sell wool for coins and see your trade history.</td></tr>
+              <tr><td><b>Build Fences &amp; Gates…</b> <kbd>⌘B</kbd></td><td>Opens the build palette: Fence, Gate, Mow, Sweep, Shovel, Move and Remove.</td></tr>
+              <tr><td><b>Sheep ▸</b></td><td>Pick one sheep, see all sheep, or open Memories.</td></tr>
+              <tr><td><b>Weather / Season</b></td><td>Automatic, or choose a weather or a season yourself.</td></tr>
+              <tr><td><b>Time of Day</b></td><td>Follow my clock (default), Always Day or Always Night.</td></tr>
+              <tr><td><b>Sheep Above Desktop Icons</b></td><td>On: you can click sheep and buildings. Off: the farm is only a wallpaper.</td></tr>
+              <tr><td><b>Pause Farm</b></td><td>Stops the farm. It uses no CPU while it is paused.</td></tr>
+              <tr><td><b>Settings…</b>, <b>Quit</b></td><td>Open the settings, or close the app.</td></tr>
+            </table>
+          </div></div>
+        </section>
+
+        <section class="doc-sec" id="desktop" data-reveal>
+          <h2><img src="assets/house_lantern_summer.png" alt="">On the desktop</h2>
+          <h3>The two round buttons</h3>
+          <p>Two round buttons sit at the left edge of the screen: <b>Home</b> and <b>Tools</b>. Click a circle and its buttons slide out. Click anywhere else and they slide back in.</p>
+          <div class="grid-2">
+            <div class="mini"><h4>Home</h4><p>Farm overview, Shop &amp; items, Trade wool, My sheep, Settings.</p></div>
+            <div class="mini"><h4>Tools</h4><p>Fence, Gate, Scythe, Broom, Snow shovel, Move, Remove. The circle shows the tool in your hand. Pick it again to put it away.</p></div>
+          </div>
+          <p>Drag a circle to any edge of the screen: it snaps there and stays. You can turn the buttons off in the menu or in <a href="#settings">Settings → Desktop</a>.</p>
+          <h3>Clicking things</h3>
+          <ul>
+            <li><b>Click a sheep</b> to open its card: age, stage, personality, mood, food, water, energy, health and wool. The card has the buttons <b>Pet</b>, <b>Shear</b>, <b>Treat</b> and <b>Name</b>.</li>
+            <li><b>Click a building</b> (trough, feeder, barn, trading post…) to open its card: Refill, Add hay, Trade, Move or Store.</li>
+            <li><b>Click a gate</b> to open or close it.</li>
+            <li>An orange <b>!</b> above a sheep means it needs help: it is very hungry, very thirsty or weak.</li>
+            <li>All other clicks go through to Finder, so your files and icons work as usual.</li>
+          </ul>
+        </section>
+
+        <section class="doc-sec" id="sheep" data-reveal>
+          <h2><img src="assets/sheep_cream_idle.png" alt="">Your sheep</h2>
+          <h3>Needs</h3>
+          <p>Each sheep has five needs: <b>food</b>, <b>water</b>, <b>energy</b>, <b>happiness</b> and <b>health</b>. Sheep look after themselves most of the time:</p>
+          <div class="grid-3">
+            <div class="mini"><h4><img src="assets/sheep_white_graze0.png" alt="">Food</h4><p>They eat grass first, then hay from a feeder. Grass grows back with time and rain.</p></div>
+            <div class="mini"><h4><img src="assets/cloud_2.png" alt="">Water</h4><p>They drink at the lake shore or at a water trough.</p></div>
+            <div class="mini"><h4><img src="assets/sheep_white_sleep.png" alt="">Energy</h4><p>They sleep, best of all under a roof in the barn.</p></div>
+          </div>
+          <p><b>Health</b> falls only after a need stays critical for 15 minutes, and then only slowly. It rises again with care. A Herbal Treat helps a weak sheep.</p>
+          <h3>Personalities</h3>
+          <div class="grid-3">
+            <div class="mini"><h4>Playful</h4><p>Runs and jumps a lot.</p></div>
+            <div class="mini"><h4>Shy</h4><p>Keeps away from your pointer.</p></div>
+            <div class="mini"><h4>Curious</h4><p>Explores buildings and trees.</p></div>
+            <div class="mini"><h4>Calm</h4><p>Takes long rests.</p></div>
+            <div class="mini"><h4>Social</h4><p>Stays close to the flock.</p></div>
+            <div class="mini"><h4>Independent</h4><p>Wanders far away.</p></div>
+          </div>
+          <h3>Life stages</h3>
+          <p>One farm day is one sheep month. Twelve farm days are one sheep year. With the default life pace, one sheep year takes 12 real hours.</p>
+          <div class="stage-row">
+            <figure><img src="assets/sheep_lamb_idle.png" alt="">Lamb · 0–4 months</figure>
+            <figure><img src="assets/sheep_lamb_happy.png" alt="" style="height:96px">Young · to 1 year</figure>
+            <figure><img src="assets/sheep_white_idle.png" alt="">Adult · 1–8 years</figure>
+            <figure><img src="assets/sheep_grey_idle.png" alt="">Elderly · 8+ years</figure>
+          </div>
+          <h3>Play</h3>
+          <p>Happy sheep run laps. Lambs and young sheep play most. A runner can invite a cheerful friend, and they play tag for a few laps. Sheep do not play at night, in bad weather, or when they are hungry or thirsty.</p>
+        </section>
+
+        <section class="doc-sec" id="wool" data-reveal>
+          <h2><img src="assets/sheep_sheared_idle.png" alt="">Wool and shearing</h2>
+          <p>Wool grows back in about <b>6 farm days</b> (half a sheep year). It grows faster in spring and slower in winter and on weak sheep. You can see the wool on each sheep:</p>
+          <div class="stage-row">
+            <figure><img src="assets/sheep_sheared_idle.png" alt="">sheared</figure>
+            <figure><img src="assets/sheep_lamb_idle.png" alt="" style="height:70px">short</figure>
+            <figure><img src="assets/sheep_cream_idle.png" alt="" style="height:78px">medium</figure>
+            <figure><img src="assets/sheep_white_idle.png" alt="">full</figure>
+          </div>
+          <ul>
+            <li>Shear a sheep at <b>medium</b> or <b>full</b> wool: click it, then click <b>Shear</b>.</li>
+            <li>One shearing gives <b>2–4 wool</b>, plus 1 for a full fleece in summer.</li>
+            <li>You never shear lambs.</li>
+            <li>You start with shears, so you can shear from the first day.</li>
+          </ul>
+          <h3>Light and dark wool</h3>
+          <p>White and cream sheep give <b>light wool</b>. Grey, brown and black sheep give <b>dark wool</b>, which sells for more.</p>
+        </section>
+
+        <section class="doc-sec" id="trade" data-reveal>
+          <h2><img src="assets/house_tradingPost_summer.png" alt="">Coins and trading</h2>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Trade Wool</div><div class="body table-scroll">
+            <table>
+              <tr><th>Wool</th><th class="num">Price per wool</th><th class="num">With a Trading Post</th></tr>
+              <tr><td><div class="item"><img src="assets/sheep_white_idle.png" alt="">Light wool (white, cream)</div></td><td class="num"><span class="pill c">6 coins</span></td><td class="num"><span class="pill c">+25 %</span></td></tr>
+              <tr><td><div class="item"><img src="assets/sheep_black_idle.png" alt="">Dark wool (grey, brown, black)</div></td><td class="num"><span class="pill c">8 coins</span></td><td class="num"><span class="pill c">+25 %</span></td></tr>
+            </table>
+          </div></div>
+          <ul>
+            <li>Sell wool from <b>Trade Wool…</b> in the menu, or click your Trading Post.</li>
+            <li>You can also pay for many shop items <b>with wool</b> instead of coins.</li>
+            <li>Your farm stores <b>12 wool</b> at first. Each Wool Storage adds room for 40 more.</li>
+            <li>Your hay store holds <b>20 hay</b>. Each barn adds room for 30 more.</li>
+            <li>The broom sometimes finds a lost coin under the leaves.</li>
+          </ul>
+          <div class="tip"><b>Unlocks follow all the wool you ever collect</b>, not the wool you have now. Sell as much as you like: you never lose progress.</div>
+        </section>
+
+        <section class="doc-sec" id="shop" data-reveal>
+          <h2><img src="assets/house_woolStorage_summer.png" alt="">Shop and prices</h2>
+          <p>The shop has six tabs. Each item unlocks when your lifetime wool reaches its number. A dash in the wool column means the item costs coins only.</p>
+
+          <h3>Build</h3>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Shop · Build</div><div class="body table-scroll"><table>
+            <tr><th>Item</th><th class="num">Unlocks at</th><th class="num">Coins</th><th class="num">or wool</th></tr>
+            <tr><td><div class="item"><span>Water Trough<small>Rain fills it. Click it to refill it. In winter it drains.</small></span></div></td><td class="num">start</td><td class="num"><span class="pill c">12</span></td><td class="num"><span class="pill w">2</span></td></tr>
+            <tr><td><div class="item"><span>Hay Feeder<small>Holds 8 hay. Important in winter.</small></span></div></td><td class="num">3 wool</td><td class="num"><span class="pill c">20</span></td><td class="num"><span class="pill w">3</span></td></tr>
+            <tr><td><div class="item"><img src="assets/house_tradingPost_summer.png" alt=""><span>Trading Post<small>Better wool prices: +25 %.</small></span></div></td><td class="num">8 wool</td><td class="num"><span class="pill c">45</span></td><td class="num"><span class="pill w">7</span></td></tr>
+            <tr><td><div class="item"><img src="assets/house_barn_summer.png" alt=""><span>Barn<small>Shelter for 4 sheep. Stores 30 more hay.</small></span></div></td><td class="num">15 wool</td><td class="num"><span class="pill c">110</span></td><td class="num"><span class="pill w">16</span></td></tr>
+            <tr><td><div class="item"><img src="assets/house_woolStorage_summer.png" alt=""><span>Wool Storage<small>Room for 40 more wool.</small></span></div></td><td class="num">20 wool</td><td class="num"><span class="pill c">60</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><span>Picket Fence Style<small>White picket fences.</small></span></div></td><td class="num">25 wool</td><td class="num"><span class="pill c">40</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><span>Stone Wall Style<small>Old dry-stone walls.</small></span></div></td><td class="num">40 wool</td><td class="num"><span class="pill c">70</span></td><td class="num"><span class="pill none">—</span></td></tr>
+          </table></div></div>
+
+          <h3>Animals</h3>
+          <p>A young sheep from the neighbour's farm joins your flock (unlocks at 12 wool). Choose its colour, and choose a ewe, a ram or either.</p>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Shop · Animals</div><div class="body table-scroll"><table>
+            <tr><th>Young sheep</th><th class="num">Coins</th><th>Wool it gives</th></tr>
+            <tr><td><div class="item"><img src="assets/sheep_white_idle.png" alt="">White</div></td><td class="num"><span class="pill c">80</span></td><td>light</td></tr>
+            <tr><td><div class="item"><img src="assets/sheep_cream_idle.png" alt="">Cream</div></td><td class="num"><span class="pill c">85</span></td><td>light</td></tr>
+            <tr><td><div class="item"><img src="assets/sheep_grey_idle.png" alt="">Grey</div></td><td class="num"><span class="pill c">90</span></td><td>dark</td></tr>
+            <tr><td><div class="item"><img src="assets/sheep_brown_idle.png" alt="">Brown</div></td><td class="num"><span class="pill c">95</span></td><td>dark</td></tr>
+            <tr><td><div class="item"><img src="assets/sheep_black_idle.png" alt="">Black</div></td><td class="num"><span class="pill c">100</span></td><td>dark</td></tr>
+          </table></div></div>
+
+          <h3>Care</h3>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Shop · Care</div><div class="body table-scroll"><table>
+            <tr><th>Item</th><th class="num">Unlocks at</th><th class="num">Coins</th><th class="num">or wool</th></tr>
+            <tr><td><div class="item"><span>Hay Bundle<small>5 hay for your store.</small></span></div></td><td class="num">start</td><td class="num"><span class="pill c">6</span></td><td class="num"><span class="pill w">1</span></td></tr>
+            <tr><td><div class="item"><span>Herbal Treat<small>More health and happiness for a weak sheep.</small></span></div></td><td class="num">5 wool</td><td class="num"><span class="pill c">10</span></td><td class="num"><span class="pill w">2</span></td></tr>
+          </table></div></div>
+
+          <h3>Tools</h3>
+          <p>You buy each tool once and keep it forever.</p>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Shop · Tools</div><div class="body table-scroll"><table>
+            <tr><th>Tool</th><th class="num">Unlocks at</th><th class="num">Coins</th><th class="num">or wool</th></tr>
+            <tr><td><div class="item"><span>Shears<small>You have them from the start.</small></span></div></td><td class="num">start</td><td class="num"><span class="pill none">free</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><img src="assets/broom.png" alt=""><span>Broom<small>Sweeps leaves and a little snow.</small></span></div></td><td class="num">start</td><td class="num"><span class="pill c">8</span></td><td class="num"><span class="pill w">1</span></td></tr>
+            <tr><td><div class="item"><span>Scythe<small>Mows tall grass into hay.</small></span></div></td><td class="num">2 wool</td><td class="num"><span class="pill c">15</span></td><td class="num"><span class="pill w">2</span></td></tr>
+            <tr><td><div class="item"><img src="assets/shovel.png" alt=""><span>Snow Shovel<small>Clears snow drifts in one pass.</small></span></div></td><td class="num">3 wool</td><td class="num"><span class="pill c">16</span></td><td class="num"><span class="pill w">2</span></td></tr>
+          </table></div></div>
+
+          <h3>Decoration</h3>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Shop · Decoration</div><div class="body table-scroll"><table>
+            <tr><th>Item</th><th class="num">Unlocks at</th><th class="num">Coins</th><th class="num">or wool</th></tr>
+            <tr><td><div class="item"><img src="assets/flower_2.png" alt=""><span>Flower Bed<small>Seasonal flowers.</small></span></div></td><td class="num">5 wool</td><td class="num"><span class="pill c">8</span></td><td class="num"><span class="pill w">1</span></td></tr>
+            <tr><td><div class="item"><img src="assets/house_lantern_summer.png" alt=""><span>Lantern<small>Glows at night.</small></span></div></td><td class="num">8 wool</td><td class="num"><span class="pill c">14</span></td><td class="num"><span class="pill w">2</span></td></tr>
+            <tr><td><div class="item"><img src="assets/decor_blossomTree_summer.png" alt=""><span>Apple Tree<small>Curious sheep love it.</small></span></div></td><td class="num">30 wool</td><td class="num"><span class="pill c">45</span></td><td class="num"><span class="pill w">6</span></td></tr>
+            <tr><td><div class="item"><img src="assets/house_gardenShed_summer.png" alt=""><span>Garden Shed<small>A cosy blue shed.</small></span></div></td><td class="num">35 wool</td><td class="num"><span class="pill c">90</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><img src="assets/house_lineHouse_summer.png" alt=""><span>Little White House<small>With a young tree beside it.</small></span></div></td><td class="num">40 wool</td><td class="num"><span class="pill c">100</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><img src="assets/house_pinkCottage_summer.png" alt=""><span>Pink Cottage<small>Scalloped roof, daisies at the door.</small></span></div></td><td class="num">45 wool</td><td class="num"><span class="pill c">120</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><img src="assets/house_lavenderCottage_summer.png" alt=""><span>Lavender Cottage<small>Slate roof, lavender by the walls.</small></span></div></td><td class="num">50 wool</td><td class="num"><span class="pill c">120</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><img src="assets/house_whiteCottage_summer.png" alt=""><span>White Cottage<small>Teal shutters and flower boxes.</small></span></div></td><td class="num">55 wool</td><td class="num"><span class="pill c">130</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><img src="assets/house_aFrameCabin_summer.png" alt=""><span>A-Frame Cabin<small>A big triangle window.</small></span></div></td><td class="num">60 wool</td><td class="num"><span class="pill c">140</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><img src="assets/house_logCabin_summer.png" alt=""><span>Log Cabin<small>Stone chimney, string lights at night.</small></span></div></td><td class="num">70 wool</td><td class="num"><span class="pill c">160</span></td><td class="num"><span class="pill none">—</span></td></tr>
+          </table></div></div>
+          <p class="muted">The houses are decoration: they make the village pretty and glow at night.</p>
+        </section>
+
+        <section class="doc-sec" id="tools" data-reveal>
+          <h2><img src="assets/broom.png" alt="">Tools</h2>
+          <p>Open the build palette with <kbd>⌘B</kbd>, or use the Tools circle on the desktop.</p>
+          <div class="grid-2">
+            <div class="mini"><h4>Fence and Gate</h4><p>Draw fences around your pens. Small buttons let you choose the style: wood, picket or stone. Click a gate to open or close it.</p></div>
+            <div class="mini"><h4>Scythe (Mow)</h4><p>Drag over tall grass to mow it into hay. You get 25 % more hay in autumn.</p></div>
+            <div class="mini"><h4><img src="assets/broom.png" alt="">Broom (Sweep)</h4><p>Hold the mouse button and drag. Leaves fly away in the direction you sweep.</p></div>
+            <div class="mini"><h4><img src="assets/shovel.png" alt="">Snow Shovel</h4><p>Hold and drag across a drift. The snow flies off to the nearest side of the screen.</p></div>
+            <div class="mini"><h4>Move</h4><p>Pick up a building and put it somewhere else.</p></div>
+            <div class="mini"><h4>Remove</h4><p>Take away a fence or an item.</p></div>
+          </div>
+        </section>
+
+        <section class="doc-sec" id="buildings" data-reveal>
+          <h2><img src="assets/house_barn_summer.png" alt="">Buildings and fences</h2>
+          <ul>
+            <li><b>Placing:</b> after you buy an item, a preview follows your pointer. Click to place it. The preview turns red where the item does not fit.</li>
+            <li><b>Rotating:</b> right-click to turn troughs and feeders.</li>
+            <li><b>Storing:</b> click a building and choose Store to put it back into your inventory.</li>
+            <li><b>Barn:</b> 4 sheltered stalls. Sheep run to it in storms and like to sleep there.</li>
+            <li><b>Water trough:</b> rain fills it, and in winter it drains. Click it and choose Refill.</li>
+            <li><b>Hay feeder:</b> holds 8 hay. Click it and choose Add hay. Sheep eat from it when the grass is short.</li>
+          </ul>
+        </section>
+
+        <section class="doc-sec" id="seasons" data-reveal>
+          <h2><img src="assets/decor_tree_autumn.png" alt="">Weather, seasons and night</h2>
+          <div class="grid-2">
+            <div class="mini"><h4>Real weather</h4><p>Turn it on in Settings. The farm shows the weather where you live: sun, clouds, rain, snow and thunderstorms. Rain helps the grass and fills the troughs. Snow stops the grass. In storms the sheep run to the barn.</p></div>
+            <div class="mini"><h4>Seasons</h4><p>Seasons follow the calendar. You can also choose a season in the menu or in Settings.</p></div>
+            <div class="mini"><h4>Day and night</h4><p>The farm follows your clock and the real sunrise and sunset. Dusk and dawn take about 1.5 hours. At night lanterns and windows glow, fireflies come out and the sheep sleep.</p></div>
+            <div class="mini"><h4>Your choice</h4><p>Prefer the farm always in daylight? Choose Time of Day → Always Day.</p></div>
+          </div>
+        </section>
+
+        <section class="doc-sec" id="tidy" data-reveal>
+          <h2><img src="assets/leaves.png" alt="">Leaves and snow</h2>
+          <p>In autumn, leaves fall and pile up next to trees, fences and buildings. While it snows, drifts form. Grass under leaves or snow does not grow, and sheep cannot eat it.</p>
+          <ul>
+            <li>Without sweeping, leaves can cover up to 60 % of the farm, and snow up to 30 %.</li>
+            <li>Sheep in deep leaves get unhappy and slowly lose health, but never below half. The overview and the sheep card warn you.</li>
+            <li>Snow melts when it gets warmer. Old leaves rot slowly.</li>
+            <li>Nothing new piles up while your Mac is closed.</li>
+            <li>In autumn, leaves can also land on your desktop icons and the Dock. Move the pointer over them to blow them away. You can turn this off in Settings.</li>
+          </ul>
+          <div class="tip"><b>Grab the broom</b> (8 coins) early in autumn. A few quick sweeps a day keep the farm clean, and sometimes you find a coin.</div>
+        </section>
+
+        <section class="doc-sec" id="family" data-reveal>
+          <h2><img src="assets/heart.png" alt="">Pairs and lambs</h2>
+          <ul>
+            <li>Two single adults, a ewe and a ram that are not related, can fall in love when they meet. They become a pair for life and stay close, with small hearts between them.</li>
+            <li>Only a pair has lambs. A pregnancy takes 5 farm days, then the ewe rests for about a sheep year.</li>
+            <li>An expecting ewe sometimes dreams of her lambs in a thought bubble.</li>
+            <li>A birth gives 1–3 tiny lambs. Twins are common. Lambs mostly take a parent's colour and follow their mother.</li>
+            <li>The farm holds up to 30 sheep by default. You can change the limit from 3 to 60, or turn births off, in <a href="#settings">Settings → Farm life</a>.</li>
+          </ul>
+        </section>
+
+        <section class="doc-sec" id="gentle" data-reveal>
+          <h2><img src="assets/sheep_spirit.png" alt="">Old age and Memories</h2>
+          <p>Woolly Desk is gentle. A sheep can pass away only from old age (after about 10 sheep years) or after a very long time without care. It never happens suddenly, at random, or while your Mac is closed.</p>
+          <p>When its time comes, the sheep turns into a soft, sheep-shaped cloud that floats up over the farm. Its name stays in <b>Memories</b> (menu → Sheep ▸ Memories).</p>
+          <p>Prefer that no sheep ever leaves? Turn off <b>Animals can pass away</b> in Settings. Old or weak sheep then just rest more.</p>
+        </section>
+
+        <section class="doc-sec" id="settings" data-reveal>
+          <h2><img src="assets/house_gardenShed_summer.png" alt="">Settings</h2>
+          <p>Open the menu and choose <b>Settings…</b>, or use the Home circle on the desktop.</p>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Woolly Desk Settings</div><div class="body table-scroll"><table>
+            <tr><th colspan="2">Weather</th></tr>
+            <tr><td><b>Use real weather for my area</b></td><td>Off by default. Uses your approximate location (about 10 km). Type a city, or leave it empty to use Location Services.</td></tr>
+            <tr><td><b>Weather</b></td><td>Automatic, or a fixed weather: sunny, partly cloudy, cloudy, rain, snow, thunderstorm.</td></tr>
+            <tr><td><b>Season</b></td><td>Automatic (calendar), or a fixed season.</td></tr>
+            <tr><td><b>Time of day</b></td><td>Follow my clock, Always day, or Always night.</td></tr>
+            <tr><th colspan="2">Desktop</th></tr>
+            <tr><td><b>Sheep above desktop icons</b></td><td>On: you can click sheep, gates and buildings. Off: the farm is only a picture.</td></tr>
+            <tr><td><b>Round buttons on the desktop</b></td><td>Show or hide the Home and Tools circles.</td></tr>
+            <tr><td><b>Autumn leaves on icons and the Dock</b></td><td>macOS asks once for permission to ask Finder where the icons are.</td></tr>
+            <tr><td><b>Show names on hover</b></td><td>A sheep's name appears when your pointer is over it.</td></tr>
+            <tr><td><b>Show mood bubbles</b></td><td>Small bubbles show how sheep feel.</td></tr>
+            <tr><th colspan="2">Farm life</th></tr>
+            <tr><td><b>Life pace</b></td><td>Relaxed (1 sheep year = 24 h), Normal (12 h, default) or Quick (4 h). It changes ageing, wool growth and pregnancy. Needs and grass always use real time.</td></tr>
+            <tr><td><b>Lambs are born</b></td><td>Turn births on or off.</td></tr>
+            <tr><td><b>Population limit</b></td><td>From 3 to 60 sheep. Default: 30.</td></tr>
+            <tr><td><b>Animals can pass away</b></td><td>When off, sheep never die.</td></tr>
+            <tr><th colspan="2">Sound</th></tr>
+            <tr><td><b>Ambient sound</b></td><td>Rain, wind and soft bleats. Off by default.</td></tr>
+            <tr><td><b>Sweeping and shovel sounds</b></td><td>Short sounds when you use the broom or the shovel.</td></tr>
+            <tr><td><b>Volume</b></td><td>Loudness of the ambient sound.</td></tr>
+            <tr><th colspan="2">Farm</th></tr>
+            <tr><td><b>Start a new farm…</b></td><td>Replaces your sheep, names and fences with a new farm. The app asks you to confirm first.</td></tr>
+          </table></div></div>
+        </section>
+
+        <section class="doc-sec" id="keys" data-reveal>
+          <h2><img src="assets/sparkle.png" alt="">Shortcuts</h2>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Shortcuts</div><div class="body table-scroll"><table>
+            <tr><td><kbd>⌘F</kbd></td><td>Farm Overview</td></tr>
+            <tr><td><kbd>⌘B</kbd></td><td>Build palette (fences, gates, mow, sweep, shovel, move, remove)</td></tr>
+            <tr><td>Click a sheep</td><td>Open its card. Click again to pet it.</td></tr>
+            <tr><td>Right-click</td><td>Turn a trough or a feeder while you place it.</td></tr>
+          </table></div></div>
+          <p>Still have a question? Look at the <a href="faq.html">FAQ</a> or <a href="support.html">write to us</a>.</p>
+        </section>
+      </article>
+    </div>
+  </section>
+</main>
+
+<!--FOOTER-->
+<footer class="site-foot hill">
+  <div class="foot-stars" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="name" href="index.html"><img src="assets/sheep_white_sleep.png" alt="">Woolly Desk</a>
+        <p>A cozy, hand-painted sheep farm that lives on your Mac desktop, behind every window.</p>
+      </div>
+      <div>
+        <h4>Learn</h4>
+        <ul><li><a href="guide.html">Guide</a></li><li><a href="guide.html#shop">Shop and prices</a></li><li><a href="guide.html#settings">Settings</a></li><li><a href="faq.html">FAQ</a></li></ul>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <ul><li><a href="support.html">Support</a></li><li><a href="mailto:vielindevelopment@gmail.com">vielindevelopment@gmail.com</a></li></ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul><li><a href="privacy.html">Privacy policy</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-base"><span>© 2026 Woolly Desk · hand-painted, sheep-approved</span><span>Every picture on this site comes from the game.</span></div>
+  </div>
+</footer>
+<!--/FOOTER-->
+<script src="site.js"></script>
+</body>
+</html>

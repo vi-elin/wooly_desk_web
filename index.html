@@ -1,3 +1,5 @@
+<!doctype html>
+<html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Woolly Desk</title>
@@ -5,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700;800&family=Nunito:wght@400;600;700&family=Caveat:wght@500;700&display=swap">
+<link rel="stylesheet" href="site.css">
 <style>
 /* Layout: a storybook page on warm paper. The hero is a Mac desktop whose wallpaper is the farm;
    sections alternate between paper and meadow bands, and a sheep wanders along the bottom of the window. */
@@ -74,18 +77,8 @@ p { margin: 0; }
 .btn svg { width: 1.25em; height: 1.25em; flex: none; }
 .btn small { display: block; font-family: var(--body); font-weight: 600; font-size: .7rem; letter-spacing: .04em; text-transform: uppercase; opacity: .75; line-height: 1; margin-bottom: 2px; }
 
-/* nav */
-.nav { position: relative; z-index: 5; }
-.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; }
-.brand { display: flex; align-items: center; gap: 8px; font-family: var(--display); font-weight: 800; font-size: 1.45rem; text-decoration: none; white-space: nowrap; }
-.nav .btn { white-space: nowrap; }
 @media (max-width: 600px) { .pasture .hint { display: none; } }
-.brand img { width: 58px; height: auto; margin: -14px -6px -10px -8px; }
-.nav-links { display: flex; gap: 22px; align-items: center; font-weight: 700; }
-.nav-links a { text-decoration: none; }
-.nav-links a:not(.btn):hover { text-decoration: underline wavy var(--barn) 2px; text-underline-offset: 5px; }
-.nav .btn { font-size: .95rem; padding: .55em 1em .5em; box-shadow: 3px 4px 0 var(--ink); }
-@media (max-width: 760px) { .nav-links a:not(.btn) { display: none; } }
+section[id] { scroll-margin-top: 90px; }
 
 /* hero */
 .hero { padding-block: 10px 70px; position: relative; }
@@ -348,15 +341,24 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 }
 </style>
 
-<header class="nav">
-  <div class="wrap">
+<!--HEADER-->
+<header class="topbar" id="topbar">
+  <div class="bar-inner">
     <a class="brand" href="#top" aria-label="Woolly Desk home"><img src="assets/sheep_white_happy.png" alt="">Woolly Desk</a>
-    <nav class="nav-links" aria-label="Sections">
-      <a href="#watch">Watch</a><a href="#flock">The flock</a><a href="#seasons">Seasons</a><a href="#tidy">Tidy up</a><a href="#village">Build</a>
-      <a class="btn" href="#get">Get it for Mac</a>
+    <nav class="nav-links" aria-label="Main">
+      <span class="nav-blob" aria-hidden="true"></span>
+      <a href="#watch">Watch</a><a href="#flock">The flock</a><a href="#seasons">Seasons</a><a href="#tidy">Tidy up</a><a href="#village">Build</a><span class="sep" aria-hidden="true"></span><a href="guide.html">Guide</a><a href="faq.html">FAQ</a><a href="support.html">Support</a>
     </nav>
+    <a class="btn bar-cta" href="#get">Get it for Mac</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menuSheet" aria-label="Menu"><svg viewBox="0 0 30 24" aria-hidden="true"><circle cx="9" cy="8" r="4.6" fill="#F6CF6A" stroke="#3A2F2A" stroke-width="1.8"/><path d="M8 20.5h15a4.3 4.3 0 0 0 .4-8.6 6 6 0 0 0-11.5 1.2A3.7 3.7 0 0 0 8 20.5Z" fill="#FBF8F1" stroke="#3A2F2A" stroke-width="1.8"/></svg></button>
+    <div class="trail" aria-hidden="true"><span class="trail-sheep"><img src="assets/sheep_white_graze0.png" alt=""></span></div>
   </div>
+  <nav class="menu-sheet" id="menuSheet" aria-label="Menu">
+    <a href="#watch"><img src="assets/cloud_0.png" alt="">Watch</a><a href="#flock"><img src="assets/sheep_cream_idle.png" alt="">The flock</a><a href="#seasons"><img src="assets/decor_tree_autumn.png" alt="">Seasons</a><a href="#tidy"><img src="assets/broom.png" alt="">Tidy up</a><a href="#village"><img src="assets/house_pinkCottage_summer.png" alt="">Build</a><a href="guide.html"><img src="assets/house_barn_summer.png" alt="">Guide</a><a href="faq.html"><img src="assets/sheep_lamb_happy.png" alt="">FAQ</a><a href="support.html"><img src="assets/house_whiteCottage_summer.png" alt="">Support</a>
+    <a class="btn" href="#get">Get it for Mac</a>
+  </nav>
 </header>
+<!--/HEADER-->
 
 <main id="top">
   <section class="hero">
@@ -617,7 +619,32 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
     <div class="meta"><span>macOS 14 Sonoma or later</span><span>Apple silicon and Intel</span><span>Works offline</span></div>
   </div>
 </section>
-<footer><div class="wrap"><span>Woolly Desk · hand-painted, sheep-approved</span><span>Every picture on this page comes from the game.</span></div></footer>
+<!--FOOTER-->
+<footer class="site-foot">
+  <div class="foot-stars" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="name" href="index.html"><img src="assets/sheep_white_sleep.png" alt="">Woolly Desk</a>
+        <p>A cozy, hand-painted sheep farm that lives on your Mac desktop, behind every window.</p>
+      </div>
+      <div>
+        <h4>Learn</h4>
+        <ul><li><a href="guide.html">Guide</a></li><li><a href="guide.html#shop">Shop and prices</a></li><li><a href="guide.html#settings">Settings</a></li><li><a href="faq.html">FAQ</a></li></ul>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <ul><li><a href="support.html">Support</a></li><li><a href="mailto:vielindevelopment@gmail.com">vielindevelopment@gmail.com</a></li></ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul><li><a href="privacy.html">Privacy policy</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-base"><span>© 2026 Woolly Desk · hand-painted, sheep-approved</span><span>Every picture on this site comes from the game.</span></div>
+  </div>
+</footer>
+<!--/FOOTER-->
 
 <div class="pasture" id="pasture" aria-hidden="true"><span class="hint" id="hint">pet me!</span></div>
 
@@ -1080,3 +1107,4 @@ addEventListener("pointermove", e => {
 
 requestAnimationFrame(loop);
 </script>
+<script src="site.js"></script>
