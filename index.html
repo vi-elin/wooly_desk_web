@@ -40,7 +40,7 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0; background: var(--paper); color: var(--ink);
   font-family: var(--body); font-size: 17px; line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 img { max-width: 100%; display: block; }
@@ -243,6 +243,7 @@ section[id] { scroll-margin-top: 90px; }
 .sheep-btn .say { position: absolute; top: -8px; left: 50%; transform: translateX(-50%); white-space: nowrap; background: var(--window); border: 2px solid var(--ink); border-radius: 12px; padding: 0 .5em; font-size: 1.1rem; opacity: 0; transition: opacity .2s; pointer-events: none; }
 .sheep-btn.talk .say { opacity: 1; }
 @media (max-width: 700px) { .flock-row { grid-template-columns: repeat(4, 1fr); } .flock-row::after { display: none; } }
+@media (max-width: 560px) { .stages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; } .stages .arrow { display: none; } .stage { font-size: 1rem; } .stage img { width: 100%; } }
 .stages { display: flex; flex-wrap: wrap; align-items: end; justify-content: center; gap: 4px 18px; margin-top: 36px; }
 .stage { text-align: center; font: 700 1.2rem var(--hand); color: var(--ink-soft); }
 .stage img { width: clamp(110px, 16vw, 170px); }

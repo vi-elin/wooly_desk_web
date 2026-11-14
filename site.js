@@ -289,6 +289,16 @@
     });
   }
 
+  /* ── tables: label each cell, so phones can show rows as small cards ── */
+  document.querySelectorAll(".win-card table").forEach(t => {
+    const head = [...t.querySelectorAll("tr")].find(r => r.querySelectorAll("th").length > 1);
+    if (!head) return;
+    head.classList.add("head");
+    const labels = [...head.children].map(th => th.textContent.trim());
+    if (labels.length >= 3) t.classList.add("cols3");
+    t.querySelectorAll("tr").forEach(r => [...r.children].forEach((c, i) => { if (c.tagName === "TD" && labels[i]) c.dataset.label = labels[i]; }));
+  });
+
   /* ── stagger: cards, rows and answers come in one after another ── */
   document.querySelectorAll("[data-reveal]").forEach(box => {
     const groups = [box.querySelectorAll(".mini"), box.querySelectorAll("tr"), box.querySelectorAll("details.qa"), box.querySelectorAll(".stage-row figure")];

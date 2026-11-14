@@ -428,3 +428,42 @@ details.qa .a { overflow: hidden; }
   .reveal.in .mini, .reveal.in tr, .reveal.in .tip, .reveal.in details.qa, .reveal.in > h2 img, .reveal.in .stage-row figure { animation: none !important; opacity: 1 !important; }
   .reveal .mini, .reveal tr, .reveal .tip, .reveal details.qa, .reveal .stage-row figure { opacity: 1; }
 }
+
+/* ───────── phone and tablet fixes ───────── */
+html { overflow-x: hidden; }
+.page-hero .eyebrow { line-height: 1.15; }
+@media (max-width: 1040px) {
+  .topbar .bar-cta { margin-left: auto; }
+  .menu-btn { margin-left: 0; }
+  .trail { right: 76px; }
+}
+@media (max-width: 600px) {
+  /* shop and settings tables turn into small cards */
+  .win-card > .body { padding: 6px 14px 10px; }
+  .win-card table, .win-card tbody, .win-card tr, .win-card td, .win-card th { display: block; }
+  .win-card table tr.head { display: none !important; }
+  .win-card tr { padding: 10px 0; border-bottom: 1.5px dashed rgba(58,47,42,.2); }
+  .win-card tr:last-child { border-bottom: 0; }
+  .win-card td { border: 0; padding: 2px 0; }
+  .win-card th { padding: 14px 0 6px; border-bottom: 2.5px solid var(--ink); }
+  .win-card tr:has(> th) { padding: 0; border: 0; }
+  .win-card table.cols3 tr { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; }
+  .win-card table.cols3 td:first-child { flex-basis: 100%; }
+  .win-card table.cols3 td:not(:first-child) { display: inline-flex; align-items: center; gap: 6px; text-align: left; font-size: .92rem; }
+  .win-card table.cols3 td:not(:first-child)::before {
+    content: attr(data-label); font: 700 .68rem var(--display); text-transform: uppercase; letter-spacing: .04em; color: var(--ink-soft);
+  }
+  .win-card table:not(.cols3) td:first-child { font-weight: 700; }
+  td .item:not(:has(img)) { padding-left: 0; }
+  .tip { transform: none; padding-left: 52px; }
+  .reveal.in .tip { animation-name: wd-fade-up; }
+  /* support card */
+  .mail-card { padding: 20px; gap: 12px; }
+  .mail-card .env { width: 76px; height: 58px; }
+  .mail-card .addr { font-size: clamp(.95rem, 4.6vw, 1.3rem); word-break: normal; overflow-wrap: anywhere; }
+  /* footer: links in two columns, small print stacked */
+  .site-foot { padding-top: 56px; }
+  .foot-base { flex-direction: column; }
+}
+@media (max-width: 520px) { .menu-btn { margin-left: auto; } }
+@media (hover: none) { .pasture .hint { display: none !important; } }
