@@ -1,6 +1,21 @@
 // Woolly Desk — shared behaviour for every page.
 (() => {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const UK = document.documentElement.lang === "uk";
+  // pictures live next to this script, also for the pages in uk/
+  const AS = new URL("assets/", (document.currentScript || {}).src || location.href).href;
+  // texts the script writes into the page, in the page's language
+  const L = UK ? {
+    top: "Нагору",
+    names: { "index.html": "головна", "": "головна", "guide.html": "посібник", "faq.html": "питання", "support.html": "підтримка", "privacy.html": "конфіденційність" },
+    langName: { uk: "українська", en: "English" },
+    off: n => `вирушаємо: ${n}…`, hello: n => `вітаємо: ${n}!`,
+  } : {
+    top: "Back to the top",
+    names: { "index.html": "home", "": "home", "guide.html": "the guide", "faq.html": "the FAQ", "support.html": "support", "privacy.html": "privacy" },
+    langName: { uk: "українська", en: "English" },
+    off: n => `off to ${n}…`, hello: n => `welcome to ${n}!`,
+  };
   const bar = document.querySelector(".topbar");
 
   /* ── header: turns into a floating menu bar after a little scroll ── */
@@ -9,7 +24,7 @@
     const sheep = bar.querySelector(".trail-sheep");
     const sheepImg = sheep && sheep.querySelector("img");
     const frames = ["walk0", "walk1", "walk2", "walk3"].map(f => {
-      const i = new Image(); i.src = `assets/sheep_white_${f}.png`; return i.src;
+      const i = new Image(); i.src = `${AS}sheep_white_${f}.png`; return i.src;
     });
     let lastY = scrollY, frame = 0, stepAcc = 0, idleTimer = 0;
     const onScroll = () => {
@@ -25,7 +40,7 @@
           stepAcc += Math.abs(dy);
           if (stepAcc > 26 && !reduce) { stepAcc = 0; frame = (frame + 1) % 4; sheepImg.src = frames[frame]; }
           clearTimeout(idleTimer);
-          idleTimer = setTimeout(() => { sheepImg.src = p > .995 ? "assets/sheep_white_happy.png" : "assets/sheep_white_graze0.png"; }, 260);
+          idleTimer = setTimeout(() => { sheepImg.src = p > .995 ? AS + "sheep_white_happy.png" : AS + "sheep_white_graze0.png"; }, 260);
         }
       }
       lastY = y;
@@ -34,7 +49,7 @@
     onScroll();
     if (sheep) {
       sheep.style.pointerEvents = "auto"; sheep.style.cursor = "pointer";
-      sheep.title = "Back to the top";
+      sheep.title = L.top;
       sheep.addEventListener("click", () => scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" }));
     }
 
@@ -133,7 +148,7 @@
           tsheep.dataset.y = y;
           tsheep.style.setProperty("--y", y + "px");
           const img = tsheep.querySelector("img");
-          if (!reduce) { img.src = "assets/sheep_white_jump.png"; clearTimeout(tsheep._t); tsheep._t = setTimeout(() => img.src = "assets/sheep_white_idle.png", 420); }
+          if (!reduce) { img.src = AS + "sheep_white_jump.png"; clearTimeout(tsheep._t); tsheep._t = setTimeout(() => img.src = AS + "sheep_white_idle.png", 420); }
         }
       }
     };
@@ -167,8 +182,8 @@
   }
 
   /* ── page transition: a meadow curtain rises, a sheep runs across, the next page opens ── */
-  const NAMES = { "index.html": "home", "": "home", "guide.html": "the guide", "faq.html": "the FAQ", "support.html": "support", "privacy.html": "privacy" };
-  const WALK = ["walk0", "walk1", "walk2", "walk3"].map(f => `assets/sheep_white_${f}.png`);
+  const NAMES = L.names;
+  const WALK = ["walk0", "walk1", "walk2", "walk3"].map(f => `${AS}sheep_white_${f}.png`);
   WALK.forEach(src => { const i = new Image(); i.src = src; });
   const makeCurtain = text => {
     const c = document.createElement("div");
@@ -183,7 +198,7 @@
   let leaving = false;
   const leave = (href, name) => {
     if (leaving) return; leaving = true;
-    const c = makeCurtain(`off to ${name}…`);
+    const c = makeCurtain(L.off(name));
     const sheet = c.querySelector(".sheet"), runner = c.querySelector(".runner"), img = runner.querySelector("img");
     const t = cycle(img, 90);
     sheet.animate([{ transform: "translateY(105%)" }, { transform: "translateY(0)" }], { duration: 430, easing: "cubic-bezier(.6,0,.3,1)", fill: "forwards" });
@@ -197,24 +212,27 @@
     if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     if (a.target || a.hasAttribute("download")) return;
     const url = new URL(a.href, location.href);
+    if (a.hasAttribute("hreflang") && !url.hash && location.hash) url.hash = location.hash;   // keep the section
     if (url.origin !== location.origin) return;
     const file = url.pathname.split("/").pop();
     if (!(file in NAMES)) return;
     if (url.pathname === location.pathname) return;   // same page: plain anchor scroll
     e.preventDefault();
-    leave(url.href, NAMES[file]);
+    const to = a.getAttribute("hreflang");
+    if (to) { try { localStorage.setItem("wd-lang", to); } catch {} }
+    leave(url.href, to ? L.langName[to] : NAMES[file]);
   });
   const root = document.documentElement;
   if (root.classList.contains("wd-enter")) {
     let name = "";
     try { name = sessionStorage.getItem("wd-curtain") || ""; sessionStorage.removeItem("wd-curtain"); } catch {}
-    const c = makeCurtain(`welcome to ${name}!`);
+    const c = makeCurtain(L.hello(name));
     root.classList.add("wd-lift");
     const sheet = c.querySelector(".sheet"), runner = c.querySelector(".runner"), img = runner.querySelector("img");
-    img.src = "assets/sheep_white_jump.png";
+    img.src = AS + "sheep_white_jump.png";
     runner.animate([{ transform: "translateY(0)" }, { transform: "translateY(-40px)" }, { transform: "translateY(0)" }], { duration: 380, easing: "ease-out" });
     setTimeout(() => {
-      img.src = "assets/sheep_white_happy.png";
+      img.src = AS + "sheep_white_happy.png";
       const up = sheet.animate([{ transform: "translateY(0)" }, { transform: "translateY(-110%)" }], { duration: 620, easing: "cubic-bezier(.6,0,.25,1)", fill: "forwards" });
       up.finished.then(() => c.remove(), () => c.remove());
     }, 260);
@@ -239,15 +257,15 @@
     hero.querySelectorAll(".art > img").forEach((img, i) => img.style.setProperty("--i", i));
     if (!reduce) [["cloud_0", "6%", "17%", 85, -20], ["cloud_2", "26%", "10%", 120, -75]].forEach(([n, top, w, dur, delay]) => {
       const c = document.createElement("img");
-      c.src = `assets/${n}.png`; c.alt = ""; c.className = "hero-cloud";
+      c.src = `${AS}${n}.png`; c.alt = ""; c.className = "hero-cloud";
       c.style.cssText = `top:${top}; width:${w}; min-width:110px; animation-duration:${dur}s; animation-delay:${delay}s`;
       hero.prepend(c);
     });
     hero.querySelectorAll(".art > img[data-walk]").forEach(img => {
       const look = img.dataset.walk;
-      const frames = ["walk0", "walk1", "walk2", "walk3"].map(f => `assets/sheep_${look}_${f}.png`);
-      const graze = ["graze0", "graze1"].map(f => `assets/sheep_${look}_${f}.png`);
-      [...frames, ...graze, `assets/sheep_${look}_happy.png`].forEach(src => { const p = new Image(); p.src = src; });
+      const frames = ["walk0", "walk1", "walk2", "walk3"].map(f => `${AS}sheep_${look}_${f}.png`);
+      const graze = ["graze0", "graze1"].map(f => `${AS}sheep_${look}_${f}.png`);
+      [...frames, ...graze, `${AS}sheep_${look}_happy.png`].forEach(src => { const p = new Image(); p.src = src; });
       const still = img.getAttribute("src");
       const min = parseFloat(img.dataset.min ?? 0), max = parseFloat(img.dataset.max ?? 80);
       let x = parseFloat(img.style.left) || min, dir = Math.random() < .5 ? 1 : -1;
@@ -278,9 +296,9 @@
       setTimeout(() => requestAnimationFrame(tick), 1400);
       img.addEventListener("click", () => {
         img.classList.remove("hop"); void img.offsetWidth; img.classList.add("hop");
-        img.src = `assets/sheep_${look}_happy.png`;
+        img.src = `${AS}sheep_${look}_happy.png`;
         const h = document.createElement("img");
-        h.src = "assets/heart.png"; h.alt = ""; h.className = "wd-heart";
+        h.src = AS + "heart.png"; h.alt = ""; h.className = "wd-heart";
         h.style.left = (img.offsetLeft + img.offsetWidth / 2) + "px"; h.style.top = (img.offsetTop - 6) + "px";
         img.parentElement.appendChild(h);
         setTimeout(() => h.remove(), 1300);

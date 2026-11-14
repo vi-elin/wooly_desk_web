@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Woolly Desk — посібник</title>
+<meta name="description" content="Як грати у Woolly Desk: меню, кнопки на робочому столі, догляд за вівцями, стрижка, магазин з усіма цінами, інструменти, будівлі, сезони і всі налаштування.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700;800&family=Balsamiq+Sans:wght@400;700&family=Nunito:wght@400;600;700;800&family=Caveat:wght@500;700&display=swap">
+<link rel="stylesheet" href="../site.css">
+<!--BOOT-->
+<link rel="canonical" href="https://woollydesk.com/uk/guide.html">
+<link rel="alternate" hreflang="en" href="https://woollydesk.com/guide.html">
+<link rel="alternate" hreflang="uk" href="https://woollydesk.com/uk/guide.html">
+<link rel="alternate" hreflang="x-default" href="https://woollydesk.com/guide.html">
+<script>try{if(sessionStorage.getItem("wd-curtain")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("wd-enter")}catch(e){}</script>
+<!--/BOOT-->
+</head>
+<body>
+<!--HEADER-->
+<header class="topbar" id="topbar">
+  <div class="bar-inner">
+    <a class="brand" href="index.html" aria-label="Woolly Desk, головна"><img src="../assets/sheep_white_happy.png" alt="">Woolly Desk</a>
+    <nav class="nav-links" aria-label="Головне меню">
+      <span class="nav-blob" aria-hidden="true"></span>
+      <a href="index.html">Головна</a><span class="sep" aria-hidden="true"></span><a href="guide.html" aria-current="page">Посібник</a><a href="faq.html">Питання</a><a href="support.html">Підтримка</a>
+    </nav>
+    <a class="lang-switch" href="../guide.html" hreflang="en" lang="en" title="English" aria-label="English">EN</a>
+    <a class="btn bar-cta" href="index.html#get">Отримати для Mac</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menuSheet" aria-label="Меню"><svg viewBox="0 0 30 24" aria-hidden="true"><circle cx="9" cy="8" r="4.6" fill="#F6CF6A" stroke="#3A2F2A" stroke-width="1.8"/><path d="M8 20.5h15a4.3 4.3 0 0 0 .4-8.6 6 6 0 0 0-11.5 1.2A3.7 3.7 0 0 0 8 20.5Z" fill="#FBF8F1" stroke="#3A2F2A" stroke-width="1.8"/></svg></button>
+    <div class="trail" aria-hidden="true"><span class="trail-sheep"><img src="../assets/sheep_white_graze0.png" alt=""></span></div>
+  </div>
+  <nav class="menu-sheet" id="menuSheet" aria-label="Меню">
+    <span class="sheet-label">Сторінки</span><a href="index.html"><img src="../assets/sheep_white_happy.png" alt="">Головна</a><a href="guide.html" aria-current="page"><img src="../assets/house_barn_summer.png" alt="">Посібник</a><a href="faq.html"><img src="../assets/sheep_lamb_happy.png" alt="">Питання</a><a href="support.html"><img src="../assets/house_whiteCottage_summer.png" alt="">Підтримка</a>
+    <a class="sheet-lang" href="../guide.html" hreflang="en" lang="en"><span class="lang-pill">EN</span>English</a>
+    <a class="btn sheet-cta" href="index.html#get">Отримати для Mac</a>
+  </nav>
+</header>
+<!--/HEADER-->
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">довідник фермера</span>
+        <h1>Як працює Woolly Desk</h1>
+        <p class="lede">Усе про вашу маленьку ферму в одному місці: як доглядати овець, що робить кожен інструмент, що продається в магазині і за скільки, і що означає кожне налаштування.</p>
+      </div>
+      <div class="art" aria-hidden="true">
+        <img src="../assets/house_barn_summer.png" alt="" style="left:0; width:150px">
+        <img src="../assets/sheep_white_graze0.png" alt="" data-walk="white" data-min="40" data-max="68" style="left:44%; width:100px">
+        <img src="../assets/sheep_lamb_happy.png" alt="" data-walk="lamb" data-min="42" data-max="80" style="left:72%; width:66px">
+      </div>
+    </div>
+  </section>
+
+  <section class="page-body">
+    <div class="wrap doc-layout">
+      <nav class="toc" aria-label="Зміст посібника">
+        <p>на цій сторінці</p>
+        <ol>
+          <span class="toc-sheep" aria-hidden="true"><img src="../assets/sheep_white_idle.png" alt=""></span>
+          <li><a href="#start">Початок</a></li>
+          <li><a href="#menu">Меню в рядку меню</a></li>
+          <li><a href="#desktop">На робочому столі</a></li>
+          <li><a href="#sheep">Ваші вівці</a></li>
+          <li><a href="#wool">Вовна і стрижка</a></li>
+          <li><a href="#trade">Монети й торгівля</a></li>
+          <li><a href="#shop">Магазин і ціни</a></li>
+          <li><a href="#tools">Інструменти</a></li>
+          <li><a href="#buildings">Будівлі й паркани</a></li>
+          <li><a href="#seasons">Погода, сезони, ніч</a></li>
+          <li><a href="#tidy">Листя і сніг</a></li>
+          <li><a href="#holidays">Зимові свята</a></li>
+          <li><a href="#family">Пари і ягнята</a></li>
+          <li><a href="#gentle">Старість і Спогади</a></li>
+          <li><a href="#settings">Налаштування</a></li>
+          <li><a href="#keys">Скорочення</a></li>
+        </ol>
+      </nav>
+
+      <article>
+        <div class="toc-jump">
+          <select aria-label="Перейти до розділу">
+            <option value="#start">Початок</option>
+            <option value="#menu">Меню в рядку меню</option>
+            <option value="#desktop">На робочому столі</option>
+            <option value="#sheep">Ваші вівці</option>
+            <option value="#wool">Вовна і стрижка</option>
+            <option value="#trade">Монети й торгівля</option>
+            <option value="#shop">Магазин і ціни</option>
+            <option value="#tools">Інструменти</option>
+            <option value="#buildings">Будівлі й паркани</option>
+            <option value="#seasons">Погода, сезони, ніч</option>
+            <option value="#tidy">Листя і сніг</option>
+            <option value="#holidays">Зимові свята</option>
+            <option value="#family">Пари і ягнята</option>
+            <option value="#gentle">Старість і Спогади</option>
+            <option value="#settings">Налаштування</option>
+            <option value="#keys">Скорочення</option>
+          </select>
+        </div>
+
+        <section class="doc-sec" id="start" data-reveal>
+          <h2><img src="../assets/sheep_white_happy.png" alt="">Початок</h2>
+          <p>Woolly Desk — це застосунок у рядку меню для macOS 14 Sonoma або новішої. У нього немає значка в Dock і немає великого вікна. Після запуску ферма з'являється <b>на шпалерах робочого столу</b>, за всіма вікнами застосунків. Закрийте або посуньте вікно, щоб побачити своїх овець.</p>
+          <ol>
+            <li>Відкрийте Woolly Desk. У рядку меню вгорі екрана з'явиться маленький значок із хмаринкою і сонцем.</li>
+            <li>Ваша ферма починається з кількох овець, <b>20 монет</b> і <b>однієї напувалки</b>.</li>
+            <li>Клацніть вівцю, щоб познайомитися. Клацніть ще раз, щоб її погладити.</li>
+            <li>Дочекайтеся, поки виросте вовна, пострижіть овець і продайте вовну за монети.</li>
+            <li>Кожен зібраний клубок вовни наближає нові товари в магазині. Огляд ферми завжди показує вашу наступну мету.</li>
+          </ol>
+          <div class="tip"><b>Не хвилюйтеся через зайнятий тиждень.</b> Поки ваш Mac закритий або спить, нічого поганого не стається. Вівці не хворіють і не помирають, поки вас немає.</div>
+        </section>
+
+        <section class="doc-sec" id="menu" data-reveal>
+          <h2><img src="../assets/cloud_0.png" alt="">Меню в рядку меню</h2>
+          <p>Клацніть значок із хмаринкою і сонцем у рядку меню. Угорі меню видно день на фермі, сезон і кількість овець. Пункти меню англійською, як у застосунку.</p>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Меню Woolly Desk</div><div class="body table-scroll">
+            <table>
+              <tr><th>Пункт</th><th>Що робить</th></tr>
+              <tr><td><b>Farm Overview…</b> <kbd>⌘F</kbd></td><td>Огляд ферми: день, сезон, погода, наступне відкриття, вівці, яким потрібна допомога, напувалки та годівниці.</td></tr>
+              <tr><td><b>Shop &amp; Items…</b></td><td>Магазин: купуйте товари за монети або вовну, дивіться, що у вас є, і ставте речі на робочий стіл.</td></tr>
+              <tr><td><b>Trade Wool…</b></td><td>Продаж вовни за монети та історія угод.</td></tr>
+              <tr><td><b>Build Fences &amp; Gates…</b> <kbd>⌘B</kbd></td><td>Відкриває палітру будівництва: паркан, ворота, косіння, підмітання, лопата, переміщення і видалення.</td></tr>
+              <tr><td><b>Sheep ▸</b></td><td>Вибрати одну вівцю, побачити всіх овець або відкрити Спогади.</td></tr>
+              <tr><td><b>Weather / Season</b></td><td>Автоматично, або виберіть погоду чи сезон самостійно.</td></tr>
+              <tr><td><b>Time of Day</b></td><td>Час доби: за моїм годинником (типово), завжди день або завжди ніч.</td></tr>
+              <tr><td><b>Sheep Above Desktop Icons</b></td><td>Увімкнено: можна клацати овець і будівлі. Вимкнено: ферма — просто шпалери.</td></tr>
+              <tr><td><b>Pause Farm</b></td><td>Зупиняє ферму. На паузі вона не навантажує процесор.</td></tr>
+              <tr><td><b>Settings…</b>, <b>Quit</b></td><td>Відкрити налаштування або закрити застосунок.</td></tr>
+            </table>
+          </div></div>
+        </section>
+
+        <section class="doc-sec" id="desktop" data-reveal>
+          <h2><img src="../assets/house_lantern_summer.png" alt="">На робочому столі</h2>
+          <h3>Дві круглі кнопки</h3>
+          <p>Біля лівого краю екрана є дві круглі кнопки: <b>Home</b> (дім) і <b>Tools</b> (інструменти). Клацніть коло — і з нього виїдуть кнопки. Клацніть деінде — і вони сховаються назад.</p>
+          <div class="grid-2">
+            <div class="mini"><h4>Home</h4><p>Огляд ферми, магазин і речі, продаж вовни, мої вівці, налаштування.</p></div>
+            <div class="mini"><h4>Tools</h4><p>Паркан, ворота, коса, мітла, лопата для снігу, переміщення, видалення. Коло показує інструмент у вашій руці. Виберіть його ще раз, щоб відкласти.</p></div>
+          </div>
+          <p>Перетягніть коло до будь-якого краю екрана: воно там закріпиться. Кнопки можна вимкнути в меню або в <a href="#settings">Settings → Desktop</a>.</p>
+          <h3>Що можна клацати</h3>
+          <ul>
+            <li><b>Клацніть вівцю</b>, щоб відкрити її картку: вік, стадія, характер, настрій, їжа, вода, енергія, здоров'я і вовна. На картці є кнопки <b>Pet</b> (погладити), <b>Shear</b> (постригти), <b>Treat</b> (ласощі) і <b>Name</b> (ім'я).</li>
+            <li><b>Клацніть будівлю</b> (напувалку, годівницю, хлів, крамничку…), щоб відкрити її картку: Refill (наповнити), Add hay (додати сіна), Trade (торгувати), Move (перемістити) або Store (сховати).</li>
+            <li><b>Клацніть ворота</b>, щоб відчинити або зачинити їх.</li>
+            <li>Помаранчевий знак <b>!</b> над вівцею означає, що їй потрібна допомога: вона дуже голодна, дуже хоче пити або ослабла.</li>
+            <li>Усі інші клацання проходять до Finder, тож файли і значки працюють як завжди.</li>
+          </ul>
+        </section>
+
+        <section class="doc-sec" id="sheep" data-reveal>
+          <h2><img src="../assets/sheep_cream_idle.png" alt="">Ваші вівці</h2>
+          <h3>Потреби</h3>
+          <p>У кожної вівці п'ять потреб: <b>їжа</b>, <b>вода</b>, <b>енергія</b>, <b>щастя</b> і <b>здоров'я</b>. Здебільшого вівці дбають про себе самі:</p>
+          <div class="grid-3">
+            <div class="mini"><h4><img src="../assets/sheep_white_graze0.png" alt="">Їжа</h4><p>Спершу вони їдять траву, потім сіно з годівниці. Трава відростає з часом і після дощу.</p></div>
+            <div class="mini"><h4><img src="../assets/cloud_2.png" alt="">Вода</h4><p>Вони п'ють на березі озера або з напувалки.</p></div>
+            <div class="mini"><h4><img src="../assets/sheep_white_sleep.png" alt="">Енергія</h4><p>Вони сплять, найкраще — під дахом у хліві.</p></div>
+          </div>
+          <p><b>Здоров'я</b> зменшується лише тоді, коли потреба залишається критичною 15 хвилин, і навіть тоді повільно. З турботою воно знову зростає. Ослабленій вівці допомагають трав'яні ласощі.</p>
+          <h3>Характери</h3>
+          <div class="grid-3">
+            <div class="mini"><h4>Грайлива</h4><p>Багато бігає і стрибає.</p></div>
+            <div class="mini"><h4>Сором'язлива</h4><p>Тримається подалі від курсора.</p></div>
+            <div class="mini"><h4>Допитлива</h4><p>Досліджує будівлі та дерева.</p></div>
+            <div class="mini"><h4>Спокійна</h4><p>Довго відпочиває.</p></div>
+            <div class="mini"><h4>Компанійська</h4><p>Тримається близько до отари.</p></div>
+            <div class="mini"><h4>Незалежна</h4><p>Ходить далеко сама.</p></div>
+          </div>
+          <h3>Етапи життя</h3>
+          <p>Один день на фермі — це один овечий місяць. Дванадцять днів на фермі — один овечий рік. За типового темпу життя овечий рік триває 12 справжніх годин.</p>
+          <div class="stage-row">
+            <figure><img src="../assets/sheep_lamb_idle.png" alt="">Ягня · 0–4 місяці</figure>
+            <figure><img src="../assets/sheep_lamb_happy.png" alt="" style="height:96px">Молода · до 1 року</figure>
+            <figure><img src="../assets/sheep_white_idle.png" alt="">Доросла · 1–8 років</figure>
+            <figure><img src="../assets/sheep_grey_idle.png" alt="">Літня · 8+ років</figure>
+          </div>
+          <h3>Ігри</h3>
+          <p>Щасливі вівці бігають колами. Найбільше граються ягнята і молоді вівці. Вівця, що бігає, може покликати веселу подругу, і вони кілька кіл граються в квача. Вівці не граються вночі, у негоду або коли голодні чи хочуть пити.</p>
+        </section>
+
+        <section class="doc-sec" id="wool" data-reveal>
+          <h2><img src="../assets/sheep_sheared_idle.png" alt="">Вовна і стрижка</h2>
+          <p>Вовна відростає приблизно за <b>6 днів на фермі</b> (пів овечого року). Навесні вона росте швидше, а взимку і в ослаблених овець — повільніше. Вовну видно на кожній вівці:</p>
+          <div class="stage-row">
+            <figure><img src="../assets/sheep_sheared_idle.png" alt="">щойно пострижена</figure>
+            <figure><img src="../assets/sheep_lamb_idle.png" alt="" style="height:70px">коротка</figure>
+            <figure><img src="../assets/sheep_cream_idle.png" alt="" style="height:78px">середня</figure>
+            <figure><img src="../assets/sheep_white_idle.png" alt="">повна</figure>
+          </div>
+          <ul>
+            <li>Стрижіть вівцю, коли вовна <b>середня</b> або <b>повна</b>: клацніть її, потім натисніть <b>Shear</b>.</li>
+            <li>Одне стрижіння дає <b>2–4 клубки вовни</b>, і ще один за повне руно влітку.</li>
+            <li>Ягнят ніколи не стрижуть.</li>
+            <li>Ножиці у вас є з самого початку, тож стригти можна вже першого дня.</li>
+          </ul>
+          <h3>Світла і темна вовна</h3>
+          <p>Білі та кремові вівці дають <b>світлу вовну</b>. Сірі, коричневі та чорні дають <b>темну вовну</b>, і вона дорожча.</p>
+        </section>
+
+        <section class="doc-sec" id="trade" data-reveal>
+          <h2><img src="../assets/house_tradingPost_summer.png" alt="">Монети й торгівля</h2>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Продаж вовни</div><div class="body table-scroll">
+            <table>
+              <tr><th>Вовна</th><th class="num">Ціна за клубок</th><th class="num">З крамничкою</th></tr>
+              <tr><td><div class="item"><img src="../assets/sheep_white_idle.png" alt="">Світла вовна (біла, кремова)</div></td><td class="num"><span class="pill c">6 монет</span></td><td class="num"><span class="pill c">+25 %</span></td></tr>
+              <tr><td><div class="item"><img src="../assets/sheep_black_idle.png" alt="">Темна вовна (сіра, коричнева, чорна)</div></td><td class="num"><span class="pill c">8 монет</span></td><td class="num"><span class="pill c">+25 %</span></td></tr>
+            </table>
+          </div></div>
+          <ul>
+            <li>Продавайте вовну через <b>Trade Wool…</b> у меню або клацніть свою крамничку (Trading Post).</li>
+            <li>За багато товарів у магазині можна заплатити <b>вовною</b> замість монет.</li>
+            <li>Спочатку ферма зберігає <b>12 клубків вовни</b>. Кожна комора для вовни додає місце ще на 40.</li>
+            <li>У сховищі вміщується <b>20 порцій сіна</b>. Кожен хлів додає місце ще на 30.</li>
+            <li>Мітла часом знаходить під листям загублену монетку.</li>
+          </ul>
+          <div class="tip"><b>Відкриття залежать від усієї вовни, яку ви колись зібрали</b>, а не від тієї, що є зараз. Продавайте скільки хочете: прогрес не втрачається.</div>
+        </section>
+
+        <section class="doc-sec" id="shop" data-reveal>
+          <h2><img src="../assets/house_woolStorage_summer.png" alt="">Магазин і ціни</h2>
+          <p>У магазині сім вкладок. Святкові товари — на вкладці <a href="#holidays">Holiday</a>. Кожен товар відкривається, коли загальна кількість зібраної вовни досягає його числа. Риска в колонці вовни означає, що товар продається лише за монети. Англійська назва — це назва в застосунку.</p>
+
+          <h3>Будівництво</h3>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Магазин · Build</div><div class="body table-scroll"><table>
+            <tr><th>Товар</th><th class="num">Відкривається з</th><th class="num">Монети</th><th class="num">або вовна</th></tr>
+            <tr><td><div class="item"><span>Напувалка<small>Water Trough. Її наповнює дощ, або клацніть, щоб наповнити. Узимку вода зникає.</small></span></div></td><td class="num">початку</td><td class="num"><span class="pill c">12</span></td><td class="num"><span class="pill w">2</span></td></tr>
+            <tr><td><div class="item"><span>Годівниця для сіна<small>Hay Feeder. Вміщує 8 порцій сіна. Важлива взимку.</small></span></div></td><td class="num">3 клубків</td><td class="num"><span class="pill c">20</span></td><td class="num"><span class="pill w">3</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/house_tradingPost_summer.png" alt=""><span>Крамничка<small>Trading Post. Кращі ціни на вовну: +25 %.</small></span></div></td><td class="num">8 клубків</td><td class="num"><span class="pill c">45</span></td><td class="num"><span class="pill w">7</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/house_barn_summer.png" alt=""><span>Хлів<small>Barn. Укриття для 4 овець. Ще 30 порцій сіна.</small></span></div></td><td class="num">15 клубків</td><td class="num"><span class="pill c">110</span></td><td class="num"><span class="pill w">16</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/house_woolStorage_summer.png" alt=""><span>Комора для вовни<small>Wool Storage. Місце ще для 40 клубків.</small></span></div></td><td class="num">20 клубків</td><td class="num"><span class="pill c">60</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><span>Штахетник<small>Picket Fence Style. Білі паркани зі штахет.</small></span></div></td><td class="num">25 клубків</td><td class="num"><span class="pill c">40</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><span>Кам'яна стіна<small>Stone Wall Style. Старі сухі кам'яні мури.</small></span></div></td><td class="num">40 клубків</td><td class="num"><span class="pill c">70</span></td><td class="num"><span class="pill none">—</span></td></tr>
+          </table></div></div>
+
+          <h3>Тварини</h3>
+          <p>Молода вівця з сусідньої ферми приєднається до вашої отари (відкривається з 12 клубків вовни). Виберіть її колір, а також вівцю, барана або будь-кого.</p>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Магазин · Animals</div><div class="body table-scroll"><table>
+            <tr><th>Молода вівця</th><th class="num">Монети</th><th>Яку вовну дає</th></tr>
+            <tr><td><div class="item"><img src="../assets/sheep_white_idle.png" alt="">Біла</div></td><td class="num"><span class="pill c">80</span></td><td>світлу</td></tr>
+            <tr><td><div class="item"><img src="../assets/sheep_cream_idle.png" alt="">Кремова</div></td><td class="num"><span class="pill c">85</span></td><td>світлу</td></tr>
+            <tr><td><div class="item"><img src="../assets/sheep_grey_idle.png" alt="">Сіра</div></td><td class="num"><span class="pill c">90</span></td><td>темну</td></tr>
+            <tr><td><div class="item"><img src="../assets/sheep_brown_idle.png" alt="">Коричнева</div></td><td class="num"><span class="pill c">95</span></td><td>темну</td></tr>
+            <tr><td><div class="item"><img src="../assets/sheep_black_idle.png" alt="">Чорна</div></td><td class="num"><span class="pill c">100</span></td><td>темну</td></tr>
+          </table></div></div>
+
+          <h3>Догляд</h3>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Магазин · Care</div><div class="body table-scroll"><table>
+            <tr><th>Товар</th><th class="num">Відкривається з</th><th class="num">Монети</th><th class="num">або вовна</th></tr>
+            <tr><td><div class="item"><span>В'язанка сіна<small>Hay Bundle. 5 порцій сіна до сховища.</small></span></div></td><td class="num">початку</td><td class="num"><span class="pill c">6</span></td><td class="num"><span class="pill w">1</span></td></tr>
+            <tr><td><div class="item"><span>Трав'яні ласощі<small>Herbal Treat. Більше здоров'я і щастя для ослабленої вівці.</small></span></div></td><td class="num">5 клубків</td><td class="num"><span class="pill c">10</span></td><td class="num"><span class="pill w">2</span></td></tr>
+          </table></div></div>
+
+          <h3>Інструменти</h3>
+          <p>Кожен інструмент купується один раз і залишається назавжди.</p>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Магазин · Tools</div><div class="body table-scroll"><table>
+            <tr><th>Інструмент</th><th class="num">Відкривається з</th><th class="num">Монети</th><th class="num">або вовна</th></tr>
+            <tr><td><div class="item"><span>Ножиці<small>Shears. Є у вас із самого початку.</small></span></div></td><td class="num">початку</td><td class="num"><span class="pill none">безкоштовно</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/broom.png" alt=""><span>Мітла<small>Broom. Змітає листя і трохи снігу.</small></span></div></td><td class="num">початку</td><td class="num"><span class="pill c">8</span></td><td class="num"><span class="pill w">1</span></td></tr>
+            <tr><td><div class="item"><span>Коса<small>Scythe. Скошує високу траву на сіно.</small></span></div></td><td class="num">2 клубків</td><td class="num"><span class="pill c">15</span></td><td class="num"><span class="pill w">2</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/shovel.png" alt=""><span>Лопата для снігу<small>Snow Shovel. Прибирає замет за один раз.</small></span></div></td><td class="num">3 клубків</td><td class="num"><span class="pill c">16</span></td><td class="num"><span class="pill w">2</span></td></tr>
+          </table></div></div>
+
+          <h3>Декор</h3>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Магазин · Decoration</div><div class="body table-scroll"><table>
+            <tr><th>Товар</th><th class="num">Відкривається з</th><th class="num">Монети</th><th class="num">або вовна</th></tr>
+            <tr><td><div class="item"><img src="../assets/flower_2.png" alt=""><span>Клумба<small>Flower Bed. Квіти за сезоном.</small></span></div></td><td class="num">5 клубків</td><td class="num"><span class="pill c">8</span></td><td class="num"><span class="pill w">1</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/house_lantern_summer.png" alt=""><span>Ліхтар<small>Lantern. Світиться вночі.</small></span></div></td><td class="num">8 клубків</td><td class="num"><span class="pill c">14</span></td><td class="num"><span class="pill w">2</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/decor_blossomTree_summer.png" alt=""><span>Яблуня<small>Apple Tree. Допитливі вівці її обожнюють.</small></span></div></td><td class="num">30 клубків</td><td class="num"><span class="pill c">45</span></td><td class="num"><span class="pill w">6</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/house_gardenShed_summer.png" alt=""><span>Садовий сарайчик<small>Garden Shed. Затишний блакитний сарайчик.</small></span></div></td><td class="num">35 клубків</td><td class="num"><span class="pill c">90</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/house_lineHouse_summer.png" alt=""><span>Маленький білий будиночок<small>Little White House. З молодим деревцем поруч.</small></span></div></td><td class="num">40 клубків</td><td class="num"><span class="pill c">100</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/house_pinkCottage_summer.png" alt=""><span>Рожевий котедж<small>Pink Cottage. Дах із лусочками, ромашки біля дверей.</small></span></div></td><td class="num">45 клубків</td><td class="num"><span class="pill c">120</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/house_lavenderCottage_summer.png" alt=""><span>Лавандовий котедж<small>Lavender Cottage. Шиферний дах, лаванда під стінами.</small></span></div></td><td class="num">50 клубків</td><td class="num"><span class="pill c">120</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/house_whiteCottage_summer.png" alt=""><span>Білий котедж<small>White Cottage. Бірюзові віконниці та ящики з квітами.</small></span></div></td><td class="num">55 клубків</td><td class="num"><span class="pill c">130</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/house_aFrameCabin_summer.png" alt=""><span>Хатинка-курінь<small>A-Frame Cabin. Велике трикутне вікно.</small></span></div></td><td class="num">60 клубків</td><td class="num"><span class="pill c">140</span></td><td class="num"><span class="pill none">—</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/house_logCabin_summer.png" alt=""><span>Будиночок біля моря<small>Seaside Cottage. Червоні двері, віконце в даху, лампи вночі.</small></span></div></td><td class="num">70 клубків</td><td class="num"><span class="pill c">160</span></td><td class="num"><span class="pill none">—</span></td></tr>
+          </table></div></div>
+          <p class="muted">Будиночки — це декор: вони прикрашають село і світяться вночі.</p>
+        </section>
+
+        <section class="doc-sec" id="tools" data-reveal>
+          <h2><img src="../assets/broom.png" alt="">Інструменти</h2>
+          <p>Відкрийте палітру будівництва клавішами <kbd>⌘B</kbd> або скористайтеся колом Tools на робочому столі.</p>
+          <div class="grid-2">
+            <div class="mini"><h4>Паркан і ворота</h4><p>Ставте паркани навколо загонів. Маленькі кнопки дають вибрати стиль: дерево, штахетник або камінь. Клацніть ворота, щоб відчинити чи зачинити їх.</p></div>
+            <div class="mini"><h4>Коса (Mow)</h4><p>Проведіть по високій траві, щоб скосити її на сіно. Восени сіна на 25 % більше.</p></div>
+            <div class="mini"><h4><img src="../assets/broom.png" alt="">Мітла (Sweep)</h4><p>Затисніть кнопку миші й ведіть. Листя відлітає в той бік, куди ви мете.</p></div>
+            <div class="mini"><h4><img src="../assets/shovel.png" alt="">Лопата для снігу</h4><p>Затисніть і проведіть через замет. Сніг відлітає до найближчого краю екрана.</p></div>
+            <div class="mini"><h4>Переміщення (Move)</h4><p>Візьміть будівлю і поставте деінде.</p></div>
+            <div class="mini"><h4>Видалення (Remove)</h4><p>Приберіть паркан або річ.</p></div>
+          </div>
+        </section>
+
+        <section class="doc-sec" id="buildings" data-reveal>
+          <h2><img src="../assets/house_barn_summer.png" alt="">Будівлі й паркани</h2>
+          <ul>
+            <li><b>Розміщення:</b> після покупки за курсором рухається попередній вигляд. Клацніть, щоб поставити. Там, де річ не вміщується, попередній вигляд стає червоним.</li>
+            <li><b>Поворот:</b> клацніть правою кнопкою, щоб повернути напувалку або годівницю.</li>
+            <li><b>Зберігання:</b> клацніть будівлю і виберіть Store, щоб повернути її до інвентаря.</li>
+            <li><b>Хлів:</b> 4 стійла під дахом. У грозу вівці біжать туди і люблять там спати.</li>
+            <li><b>Напувалка:</b> її наповнює дощ, а взимку вода зникає. Клацніть і виберіть Refill.</li>
+            <li><b>Годівниця:</b> вміщує 8 порцій сіна. Клацніть і виберіть Add hay. Вівці їдять із неї, коли трави мало.</li>
+          </ul>
+        </section>
+
+        <section class="doc-sec" id="seasons" data-reveal>
+          <h2><img src="../assets/decor_tree_autumn.png" alt="">Погода, сезони і ніч</h2>
+          <div class="grid-2">
+            <div class="mini"><h4>Справжня погода</h4><p>Увімкніть її в налаштуваннях. Ферма показує погоду там, де ви живете: сонце, хмари, дощ, сніг і грози. Дощ допомагає траві й наповнює напувалки. Сніг зупиняє ріст трави. У грозу вівці біжать до хліва.</p></div>
+            <div class="mini"><h4>Сезони</h4><p>Сезони йдуть за календарем. Сезон можна вибрати і самостійно — в меню або в налаштуваннях.</p></div>
+            <div class="mini"><h4>День і ніч</h4><p>Ферма живе за вашим годинником і справжнім сходом та заходом сонця. Сутінки й світанок тривають близько півтори години. Уночі світяться ліхтарі та вікна, вилітають світлячки, а вівці сплять.</p></div>
+            <div class="mini"><h4>Як вам зручно</h4><p>Хочете, щоб на фермі завжди був день? Виберіть Time of Day → Always Day.</p></div>
+          </div>
+        </section>
+
+        <section class="doc-sec" id="tidy" data-reveal>
+          <h2><img src="../assets/leaves.png" alt="">Листя і сніг</h2>
+          <p>Восени листя падає і збирається купками біля дерев, парканів і будівель. Коли йде сніг, наростають замети. Трава під листям чи снігом не росте, і вівці не можуть її їсти.</p>
+          <ul>
+            <li>Якщо не прибирати, листя може вкрити до 60 % ферми, а сніг — до 30 %.</li>
+            <li>У глибокому листі вівцям сумно, і вони поволі втрачають здоров'я, але ніколи не нижче половини. Огляд ферми і картка вівці вас попередять.</li>
+            <li>Сніг тане, коли теплішає. Старе листя поволі перегниває.</li>
+            <li>Поки ваш Mac закритий, нічого нового не накопичується.</li>
+            <li>Восени листя може падати і на значки робочого столу та на Dock. Проведіть по ньому курсором, щоб здмухнути. Це можна вимкнути в налаштуваннях.</li>
+          </ul>
+          <div class="tip"><b>Беріть мітлу</b> (8 монет) на початку осені. Кілька швидких змахів на день — і ферма чиста, а часом ще й монетку знайдете.</div>
+        </section>
+
+        <section class="doc-sec" id="holidays" data-reveal>
+          <h2><img src="../assets/holiday_christmasTree.png" alt="">Зимові свята</h2>
+          <p>На вкладці <b>Holiday</b> у магазині є прикраси для найзатишнішої пори року. Купувати їх можна в будь-який сезон. Усі вони мають маленькі вогники, що світяться вночі.</p>
+          <div class="stage-row">
+            <figure><img src="../assets/holiday_christmasTree_night.png" alt="" style="height:110px">ялинка</figure>
+            <figure><img src="../assets/holiday_garlandColor_night.png" alt="" style="height:70px">гірлянда</figure>
+            <figure><img src="../assets/wreath_0_logCabin.png" alt="" style="height:110px">вінок на двері</figure>
+            <figure><img src="../assets/sweater_red_idle.png" alt="" style="height:84px">светр</figure>
+            <figure><img src="../assets/star_0_night.png" alt="" style="height:96px; margin:-10px auto -14px">зірочка</figure>
+          </div>
+
+          <h3>Прикраси</h3>
+          <p>Ставте їх як будь-яку іншу річ: за курсором рухається попередній вигляд, клацніть, щоб поставити.</p>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Магазин · Holiday</div><div class="body table-scroll"><table>
+            <tr><th>Товар</th><th class="num">Відкривається з</th><th class="num">Монети</th><th class="num">або вовна</th></tr>
+            <tr><td><div class="item"><img src="../assets/holiday_christmasTree.png" alt=""><span>Ялинка<small>Christmas Tree. Вогники, кульки, золота зірка і подарунки. 2×2 клітинки.</small></span></div></td><td class="num">6 клубків</td><td class="num"><span class="pill c">60</span></td><td class="num"><span class="pill w">8</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/holiday_garlandWarm.png" alt=""><span>Тепла гірлянда<small>Warm Light Garland. Теплі вогники на трьох стовпчиках. 4×1 клітинки.</small></span></div></td><td class="num">3 клубків</td><td class="num"><span class="pill c">22</span></td><td class="num"><span class="pill w">3</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/holiday_garlandColor.png" alt=""><span>Кольорова гірлянда<small>Coloured Light Garland. Червоні, зелені, золоті, сині й рожеві вогники. 4×1 клітинки.</small></span></div></td><td class="num">3 клубків</td><td class="num"><span class="pill c">22</span></td><td class="num"><span class="pill w">3</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/holiday_garlandGreen.png" alt=""><span>Ялинкова гірлянда<small>Fir Garland. Гілочки ялини, червоні бантики і теплі вогники. 4×1 клітинки.</small></span></div></td><td class="num">8 клубків</td><td class="num"><span class="pill c">30</span></td><td class="num"><span class="pill w">4</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/holiday_stockingLine.png" alt=""><span>Мотузка зі шкарпетками<small>Stocking Line. Чотири в'язані шкарпетки на мотузці з вогниками. 4×1 клітинки.</small></span></div></td><td class="num">6 клубків</td><td class="num"><span class="pill c">26</span></td><td class="num"><span class="pill w">4</span></td></tr>
+            <tr><td><div class="item"><img src="../assets/star_1.png" alt="" style="transform:scale(2.4)"><span>Зірочки на нитках<small>Hanging Stars. Зірочки під рядком меню. Купуються один раз.</small></span></div></td><td class="num">10 клубків</td><td class="num"><span class="pill c">50</span></td><td class="num"><span class="pill w">7</span></td></tr>
+          </table></div></div>
+
+          <h3>Вінки на двері</h3>
+          <p>Є три вінки: <b>ялиновий</b> (Fir), <b>евкаліптовий</b> (Eucalyptus) і <b>апельсиновий</b> (Orange). Кожен коштує <b>15 монет</b> або 2 клубки вовни і відкривається з 4 клубків. Вінок вішають на двері декоративного будиночка (маленький білий будиночок, котеджі та хатинка-курінь).</p>
+          <div class="grid-3">
+            <div class="mini"><h4><img src="../assets/wreath_0_logCabin.png" alt="">Повісити</h4><p>Клацніть будиночок і натисніть <b>Wreath</b>. Картка покаже, який вінок висить на дверях.</p></div>
+            <div class="mini"><h4><img src="../assets/wreath_1_pinkCottage.png" alt="">Замінити</h4><p>Натисніть <b>Next wreath</b>, щоб приміряти наступний ваш вінок. Старий повертається до інвентаря.</p></div>
+            <div class="mini"><h4><img src="../assets/wreath_2_aFrameCabin.png" alt="">Зняти</h4><p>Натисніть <b>Take down</b>. Якщо сховати будиночок, його вінок теж повернеться до інвентаря.</p></div>
+          </div>
+
+          <h3>Светри для овець</h3>
+          <p>Шість в'язаних кольорів: <b>червоний</b>, <b>ялиново-зелений</b>, <b>кремовий</b>, <b>синій</b>, <b>гірчичний</b> і <b>рожевий</b>. Кожен коштує <b>18 монет</b> або 3 клубки вовни і відкривається з 5 клубків.</p>
+          <div class="stage-row">
+            <figure><img src="../assets/sweater_red_idle.png" alt="">червоний</figure>
+            <figure><img src="../assets/sweater_green_idle.png" alt="">ялиново-зелений</figure>
+            <figure><img src="../assets/sweater_cream_idle.png" alt="">кремовий</figure>
+            <figure><img src="../assets/sweater_blue_idle.png" alt="">синій</figure>
+            <figure><img src="../assets/sweater_mustard_idle.png" alt="">гірчичний</figure>
+            <figure><img src="../assets/sweater_pink_idle.png" alt="">рожевий</figure>
+          </div>
+          <ul>
+            <li>Клацніть вівцю і натисніть <b>🧶 Sweater</b>. Натисніть <b>🧶 Next</b>, щоб змінити колір.</li>
+            <li>Натисніть <b>Take off</b>, щоб зняти светр і повернути його до інвентаря.</li>
+            <li>Ферма зберігає светр разом із вівцею, тож він залишиться і після перезапуску Mac.</li>
+          </ul>
+
+          <h3>Зірочки на нитках</h3>
+          <p>Після покупки зірочки висять на нитках просто під рядком меню й легенько гойдаються. Уночі вони тепло світяться.</p>
+          <ul>
+            <li>У <a href="#settings">Settings → Desktop</a> вмикайте і вимикайте їх перемикачем <b>Hanging stars under the menu bar</b>.</li>
+            <li>У пункті <b>Stars hang</b> виберіть <b>On the desktop, behind windows</b> (на робочому столі, за вікнами — типово) або <b>Over all windows</b> (над усіма вікнами).</li>
+          </ul>
+          <div class="tip"><b>Увімкніть вогники.</b> Виберіть у меню Time of Day → Always Night, щоб побачити всі святкові вогники одразу.</div>
+        </section>
+
+        <section class="doc-sec" id="family" data-reveal>
+          <h2><img src="../assets/heart.png" alt="">Пари і ягнята</h2>
+          <ul>
+            <li>Двоє самотніх дорослих — вівця і баран, які не є родичами, — можуть закохатися при зустрічі. Вони стають парою на все життя і тримаються поруч, а між ними пурхають сердечка.</li>
+            <li>Ягнята бувають лише в пари. Вагітність триває 5 днів на фермі, потім вівця відпочиває приблизно овечий рік.</li>
+            <li>Вагітна вівця іноді мріє про ягнят — це видно в хмаринці думок.</li>
+            <li>Народжується 1–3 крихітних ягнят. Двійнята — звична справа. Ягнята здебільшого мають колір когось із батьків і ходять за мамою.</li>
+            <li>Типово на фермі вміщується до 30 овець. Ліміт можна змінити від 3 до 60 або вимкнути народження в <a href="#settings">Settings → Farm life</a>.</li>
+          </ul>
+        </section>
+
+        <section class="doc-sec" id="gentle" data-reveal>
+          <h2><img src="../assets/sheep_spirit.png" alt="">Старість і Спогади</h2>
+          <p>Woolly Desk — лагідна гра. Вівця може піти лише від старості (приблизно після 10 овечих років) або після дуже довгого часу без догляду. Це ніколи не стається раптово, випадково або поки ваш Mac закритий.</p>
+          <p>Коли приходить час, вівця перетворюється на м'яку хмаринку у формі вівці, яка здіймається над фермою. Її ім'я залишається у <b>Спогадах</b> (меню → Sheep ▸ Memories).</p>
+          <p>Хочете, щоб жодна вівця ніколи не йшла? Вимкніть <b>Animals can pass away</b> у налаштуваннях. Тоді старі чи ослаблені вівці просто більше відпочиватимуть.</p>
+        </section>
+
+        <section class="doc-sec" id="settings" data-reveal>
+          <h2><img src="../assets/house_gardenShed_summer.png" alt="">Налаштування</h2>
+          <p>Відкрийте меню і виберіть <b>Settings…</b> або скористайтеся колом Home на робочому столі. Назви налаштувань англійською, як у застосунку.</p>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Налаштування Woolly Desk</div><div class="body table-scroll"><table>
+            <tr><th colspan="2">Погода · Weather</th></tr>
+            <tr><td><b>Use real weather for my area</b></td><td>Типово вимкнено. Використовує ваше приблизне місце (близько 10 км). Введіть місто або залиште поле порожнім, щоб скористатися службами геолокації.</td></tr>
+            <tr><td><b>Weather</b></td><td>Автоматично або постійна погода: сонячно, мінлива хмарність, хмарно, дощ, сніг, гроза.</td></tr>
+            <tr><td><b>Season</b></td><td>Автоматично (за календарем) або постійний сезон.</td></tr>
+            <tr><td><b>Time of day</b></td><td>За моїм годинником, завжди день або завжди ніч.</td></tr>
+            <tr><th colspan="2">Робочий стіл · Desktop</th></tr>
+            <tr><td><b>Sheep above desktop icons</b></td><td>Увімкнено: можна клацати овець, ворота і будівлі. Вимкнено: ферма — просто картинка.</td></tr>
+            <tr><td><b>Round buttons on the desktop</b></td><td>Показати або сховати кола Home і Tools.</td></tr>
+            <tr><td><b>Autumn leaves on icons and the Dock</b></td><td>macOS один раз попросить дозвіл запитувати у Finder, де стоять значки.</td></tr>
+            <tr><td><b>Show names on hover</b></td><td>Ім'я вівці з'являється, коли курсор над нею.</td></tr>
+            <tr><td><b>Show mood bubbles</b></td><td>Маленькі хмаринки показують, як почуваються вівці.</td></tr>
+            <tr><td><b>Hanging stars under the menu bar</b></td><td>Показує зірочки з магазину. Після покупки типово увімкнено.</td></tr>
+            <tr><td><b>Stars hang</b></td><td>На робочому столі, за вікнами (типово), або над усіма вікнами.</td></tr>
+            <tr><td><b>Farm-style icons on desktop folders</b></td><td>Дає папкам на робочому столі фермерські значки, що змінюються з сезоном. Типово вимкнено. Папки з власними значками не змінюються. Вимкніть, щоб повернути звичайні значки.</td></tr>
+            <tr><th colspan="2">Життя ферми · Farm life</th></tr>
+            <tr><td><b>Life pace</b></td><td>Темп життя: Relaxed (1 овечий рік = 24 год), Normal (12 год, типово) або Quick (4 год). Впливає на старіння, ріст вовни і вагітність. Потреби й трава завжди йдуть у реальному часі.</td></tr>
+            <tr><td><b>Lambs are born</b></td><td>Увімкнути чи вимкнути народження ягнят.</td></tr>
+            <tr><td><b>Population limit</b></td><td>Від 3 до 60 овець. Типово: 30.</td></tr>
+            <tr><td><b>Animals can pass away</b></td><td>Якщо вимкнено, вівці ніколи не помирають.</td></tr>
+            <tr><th colspan="2">Звук · Sound</th></tr>
+            <tr><td><b>Ambient sound</b></td><td>Дощ, вітер і тихе мекання. Типово вимкнено.</td></tr>
+            <tr><td><b>Sweeping and shovel sounds</b></td><td>Короткі звуки мітли і лопати.</td></tr>
+            <tr><td><b>Volume</b></td><td>Гучність фонових звуків.</td></tr>
+            <tr><th colspan="2">Ферма · Farm</th></tr>
+            <tr><td><b>Start a new farm…</b></td><td>Замінює ваших овець, імена і паркани новою фермою. Застосунок спершу попросить підтвердження.</td></tr>
+          </table></div></div>
+        </section>
+
+        <section class="doc-sec" id="keys" data-reveal>
+          <h2><img src="../assets/sparkle.png" alt="">Скорочення</h2>
+          <div class="win-card"><div class="bar"><i></i><i></i><i></i>Скорочення</div><div class="body table-scroll"><table>
+            <tr><td><kbd>⌘F</kbd></td><td>Огляд ферми (Farm Overview)</td></tr>
+            <tr><td><kbd>⌘B</kbd></td><td>Палітра будівництва (паркани, ворота, косіння, підмітання, лопата, переміщення, видалення)</td></tr>
+            <tr><td>Клацнути вівцю</td><td>Відкрити її картку. Клацнути ще раз — погладити.</td></tr>
+            <tr><td>Клацнути правою кнопкою</td><td>Повернути напувалку чи годівницю, поки ви її ставите.</td></tr>
+          </table></div></div>
+          <p>Залишилися питання? Загляньте в <a href="faq.html">питання й відповіді</a> або <a href="support.html">напишіть нам</a>.</p>
+        </section>
+      </article>
+    </div>
+  </section>
+</main>
+
+<!--FOOTER-->
+<footer class="site-foot hill">
+  <div class="foot-stars" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="name" href="index.html"><img src="../assets/sheep_white_sleep.png" alt="">Woolly Desk</a>
+        <p>Затишна ферма з намальованими вручну вівцями, яка живе на робочому столі вашого Mac, за всіма вікнами.</p>
+      </div>
+      <div>
+        <h4>Дізнатися</h4>
+        <ul><li><a href="guide.html">Посібник</a></li><li><a href="guide.html#shop">Магазин і ціни</a></li><li><a href="guide.html#settings">Налаштування</a></li><li><a href="faq.html">Питання</a></li></ul>
+      </div>
+      <div>
+        <h4>Допомога</h4>
+        <ul><li><a href="support.html">Підтримка</a></li><li><a href="mailto:vielindevelopment@gmail.com">vielindevelopment@gmail.com</a></li></ul>
+      </div>
+      <div>
+        <h4>Правове</h4>
+        <ul><li><a href="privacy.html">Політика конфіденційності</a></li><li><a class="foot-lang" href="../guide.html" hreflang="en">English</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-base"><span>© 2026 Woolly Desk · намальовано вручну, схвалено вівцями</span><span>Усі зображення на сайті взяті з гри.</span></div>
+  </div>
+</footer>
+<!--/FOOTER-->
+<script src="../site.js"></script>
+</body>
+</html>

@@ -25,3 +25,26 @@ Then open http://localhost:8791.
 ## Store link
 
 Set `STORE_URL` near the top of the script in `index.html` when the store page exists.
+
+## Ukrainian version
+
+The Ukrainian site is in `uk/` (https://woollydesk.com/uk/). Do not edit `uk/*.html` by hand: it is built.
+
+- `i18n/uk.py` — phrase pairs (English → Ukrainian) for the home page and the page titles.
+- `i18n/uk/*.html` — whole Ukrainian bodies of the guide, FAQ, support and privacy pages.
+- `scripts/i18n.py` — builds `uk/` from the English pages and the translations.
+
+After you change an English page:
+
+```bash
+python3 scripts/layout.py   # if the header or footer changed
+python3 scripts/i18n.py     # rebuilds uk/ and lists what needs a new translation
+```
+
+If the script says that the English body of a page changed, update `i18n/uk/<page>`, then save the new fingerprint:
+
+```bash
+python3 scripts/i18n.py --stamp guide.html
+```
+
+The app's own menu, button and setting names stay in English on the Ukrainian pages, because the app is in English.

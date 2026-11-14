@@ -1,21 +1,47 @@
 #!/usr/bin/env python3
-"""Write the shared header and footer into every page.
+"""Write the shared header, footer and <head> boot block into every English page.
 
-Each page has the markers <!--HEADER--> … <!--/HEADER--> and <!--FOOTER--> … <!--/FOOTER-->
-(or only the opening marker the first time). Edit the header or footer here, then run:
+Each page has the markers <!--BOOT--> … <!--/BOOT-->, <!--HEADER--> … <!--/HEADER--> and
+<!--FOOTER--> … <!--/FOOTER-->. Edit them here, then run:
 
-    python3 scripts/layout.py
+    python3 scripts/layout.py      # English pages
+    python3 scripts/i18n.py        # Ukrainian pages in uk/ (uses the same functions with lang="uk")
 """
 import pathlib, re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+SITE = "https://woollydesk.com"
 PAGES = ["index.html", "guide.html", "faq.html", "support.html", "privacy.html"]
+LANGS = ["en", "uk"]
 
-HOME_SECTIONS = [("#watch", "Watch"), ("#flock", "The flock"), ("#seasons", "Seasons"),
-                 ("#tidy", "Tidy up"), ("#village", "Build"), ("#holidays", "Holidays")]
+T = {
+    "en": {
+        "sections": {"#watch": "Watch", "#flock": "The flock", "#seasons": "Seasons", "#tidy": "Tidy up",
+                     "#village": "Build", "#holidays": "Holidays"},
+        "pages": {"index.html": "Home", "guide.html": "Guide", "faq.html": "FAQ", "support.html": "Support"},
+        "get": "Get it for Mac", "on_page": "On this page", "pages_label": "Pages", "menu": "Menu", "main": "Main",
+        "home_label": "Woolly Desk home", "switch": "УКР", "switch_label": "Українською",
+        "about": "A cozy, hand-painted sheep farm that lives on your Mac desktop, behind every window.",
+        "learn": "Learn", "help": "Help", "legal": "Legal", "shop": "Shop and prices", "settings": "Settings",
+        "privacy": "Privacy policy", "copy": "© 2026 Woolly Desk · hand-painted, sheep-approved",
+        "pictures": "Every picture on this site comes from the game.",
+    },
+    "uk": {
+        "sections": {"#watch": "Наживо", "#flock": "Отара", "#seasons": "Сезони", "#tidy": "Прибирання",
+                     "#village": "Будівлі", "#holidays": "Свята"},
+        "pages": {"index.html": "Головна", "guide.html": "Посібник", "faq.html": "Питання", "support.html": "Підтримка"},
+        "get": "Отримати для Mac", "on_page": "На цій сторінці", "pages_label": "Сторінки", "menu": "Меню", "main": "Головне меню",
+        "home_label": "Woolly Desk, головна", "switch": "EN", "switch_label": "English",
+        "about": "Затишна ферма з намальованими вручну вівцями, яка живе на робочому столі вашого Mac, за всіма вікнами.",
+        "learn": "Дізнатися", "help": "Допомога", "legal": "Правове", "shop": "Магазин і ціни", "settings": "Налаштування",
+        "privacy": "Політика конфіденційності", "copy": "© 2026 Woolly Desk · намальовано вручну, схвалено вівцями",
+        "pictures": "Усі зображення на сайті взяті з гри.",
+    },
+}
+
 SECTION_ICONS = {"#watch": "cloud_0", "#flock": "sheep_cream_idle", "#seasons": "decor_tree_autumn",
                  "#tidy": "broom", "#village": "house_pinkCottage_summer", "#holidays": "holiday_christmasTree"}
-PAGES_NAV = [("guide.html", "Guide"), ("faq.html", "FAQ"), ("support.html", "Support")]
+PAGES_NAV = ["guide.html", "faq.html", "support.html"]
 SHEET_ICONS = {"index.html": "sheep_white_happy", "guide.html": "house_barn_summer",
                "faq.html": "sheep_lamb_happy", "support.html": "house_whiteCottage_summer"}
 
@@ -23,52 +49,72 @@ CLOUD = ('<svg viewBox="0 0 30 24" aria-hidden="true"><circle cx="9" cy="8" r="4
          '<path d="M8 20.5h15a4.3 4.3 0 0 0 .4-8.6 6 6 0 0 0-11.5 1.2A3.7 3.7 0 0 0 8 20.5Z" fill="#FBF8F1" stroke="#3A2F2A" stroke-width="1.8"/></svg>')
 
 
-def header(page: str) -> str:
+def url(page: str, lang: str) -> str:
+    """Public address of a page in a language."""
+    path = "" if page == "index.html" else page
+    return f"{SITE}/{path}" if lang == "en" else f"{SITE}/uk/{path}"
+
+
+def other(page: str, lang: str) -> str:
+    """Relative link from a page to the same page in the other language."""
+    return f"uk/{page}" if lang == "en" else f"../{page}"
+
+
+def header(page: str, lang: str = "en") -> str:
+    t = T[lang]
     home = page == "index.html"
     links = []
     if home:
-        links += [f'<a href="{h}">{t}</a>' for h, t in HOME_SECTIONS]
+        links += [f'<a href="{h}">{n}</a>' for h, n in t["sections"].items()]
     else:
-        links.append('<a href="index.html">Home</a>')
+        links.append(f'<a href="index.html">{t["pages"]["index.html"]}</a>')
     links.append('<span class="sep" aria-hidden="true"></span>')
-    for h, t in PAGES_NAV:
+    for h in PAGES_NAV:
         cur = ' aria-current="page"' if h == page else ""
-        links.append(f'<a href="{h}"{cur}>{t}</a>')
+        links.append(f'<a href="{h}"{cur}>{t["pages"][h]}</a>')
 
     sheet = []
     if home:
-        sheet.append('<span class="sheet-label">On this page</span>')
-        sheet += [f'<a href="{h}"><img src="assets/{SECTION_ICONS[h]}.png" alt="">{t}</a>' for h, t in HOME_SECTIONS]
-        sheet.append('<span class="sheet-label">Pages</span>')
+        sheet.append(f'<span class="sheet-label">{t["on_page"]}</span>')
+        sheet += [f'<a href="{h}"><img src="assets/{SECTION_ICONS[h]}.png" alt="">{n}</a>' for h, n in t["sections"].items()]
+        sheet.append(f'<span class="sheet-label">{t["pages_label"]}</span>')
     else:
-        sheet.append('<span class="sheet-label">Pages</span>')
-        sheet.append(f'<a href="index.html"><img src="assets/{SHEET_ICONS["index.html"]}.png" alt="">Home</a>')
-    for h, t in PAGES_NAV:
+        sheet.append(f'<span class="sheet-label">{t["pages_label"]}</span>')
+        sheet.append(f'<a href="index.html"><img src="assets/{SHEET_ICONS["index.html"]}.png" alt="">{t["pages"]["index.html"]}</a>')
+    for h in PAGES_NAV:
         cur = ' aria-current="page"' if h == page else ""
-        sheet.append(f'<a href="{h}"{cur}><img src="assets/{SHEET_ICONS[h]}.png" alt="">{t}</a>')
+        sheet.append(f'<a href="{h}"{cur}><img src="assets/{SHEET_ICONS[h]}.png" alt="">{t["pages"][h]}</a>')
+    to = "uk" if lang == "en" else "en"
+    switch = (f'<a class="lang-switch" href="{other(page, lang)}" hreflang="{to}" lang="{to}" '
+              f'title="{t["switch_label"]}" aria-label="{t["switch_label"]}">{t["switch"]}</a>')
+    sheet_switch = (f'<a class="sheet-lang" href="{other(page, lang)}" hreflang="{to}" lang="{to}">'
+                    f'<span class="lang-pill">{t["switch"]}</span>{t["switch_label"]}</a>')
     get = "#get" if home else "index.html#get"
     brand = "#top" if home else "index.html"
     return f"""<!--HEADER-->
 <header class="topbar" id="topbar">
   <div class="bar-inner">
-    <a class="brand" href="{brand}" aria-label="Woolly Desk home"><img src="assets/sheep_white_happy.png" alt="">Woolly Desk</a>
-    <nav class="nav-links" aria-label="Main">
+    <a class="brand" href="{brand}" aria-label="{t["home_label"]}"><img src="assets/sheep_white_happy.png" alt="">Woolly Desk</a>
+    <nav class="nav-links" aria-label="{t["main"]}">
       <span class="nav-blob" aria-hidden="true"></span>
       {"".join(links)}
     </nav>
-    <a class="btn bar-cta" href="{get}">Get it for Mac</a>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menuSheet" aria-label="Menu">{CLOUD}</button>
+    {switch}
+    <a class="btn bar-cta" href="{get}">{t["get"]}</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menuSheet" aria-label="{t["menu"]}">{CLOUD}</button>
     <div class="trail" aria-hidden="true"><span class="trail-sheep"><img src="assets/sheep_white_graze0.png" alt=""></span></div>
   </div>
-  <nav class="menu-sheet" id="menuSheet" aria-label="Menu">
+  <nav class="menu-sheet" id="menuSheet" aria-label="{t["menu"]}">
     {"".join(sheet)}
-    <a class="btn sheet-cta" href="{get}">Get it for Mac</a>
+    {sheet_switch}
+    <a class="btn sheet-cta" href="{get}">{t["get"]}</a>
   </nav>
 </header>
 <!--/HEADER-->"""
 
 
-def footer(page: str) -> str:
+def footer(page: str, lang: str = "en") -> str:
+    t = T[lang]
     hill = "" if page == "index.html" else " hill"
     return f"""<!--FOOTER-->
 <footer class="site-foot{hill}">
@@ -77,38 +123,35 @@ def footer(page: str) -> str:
     <div class="foot-grid">
       <div class="foot-brand">
         <a class="name" href="index.html"><img src="assets/sheep_white_sleep.png" alt="">Woolly Desk</a>
-        <p>A cozy, hand-painted sheep farm that lives on your Mac desktop, behind every window.</p>
+        <p>{t["about"]}</p>
       </div>
       <div>
-        <h4>Learn</h4>
-        <ul><li><a href="guide.html">Guide</a></li><li><a href="guide.html#shop">Shop and prices</a></li><li><a href="guide.html#settings">Settings</a></li><li><a href="faq.html">FAQ</a></li></ul>
+        <h4>{t["learn"]}</h4>
+        <ul><li><a href="guide.html">{t["pages"]["guide.html"]}</a></li><li><a href="guide.html#shop">{t["shop"]}</a></li><li><a href="guide.html#settings">{t["settings"]}</a></li><li><a href="faq.html">{t["pages"]["faq.html"]}</a></li></ul>
       </div>
       <div>
-        <h4>Help</h4>
-        <ul><li><a href="support.html">Support</a></li><li><a href="mailto:vielindevelopment@gmail.com">vielindevelopment@gmail.com</a></li></ul>
+        <h4>{t["help"]}</h4>
+        <ul><li><a href="support.html">{t["pages"]["support.html"]}</a></li><li><a href="mailto:vielindevelopment@gmail.com">vielindevelopment@gmail.com</a></li></ul>
       </div>
       <div>
-        <h4>Legal</h4>
-        <ul><li><a href="privacy.html">Privacy policy</a></li></ul>
+        <h4>{t["legal"]}</h4>
+        <ul><li><a href="privacy.html">{t["privacy"]}</a></li><li><a class="foot-lang" href="{other(page, lang)}" hreflang="{"uk" if lang == "en" else "en"}">{t["switch_label"]}</a></li></ul>
       </div>
     </div>
-    <div class="foot-base"><span>© 2026 Woolly Desk · hand-painted, sheep-approved</span><span>Every picture on this site comes from the game.</span></div>
+    <div class="foot-base"><span>{t["copy"]}</span><span>{t["pictures"]}</span></div>
   </div>
 </footer>
 <!--/FOOTER-->"""
 
 
-BOOT = """<!--BOOT-->
-<script>try{if(sessionStorage.getItem("wd-curtain")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("wd-enter")}catch(e){}</script>
+def boot(page: str, lang: str = "en") -> str:
+    return f"""<!--BOOT-->
+<link rel="canonical" href="{url(page, lang)}">
+<link rel="alternate" hreflang="en" href="{url(page, "en")}">
+<link rel="alternate" hreflang="uk" href="{url(page, "uk")}">
+<link rel="alternate" hreflang="x-default" href="{url(page, "en")}">
+<script>try{{if(sessionStorage.getItem("wd-curtain")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("wd-enter")}}catch(e){{}}</script>
 <!--/BOOT-->"""
-
-
-def fill_boot(text: str) -> str:
-    if "<!--BOOT-->" in text:
-        return re.sub(r"<!--BOOT-->.*?<!--/BOOT-->", lambda _: BOOT, text, count=1, flags=re.S)
-    anchor = '<link rel="stylesheet" href="site.css">'
-    assert anchor in text, "missing site.css link"
-    return text.replace(anchor, anchor + "\n" + BOOT, 1)
 
 
 def fill(text: str, name: str, block: str) -> str:
@@ -119,11 +162,14 @@ def fill(text: str, name: str, block: str) -> str:
     return text.replace(f"<!--{name}-->", block, 1)
 
 
-for p in PAGES:
-    path = ROOT / p
-    t = path.read_text()
-    t = fill_boot(t)
-    t = fill(t, "HEADER", header(p))
-    t = fill(t, "FOOTER", footer(p))
-    path.write_text(t)
-    print("updated", p)
+def apply(text: str, page: str, lang: str = "en") -> str:
+    text = fill(text, "BOOT", boot(page, lang))
+    text = fill(text, "HEADER", header(page, lang))
+    return fill(text, "FOOTER", footer(page, lang))
+
+
+if __name__ == "__main__":
+    for p in PAGES:
+        path = ROOT / p
+        path.write_text(apply(path.read_text(), p, "en"))
+        print("updated", p)

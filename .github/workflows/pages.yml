@@ -38,6 +38,7 @@ jobs:
         run: |
           mkdir -p public
           cp site/*.html site/*.css site/*.js public/
+          cp -R site/uk public/uk
           touch public/.nojekyll
           cp -R game/landing/assets public/assets
 
