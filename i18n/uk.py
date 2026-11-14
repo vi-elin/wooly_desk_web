@@ -104,7 +104,7 @@ PAGES = {
          "Сутінки приходять разом зі справжнім заходом сонця. Світяться ліхтарі та вікна, вилітають світлячки, а вівці лягають спати."),
         ("<h3>Shear, trade, build</h3>", "<h3>Стрижіть, торгуйте, будуйте</h3>"),
         ("Shear full fleeces, sell the wool at the trading post, mow hay with a scythe and fence in your pens. Gates open with a click.",
-         "Стрижіть пишне руно, продавайте вовну в крамничці, косіть сіно косою і обгороджуйте загони. Ворота відчиняються одним клацанням."),
+         "Стрижіть пухнастих овець, продавайте вовну в крамничці, косіть сіно косою і обгороджуйте загони. Ворота відчиняються одним клацанням."),
         ("<h3>Tidy up with real tools</h3>", "<h3>Прибирайте справжніми інструментами</h3>"),
         ("Your pointer turns into a broom or a snow shovel. Sweep leaves away with a whoosh, and sometimes find a lost coin.",
          "Курсор перетворюється на мітлу або лопату для снігу. Змітайте листя зі свистом — і часом знаходьте загублену монетку."),
@@ -122,9 +122,9 @@ PAGES = {
 
         # flock
         ('<span class="eyebrow">meet the flock</span>', '<span class="eyebrow">знайомтеся з отарою</span>'),
-        ("<h2>Five fleeces, one lamb, lots of opinions</h2>", "<h2>П'ять кольорів руна, одне ягня і безліч думок</h2>"),
+        ("<h2>Five fleeces, one lamb, lots of opinions</h2>", "<h2>П'ять кольорів вовни, одне ягня і безліч думок</h2>"),
         ("Buy young sheep in the colour you like. Dark fleeces give dark wool, and dark wool sells for more.",
-         "Купуйте молодих овець улюбленого кольору. Темне руно дає темну вовну, а темна вовна дорожча."),
+         "Купуйте молодих овець улюбленого кольору. Темні вівці дають темну вовну, а вона дорожча."),
         ('aria-label="Wool grows back after shearing"', 'aria-label="Вовна відростає після стрижки"'),
         ('alt="">just sheared</div>', 'alt="">щойно пострижена</div>'),
         ('transform-origin:50% 80%">growing back</div>', 'transform-origin:50% 80%">відростає</div>'),
@@ -148,7 +148,7 @@ PAGES = {
         ('data-s="autumn" aria-pressed="false">Autumn</button>', 'data-s="autumn" aria-pressed="false">Осінь</button>'),
         ('data-s="winter" aria-pressed="false">Winter</button>', 'data-s="winter" aria-pressed="false">Зима</button>'),
         ('spring: "apple trees blossom, lambs are born and the grass grows fast"', 'spring: "яблуні цвітуть, народжуються ягнята, а трава росте швидко"'),
-        ('summer: "long days, full fleeces and the best time to shear"', 'summer: "довгі дні, пишне руно і найкращий час для стрижки"'),
+        ('summer: "long days, full fleeces and the best time to shear"', 'summer: "довгі дні, пухнасті вівці і найкращий час для стрижки"'),
         ('autumn: "leaves pile up by the fences: grab the broom"', 'autumn: "листя збирається біля парканів: беріть мітлу"'),
         ('winter: "snow on the roofs, ice on the troughs, hay in the feeders"', 'winter: "сніг на дахах, лід на напувалках, сіно в годівницях"'),
 
