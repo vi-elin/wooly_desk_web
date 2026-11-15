@@ -344,6 +344,31 @@
     });
   });
 
+  /* ── guide: app window pictures; the tabs in the shop picture switch the list ── */
+  document.querySelectorAll("[data-app-win]").forEach(win => {
+    const scroller = win.querySelector(".scroller"), head = win.querySelector(".head"), shot = win.querySelector(".shot");
+    const tabs = win.querySelectorAll(".hot button");
+    head.style.setProperty("--src", `url("${shot.src}")`);
+    const show = btn => {
+      if (btn.getAttribute("aria-selected") === "true") return;
+      tabs.forEach(t => t.setAttribute("aria-selected", t === btn ? "true" : "false"));
+      const src = btn.dataset.src, next = new Image();
+      next.src = src;
+      shot.classList.add("swap");
+      next.decode().catch(() => {}).then(() => {
+        shot.src = src; shot.width = next.naturalWidth; shot.height = next.naturalHeight;
+        shot.alt = btn.dataset.alt || shot.alt;
+        head.style.setProperty("--src", `url("${shot.src}")`);
+        scroller.scrollTop = 0;
+        shot.classList.remove("swap");
+      });
+    };
+    tabs.forEach(b => {
+      b.addEventListener("click", () => show(b));
+      b.addEventListener("pointerenter", () => { new Image().src = b.dataset.src; }, { once: true });
+    });
+  });
+
   /* ── support: copy the address ── */
   document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", async () => {
     try { await navigator.clipboard.writeText(b.dataset.copy); } catch { return; }
