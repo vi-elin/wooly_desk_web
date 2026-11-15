@@ -487,7 +487,8 @@ section[id] { scroll-margin-top: 90px; }
   .life::before { left: 59px; right: auto; top: 30px; bottom: 30px; border-top: 0; border-left: 3px dashed rgba(58,47,42,.32); }
   .life-step { grid-template-columns: 120px 1fr; grid-template-rows: auto auto 1fr; justify-items: start; column-gap: 18px; row-gap: 4px; text-align: left; }
   .life-step .pic { grid-row: 1 / 4; height: 100px; background: var(--meadow); }
-  .life-step .num { position: absolute; left: 45px; top: 104px; margin: 0; width: 26px; height: 26px; font-size: .85rem; }
+  .life-step { min-height: 138px; }
+  .life-step .num { position: absolute; left: 45px; top: 104px; z-index: 1; margin: 0; width: 26px; height: 26px; font-size: .85rem; }
   .life-step h3 { margin-top: 10px; }
   .life-step .pic .heart { bottom: 44px; }
   .life-note { flex-direction: column; text-align: center; }
