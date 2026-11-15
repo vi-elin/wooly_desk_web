@@ -7,7 +7,7 @@ Each page has the markers <!--BOOT--> … <!--/BOOT-->, <!--HEADER--> … <!--/H
     python3 scripts/layout.py      # English pages
     python3 scripts/i18n.py        # Ukrainian pages in uk/ (uses the same functions with lang="uk")
 """
-import pathlib, re
+import hashlib, pathlib, re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://woollydesk.com"
@@ -164,7 +164,20 @@ def fill(text: str, name: str, block: str) -> str:
     return text.replace(f"<!--{name}-->", block, 1)
 
 
+def version(name: str) -> str:
+    """Short hash of a shared file. A new hash after each change makes browsers load the new file at once."""
+    return hashlib.sha256((ROOT / name).read_bytes()).hexdigest()[:10]
+
+
+def stamp(text: str) -> str:
+    """Add ?v=<hash> to the links to site.css and site.js."""
+    for name, attr in (("site.css", "href"), ("site.js", "src")):
+        text = re.sub(rf'{attr}="((?:\.\./)?){re.escape(name)}(?:\?v=\w+)?"', rf'{attr}="\g<1>{name}?v={version(name)}"', text)
+    return text
+
+
 def apply(text: str, page: str, lang: str = "en") -> str:
+    text = stamp(text)
     text = fill(text, "BOOT", boot(page, lang))
     text = fill(text, "HEADER", header(page, lang))
     return fill(text, "FOOTER", footer(page, lang))

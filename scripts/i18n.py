@@ -82,7 +82,7 @@ def build(page: str) -> tuple[str, list[str], list[str]]:
             continue
         t = t.replace(src, dst)
     # the Ukrainian pages are one folder deeper
-    t = (t.replace('href="site.css"', 'href="../site.css"').replace('src="site.js"', 'src="../site.js"')
+    t = (t.replace('href="site.css', 'href="../site.css').replace('src="site.js', 'src="../site.js')
           .replace('src="assets/', 'src="../assets/').replace('url("assets/', 'url("../assets/')
           .replace("`assets/${n}.png`", "`../assets/${n}.png`"))
     assert 'src="assets/' not in t and 'url("assets/' not in t, f"{page}: a picture link was not moved"
