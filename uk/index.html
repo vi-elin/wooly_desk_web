@@ -456,13 +456,42 @@ section[id] { scroll-margin-top: 90px; }
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
-/* gentle */
-.gentle { display: grid; grid-template-columns: .8fr 1.2fr; gap: 40px; align-items: center; }
-.gentle > * { min-width: 0; }
-.spirit-wrap { position: relative; height: 260px; display: grid; place-items: center; }
-.spirit-wrap img { width: min(260px, 80%); animation: float 5s ease-in-out infinite; }
+/* a whole life: five steps on a dashed path */
 @keyframes float { 0%,100% { transform: translateY(8px) } 50% { transform: translateY(-14px) } }
-@media (max-width: 760px) { .gentle { grid-template-columns: 1fr; } }
+#life .sec-head { margin-bottom: 34px; }
+.life { list-style: none; margin: 0; padding: 0; position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; }
+.life::before { content: ""; position: absolute; left: 7%; right: 7%; top: 112px; border-top: 3px dashed rgba(58,47,42,.32); }
+.life-step { position: relative; display: grid; justify-items: center; align-content: start; gap: 8px; text-align: center; }
+.life-step .pic { position: relative; width: 100%; height: 116px; display: flex; align-items: flex-end; justify-content: center; gap: 2px; }
+.life-step .pic img { width: var(--w, 62%); height: auto; min-width: 0; flex: none; margin: 0 -11% calc(var(--w, 62%) * -.1); transition: transform .35s cubic-bezier(.3,.7,.4,1.6); }
+.life-step .pic .flip { transform: scaleX(-1); }
+.life-step .pic .heart { position: absolute; left: 50%; bottom: 62px; width: 13%; margin: 0; translate: -50% 0; animation: beat 1.6s ease-in-out infinite; }
+@keyframes beat { 0%,100% { scale: 1 } 15% { scale: 1.18 } 30% { scale: 1 } }
+.life-step .pic .spirit { --w: 86%; margin: 0 0 -4%; animation: float 5s ease-in-out infinite; }
+.life-step:hover .pic img:not(.spirit):not(.heart) { transform: translateY(-8px); }
+.life-step:hover .pic .flip { transform: scaleX(-1) translateY(-8px); }
+.life-step .num {
+  display: grid; place-items: center; width: 30px; height: 30px; margin-top: 4px; border: 2.5px solid var(--ink); border-radius: 50%;
+  background: var(--lamp); font: 800 .95rem var(--display); box-shadow: 2px 3px 0 var(--ink);
+}
+.life-step h3 { margin: 4px 0 0; font: 800 1.2rem/1.2 var(--display); }
+.life-step p { margin: 0; font-size: .96rem; color: var(--ink-soft); }
+.life-note {
+  margin: 46px auto 0; max-width: 860px; display: flex; gap: 18px; align-items: center; padding: 18px 24px;
+  background: var(--window); border: 2.5px solid var(--ink); border-radius: 20px; box-shadow: 5px 6px 0 rgba(58,47,42,.16);
+}
+.life-note img { width: 64px; flex: none; }
+.life-note p { margin: 0; }
+@media (max-width: 960px) {
+  .life { grid-template-columns: 1fr; gap: 24px; max-width: 560px; margin-inline: auto; }
+  .life::before { left: 59px; right: auto; top: 30px; bottom: 30px; border-top: 0; border-left: 3px dashed rgba(58,47,42,.32); }
+  .life-step { grid-template-columns: 120px 1fr; grid-template-rows: auto auto 1fr; justify-items: start; column-gap: 18px; row-gap: 4px; text-align: left; }
+  .life-step .pic { grid-row: 1 / 4; height: 100px; background: var(--meadow); }
+  .life-step .num { position: absolute; left: 45px; top: 104px; margin: 0; width: 26px; height: 26px; font-size: .85rem; }
+  .life-step h3 { margin-top: 10px; }
+  .life-step .pic .heart { bottom: 44px; }
+  .life-note { flex-direction: column; text-align: center; }
+}
 
 /* final */
 .final { background: var(--night); color: var(--on-night); padding-block: 0 90px; position: relative; overflow: hidden; }
@@ -486,7 +515,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
   border: 2px solid var(--ink); border-radius: 12px; padding: 0 .5em; transform: translateX(-50%); white-space: nowrap; transition: opacity .4s;
 }
 @media (prefers-reduced-motion: reduce) {
-  .cloud, .cloud-shadow, .spirit-wrap img, .firefly { animation: none; }
+  .cloud, .cloud-shadow, .life-step .pic img, .firefly { animation: none; }
 }
 </style>
 
@@ -647,22 +676,6 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
     </div>
   </section>
 
-  <section class="band meadow">
-    <div class="wrap">
-      <div class="sec-head center">
-        <span class="eyebrow">потягніть ліхтарик</span>
-        <h2>Захід сонця — тоді ж, коли й у вас</h2>
-      </div>
-      <div class="compare" id="compare">
-        <img src="../assets/farm_day.jpg" alt="Ферма вдень">
-        <img class="night-img" src="../assets/farm_night.jpg" alt="Та сама ферма вночі, з освітленими вікнами і світлячками">
-        <span class="tag d">день</span><span class="tag n">ніч</span>
-        <div class="handle"><div class="knob" aria-hidden="true">☾</div></div>
-        <input type="range" id="cut" min="0" max="100" value="50" aria-label="Перемикання між днем і ніччю">
-      </div>
-    </div>
-  </section>
-
   <section class="band" id="flock">
     <div class="wrap">
       <div class="sec-head center">
@@ -677,6 +690,67 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
         <div class="stage"><img src="../assets/sheep_lamb_idle.png" alt="" style="transform:scale(1.25); transform-origin:50% 80%">відростає</div>
         <div class="arrow" aria-hidden="true">→</div>
         <div class="stage"><img src="../assets/sheep_white_idle.png" alt="">пухнаста — час стригти</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band meadow" id="life">
+    <div class="wrap">
+      <div class="sec-head center">
+        <span class="eyebrow">ціле життя</span>
+        <h2>Від маленького ягняти до старого друга</h2>
+        <p class="lede">Кожна вівця проживає свою історію — у темпі, який обираєте ви.</p>
+      </div>
+      <ol class="life">
+        <li class="life-step">
+          <div class="pic"><img src="../assets/sheep_cream_idle.png" alt=""><img src="../assets/sheep_lamb_sleep.png" alt=""></div>
+          <span class="num" aria-hidden="true">1</span>
+          <h3>Народжується ягня</h3>
+          <p>Крихітне й трохи незграбне, воно тримається біля мами.</p>
+        </li>
+        <li class="life-step">
+          <div class="pic"><img src="../assets/sheep_lamb_jump.png" alt=""><img class="flip" src="../assets/sheep_grey_happy.png" alt=""></div>
+          <span class="num" aria-hidden="true">2</span>
+          <h3>Росте і грається</h3>
+          <p>За один овечий рік воно стає дорослим. Грається в квача, заводить друзів і показує свій характер: грайливий, сором'язливий, допитливий, спокійний, компанійський чи незалежний.</p>
+        </li>
+        <li class="life-step">
+          <div class="pic"><img src="../assets/sheep_white_idle.png" alt=""><img class="heart" src="../assets/heart.png" alt=""><img class="flip" src="../assets/sheep_brown_idle.png" alt=""></div>
+          <span class="num" aria-hidden="true">3</span>
+          <h3>Знаходить пару</h3>
+          <p>Дві дорослі вівці, яким добре разом, стають парою.</p>
+        </li>
+        <li class="life-step">
+          <div class="pic"><img src="../assets/sheep_white_idle.png" alt="" style="--w:50%"><img src="../assets/sheep_lamb_happy.png" alt="" style="--w:50%"><img class="flip" src="../assets/sheep_brown_idle.png" alt="" style="--w:50%"></div>
+          <span class="num" aria-hidden="true">4</span>
+          <h3>З'являються ягнята</h3>
+          <p>Через п'ять фермерських місяців народжується ягня, і отара росте.</p>
+        </li>
+        <li class="life-step">
+          <div class="pic"><img class="spirit" src="../assets/sheep_spirit.png" alt=""></div>
+          <span class="num" aria-hidden="true">5</span>
+          <h3>Довга спокійна старість</h3>
+          <p>Старі вівці більше відпочивають. Коли приходить час дуже старої вівці, вона стає м'якою хмаринкою і злітає над фермою. Її ім'я залишається в Memories.</p>
+        </li>
+      </ol>
+      <div class="life-note">
+        <img src="../assets/heart.png" alt="">
+        <p><b>Лагідна за задумом.</b> Поки ваш Mac закритий, вівці ніколи не хворіють, а здоров'я зменшується лише після довгої занедбаності, тож зайнятий тиждень — не біда. У Settings ви вирішуєте: чи народжуються ягнята, яка велика отара і чи можуть вівці взагалі піти з життя.</p>
+      </div>
+    </div>
+  </section>
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head center">
+        <span class="eyebrow">потягніть ліхтарик</span>
+        <h2>Захід сонця — тоді ж, коли й у вас</h2>
+      </div>
+      <div class="compare" id="compare">
+        <img src="../assets/farm_day.jpg" alt="Ферма вдень">
+        <img class="night-img" src="../assets/farm_night.jpg" alt="Та сама ферма вночі, з освітленими вікнами і світлячками">
+        <span class="tag d">день</span><span class="tag n">ніч</span>
+        <div class="handle"><div class="knob" aria-hidden="true">☾</div></div>
+        <input type="range" id="cut" min="0" max="100" value="50" aria-label="Перемикання між днем і ніччю">
       </div>
     </div>
   </section>
@@ -812,16 +886,6 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
     </div>
   </section>
 
-  <section class="band meadow flat">
-    <div class="wrap gentle">
-      <div class="spirit-wrap"><img src="../assets/sheep_spirit.png" alt="Бліда напівпрозора вівця, що здіймається вгору, як хмаринка"></div>
-      <div class="sec-head" style="margin:0">
-        <span class="eyebrow">лагідна за задумом</span>
-        <h2>Жодних раптових втрат. Жодного стресу.</h2>
-        <p class="lede">Поки ваш Mac закритий, вівці ніколи не хворіють. Здоров'я зменшується повільно і лише після довгої занедбаності, тож зайнятий тиждень — не біда. Коли приходить час дуже старої вівці, вона перетворюється на м'яку хмаринку, що здіймається над фермою, а її ім'я залишається у ваших Спогадах.</p>
-      </div>
-    </div>
-  </section>
 </main>
 
 <section class="final" id="get">
@@ -1402,7 +1466,7 @@ hToggle.addEventListener("click", () => {
 
 /* Scroll reveal: blocks below the fold rise in as they come into view. */
 if ("IntersectionObserver" in window && !reduce) {
-  const targets = document.querySelectorAll(".sec-head, .live, .caption, .feature, .compare, .sheep-btn, .stage, .arrow, .tabs, .season-scene, .tidy-bar, .tidy, .house, .switch, .spirit-wrap, .holiday-yard, .sweater-head, .deco-head, .deco-mac, .deco-card, .final .wrap > *");
+  const targets = document.querySelectorAll(".sec-head, .live, .caption, .feature, .compare, .sheep-btn, .stage, .arrow, .tabs, .season-scene, .tidy-bar, .tidy, .house, .switch, .life-step, .life-note, .holiday-yard, .sweater-head, .deco-head, .deco-mac, .deco-card, .final .wrap > *");
   const io = new IntersectionObserver(entries => {
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
   }, { threshold: .12, rootMargin: "0px 0px -6% 0px" });
