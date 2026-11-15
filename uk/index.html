@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700;800&family=Balsamiq+Sans:wght@400;700&family=Nunito:wght@400;600;700&family=Caveat:wght@500;700&display=swap">
-<link rel="stylesheet" href="../site.css?v=7ed349980e">
+<link rel="stylesheet" href="../site.css?v=7de1148111">
 <!--BOOT-->
 <link rel="canonical" href="https://woollydesk.com/uk/">
 <link rel="alternate" hreflang="en" href="https://woollydesk.com/">
@@ -112,14 +112,14 @@ section[id] { scroll-margin-top: 90px; }
   content: ""; position: absolute; left: 50%; bottom: -34px; width: 22%; height: 34px; transform: translateX(-50%);
   background: linear-gradient(var(--chrome), #D6CEBD); border: 3px solid var(--ink); border-top: none; border-radius: 0 0 12px 12px;
 }
-.screen { position: relative; border-radius: 12px; overflow: hidden; background: var(--meadow); }
+.screen { position: relative; border-radius: 12px; overflow: hidden; background: var(--meadow); container-type: inline-size; }
 .menubar {
   position: relative; z-index: 4; display: flex; justify-content: space-between; align-items: center; gap: 10px;
-  height: 30px; padding: 0 12px; font-size: .82rem; font-weight: 600; color: var(--ink);
+  height: clamp(24px, 2.6cqw, 30px); padding: 0 clamp(8px, 1.1cqw, 12px); font-size: clamp(11px, 1.15cqw, .82rem); font-weight: 600; color: var(--ink);
   background: rgba(251,248,241,.82); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(58,47,42,.15);
 }
-.menubar .left { display: flex; gap: 16px; white-space: nowrap; overflow: hidden; }
+.menubar .left { display: flex; gap: clamp(10px, 1.4cqw, 16px); white-space: nowrap; overflow: hidden; min-width: 0; }
 .menubar .left b { font-weight: 800; }
 .menubar .right { display: flex; align-items: center; gap: 12px; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .farm-icon {
@@ -136,28 +136,38 @@ section[id] { scroll-margin-top: 90px; }
 .desk.night { background-image: url("../assets/farm_night_empty.jpg"); }
 .desk .flock { position: absolute; inset: 0; z-index: 1; }
 .desk.night .walker img { filter: brightness(.5) saturate(.6) hue-rotate(10deg); }
-.icons { position: absolute; z-index: 2; right: 2.2%; top: 6%; display: grid; gap: 10px; justify-items: center; }
-.icon { width: 64px; text-align: center; font-size: .72rem; font-weight: 700; color: var(--ink); text-shadow: 0 1px 0 rgba(255,255,255,.7); }
-.icon svg { width: 46px; height: 38px; margin: 0 auto 2px; display: block; }
+.icons { position: absolute; z-index: 2; right: 2.2%; top: 6%; display: grid; gap: .9cqw; justify-items: center; }
+.icon { width: 5.6cqw; text-align: center; font-size: 1cqw; font-weight: 700; color: var(--ink); text-shadow: 0 1px 0 rgba(255,255,255,.7); white-space: nowrap; }
+.icon svg { width: 4cqw; height: 3.3cqw; margin: 0 auto .2cqw; display: block; }
 .desk.night .icon { color: var(--on-night); text-shadow: none; }
 .win {
-  position: absolute; z-index: 3; background: var(--window); border: 2px solid var(--ink); border-radius: 12px;
-  box-shadow: 6px 8px 0 rgba(58,47,42,.22); overflow: hidden;
+  position: absolute; z-index: 3; background: var(--window); border: 2px solid var(--ink); border-radius: clamp(8px, 1.05cqw, 12px);
+  box-shadow: .55cqw .7cqw 0 rgba(58,47,42,.22); overflow: hidden;
 }
-.win .bar { display: flex; align-items: center; gap: 6px; height: 24px; padding: 0 9px; background: var(--chrome); border-bottom: 2px solid var(--ink); font-size: .74rem; font-weight: 700; }
-.win .bar i { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--ink); background: #E8857A; }
+/* the windows scale with the screen (cqw), so their text never wraps or spills out */
+.win .bar { display: flex; align-items: center; gap: .52cqw; height: 2.1cqw; padding: 0 .8cqw; background: var(--chrome); border-bottom: 2px solid var(--ink); font-size: 1.03cqw; font-weight: 700; white-space: nowrap; }
+.win .bar i { flex: none; width: .87cqw; height: .87cqw; border-radius: 50%; border: 1.5px solid var(--ink); background: #E8857A; }
 .win .bar i:nth-child(2) { background: var(--lamp); }
 .win .bar i:nth-child(3) { background: #9CC08A; }
-.win .bar span { margin-left: 6px; }
+.win .bar span { margin-left: .5cqw; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .win-notes { left: 33%; top: 6%; width: 27%; }
-.win-notes .body { padding: 10px 14px 14px; font-family: var(--hand); font-size: clamp(.8rem, 1.55vw, 1.3rem); line-height: 1.15; }
+.win-notes .body { padding: .9cqw 1.2cqw 1.2cqw; font-family: var(--hand); font-size: 1.75cqw; line-height: 1.15; white-space: nowrap; }
 .win-notes s { text-decoration-thickness: 2px; text-decoration-color: var(--barn); }
 .win-shop { left: 3%; bottom: 5%; width: 30%; }
-.win-shop .body { padding: 8px 10px 10px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
-.win-shop .item { text-align: center; font-size: clamp(.5rem, 1vw, .72rem); font-weight: 700; line-height: 1.15; }
-.win-shop .item img { height: clamp(34px, 5.5vw, 66px); width: auto; margin: 0 auto; }
+.win-shop .body { padding: .7cqw .9cqw .9cqw; display: grid; grid-template-columns: repeat(3, 1fr); gap: .35cqw; }
+.win-shop .item { text-align: center; font-size: 1.02cqw; font-weight: 700; line-height: 1.15; }
+.win-shop .item img { height: 5.6cqw; width: auto; margin: 0 auto; }
 .win-shop .item b { display: block; color: var(--barn-deep); font-weight: 800; }
-@media (max-width: 620px) { .win-shop, .icons { display: none; } .win-notes { width: 40%; } }
+/* a small screen (phones): only the notes window, bigger, and a short menu bar */
+@container (max-width: 620px) {
+  .win-shop, .icons { display: none; }
+  .menubar .left span { display: none; }
+  .win-notes { left: 30%; top: 9%; width: 40%; }
+  .win .bar { height: 3.6cqw; min-height: 13px; gap: 1cqw; padding: 0 1.4cqw; font-size: 2.5cqw; }
+  .win .bar i { width: 2cqw; height: 2cqw; border-width: 1px; }
+  .win-notes .body { padding: 1.6cqw 2.2cqw 2.2cqw; font-size: 3cqw; line-height: 1.1; }
+}
+@container (min-width: 621px) and (max-width: 900px) { .menubar .left span:nth-of-type(n+3) { display: none; } }
 
 .note {
   position: absolute; z-index: 6; font-family: var(--hand); font-weight: 700; font-size: 1.4rem; line-height: 1.05;
@@ -240,16 +250,16 @@ section[id] { scroll-margin-top: 90px; }
 .compare input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; }
 
 /* flock */
-.flock-row { position: relative; display: grid; grid-template-columns: repeat(7, 1fr); align-items: end; gap: 6px; padding: 30px 10px 0; }
+.flock-row { position: relative; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); align-items: end; gap: 6px; padding: 30px 10px 0; }
 .flock-row::after { content: ""; position: absolute; left: 0; right: 0; bottom: 30px; height: 46px; z-index: 0; background: var(--meadow-deep); border-radius: 50%; opacity: .55; }
-.sheep-btn { position: relative; z-index: 1; border: 0; background: none; padding: 0; cursor: pointer; display: grid; justify-items: center; gap: 2px; font: 700 1.25rem var(--hand); color: var(--ink); }
+.sheep-btn { position: relative; z-index: 1; min-width: 0; overflow-wrap: anywhere; border: 0; background: none; padding: 0; cursor: pointer; display: grid; justify-items: center; gap: 2px; font: 700 1.25rem var(--hand); color: var(--ink); }
 .sheep-btn img { width: 100%; max-width: 190px; transition: transform .2s; }
 .sheep-btn:hover img { transform: translateY(-4px) rotate(-2deg); }
 .sheep-btn.hop img { animation: hop2 .62s cubic-bezier(.3,.7,.4,1); }
 @keyframes hop2 { 0%,100% { transform: none } 40% { transform: translateY(-28px) rotate(-6deg) } }
 .sheep-btn .say { position: absolute; top: -8px; left: 50%; transform: translateX(-50%); white-space: nowrap; background: var(--window); border: 2px solid var(--ink); border-radius: 12px; padding: 0 .5em; font-size: 1.1rem; opacity: 0; transition: opacity .2s; pointer-events: none; }
 .sheep-btn.talk .say { opacity: 1; }
-@media (max-width: 700px) { .flock-row { grid-template-columns: repeat(4, 1fr); } .flock-row::after { display: none; } }
+@media (max-width: 700px) { .flock-row { grid-template-columns: repeat(4, minmax(0, 1fr)); } .flock-row::after { display: none; } }
 @media (max-width: 560px) { .stages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; } .stages .arrow { display: none; } .stage { font-size: 1rem; } .stage img { width: 100%; } }
 .stages { display: flex; flex-wrap: wrap; align-items: end; justify-content: center; gap: 4px 18px; margin-top: 36px; }
 .stage { text-align: center; font: 700 1.2rem var(--hand); color: var(--ink-soft); }
@@ -1526,4 +1536,4 @@ addEventListener("pointermove", e => {
 
 requestAnimationFrame(loop);
 </script>
-<script src="../site.js?v=865980a207"></script>
+<script src="../site.js?v=667127538f"></script>

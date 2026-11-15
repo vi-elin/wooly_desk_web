@@ -564,6 +564,49 @@
     addEventListener("scroll", onScroll, { passive: true });
   }
 
+  /* ── areas that scroll sideways: show that they scroll ── */
+  {
+    const ARROW = '<svg viewBox="0 0 24 14" aria-hidden="true"><path d="M2 7h18M14 2l6 5-6 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const setups = [[".holiday-yard", true], [".app-win .mtabs", false]];
+    setups.forEach(([sel, pill]) => document.querySelectorAll(sel).forEach(box => {
+      let hint = null;
+      if (pill) {
+        const wrap = document.createElement("div");
+        wrap.className = "swipe-box";
+        box.parentNode.insertBefore(wrap, box); wrap.append(box);
+        hint = document.createElement("div");
+        hint.className = "swipe-hint gone"; hint.setAttribute("aria-hidden", "true");
+        hint.innerHTML = `${UK ? "гортайте" : "swipe"} ${ARROW}`;
+        wrap.append(hint);
+      } else box.classList.add("swipe-fade");
+      let used = false, peeked = false, peeking = false;
+      const scrollable = () => box.scrollWidth > box.clientWidth + 4;
+      const sync = () => {
+        const can = scrollable();
+        box.classList.toggle("at-end", !can || box.scrollLeft + box.clientWidth >= box.scrollWidth - 4);
+        if (hint) hint.classList.toggle("gone", !can || used);
+      };
+      box.addEventListener("scroll", () => { if (!peeking && box.scrollLeft > 20) used = true; sync(); }, { passive: true });
+      addEventListener("resize", sync);
+      sync();
+      // a short peek when the area first comes into view: it moves a little to the side and back
+      if (!reduce && "IntersectionObserver" in window) {
+        const io = new IntersectionObserver(es => es.forEach(e => {
+          if (!e.isIntersecting || peeked || !scrollable()) return;
+          peeked = true; io.disconnect();
+          setTimeout(() => {
+            if (used || box.scrollLeft > 4) return;
+            peeking = true;
+            box.scrollTo({ left: 70, behavior: "smooth" });
+            setTimeout(() => { box.scrollTo({ left: 0, behavior: "smooth" }); }, 650);
+            setTimeout(() => { peeking = false; }, 1500);
+          }, 500);
+        }), { threshold: .6 });
+        io.observe(box);
+      }
+    }));
+  }
+
   /* ── support: copy the address ── */
   document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", async () => {
     try { await navigator.clipboard.writeText(b.dataset.copy); } catch { return; }
