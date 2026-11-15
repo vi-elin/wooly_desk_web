@@ -193,6 +193,8 @@ PAGES = {
          '["lavenderCottage", "Лавандовий котедж", "Шиферний дах, зелені стіни, лаванда біля дверей.", 120, 50]'),
         ('["whiteCottage", "Wooden Cabin", "Round window, red arched door, skis by the wall and lights under the roof.", 130, 55]',
          '["whiteCottage", "Дерев\'яна хатинка", "Кругле віконце, червоні двері-арка, лижі під стіною і вогники під дахом.", 130, 55]'),
+        ('["forestCottage", "Forest Cottage", "Sage-green walls, a steep black roof and firs on both sides.", 150, 65]',
+         '["forestCottage", "Лісовий будиночок", "Шавлієво-зелені стіни, крутий чорний дах і ялинки з обох боків.", 150, 65]'),
         ('["logCabin", "Seaside Cottage", "A red door, a dormer window and lamps that glow at night.", 160, 70]',
          '["logCabin", "Будиночок біля моря", "Червоні двері, віконце в даху і лампи, що світяться вночі.", 160, 70]'),
         ('<span>unlocks at ${w} wool</span>', '<span>з ${w} клубків вовни</span>'),
