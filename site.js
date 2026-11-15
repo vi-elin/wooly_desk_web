@@ -614,7 +614,7 @@
     try { asked = localStorage.getItem(KEY) === "1"; } catch {}
     const done = b => {
       b.classList.add("done"); b.disabled = true;
-      const span = b.querySelector("span");
+      const span = b.querySelector("[data-label]") || b.querySelector("span");
       if (span && b.dataset.done) span.textContent = b.dataset.done;
     };
     document.querySelectorAll("[data-win-ask]").forEach(b => {

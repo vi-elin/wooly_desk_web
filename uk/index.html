@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700;800&family=Balsamiq+Sans:wght@400;700&family=Nunito:wght@400;600;700&family=Caveat:wght@500;700&display=swap">
-<link rel="stylesheet" href="../site.css?v=8708c933d7">
+<link rel="stylesheet" href="../site.css?v=996ab51408">
 <!--BOOT-->
 <link rel="canonical" href="https://woollydesk.com/uk/">
 <link rel="alternate" hreflang="en" href="https://woollydesk.com/">
@@ -97,7 +97,6 @@ section[id] { scroll-margin-top: 90px; }
 .hero h1 .squiggle { position: relative; white-space: nowrap; }
 .hero h1 .squiggle svg { position: absolute; left: 0; right: 0; bottom: -.18em; width: 100%; height: .3em; }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 26px; }
-.hero-win { margin-top: 12px; }
 .meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px; color: var(--ink-soft); font-weight: 600; font-size: .92rem; }
 .meta span { display: inline-flex; align-items: center; gap: 6px; }
 .meta span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--sage); }
@@ -576,9 +575,8 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
               <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v9.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-5 5a1 1 0 0 1-1.4 0l-5-5a1 1 0 1 1 1.4-1.4l3.3 3.3V4a1 1 0 0 1 1-1Zm-7 15a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Z"/></svg>
               <span><small>Mac App Store</small>Завантажити Woolly Desk</span>
             </a>
-            <a class="btn ghost" href="#watch">Подивитися ферму</a>
+            <button class="btn win-btn" type="button" data-win-ask data-done="Дякуємо, враховано!"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4.2 8.6 3.3v6.2H2Zm7.6-1 8.4-1.2v7.5H9.6ZM2 10.5h6.6v6.2L2 15.8Zm7.6 0H18V18l-8.4-1.2Z" fill="currentColor"/></svg><span><small>Windows</small><span data-label>Попросити версію</span></span></button>
           </div>
-          <button class="win-ask hero-win" type="button" data-win-ask data-done="Дякуємо! Запит враховано."><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4.2 8.6 3.3v6.2H2Zm7.6-1 8.4-1.2v7.5H9.6ZM2 10.5h6.6v6.2L2 15.8Zm7.6 0H18V18l-8.4-1.2Z" fill="currentColor"/></svg><span>Маєте Windows? Попросіть версію</span></button>
           <div class="meta"><span>macOS 14 або новіша</span><span>Живе в рядку меню</span><span>Справжня погода і сезони</span></div>
         </div>
       </div>
@@ -1539,4 +1537,4 @@ addEventListener("pointermove", e => {
 
 requestAnimationFrame(loop);
 </script>
-<script src="../site.js?v=8d107eeb5b"></script>
+<script src="../site.js?v=21847cd85f"></script>

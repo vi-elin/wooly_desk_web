@@ -646,3 +646,8 @@ a.lang-item:hover, a.lang-item:focus-visible { background: var(--lamp-soft); out
 .final .win-ask:hover span { text-decoration-color: var(--lamp); }
 .final .win-ask.done { color: var(--lamp-soft); }
 .topbar .menu-sheet .sheet-win { align-self: center; justify-content: center; max-width: 100%; margin: 2px 0; font-size: .8rem; white-space: normal; text-align: center; gap: 6px; }
+/* the grey twin of the "Get" button: ask for a Windows version */
+.btn.win-btn { background: #DEDAD2; font: inherit; font-family: var(--display); font-weight: 700; font-size: 1.08rem; text-align: left; }
+.btn.win-btn svg { width: 1.15em; height: 1.15em; }
+.btn.win-btn:hover { background: #E8E4DC; }
+.btn.win-btn.done { cursor: default; background: #D6E2C8; transform: none; box-shadow: 4px 5px 0 var(--b); }
