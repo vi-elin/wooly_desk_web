@@ -368,6 +368,40 @@
       b.addEventListener("pointerenter", () => { new Image().src = b.dataset.src; }, { once: true });
     });
   });
+  /* ── analytics: ?notrack turns Umami off in this browser, ?track turns it on again (the head script stores it) ── */
+  {
+    const q = new URLSearchParams(location.search);
+    const flag = q.has("notrack") ? "off" : q.has("track") ? "on" : "";
+    if (flag) {
+      q.delete("notrack"); q.delete("track");
+      history.replaceState(null, "", location.pathname + (q.size ? "?" + q : "") + location.hash);
+      const uk = document.documentElement.lang === "uk";
+      const note = document.createElement("div");
+      note.className = "track-note";
+      note.setAttribute("role", "status");
+      note.textContent = flag === "off"
+        ? (uk ? "Аналітику вимкнено в цьому браузері." : "Analytics is off in this browser.")
+        : (uk ? "Аналітику знову ввімкнено." : "Analytics is on again.");
+      document.body.append(note);
+      setTimeout(() => note.remove(), 3500);
+    }
+  }
+
+  /* ── analytics: how far people read (Umami, no cookies). One event at 50 % and one at 100 % of each page. ── */
+  {
+    const sent = new Set();
+    const check = () => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      const seen = max <= 0 ? 1 : scrollY / max;
+      for (const [mark, name] of [[0.5, "scroll-50"], [0.97, "scroll-100"]]) {
+        if (seen >= mark && !sent.has(name) && window.umami) { sent.add(name); umami.track(name); }
+      }
+      if (sent.size === 2) removeEventListener("scroll", onScroll);
+    };
+    let tick = 0;
+    const onScroll = () => { if (!tick) tick = requestAnimationFrame(() => { tick = 0; check(); }); };
+    addEventListener("scroll", onScroll, { passive: true });
+  }
 
   /* ── support: copy the address ── */
   document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", async () => {

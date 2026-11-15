@@ -100,14 +100,14 @@ def header(page: str, lang: str = "en") -> str:
       {"".join(links)}
     </nav>
     {switch}
-    <a class="btn bar-cta" href="{get}">{t["get"]}</a>
+    <a class="btn bar-cta" href="{get}" data-umami-event="get-mac-header">{t["get"]}</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menuSheet" aria-label="{t["menu"]}">{CLOUD}</button>
     <div class="trail" aria-hidden="true"><span class="trail-sheep"><img src="assets/sheep_white_graze0.png" alt=""></span></div>
   </div>
   <nav class="menu-sheet" id="menuSheet" aria-label="{t["menu"]}">
     {"".join(sheet)}
     {sheet_switch}
-    <a class="btn sheet-cta" href="{get}">{t["get"]}</a>
+    <a class="btn sheet-cta" href="{get}" data-umami-event="get-mac-menu">{t["get"]}</a>
   </nav>
 </header>
 <!--/HEADER-->"""
@@ -150,6 +150,8 @@ def boot(page: str, lang: str = "en") -> str:
 <link rel="alternate" hreflang="en" href="{url(page, "en")}">
 <link rel="alternate" hreflang="uk" href="{url(page, "uk")}">
 <link rel="alternate" hreflang="x-default" href="{url(page, "en")}">
+<script>try{{var q=new URLSearchParams(location.search);if(q.has("notrack"))localStorage.setItem("umami.disabled","1");else if(q.has("track"))localStorage.removeItem("umami.disabled")}}catch(e){{}}</script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="c4cd17dc-7bdd-45ed-8f7d-eefc8e028185" data-domains="woollydesk.com"></script>
 <script>try{{if(sessionStorage.getItem("wd-curtain")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("wd-enter")}}catch(e){{}}</script>
 <!--/BOOT-->"""
 
