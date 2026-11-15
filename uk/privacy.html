@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700;800&family=Balsamiq+Sans:wght@400;700&family=Nunito:wght@400;600;700;800&family=Caveat:wght@500;700&display=swap">
-<link rel="stylesheet" href="../site.css?v=996ab51408">
+<link rel="stylesheet" href="../site.css?v=5a5a5ed11a">
 <!--BOOT-->
 <link rel="canonical" href="https://woollydesk.com/uk/privacy.html">
 <link rel="alternate" hreflang="en" href="https://woollydesk.com/privacy.html">
@@ -36,7 +36,7 @@
   <nav class="menu-sheet" id="menuSheet" aria-label="Меню">
     <span class="sheet-label">Сторінки</span><a href="index.html"><img src="../assets/sheep_white_happy.png" alt="">Головна</a><a href="guide.html"><img src="../assets/house_barn_summer.png" alt="">Посібник</a><a href="faq.html"><img src="../assets/sheep_lamb_happy.png" alt="">Питання</a><a href="support.html"><img src="../assets/house_whiteCottage_summer.png" alt="">Підтримка</a>
     <a class="btn sheet-cta" href="index.html#get" data-umami-event="get-mac-menu">Отримати для Mac</a>
-    <button class="win-ask sheet-win" type="button" data-win-ask data-done="Дякуємо! Запит враховано."><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4.2 8.6 3.3v6.2H2Zm7.6-1 8.4-1.2v7.5H9.6ZM2 10.5h6.6v6.2L2 15.8Zm7.6 0H18V18l-8.4-1.2Z" fill="currentColor"/></svg><span>Маєте Windows? Попросіть версію</span></button>
+    <button class="win-ask sheet-win" type="button" data-win-ask data-win-src="menu" data-done="Дякуємо! Запит враховано."><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4.2 8.6 3.3v6.2H2Zm7.6-1 8.4-1.2v7.5H9.6ZM2 10.5h6.6v6.2L2 15.8Zm7.6 0H18V18l-8.4-1.2Z" fill="currentColor"/></svg><span>Маєте Windows? Попросіть версію</span></button>
   </nav>
 </header>
 <!--/HEADER-->
@@ -94,7 +94,10 @@
         <h2>5. Коли ви пишете в підтримку</h2>
         <p>Якщо ви напишете нам, ми отримаємо вашу адресу пошти і те, що ви написали. Ми використовуємо це лише для відповіді та виправлення проблем. Ми не додаємо вас до розсилок. Попросіть будь-коли — і ми видалимо ваші листи.</p>
 
-        <h2>6. Цей сайт</h2>
+        <h2 id="waitlist">6. Список очікування Windows (необов'язково)</h2>
+        <p>Якщо ви залишите свою пошту у вікні «Woolly Desk для Windows», ми збережемо її в приватній базі даних Notion разом із мовою сторінки і кнопкою, яку ви натиснули. Невеликий Cloudflare Worker передає її з цього сайту до Notion. Ми використовуємо вашу пошту лише для того, щоб надіслати один лист, коли вийде версія для Windows. Ми не передаємо і не продаємо її та не додаємо до інших списків. Напишіть на <a href="mailto:vielindevelopment@gmail.com">vielindevelopment@gmail.com</a> — і ми її видалимо. Після оголошення ми видаляємо весь список. Notion і Cloudflare обробляють ці дані відповідно до власних політик конфіденційності: <a href="https://www.notion.com/notion/privacy" rel="noopener">Notion</a>, <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare</a>.</p>
+
+        <h2>7. Цей сайт</h2>
         <ul>
           <li>Сайт не використовує файлів cookie.</li>
           <li>Сайт рахує відвідування за допомогою <a href="https://umami.is/" rel="noopener">Umami</a> — сервісу аналітики, який поважає приватність. Він рахує, які сторінки відкривають, звідки приходять відвідувачі (наприклад, з пошуковика), наскільки далеко гортають сторінку і скільки людей натискає «Завантажити Woolly Desk» або просить версію для Windows. Він не зберігає файлів cookie і не збирає особисту інформацію. Він не стежить за вами на інших сайтах, і ніхто не може вас за ним упізнати. Див. <a href="https://umami.is/privacy" rel="noopener">політику конфіденційності Umami</a>.</li>
@@ -102,13 +105,13 @@
           <li>Шрифти завантажуються з Google Fonts, тож ваш браузер звертається до Google. Див. <a href="https://policies.google.com/privacy" rel="noopener">політику конфіденційності Google</a>.</li>
         </ul>
 
-        <h2>7. Діти</h2>
+        <h2>8. Діти</h2>
         <p>Woolly Desk підходить для будь-якого віку. Застосунок не збирає особисту інформацію ні в кого, зокрема й у дітей.</p>
 
-        <h2>8. Ваші права</h2>
-        <p>Оскільки застосунок не збирає особисту інформацію, нам зазвичай нічого показувати, змінювати чи видаляти. Щодо листів, які ви нам надіслали, напишіть на <a href="mailto:vielindevelopment@gmail.com">vielindevelopment@gmail.com</a>, щоб побачити або видалити їх.</p>
+        <h2>9. Ваші права</h2>
+        <p>Оскільки застосунок не збирає особисту інформацію, нам зазвичай нічого показувати, змінювати чи видаляти. Щодо листів, які ви нам надіслали, або вашої адреси у списку очікування Windows, напишіть на <a href="mailto:vielindevelopment@gmail.com">vielindevelopment@gmail.com</a>, щоб побачити або видалити їх.</p>
 
-        <h2>9. Зміни</h2>
+        <h2>10. Зміни</h2>
         <p>Якщо ця політика зміниться, ми оновимо цю сторінку і дату вгорі. Про важливі зміни також буде сказано в примітках до випуску застосунку.</p>
       </div>
     </div>
@@ -141,6 +144,6 @@
   </div>
 </footer>
 <!--/FOOTER-->
-<script src="../site.js?v=21847cd85f"></script>
+<script src="../site.js?v=ade293fcf6"></script>
 </body>
 </html>

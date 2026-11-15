@@ -639,7 +639,7 @@ a.lang-item:hover, a.lang-item:focus-visible { background: var(--lamp-soft); out
 .win-ask:hover span { text-decoration: underline wavy var(--barn) 1.5px; }
 .win-ask:hover svg { transform: rotate(-8deg) scale(1.1); }
 .win-ask:focus-visible { outline: 3px solid var(--barn); outline-offset: 3px; border-radius: 8px; }
-.win-ask.done { cursor: default; color: var(--sage); }
+.win-ask.done { color: var(--sage); }
 .win-ask.done span { text-decoration: none; }
 .final .win-ask { color: var(--night-soft); }
 .final .win-ask:hover { color: var(--on-night); }
@@ -650,4 +650,43 @@ a.lang-item:hover, a.lang-item:focus-visible { background: var(--lamp-soft); out
 .btn.win-btn { background: #DEDAD2; font: inherit; font-family: var(--display); font-weight: 700; font-size: 1.08rem; text-align: left; }
 .btn.win-btn svg { width: 1.15em; height: 1.15em; }
 .btn.win-btn:hover { background: #E8E4DC; }
-.btn.win-btn.done { cursor: default; background: #D6E2C8; transform: none; box-shadow: 4px 5px 0 var(--b); }
+.btn.win-btn.done { background: #D6E2C8; }
+
+/* the "Woolly Desk for Windows" dialog */
+.win-dialog {
+  width: min(470px, calc(100vw - 32px)); padding: 26px 26px 22px; color: var(--ink);
+  border: 2.5px solid var(--ink); border-radius: 22px 24px 21px 25px / 24px 21px 25px 22px; background: var(--window);
+  box-shadow: 8px 10px 0 rgba(58,47,42,.22);
+}
+.win-dialog[open] { animation: wd-pop .35s cubic-bezier(.3,.8,.3,1.25); }
+.win-dialog::backdrop { background: rgba(38, 44, 76, .45); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+@keyframes wd-pop { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: none; } }
+.wd-x {
+  position: absolute; right: 12px; top: 10px; width: 34px; height: 34px; display: grid; place-items: center; cursor: pointer;
+  border: 0; border-radius: 50%; background: transparent; color: var(--ink-soft); font: 400 1.7rem/1 var(--body);
+}
+.wd-x:hover { background: rgba(58,47,42,.08); color: var(--ink); }
+.wd-head { display: flex; align-items: center; gap: 10px; padding-right: 30px; }
+.wd-head svg { width: 26px; height: 26px; flex: none; color: #5B7FA6; }
+.wd-head h2 { margin: 0; font: 800 1.45rem/1.2 var(--display); }
+.wd-counted { display: inline-flex; align-items: center; gap: 7px; margin: 14px 0 0; padding: 4px 11px; border-radius: 999px; background: rgba(110,138,99,.16); color: #4E6B45; font-weight: 700; font-size: .92rem; }
+.wd-counted svg { width: 14px; height: 11px; }
+.wd-body { margin: 12px 0 0; color: var(--ink-soft); }
+.wd-form { margin-top: 18px; padding-top: 16px; border-top: 1.5px dashed rgba(58,47,42,.2); }
+.wd-form label { display: block; font-weight: 700; margin-bottom: 8px; }
+.wd-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.wd-row input {
+  flex: 1 1 200px; min-width: 0; padding: .7em .9em; font: 600 1rem var(--body); color: var(--ink);
+  border: 2px solid var(--ink); border-radius: 14px; background: #fff;
+}
+.wd-row input:focus { outline: 3px solid var(--lamp); outline-offset: 1px; }
+.wd-row .btn { flex: none; font-size: 1rem; padding: .62em 1.1em .56em; }
+.wd-row .btn:disabled { opacity: .7; cursor: progress; transform: none; }
+.wd-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.wd-msg { min-height: 1.2em; margin: 8px 0 0; font-size: .92rem; font-weight: 700; color: var(--sage); }
+.wd-msg.err { color: var(--barn-deep); }
+.wd-fine { margin: 6px 0 0; font-size: .82rem; color: var(--ink-soft); }
+.wd-fine a { color: inherit; text-decoration: underline; }
+.wd-thanks { margin: 18px 0 0; padding: 14px 16px; border-radius: 14px; background: var(--lamp-soft); font-weight: 700; }
+@media (max-width: 420px) { .wd-row .btn { flex: 1 1 100%; justify-content: center; } }
+@media (prefers-reduced-motion: reduce) { .win-dialog[open] { animation: none; } }

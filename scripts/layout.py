@@ -127,7 +127,7 @@ def header(page: str, lang: str = "en") -> str:
   <nav class="menu-sheet" id="menuSheet" aria-label="{t["menu"]}">
     {"".join(sheet)}
     <a class="btn sheet-cta" href="{get}" data-umami-event="get-mac-menu">{t["get"]}</a>
-    <button class="win-ask sheet-win" type="button" data-win-ask data-done="{t["win_done"]}">{WIN_ICON}<span>{t["win"]}</span></button>
+    <button class="win-ask sheet-win" type="button" data-win-ask data-win-src="menu" data-done="{t["win_done"]}">{WIN_ICON}<span>{t["win"]}</span></button>
   </nav>
 </header>
 <!--/HEADER-->"""

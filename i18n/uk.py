@@ -10,7 +10,7 @@
 # Words that may stay in English on the Ukrainian pages.
 KEEP_ENGLISH = """
 Woolly Desk Mac macOS App Store Apple silicon Intel Finder Dock Sonoma WeatherKit Open-Meteo GitHub Pages Google Fonts
-IP IP- cookie txt todo English Overview Umami Windows
+IP IP- cookie txt todo English Overview Umami Windows Cloudflare Notion Worker
 Settings Desktop Weather Sound Farm life Time Day Always Night Memories Sheep Home Tools Mow Sweep Move Remove
 Fir Eucalyptus Orange Holiday Build Animals Care Decoration Trading Post Store Refill Add hay Trade Status Apply
 Relaxed Normal Quick Shop Start new farm
