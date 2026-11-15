@@ -607,6 +607,28 @@
     }));
   }
 
+  /* ── "ask for a Windows version": one Umami event per browser, no personal data ── */
+  {
+    const KEY = "wd-windows-asked";
+    let asked = false;
+    try { asked = localStorage.getItem(KEY) === "1"; } catch {}
+    const done = b => {
+      b.classList.add("done"); b.disabled = true;
+      const span = b.querySelector("span");
+      if (span && b.dataset.done) span.textContent = b.dataset.done;
+    };
+    document.querySelectorAll("[data-win-ask]").forEach(b => {
+      if (asked) done(b);
+      b.addEventListener("click", () => {
+        if (asked) return;
+        asked = true;
+        try { localStorage.setItem(KEY, "1"); } catch {}
+        if (window.umami) umami.track("request-windows");
+        document.querySelectorAll("[data-win-ask]").forEach(done);
+      });
+    });
+  }
+
   /* ── support: copy the address ── */
   document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", async () => {
     try { await navigator.clipboard.writeText(b.dataset.copy); } catch { return; }

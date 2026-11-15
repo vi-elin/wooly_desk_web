@@ -10,7 +10,7 @@
 # Words that may stay in English on the Ukrainian pages.
 KEEP_ENGLISH = """
 Woolly Desk Mac macOS App Store Apple silicon Intel Finder Dock Sonoma WeatherKit Open-Meteo GitHub Pages Google Fonts
-IP IP- cookie txt todo English Overview Umami
+IP IP- cookie txt todo English Overview Umami Windows
 Settings Desktop Weather Sound Farm life Time Day Always Night Memories Sheep Home Tools Mow Sweep Move Remove
 Fir Eucalyptus Orange Holiday Build Animals Care Decoration Trading Post Store Refill Add hay Trade Status Apply
 Relaxed Normal Quick Shop Start new farm
@@ -247,6 +247,9 @@ PAGES = {
         ('["Lavender", "#BBA9D6"], ["Hay yellow", "#F2D27A"], ["Pumpkin", "#D98A5E"], ["Barn red", "#C9645B"], ["Kraft brown", "#C9A47A"], ["Snow grey", "#D9DFE6"]]',
          '["Лаванда", "#BBA9D6"], ["Жовте сіно", "#F2D27A"], ["Гарбуз", "#D98A5E"], ["Червоний хлів", "#C9645B"], ["Крафтовий", "#C9A47A"], ["Сніжно-сірий", "#D9DFE6"]]'),
         ('[["spring", "Spring"], ["summer", "Summer"], ["autumn", "Autumn"], ["winter", "Winter"]]', '[["spring", "Весна"], ["summer", "Літо"], ["autumn", "Осінь"], ["winter", "Зима"]]'),
+        # Windows request
+        ('data-done="Thank you! We counted your request."', 'data-done="Дякуємо! Ми врахували ваш запит."'),
+        ("<span>Using Windows? Ask for a Windows version</span>", "<span>Маєте Windows? Попросіть версію для Windows</span>"),
         # a whole life
         ('<span class="eyebrow">a whole life</span>', '<span class="eyebrow">ціле життя</span>'),
         ("<h2>From a wobbly lamb to an old friend</h2>", "<h2>Від маленького ягняти до старого друга</h2>"),
