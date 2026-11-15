@@ -217,7 +217,6 @@ PAGES = {
         ('nm.textContent = COLORS[k][1] + " Sweater";', 'nm.textContent = COLORS[k][1] + " светр";'),
         ('img.alt = `A sheep in a ${COLORS[k][1].toLowerCase()} knitted sweater`;', 'img.alt = `Вівця у светрі, колір: ${COLORS[k][1].toLowerCase()}`;'),
         ('["so cosy!", "baa!", "fits perfectly", "warm!", "new look!"]', '["як затишно!", "бе-е!", "якраз по мені", "тепло!", "новий образ!"]'),
-        ('href="guide.html#holidays">How to use them</a>', 'href="guide.html#holidays">Як ними користуватися</a>'),
 
 
         # decorate your desktop

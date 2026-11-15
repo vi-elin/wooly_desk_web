@@ -258,9 +258,26 @@
   if (location.hash) {
     let d = null;
     try { d = document.querySelector(location.hash); } catch {}
-    if (d && d.tagName === "DETAILS") d.open = true;
-    // the browser has jumped to the section: remove the #part, so a reload stays where the reader is
-    addEventListener("load", () => setTimeout(() => history.replaceState(null, "", location.pathname + location.search), 400), { once: true });
+    if (d) {
+      if (d.tagName === "DETAILS") d.open = true;
+      // jump at once (no smooth scroll), and again after pictures and fonts change the page height,
+      // so a phone lands on the section; stop when the reader starts to scroll
+      let moved = false;
+      const stop = () => { moved = true; };
+      ["wheel", "touchstart", "keydown"].forEach(ev => addEventListener(ev, stop, { once: true, passive: true }));
+      const land = () => {
+        if (moved) return;
+        const html = document.documentElement, was = html.style.scrollBehavior;
+        html.style.scrollBehavior = "auto";
+        d.scrollIntoView({ block: "start" });
+        html.style.scrollBehavior = was;
+      };
+      land();
+      if (document.fonts) document.fonts.ready.then(land);
+      addEventListener("load", () => { land(); setTimeout(land, 500); }, { once: true });
+    }
+    // remove the #part, so a reload stays where the reader is
+    addEventListener("load", () => setTimeout(() => history.replaceState(null, "", location.pathname + location.search), 600), { once: true });
   }
 
   /* ── page transition: a meadow curtain rises, a sheep runs across, the next page opens ── */
@@ -277,7 +294,7 @@
     return c;
   };
   const cycle = (img, ms) => { let f = 0; return setInterval(() => { f = (f + 1) % 4; img.src = WALK[f]; }, ms); };
-  let leaving = false;
+  let leaving = false, goTimer = 0;
   const leave = (href, name) => {
     if (leaving) return; leaving = true;
     const c = makeCurtain(L.off(name));
@@ -285,9 +302,17 @@
     const t = cycle(img, 90);
     sheet.animate([{ transform: "translateY(105%)" }, { transform: "translateY(0)" }], { duration: 430, easing: "cubic-bezier(.6,0,.3,1)", fill: "forwards" });
     const run = runner.animate([{ transform: "translateX(-60vw)" }, { transform: "translateX(0)" }], { duration: 560, easing: "cubic-bezier(.2,.7,.3,1)", fill: "forwards" });
-    const go = () => { clearInterval(t); try { sessionStorage.setItem("wd-curtain", name); } catch {} location.href = href; };
+    // open the next page once: the animation end or the safety timer, whichever comes first.
+    // A phone keeps this page in memory; without this, a waiting timer opened the next page again after "Back".
+    let went = false;
+    const go = () => {
+      if (went) return; went = true;
+      clearTimeout(goTimer); clearInterval(t);
+      try { sessionStorage.setItem("wd-curtain", name); } catch {}
+      location.href = href;
+    };
     run.finished.then(go, go);
-    setTimeout(go, 1200);
+    goTimer = setTimeout(go, 1200);
   };
   if (!reduce) document.addEventListener("click", e => {
     const a = e.target.closest("a[href]");
@@ -322,6 +347,7 @@
   }
   addEventListener("pageshow", e => {
     if (!e.persisted) return;
+    clearTimeout(goTimer);
     leaving = false;
     document.querySelectorAll(".wd-curtain").forEach(c => c.remove());
     root.classList.add("wd-lift");

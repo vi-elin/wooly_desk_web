@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700;800&family=Nunito:wght@400;600;700&family=Caveat:wght@500;700&display=swap">
-<link rel="stylesheet" href="site.css?v=3cc23cfe79">
+<link rel="stylesheet" href="site.css?v=075d704a6f">
 <!--BOOT-->
 <link rel="canonical" href="https://woollydesk.com/">
 <link rel="alternate" hreflang="en" href="https://woollydesk.com/">
@@ -372,13 +372,10 @@ section[id] { scroll-margin-top: 90px; }
 #holidays.night .sweater-row .sheep-btn img { filter: brightness(.82) saturate(.9); }
 .sweater-row .sheep-btn .say { top: -14px; }
 #holidays.night .sweater-row .sheep-btn .say { background: var(--night-2); color: var(--on-night); border-color: var(--on-night); }
-.holiday-prices { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 40px; }
 .price-tag { border: 2px solid var(--ink); border-radius: 999px; padding: .2em .9em; background: var(--window); font-size: .92rem; font-variant-numeric: tabular-nums; }
 .price-tag b { font-family: var(--display); }
 #holidays.night .price-tag { background: var(--night-2); border-color: var(--on-night); color: var(--on-night); }
-.holiday-prices .btn { font-size: .95rem; padding: .5em 1em .45em; }
-#holidays.night .holiday-prices .btn { --b: var(--on-night); }
-@media (max-width: 700px) {
+#holidays.night @media (max-width: 700px) {
   #holidays { padding-top: 130px; }
   .hang { width: 60px; } .hang img { width: 60px; top: calc(var(--len, 60px) - 30px); }
   .holiday-yard { aspect-ratio: auto; height: 250px; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; background-size: auto 100%; }
@@ -811,9 +808,6 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
             <div class="swatches" id="folderSwatches" role="group" aria-label="One colour for all folders"></div>
           </div>
         </div>
-      </div>
-      <div class="holiday-prices">
-        <a class="btn ghost" href="guide.html#holidays">How to use them</a>
       </div>
     </div>
   </section>
@@ -1408,8 +1402,7 @@ hToggle.addEventListener("click", () => {
 
 /* Scroll reveal: blocks below the fold rise in as they come into view. */
 if ("IntersectionObserver" in window && !reduce) {
-  const targets = document.querySelectorAll(".sec-head, .live, .caption, .feature, .compare, .sheep-btn, .stage, .arrow, .tabs, .season-scene, .tidy-bar, .tidy, .house, .switch, .spirit-wrap, .holiday-yard, .sweater-head, .holiday-prices, .deco-head, .deco-mac, .deco-card, .final .wrap > *");
-  const io = new IntersectionObserver(entries => {
+  const targets = document.querySelectorAll(".sec-head, .live, .caption, .feature, .compare, .sheep-btn, .stage, .arrow, .tabs, .season-scene, .tidy-bar, .tidy, .house, .switch, .spirit-wrap, .holiday-yard, .sweater-head,   const io = new IntersectionObserver(entries => {
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
   }, { threshold: .12, rootMargin: "0px 0px -6% 0px" });
   const groups = new Map();
@@ -1446,4 +1439,4 @@ addEventListener("pointermove", e => {
 
 requestAnimationFrame(loop);
 </script>
-<script src="site.js?v=6d5c86e386"></script>
+<script src="site.js?v=980363f7ae"></script>

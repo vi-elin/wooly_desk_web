@@ -569,7 +569,9 @@ a.lang-item:hover, a.lang-item:focus-visible { background: var(--lamp-soft); out
   .lang-menu { margin-left: auto; }
   .lang-switch { padding: 0 .6em 0 .5em; gap: 5px; }
 }
-@media (max-width: 359px) { .lang-switch .lang-word { display: none; } }
+@media (max-width: 359px) { .lang-switch .lang-word { display: none; } .bar-inner { gap: 10px; } }
+/* "Language" is long: on phones the English header shows the globe only */
+@media (max-width: 440px) { html[lang="en"] .lang-switch .lang-word { display: none; } }
 
 /* Ukrainian pages: Grandstander has no Cyrillic, Balsamiq Sans is just as playful and has it */
 :root:lang(uk) { --display: "Balsamiq Sans", "Grandstander", "Trebuchet MS", system-ui, sans-serif; }
