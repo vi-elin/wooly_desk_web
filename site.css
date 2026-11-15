@@ -651,3 +651,4 @@ a.lang-item:hover, a.lang-item:focus-visible { background: var(--lamp-soft); out
 .win-ask.done { border-style: solid; cursor: default; transform: none; background: rgba(110, 138, 99, .16); }
 .final .win-ask { color: var(--on-night); }
 .final .win-ask.done { color: var(--on-night); background: rgba(246, 207, 106, .14); }
+.topbar .menu-sheet .sheet-win { justify-content: center; margin: 2px 4px 4px; font-size: .86rem; padding: .45em .8em; }

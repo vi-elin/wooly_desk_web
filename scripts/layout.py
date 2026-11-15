@@ -20,7 +20,7 @@ T = {
                      "#village": "Build", "#holidays": "Holidays"},
         "pages": {"index.html": "Home", "guide.html": "Guide", "faq.html": "FAQ", "support.html": "Support"},
         "get": "Get it for Mac", "on_page": "On this page", "pages_label": "Pages", "menu": "Menu", "main": "Main",
-        "home_label": "Woolly Desk home", "switch": "УКР", "switch_label": "Українською", "lang": "Language",
+        "home_label": "Woolly Desk home", "switch": "УКР", "switch_label": "Українською", "lang": "Language", "win": "Using Windows? Ask for a Windows version", "win_done": "Thank you! We counted your request.",
         "about": "A cozy, hand-painted sheep farm that lives on your Mac desktop, behind every window.",
         "learn": "Learn", "help": "Help", "legal": "Legal", "shop": "The shop", "settings": "Settings",
         "privacy": "Privacy policy", "copy": "© 2026 Woolly Desk · hand-painted, sheep-approved",
@@ -31,7 +31,7 @@ T = {
                      "#village": "Будівлі", "#holidays": "Свята"},
         "pages": {"index.html": "Головна", "guide.html": "Посібник", "faq.html": "Питання", "support.html": "Підтримка"},
         "get": "Отримати для Mac", "on_page": "На цій сторінці", "pages_label": "Сторінки", "menu": "Меню", "main": "Головне меню",
-        "home_label": "Woolly Desk, головна", "switch": "EN", "switch_label": "English", "lang": "Мова",
+        "home_label": "Woolly Desk, головна", "switch": "EN", "switch_label": "English", "lang": "Мова", "win": "Маєте Windows? Попросіть версію для Windows", "win_done": "Дякуємо! Ми врахували ваш запит.",
         "about": "Затишна ферма з намальованими вручну вівцями, яка живе на робочому столі вашого Mac, за всіма вікнами.",
         "learn": "Дізнатися", "help": "Допомога", "legal": "Правове", "shop": "Магазин", "settings": "Налаштування",
         "privacy": "Політика конфіденційності", "copy": "© 2026 Woolly Desk · намальовано вручну, схвалено вівцями",
@@ -63,6 +63,8 @@ def lang_items(page: str, lang: str, cls: str) -> str:
             out.append(f'<a class="{cls}" role="menuitemradio" aria-checked="false" href="{other(page, lang)}" hreflang="{code}" lang="{code}">{CHECK}{name}</a>')
     return "".join(out)
 
+
+WIN_ICON = ('<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4.2 8.6 3.3v6.2H2Zm7.6-1 8.4-1.2v7.5H9.6ZM2 10.5h6.6v6.2L2 15.8Zm7.6 0H18V18l-8.4-1.2Z" fill="currentColor"/></svg>')
 
 CLOUD = ('<svg viewBox="0 0 30 24" aria-hidden="true"><circle cx="9" cy="8" r="4.6" fill="#F6CF6A" stroke="#3A2F2A" stroke-width="1.8"/>'
          '<path d="M8 20.5h15a4.3 4.3 0 0 0 .4-8.6 6 6 0 0 0-11.5 1.2A3.7 3.7 0 0 0 8 20.5Z" fill="#FBF8F1" stroke="#3A2F2A" stroke-width="1.8"/></svg>')
@@ -128,6 +130,7 @@ def header(page: str, lang: str = "en") -> str:
     {"".join(sheet)}
     {sheet_switch}
     <a class="btn sheet-cta" href="{get}" data-umami-event="get-mac-menu">{t["get"]}</a>
+    <button class="win-ask sheet-win" type="button" data-win-ask data-done="{t["win_done"]}">{WIN_ICON}<span>{t["win"]}</span></button>
   </nav>
 </header>
 <!--/HEADER-->"""

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700;800&family=Nunito:wght@400;600;700&family=Caveat:wght@500;700&display=swap">
-<link rel="stylesheet" href="site.css?v=6a609c9306">
+<link rel="stylesheet" href="site.css?v=79efa675d5">
 <!--BOOT-->
 <link rel="canonical" href="https://woollydesk.com/">
 <link rel="alternate" hreflang="en" href="https://woollydesk.com/">
@@ -97,6 +97,7 @@ section[id] { scroll-margin-top: 90px; }
 .hero h1 .squiggle { position: relative; white-space: nowrap; }
 .hero h1 .squiggle svg { position: absolute; left: 0; right: 0; bottom: -.18em; width: 100%; height: .3em; }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 26px; }
+.hero-win { margin-top: 14px; }
 .meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px; color: var(--ink-soft); font-weight: 600; font-size: .92rem; }
 .meta span { display: inline-flex; align-items: center; gap: 6px; }
 .meta span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--sage); }
@@ -556,6 +557,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
     <span class="sheet-label">On this page</span><a href="#watch"><img src="assets/cloud_0.png" alt="">Watch</a><a href="#flock"><img src="assets/sheep_cream_idle.png" alt="">The flock</a><a href="#seasons"><img src="assets/decor_tree_autumn.png" alt="">Seasons</a><a href="#tidy"><img src="assets/broom.png" alt="">Tidy up</a><a href="#village"><img src="assets/house_pinkCottage_summer.png" alt="">Build</a><a href="#holidays"><img src="assets/holiday_christmasTree.png" alt="">Holidays</a><span class="sheet-label">Pages</span><a href="guide.html"><img src="assets/house_barn_summer.png" alt="">Guide</a><a href="faq.html"><img src="assets/sheep_lamb_happy.png" alt="">FAQ</a><a href="support.html"><img src="assets/house_whiteCottage_summer.png" alt="">Support</a>
     <div class="sheet-langs" role="group" aria-label="Language"><span class="sheet-label"><svg class="globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9s1.2-6.4 3.8-9Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Language</span><div class="lang-seg"><span class="seg-item on" role="menuitemradio" aria-checked="true" lang="en"><svg class="check" viewBox="0 0 16 12" aria-hidden="true"><path d="M1.5 6.5 6 10.5 14.5 1.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>English</span><a class="seg-item" role="menuitemradio" aria-checked="false" href="uk/index.html" hreflang="uk" lang="uk"><svg class="check" viewBox="0 0 16 12" aria-hidden="true"><path d="M1.5 6.5 6 10.5 14.5 1.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Українська</a></div></div>
     <a class="btn sheet-cta" href="#get" data-umami-event="get-mac-menu">Get it for Mac</a>
+    <button class="win-ask sheet-win" type="button" data-win-ask data-done="Thank you! We counted your request."><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4.2 8.6 3.3v6.2H2Zm7.6-1 8.4-1.2v7.5H9.6ZM2 10.5h6.6v6.2L2 15.8Zm7.6 0H18V18l-8.4-1.2Z" fill="currentColor"/></svg><span>Using Windows? Ask for a Windows version</span></button>
   </nav>
 </header>
 <!--/HEADER-->
@@ -577,6 +579,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
             </a>
             <a class="btn ghost" href="#watch">Watch the farm</a>
           </div>
+          <button class="win-ask hero-win" type="button" data-win-ask data-done="Thank you! We counted your request."><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4.2 8.6 3.3v6.2H2Zm7.6-1 8.4-1.2v7.5H9.6ZM2 10.5h6.6v6.2L2 15.8Zm7.6 0H18V18l-8.4-1.2Z" fill="currentColor"/></svg><span>Using Windows? Ask for a Windows version</span></button>
           <div class="meta"><span>macOS 14 or later</span><span>Lives in the menu bar</span><span>Real weather &amp; seasons</span></div>
         </div>
       </div>
