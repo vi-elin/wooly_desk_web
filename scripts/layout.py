@@ -20,7 +20,7 @@ T = {
                      "#village": "Build", "#holidays": "Holidays"},
         "pages": {"index.html": "Home", "guide.html": "Guide", "faq.html": "FAQ", "support.html": "Support"},
         "get": "Get it for Mac", "on_page": "On this page", "pages_label": "Pages", "menu": "Menu", "main": "Main",
-        "home_label": "Woolly Desk home", "switch": "УКР", "switch_label": "Українською",
+        "home_label": "Woolly Desk home", "switch": "УКР", "switch_label": "Українською", "lang": "Language", "win": "On Windows? Ask for a version", "win_done": "Thanks! Your request is counted.",
         "about": "A cozy, hand-painted sheep farm that lives on your Mac desktop, behind every window.",
         "learn": "Learn", "help": "Help", "legal": "Legal", "shop": "The shop", "settings": "Settings",
         "privacy": "Privacy policy", "copy": "© 2026 Woolly Desk · hand-painted, sheep-approved",
@@ -31,7 +31,7 @@ T = {
                      "#village": "Будівлі", "#holidays": "Свята"},
         "pages": {"index.html": "Головна", "guide.html": "Посібник", "faq.html": "Питання", "support.html": "Підтримка"},
         "get": "Отримати для Mac", "on_page": "На цій сторінці", "pages_label": "Сторінки", "menu": "Меню", "main": "Головне меню",
-        "home_label": "Woolly Desk, головна", "switch": "EN", "switch_label": "English",
+        "home_label": "Woolly Desk, головна", "switch": "EN", "switch_label": "English", "lang": "Мова", "win": "Маєте Windows? Попросіть версію", "win_done": "Дякуємо! Запит враховано.",
         "about": "Затишна ферма з намальованими вручну вівцями, яка живе на робочому столі вашого Mac, за всіма вікнами.",
         "learn": "Дізнатися", "help": "Допомога", "legal": "Правове", "shop": "Магазин", "settings": "Налаштування",
         "privacy": "Політика конфіденційності", "copy": "© 2026 Woolly Desk · намальовано вручну, схвалено вівцями",
@@ -44,6 +44,27 @@ SECTION_ICONS = {"#watch": "cloud_0", "#flock": "sheep_cream_idle", "#seasons": 
 PAGES_NAV = ["guide.html", "faq.html", "support.html"]
 SHEET_ICONS = {"index.html": "sheep_white_happy", "guide.html": "house_barn_summer",
                "faq.html": "sheep_lamb_happy", "support.html": "house_whiteCottage_summer"}
+
+LANG_NAMES = {"en": "English", "uk": "Українська"}
+GLOBE = ('<svg class="globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>'
+         '<path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9s1.2-6.4 3.8-9Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>')
+CARET = '<svg class="caret" viewBox="0 0 12 8" aria-hidden="true"><path d="M1.5 1.5 6 6l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+CHECK = '<svg class="check" viewBox="0 0 16 12" aria-hidden="true"><path d="M1.5 6.5 6 10.5 14.5 1.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+
+
+def lang_items(page: str, lang: str, cls: str) -> str:
+    """The two languages: the current one is marked, the other one links to the same page."""
+    out = []
+    for code in ("en", "uk"):
+        name = LANG_NAMES[code]
+        if code == lang:
+            out.append(f'<span class="{cls} on" role="menuitemradio" aria-checked="true" lang="{code}">{CHECK}{name}</span>')
+        else:
+            out.append(f'<a class="{cls}" role="menuitemradio" aria-checked="false" href="{other(page, lang)}" hreflang="{code}" lang="{code}">{CHECK}{name}</a>')
+    return "".join(out)
+
+
+WIN_ICON = ('<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4.2 8.6 3.3v6.2H2Zm7.6-1 8.4-1.2v7.5H9.6ZM2 10.5h6.6v6.2L2 15.8Zm7.6 0H18V18l-8.4-1.2Z" fill="currentColor"/></svg>')
 
 CLOUD = ('<svg viewBox="0 0 30 24" aria-hidden="true"><circle cx="9" cy="8" r="4.6" fill="#F6CF6A" stroke="#3A2F2A" stroke-width="1.8"/>'
          '<path d="M8 20.5h15a4.3 4.3 0 0 0 .4-8.6 6 6 0 0 0-11.5 1.2A3.7 3.7 0 0 0 8 20.5Z" fill="#FBF8F1" stroke="#3A2F2A" stroke-width="1.8"/></svg>')
@@ -85,10 +106,9 @@ def header(page: str, lang: str = "en") -> str:
         cur = ' aria-current="page"' if h == page else ""
         sheet.append(f'<a href="{h}"{cur}><img src="assets/{SHEET_ICONS[h]}.png" alt="">{t["pages"][h]}</a>')
     to = "uk" if lang == "en" else "en"
-    switch = (f'<a class="lang-switch" href="{other(page, lang)}" hreflang="{to}" lang="{to}" '
-              f'title="{t["switch_label"]}" aria-label="{t["switch_label"]}">{t["switch"]}</a>')
-    sheet_switch = (f'<a class="sheet-lang" href="{other(page, lang)}" hreflang="{to}" lang="{to}">'
-                    f'<span class="lang-pill">{t["switch"]}</span>{t["switch_label"]}</a>')
+    switch = (f'<div class="lang-menu"><button class="lang-switch" type="button" aria-haspopup="true" aria-expanded="false" '
+              f'aria-controls="langList" title="{t["lang"]}: {LANG_NAMES[lang]}">{GLOBE}<span class="lang-word">{t["lang"]}</span>{CARET}</button>'
+              f'<div class="lang-list" id="langList" role="menu" aria-label="{t["lang"]}">{lang_items(page, lang, "lang-item")}</div></div>')
     get = "#get" if home else "index.html#get"
     brand = "#top" if home else "index.html"
     return f"""<!--HEADER-->
@@ -106,8 +126,8 @@ def header(page: str, lang: str = "en") -> str:
   </div>
   <nav class="menu-sheet" id="menuSheet" aria-label="{t["menu"]}">
     {"".join(sheet)}
-    {sheet_switch}
     <a class="btn sheet-cta" href="{get}" data-umami-event="get-mac-menu">{t["get"]}</a>
+    <button class="win-ask sheet-win" type="button" data-win-ask data-win-src="menu" data-done="{t["win_done"]}">{WIN_ICON}<span>{t["win"]}</span></button>
   </nav>
 </header>
 <!--/HEADER-->"""

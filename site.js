@@ -156,8 +156,139 @@
     addEventListener("resize", mark);
     mark();
   }
+  /* ── guide on smaller screens: a rail of section icons; the name shows next to it when the section changes ── */
+  if (toc) {
+    const items = [...toc.querySelectorAll("a")].map(a => {
+      const sec = document.querySelector(a.hash);
+      const icon = sec && sec.querySelector("h2 img");
+      return sec && icon ? { a, sec, icon: icon.getAttribute("src"), name: a.textContent.trim() } : null;
+    }).filter(Boolean);
+    const rail = document.createElement("nav");
+    rail.className = "toc-rail";
+    rail.setAttribute("aria-label", toc.getAttribute("aria-label") || "Contents");
+    rail.innerHTML = items.map(it => `<a href="#${it.sec.id}" title="${it.name}" aria-label="${it.name}"><img src="${it.icon}" alt=""></a>`).join("");
+    const tip = document.createElement("div");
+    tip.className = "rail-tip"; tip.setAttribute("aria-hidden", "true");
+    document.body.append(rail, tip);
+    const links = [...rail.querySelectorAll("a")];
+    const article = document.querySelector(".doc-layout article");
+    let current = -1, tipTimer = 0;
+    const showTip = i => {
+      const r = links[i].getBoundingClientRect();
+      tip.textContent = items[i].name;
+      tip.style.top = (r.top + r.height / 2) + "px";
+      tip.classList.add("show");
+      clearTimeout(tipTimer); tipTimer = setTimeout(() => tip.classList.remove("show"), 1300);
+    };
+    const update = () => {
+      // the rail shows while the reader is inside the guide text
+      const ar = article.getBoundingClientRect();
+      const inside = ar.top < innerHeight * .35 && ar.bottom > innerHeight * .5;
+      rail.classList.toggle("show", inside);
+      if (!inside) { tip.classList.remove("show"); return; }
+      const line = innerHeight * .3;
+      let idx = 0;
+      items.forEach((it, i) => { if (it.sec.getBoundingClientRect().top < line) idx = i; });
+      if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) idx = items.length - 1;
+      if (idx !== current) {
+        links.forEach((l, i) => { l.classList.toggle("on", i === idx); if (i === idx) l.setAttribute("aria-current", "true"); else l.removeAttribute("aria-current"); });
+        if (current !== -1 && getComputedStyle(rail).display !== "none") showTip(idx);
+        current = idx;
+        // keep the active icon visible inside the rail (only the rail scrolls, never the page)
+        const l = links[idx];
+        if (l.offsetTop < rail.scrollTop) rail.scrollTop = l.offsetTop - 5;
+        else if (l.offsetTop + l.offsetHeight > rail.scrollTop + rail.clientHeight) rail.scrollTop = l.offsetTop + l.offsetHeight - rail.clientHeight + 5;
+      }
+    };
+    links.forEach((l, i) => {
+      l.addEventListener("pointerenter", () => showTip(i));
+      l.addEventListener("focus", () => showTip(i));
+    });
+    addEventListener("scroll", update, { passive: true });
+    addEventListener("resize", update);
+    update();
+  }
   const jump = document.querySelector(".toc-jump select");
-  jump && jump.addEventListener("change", () => { location.hash = jump.value; });
+  jump && jump.addEventListener("change", () => {
+    const el = document.querySelector(jump.value);
+    if (el) el.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+  });
+
+  /* ── links inside the page scroll there, but the address stays clean, so a reload does not jump back to #get ── */
+  document.addEventListener("click", e => {
+    const a = e.target.closest("a[href*='#']");
+    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const url = new URL(a.href, location.href);
+    if (url.origin !== location.origin || url.pathname !== location.pathname || !url.hash) return;
+    const el = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+    if (!el) return;
+    e.preventDefault();
+    if (el.tagName === "DETAILS") el.open = true;
+    el.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+    if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+  });
+  /* the section at the top of the screen now (a language switch opens the same section) */
+  function currentSection() {
+    let id = "";
+    for (const s of document.querySelectorAll("main section[id], main .doc-sec[id]")) {
+      if (s.getBoundingClientRect().top <= 140) id = s.id; else break;
+    }
+    return scrollY < 200 ? "" : id;
+  }
+
+  /* ── header: use the cloud menu when the links do not fit in one row ── */
+  {
+    const bar = document.querySelector(".topbar"), inner = bar && bar.querySelector(".bar-inner");
+    const nav = inner && inner.querySelector(".nav-links");
+    if (nav) {
+      const px = v => parseFloat(getComputedStyle(document.documentElement).getPropertyValue(v)) || 1e9;
+      // measure against the narrower header (after scrolling), so the menu does not change while you scroll
+      const fits = () => {
+        const ir = inner.getBoundingClientRect(), cs = getComputedStyle(inner);
+        const shown = [...inner.children].filter(k => !k.classList.contains("trail") && getComputedStyle(k).display !== "none");
+        // the items' own widths (an auto margin only fills the free space, so it does not count)
+        const need = shown.reduce((sum, k) => sum + k.getBoundingClientRect().width, 0) + parseFloat(cs.columnGap || 0) * (shown.length - 1)
+          + parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight) + parseFloat(cs.borderLeftWidth) + parseFloat(cs.borderRightWidth);
+        return need <= Math.min(ir.width, px("--bar-max-s")) + 0.5 && nav.scrollWidth <= nav.clientWidth + 1;
+      };
+      const fit = () => {
+        bar.classList.remove("tight", "squeeze");
+        if (getComputedStyle(nav).display === "none") return;   // a media query already shows the cloud menu
+        if (fits()) return;
+        bar.classList.add("tight");
+        if (fits()) return;
+        bar.classList.add("squeeze");
+      };
+      let raf = 0;
+      const later = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(fit); };
+      fit();
+      addEventListener("resize", later);
+      if (document.fonts) document.fonts.ready.then(fit);
+      if ("ResizeObserver" in window) new ResizeObserver(later).observe(inner);
+    }
+  }
+
+  /* ── language menu ── */
+  document.querySelectorAll(".lang-menu").forEach(menu => {
+    const btn = menu.querySelector(".lang-switch"), list = menu.querySelector(".lang-list");
+    const set = open => {
+      btn.setAttribute("aria-expanded", open);
+      list.classList.toggle("open", open);
+      if (open) (list.querySelector("a") || list.firstElementChild).focus({ preventScroll: true });
+    };
+    btn.addEventListener("click", e => {
+      e.stopPropagation();
+      const open = btn.getAttribute("aria-expanded") !== "true";
+      const cloud = document.querySelector(".menu-btn[aria-expanded='true']");
+      if (open && cloud) cloud.click();   // one menu at a time
+      set(open);
+    });
+    const cloudBtn = document.querySelector(".menu-btn");
+    cloudBtn && cloudBtn.addEventListener("click", () => set(false));
+    list.querySelector(".on").addEventListener("click", () => { set(false); btn.focus(); });
+    document.addEventListener("click", e => { if (!menu.contains(e.target)) set(false); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape" && list.classList.contains("open")) { set(false); btn.focus(); } });
+  });
 
   /* ── FAQ: search and deep links ── */
   const q = document.getElementById("faqSearch");
@@ -177,8 +308,28 @@
     });
   }
   if (location.hash) {
-    const d = document.querySelector(location.hash);
-    if (d && d.tagName === "DETAILS") d.open = true;
+    let d = null;
+    try { d = document.querySelector(location.hash); } catch {}
+    if (d) {
+      if (d.tagName === "DETAILS") d.open = true;
+      // jump at once (no smooth scroll), and again after pictures and fonts change the page height,
+      // so a phone lands on the section; stop when the reader starts to scroll
+      let moved = false;
+      const stop = () => { moved = true; };
+      ["wheel", "touchstart", "keydown"].forEach(ev => addEventListener(ev, stop, { once: true, passive: true }));
+      const land = () => {
+        if (moved) return;
+        const html = document.documentElement, was = html.style.scrollBehavior;
+        html.style.scrollBehavior = "auto";
+        d.scrollIntoView({ block: "start" });
+        html.style.scrollBehavior = was;
+      };
+      land();
+      if (document.fonts) document.fonts.ready.then(land);
+      addEventListener("load", () => { land(); setTimeout(land, 500); }, { once: true });
+    }
+    // remove the #part, so a reload stays where the reader is
+    addEventListener("load", () => setTimeout(() => history.replaceState(null, "", location.pathname + location.search), 600), { once: true });
   }
 
   /* ── page transition: a meadow curtain rises, a sheep runs across, the next page opens ── */
@@ -195,7 +346,7 @@
     return c;
   };
   const cycle = (img, ms) => { let f = 0; return setInterval(() => { f = (f + 1) % 4; img.src = WALK[f]; }, ms); };
-  let leaving = false;
+  let leaving = false, goTimer = 0;
   const leave = (href, name) => {
     if (leaving) return; leaving = true;
     const c = makeCurtain(L.off(name));
@@ -203,16 +354,24 @@
     const t = cycle(img, 90);
     sheet.animate([{ transform: "translateY(105%)" }, { transform: "translateY(0)" }], { duration: 430, easing: "cubic-bezier(.6,0,.3,1)", fill: "forwards" });
     const run = runner.animate([{ transform: "translateX(-60vw)" }, { transform: "translateX(0)" }], { duration: 560, easing: "cubic-bezier(.2,.7,.3,1)", fill: "forwards" });
-    const go = () => { clearInterval(t); try { sessionStorage.setItem("wd-curtain", name); } catch {} location.href = href; };
+    // open the next page once: the animation end or the safety timer, whichever comes first.
+    // A phone keeps this page in memory; without this, a waiting timer opened the next page again after "Back".
+    let went = false;
+    const go = () => {
+      if (went) return; went = true;
+      clearTimeout(goTimer); clearInterval(t);
+      try { sessionStorage.setItem("wd-curtain", name); } catch {}
+      location.href = href;
+    };
     run.finished.then(go, go);
-    setTimeout(go, 1200);
+    goTimer = setTimeout(go, 1200);
   };
   if (!reduce) document.addEventListener("click", e => {
     const a = e.target.closest("a[href]");
     if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     if (a.target || a.hasAttribute("download")) return;
     const url = new URL(a.href, location.href);
-    if (a.hasAttribute("hreflang") && !url.hash && location.hash) url.hash = location.hash;   // keep the section
+    if (a.hasAttribute("hreflang") && !url.hash) { const id = currentSection(); if (id) url.hash = id; }   // keep the section
     if (url.origin !== location.origin) return;
     const file = url.pathname.split("/").pop();
     if (!(file in NAMES)) return;
@@ -240,6 +399,7 @@
   }
   addEventListener("pageshow", e => {
     if (!e.persisted) return;
+    clearTimeout(goTimer);
     leaving = false;
     document.querySelectorAll(".wd-curtain").forEach(c => c.remove());
     root.classList.add("wd-lift");
@@ -344,29 +504,30 @@
     });
   });
 
-  /* ── guide: app window pictures; the tabs in the shop picture switch the list ── */
+  /* ── guide: app window pictures; the shop tabs (on the picture, or buttons on phones) switch the list ── */
   document.querySelectorAll("[data-app-win]").forEach(win => {
     const scroller = win.querySelector(".scroller"), head = win.querySelector(".head"), shot = win.querySelector(".shot");
-    const tabs = win.querySelectorAll(".hot button");
+    const source = win.querySelector("picture source");
+    const tabs = win.querySelectorAll("[data-tab]");
     head.style.setProperty("--src", `url("${shot.src}")`);
     const show = btn => {
       if (btn.getAttribute("aria-selected") === "true") return;
-      tabs.forEach(t => t.setAttribute("aria-selected", t === btn ? "true" : "false"));
-      const src = btn.dataset.src, next = new Image();
-      next.src = src;
+      const key = btn.dataset.tab;
+      tabs.forEach(t => t.setAttribute("aria-selected", t.dataset.tab === key ? "true" : "false"));
       shot.classList.add("swap");
-      next.decode().catch(() => {}).then(() => {
-        shot.src = src; shot.width = next.naturalWidth; shot.height = next.naturalHeight;
+      setTimeout(() => {
+        if (source && btn.dataset.srcM) source.srcset = btn.dataset.srcM;
         shot.alt = btn.dataset.alt || shot.alt;
-        head.style.setProperty("--src", `url("${shot.src}")`);
-        scroller.scrollTop = 0;
-        shot.classList.remove("swap");
-      });
+        shot.src = btn.dataset.src;
+        shot.decode().catch(() => {}).then(() => {
+          head.style.setProperty("--src", `url("${shot.src}")`);
+          scroller.scrollTop = 0;
+          shot.classList.remove("swap");
+        });
+      }, 150);
+      if (btn.closest(".mtabs")) btn.scrollIntoView({ block: "nearest", inline: "center", behavior: reduce ? "auto" : "smooth" });
     };
-    tabs.forEach(b => {
-      b.addEventListener("click", () => show(b));
-      b.addEventListener("pointerenter", () => { new Image().src = b.dataset.src; }, { once: true });
-    });
+    tabs.forEach(b => b.addEventListener("click", () => show(b)));
   });
   /* ── analytics: ?notrack turns Umami off in this browser, ?track turns it on again (the head script stores it) ── */
   {
@@ -401,6 +562,146 @@
     let tick = 0;
     const onScroll = () => { if (!tick) tick = requestAnimationFrame(() => { tick = 0; check(); }); };
     addEventListener("scroll", onScroll, { passive: true });
+  }
+
+  /* ── areas that scroll sideways: show that they scroll ── */
+  {
+    const ARROW = '<svg viewBox="0 0 24 14" aria-hidden="true"><path d="M2 7h18M14 2l6 5-6 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const setups = [[".holiday-yard", true], [".app-win .mtabs", false]];
+    setups.forEach(([sel, pill]) => document.querySelectorAll(sel).forEach(box => {
+      let hint = null;
+      if (pill) {
+        const wrap = document.createElement("div");
+        wrap.className = "swipe-box";
+        box.parentNode.insertBefore(wrap, box); wrap.append(box);
+        hint = document.createElement("div");
+        hint.className = "swipe-hint gone"; hint.setAttribute("aria-hidden", "true");
+        hint.innerHTML = `${UK ? "гортайте" : "swipe"} ${ARROW}`;
+        wrap.append(hint);
+      } else box.classList.add("swipe-fade");
+      let used = false, peeked = false, peeking = false;
+      const scrollable = () => box.scrollWidth > box.clientWidth + 4;
+      const sync = () => {
+        const can = scrollable();
+        box.classList.toggle("at-end", !can || box.scrollLeft + box.clientWidth >= box.scrollWidth - 4);
+        if (hint) hint.classList.toggle("gone", !can || used);
+      };
+      box.addEventListener("scroll", () => { if (!peeking && box.scrollLeft > 20) used = true; sync(); }, { passive: true });
+      addEventListener("resize", sync);
+      sync();
+      // a short peek when the area first comes into view: it moves a little to the side and back
+      if (!reduce && "IntersectionObserver" in window) {
+        const io = new IntersectionObserver(es => es.forEach(e => {
+          if (!e.isIntersecting || peeked || !scrollable()) return;
+          peeked = true; io.disconnect();
+          setTimeout(() => {
+            if (used || box.scrollLeft > 4) return;
+            peeking = true;
+            box.scrollTo({ left: 70, behavior: "smooth" });
+            setTimeout(() => { box.scrollTo({ left: 0, behavior: "smooth" }); }, 650);
+            setTimeout(() => { peeking = false; }, 1500);
+          }, 500);
+        }), { threshold: .6 });
+        io.observe(box);
+      }
+    }));
+  }
+
+  /* ── "ask for a Windows version": counts one request per browser (Umami, no personal data),
+        then a dialog explains the plan and can take an email for the Windows waitlist (Notion, via a Cloudflare Worker) ── */
+  {
+    const WAITLIST_URL = "https://woolly-waitlist.woollydesk.workers.dev/";   // the Worker address (worker/README.md); without it the email form is hidden
+    const KEY = "wd-windows-asked", JOINED = "wd-windows-joined";
+    const T = UK ? {
+      title: "Woolly Desk для Windows", counted: "Ваш запит враховано.",
+      body: "Поки що Woolly Desk є лише для Mac. Якщо запитів буде достатньо, ми зробимо версію для Windows і повідомимо про це.",
+      label: "Хочете дізнатися, коли вона вийде? Залиште свою пошту.", button: "Повідомити мене", sending: "Надсилаємо…",
+      fine: "Лише один лист, коли вийде версія для Windows. Без спаму. Ви можете будь-коли попросити видалити адресу.", privacy: "Політика конфіденційності",
+      thanks: "Дякуємо! Ми напишемо вам, коли Woolly Desk для Windows буде готовий.",
+      bad: "Перевірте адресу пошти.", fail: "Не вдалося надіслати. Спробуйте ще раз або напишіть на vielindevelopment@gmail.com.", close: "Закрити",
+    } : {
+      title: "Woolly Desk for Windows", counted: "Your request is counted.",
+      body: "Woolly Desk is only for Mac for now. If enough people ask, we will make a Windows version and announce it.",
+      label: "Want to know when it is ready? Leave your email.", button: "Notify me", sending: "Sending…",
+      fine: "Only one email, when the Windows version is out. No spam. You can ask us to delete your address at any time.", privacy: "Privacy policy",
+      thanks: "Thank you! We will write to you when Woolly Desk for Windows is ready.",
+      bad: "Please check the email address.", fail: "Something went wrong. Please try again, or write to vielindevelopment@gmail.com.", close: "Close",
+    };
+    const WIN = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4.2 8.6 3.3v6.2H2Zm7.6-1 8.4-1.2v7.5H9.6ZM2 10.5h6.6v6.2L2 15.8Zm7.6 0H18V18l-8.4-1.2Z" fill="currentColor"/></svg>';
+    const get = k => { try { return localStorage.getItem(k) === "1"; } catch { return false; } };
+    const set = k => { try { localStorage.setItem(k, "1"); } catch {} };
+    let asked = get(KEY), joined = get(JOINED), source = "", dlg = null;
+
+    const markAsked = b => {
+      b.classList.add("done");
+      const span = b.querySelector("[data-label]") || b.querySelector("span");
+      if (span && b.dataset.done) span.textContent = b.dataset.done;
+    };
+    const showThanks = () => { dlg.querySelector(".wd-form").hidden = true; const t = dlg.querySelector(".wd-thanks"); t.hidden = false; };
+
+    const build = () => {
+      dlg = document.createElement("dialog");
+      dlg.className = "win-dialog";
+      dlg.setAttribute("aria-labelledby", "wdTitle");
+      dlg.innerHTML = `
+        <button class="wd-x" type="button" aria-label="${T.close}">×</button>
+        <div class="wd-head">${WIN}<h2 id="wdTitle">${T.title}</h2></div>
+        <p class="wd-counted"><svg viewBox="0 0 16 12" aria-hidden="true"><path d="M1.5 6.5 6 10.5 14.5 1.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>${T.counted}</p>
+        <p class="wd-body">${T.body}</p>
+        <form class="wd-form" novalidate>
+          <label for="wdEmail">${T.label}</label>
+          <div class="wd-row">
+            <input id="wdEmail" name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder="name@example.com">
+            <button class="btn" type="submit">${T.button}</button>
+          </div>
+          <input class="wd-hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="wd-msg" role="status" aria-live="polite"></p>
+          <p class="wd-fine">${T.fine} <a href="privacy.html#waitlist">${T.privacy}</a></p>
+        </form>
+        <p class="wd-thanks" hidden>${T.thanks}</p>`;
+      document.body.append(dlg);
+      const form = dlg.querySelector(".wd-form"), input = form.querySelector("#wdEmail"), msg = form.querySelector(".wd-msg"), btn = form.querySelector("button[type=submit]");
+      if (!WAITLIST_URL) form.hidden = true;
+      dlg.querySelector(".wd-x").addEventListener("click", () => dlg.close());
+      dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });   // a click on the dark backdrop
+      form.addEventListener("submit", async e => {
+        e.preventDefault();
+        const email = input.value.trim();
+        msg.textContent = ""; msg.classList.remove("err");
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { msg.textContent = T.bad; msg.classList.add("err"); input.focus(); return; }
+        btn.disabled = true; const label = btn.textContent; btn.textContent = T.sending;
+        try {
+          const r = await fetch(WAITLIST_URL, {
+            method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, lang: UK ? "uk" : "en", source, website: form.website.value }),
+          });
+          const data = await r.json().catch(() => ({}));
+          if (r.ok && data.ok) {
+            joined = true; set(JOINED);
+            if (window.umami) umami.track("windows-waitlist", { source });
+            showThanks();
+          } else { msg.textContent = data.error === "email" ? T.bad : T.fail; msg.classList.add("err"); }
+        } catch { msg.textContent = T.fail; msg.classList.add("err"); }
+        btn.disabled = false; btn.textContent = label;
+      });
+    };
+
+    document.querySelectorAll("[data-win-ask]").forEach(b => {
+      if (asked) markAsked(b);
+      b.addEventListener("click", () => {
+        if (!asked) {
+          asked = true; set(KEY);
+          if (window.umami) umami.track("request-windows");
+          document.querySelectorAll("[data-win-ask]").forEach(markAsked);
+        }
+        source = b.dataset.winSrc || "";
+        if (!dlg) build();
+        if (joined) showThanks();
+        document.querySelector(".menu-btn[aria-expanded='true']")?.click();   // close the cloud menu
+        dlg.showModal();
+        if (!joined && WAITLIST_URL) setTimeout(() => dlg.querySelector("#wdEmail").focus(), 50);
+      });
+    });
   }
 
   /* ── support: copy the address ── */

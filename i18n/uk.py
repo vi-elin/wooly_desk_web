@@ -10,7 +10,7 @@
 # Words that may stay in English on the Ukrainian pages.
 KEEP_ENGLISH = """
 Woolly Desk Mac macOS App Store Apple silicon Intel Finder Dock Sonoma WeatherKit Open-Meteo GitHub Pages Google Fonts
-IP IP- cookie txt todo English Overview Umami
+IP IP- cookie txt todo English Overview Umami Windows Cloudflare Notion Worker
 Settings Desktop Weather Sound Farm life Time Day Always Night Memories Sheep Home Tools Mow Sweep Move Remove
 Fir Eucalyptus Orange Holiday Build Animals Care Decoration Trading Post Store Refill Add hay Trade Status Apply
 Relaxed Normal Quick Shop Start new farm
@@ -57,7 +57,8 @@ PAGES = {
         ("Hand-painted sheep graze, play, sleep and grow wool behind your app windows. You look after them between emails, shear them, trade the wool and build a tiny village.",
          "Намальовані вручну вівці пасуться, граються, сплять і обростають вовною за вікнами ваших застосунків. Ви доглядаєте за ними між листами, стрижете їх, продаєте вовну і будуєте маленьке село."),
         ("<span><small>Mac App Store</small>Get Woolly Desk</span>", "<span><small>Mac App Store</small>Завантажити Woolly Desk</span>"),
-        ('<a class="btn ghost" href="#watch">Watch the farm</a>', '<a class="btn ghost" href="#watch">Подивитися ферму</a>'),
+        ('data-done="Thanks, counted!"', 'data-done="Дякуємо, враховано!"'),
+        ("<span data-label>Ask for a version</span>", "<span data-label>Попросити версію</span>"),
         ("<span>macOS 14 or later</span><span>Lives in the menu bar</span><span>Real weather &amp; seasons</span>",
          "<span>macOS 14 або новіша</span><span>Живе в рядку меню</span><span>Справжня погода і сезони</span>"),
         ('<div class="note note-a">click the cloud for night', '<div class="note note-a">клацніть хмаринку — і настане ніч'),
@@ -217,7 +218,6 @@ PAGES = {
         ('nm.textContent = COLORS[k][1] + " Sweater";', 'nm.textContent = COLORS[k][1] + " светр";'),
         ('img.alt = `A sheep in a ${COLORS[k][1].toLowerCase()} knitted sweater`;', 'img.alt = `Вівця у светрі, колір: ${COLORS[k][1].toLowerCase()}`;'),
         ('["so cosy!", "baa!", "fits perfectly", "warm!", "new look!"]', '["як затишно!", "бе-е!", "якраз по мені", "тепло!", "новий образ!"]'),
-        ('href="guide.html#holidays">How to use them</a>', 'href="guide.html#holidays">Як ними користуватися</a>'),
 
 
         # decorate your desktop
@@ -248,12 +248,27 @@ PAGES = {
         ('["Lavender", "#BBA9D6"], ["Hay yellow", "#F2D27A"], ["Pumpkin", "#D98A5E"], ["Barn red", "#C9645B"], ["Kraft brown", "#C9A47A"], ["Snow grey", "#D9DFE6"]]',
          '["Лаванда", "#BBA9D6"], ["Жовте сіно", "#F2D27A"], ["Гарбуз", "#D98A5E"], ["Червоний хлів", "#C9645B"], ["Крафтовий", "#C9A47A"], ["Сніжно-сірий", "#D9DFE6"]]'),
         ('[["spring", "Spring"], ["summer", "Summer"], ["autumn", "Autumn"], ["winter", "Winter"]]', '[["spring", "Весна"], ["summer", "Літо"], ["autumn", "Осінь"], ["winter", "Зима"]]'),
-        # gentle
-        ('alt="A pale, see-through sheep floating up like a cloud"', 'alt="Бліда напівпрозора вівця, що здіймається вгору, як хмаринка"'),
-        ('<span class="eyebrow">gentle by design</span>', '<span class="eyebrow">лагідна за задумом</span>'),
-        ("<h2>No sudden losses. No stress.</h2>", "<h2>Жодних раптових втрат. Жодного стресу.</h2>"),
-        ("Sheep never fall ill while your Mac is closed. Health drops slowly and only after long neglect, so a busy week is fine. When a very old sheep's time comes, it turns into a soft little cloud that floats up over the farm, and its name stays in your Memories.",
-         "Поки ваш Mac закритий, вівці ніколи не хворіють. Здоров'я зменшується повільно і лише після довгої занедбаності, тож зайнятий тиждень — не біда. Коли приходить час дуже старої вівці, вона перетворюється на м'яку хмаринку, що здіймається над фермою, а її ім'я залишається у ваших Спогадах."),
+        # Windows request
+        ('data-done="Thanks! Your request is counted."', 'data-done="Дякуємо! Запит враховано."'),
+        ("<span>On Windows? Ask for a version</span>", "<span>Маєте Windows? Попросіть версію</span>"),
+        # a whole life
+        ('<span class="eyebrow">a whole life</span>', '<span class="eyebrow">ціле життя</span>'),
+        ("<h2>From a wobbly lamb to an old friend</h2>", "<h2>Від маленького ягняти до старого друга</h2>"),
+        ('<p class="lede">Every sheep lives its own story, at the pace you choose.</p>', '<p class="lede">Кожна вівця проживає свою історію — у темпі, який обираєте ви.</p>'),
+        ("<h3>A lamb is born</h3>", "<h3>Народжується ягня</h3>"),
+        ("<p>Tiny and a little wobbly, it stays close to its mum.</p>", "<p>Крихітне й трохи незграбне, воно тримається біля мами.</p>"),
+        ("<h3>It grows up and plays</h3>", "<h3>Росте і грається</h3>"),
+        ("<p>In one sheep year it is grown up. It plays tag, makes friends and shows its personality: playful, shy, curious, calm, social or independent.</p>",
+         "<p>За один овечий рік воно стає дорослим. Грається в квача, заводить друзів і показує свій характер: грайливий, сором'язливий, допитливий, спокійний, компанійський чи незалежний.</p>"),
+        ("<h3>It finds a pair</h3>", "<h3>Знаходить пару</h3>"),
+        ("<p>Two grown sheep that like to be close become a pair.</p>", "<p>Дві дорослі вівці, яким добре разом, стають парою.</p>"),
+        ("<h3>New lambs arrive</h3>", "<h3>З'являються ягнята</h3>"),
+        ("<p>After five farm months a new lamb is born, and the flock grows.</p>", "<p>Через п'ять фермерських місяців народжується ягня, і отара росте.</p>"),
+        ("<h3>A long, calm old age</h3>", "<h3>Довга спокійна старість</h3>"),
+        ("<p>Old sheep rest more. When a very old sheep's time comes, it becomes a soft little cloud that floats up over the farm. Its name stays in your Memories.</p>",
+         "<p>Старі вівці більше відпочивають. Коли приходить час дуже старої вівці, вона стає м'якою хмаринкою і злітає над фермою. Її ім'я залишається в Memories.</p>"),
+        ("<p><b>Gentle by design.</b> Sheep never fall ill while your Mac is closed, and health drops only after long neglect, so a busy week is fine. In Settings you choose: lambs on or off, the size of the flock, and whether sheep can pass away at all.</p>",
+         "<p><b>Лагідна за задумом.</b> Поки ваш Mac закритий, вівці ніколи не хворіють, а здоров'я зменшується лише після довгої занедбаності, тож зайнятий тиждень — не біда. У Settings ви вирішуєте: чи народжуються ягнята, яка велика отара і чи можуть вівці взагалі піти з життя.</p>"),
 
         # final
         ('aria-label="The farm at night with glowing windows"', 'aria-label="Ферма вночі зі світлими вікнами"'),

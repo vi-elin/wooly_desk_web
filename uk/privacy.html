@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700;800&family=Balsamiq+Sans:wght@400;700&family=Nunito:wght@400;600;700;800&family=Caveat:wght@500;700&display=swap">
-<link rel="stylesheet" href="../site.css?v=d77eeadacc">
+<link rel="stylesheet" href="../site.css?v=5a5a5ed11a">
 <!--BOOT-->
 <link rel="canonical" href="https://woollydesk.com/uk/privacy.html">
 <link rel="alternate" hreflang="en" href="https://woollydesk.com/privacy.html">
@@ -28,15 +28,15 @@
       <span class="nav-blob" aria-hidden="true"></span>
       <a href="index.html">Головна</a><span class="sep" aria-hidden="true"></span><a href="guide.html">Посібник</a><a href="faq.html">Питання</a><a href="support.html">Підтримка</a>
     </nav>
-    <a class="lang-switch" href="../privacy.html" hreflang="en" lang="en" title="English" aria-label="English">EN</a>
+    <div class="lang-menu"><button class="lang-switch" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="langList" title="Мова: Українська"><svg class="globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9s1.2-6.4 3.8-9Z" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="lang-word">Мова</span><svg class="caret" viewBox="0 0 12 8" aria-hidden="true"><path d="M1.5 1.5 6 6l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="lang-list" id="langList" role="menu" aria-label="Мова"><a class="lang-item" role="menuitemradio" aria-checked="false" href="../privacy.html" hreflang="en" lang="en"><svg class="check" viewBox="0 0 16 12" aria-hidden="true"><path d="M1.5 6.5 6 10.5 14.5 1.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>English</a><span class="lang-item on" role="menuitemradio" aria-checked="true" lang="uk"><svg class="check" viewBox="0 0 16 12" aria-hidden="true"><path d="M1.5 6.5 6 10.5 14.5 1.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Українська</span></div></div>
     <a class="btn bar-cta" href="index.html#get" data-umami-event="get-mac-header">Отримати для Mac</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menuSheet" aria-label="Меню"><svg viewBox="0 0 30 24" aria-hidden="true"><circle cx="9" cy="8" r="4.6" fill="#F6CF6A" stroke="#3A2F2A" stroke-width="1.8"/><path d="M8 20.5h15a4.3 4.3 0 0 0 .4-8.6 6 6 0 0 0-11.5 1.2A3.7 3.7 0 0 0 8 20.5Z" fill="#FBF8F1" stroke="#3A2F2A" stroke-width="1.8"/></svg></button>
     <div class="trail" aria-hidden="true"><span class="trail-sheep"><img src="../assets/sheep_white_graze0.png" alt=""></span></div>
   </div>
   <nav class="menu-sheet" id="menuSheet" aria-label="Меню">
     <span class="sheet-label">Сторінки</span><a href="index.html"><img src="../assets/sheep_white_happy.png" alt="">Головна</a><a href="guide.html"><img src="../assets/house_barn_summer.png" alt="">Посібник</a><a href="faq.html"><img src="../assets/sheep_lamb_happy.png" alt="">Питання</a><a href="support.html"><img src="../assets/house_whiteCottage_summer.png" alt="">Підтримка</a>
-    <a class="sheet-lang" href="../privacy.html" hreflang="en" lang="en"><span class="lang-pill">EN</span>English</a>
     <a class="btn sheet-cta" href="index.html#get" data-umami-event="get-mac-menu">Отримати для Mac</a>
+    <button class="win-ask sheet-win" type="button" data-win-ask data-win-src="menu" data-done="Дякуємо! Запит враховано."><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4.2 8.6 3.3v6.2H2Zm7.6-1 8.4-1.2v7.5H9.6ZM2 10.5h6.6v6.2L2 15.8Zm7.6 0H18V18l-8.4-1.2Z" fill="currentColor"/></svg><span>Маєте Windows? Попросіть версію</span></button>
   </nav>
 </header>
 <!--/HEADER-->
@@ -94,21 +94,24 @@
         <h2>5. Коли ви пишете в підтримку</h2>
         <p>Якщо ви напишете нам, ми отримаємо вашу адресу пошти і те, що ви написали. Ми використовуємо це лише для відповіді та виправлення проблем. Ми не додаємо вас до розсилок. Попросіть будь-коли — і ми видалимо ваші листи.</p>
 
-        <h2>6. Цей сайт</h2>
+        <h2 id="waitlist">6. Список очікування Windows (необов'язково)</h2>
+        <p>Якщо ви залишите свою пошту у вікні «Woolly Desk для Windows», ми збережемо її в приватній базі даних Notion разом із мовою сторінки і кнопкою, яку ви натиснули. Невеликий Cloudflare Worker передає її з цього сайту до Notion. Ми використовуємо вашу пошту лише для того, щоб надіслати один лист, коли вийде версія для Windows. Ми не передаємо і не продаємо її та не додаємо до інших списків. Напишіть на <a href="mailto:vielindevelopment@gmail.com">vielindevelopment@gmail.com</a> — і ми її видалимо. Після оголошення ми видаляємо весь список. Notion і Cloudflare обробляють ці дані відповідно до власних політик конфіденційності: <a href="https://www.notion.com/notion/privacy" rel="noopener">Notion</a>, <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare</a>.</p>
+
+        <h2>7. Цей сайт</h2>
         <ul>
           <li>Сайт не використовує файлів cookie.</li>
-          <li>Сайт рахує відвідування за допомогою <a href="https://umami.is/" rel="noopener">Umami</a> — сервісу аналітики, який поважає приватність. Він рахує, які сторінки відкривають, звідки приходять відвідувачі (наприклад, з пошуковика), наскільки далеко гортають сторінку і скільки людей натискає «Завантажити Woolly Desk». Він не зберігає файлів cookie і не збирає особисту інформацію. Він не стежить за вами на інших сайтах, і ніхто не може вас за ним упізнати. Див. <a href="https://umami.is/privacy" rel="noopener">політику конфіденційності Umami</a>.</li>
+          <li>Сайт рахує відвідування за допомогою <a href="https://umami.is/" rel="noopener">Umami</a> — сервісу аналітики, який поважає приватність. Він рахує, які сторінки відкривають, звідки приходять відвідувачі (наприклад, з пошуковика), наскільки далеко гортають сторінку і скільки людей натискає «Завантажити Woolly Desk» або просить версію для Windows. Він не зберігає файлів cookie і не збирає особисту інформацію. Він не стежить за вами на інших сайтах, і ніхто не може вас за ним упізнати. Див. <a href="https://umami.is/privacy" rel="noopener">політику конфіденційності Umami</a>.</li>
           <li>Сайт розміщено на GitHub Pages. GitHub може записувати технічні дані, як-от вашу IP-адресу, для безпеки. Див. <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">заяву GitHub про конфіденційність</a>.</li>
           <li>Шрифти завантажуються з Google Fonts, тож ваш браузер звертається до Google. Див. <a href="https://policies.google.com/privacy" rel="noopener">політику конфіденційності Google</a>.</li>
         </ul>
 
-        <h2>7. Діти</h2>
+        <h2>8. Діти</h2>
         <p>Woolly Desk підходить для будь-якого віку. Застосунок не збирає особисту інформацію ні в кого, зокрема й у дітей.</p>
 
-        <h2>8. Ваші права</h2>
-        <p>Оскільки застосунок не збирає особисту інформацію, нам зазвичай нічого показувати, змінювати чи видаляти. Щодо листів, які ви нам надіслали, напишіть на <a href="mailto:vielindevelopment@gmail.com">vielindevelopment@gmail.com</a>, щоб побачити або видалити їх.</p>
+        <h2>9. Ваші права</h2>
+        <p>Оскільки застосунок не збирає особисту інформацію, нам зазвичай нічого показувати, змінювати чи видаляти. Щодо листів, які ви нам надіслали, або вашої адреси у списку очікування Windows, напишіть на <a href="mailto:vielindevelopment@gmail.com">vielindevelopment@gmail.com</a>, щоб побачити або видалити їх.</p>
 
-        <h2>9. Зміни</h2>
+        <h2>10. Зміни</h2>
         <p>Якщо ця політика зміниться, ми оновимо цю сторінку і дату вгорі. Про важливі зміни також буде сказано в примітках до випуску застосунку.</p>
       </div>
     </div>
@@ -141,6 +144,6 @@
   </div>
 </footer>
 <!--/FOOTER-->
-<script src="../site.js?v=1209f78b42"></script>
+<script src="../site.js?v=bf0d2bbc40"></script>
 </body>
 </html>
