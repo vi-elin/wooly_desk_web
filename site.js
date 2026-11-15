@@ -156,6 +156,58 @@
     addEventListener("resize", mark);
     mark();
   }
+  /* ── guide on smaller screens: a rail of section icons; the name shows next to it when the section changes ── */
+  if (toc) {
+    const items = [...toc.querySelectorAll("a")].map(a => {
+      const sec = document.querySelector(a.hash);
+      const icon = sec && sec.querySelector("h2 img");
+      return sec && icon ? { a, sec, icon: icon.getAttribute("src"), name: a.textContent.trim() } : null;
+    }).filter(Boolean);
+    const rail = document.createElement("nav");
+    rail.className = "toc-rail";
+    rail.setAttribute("aria-label", toc.getAttribute("aria-label") || "Contents");
+    rail.innerHTML = items.map(it => `<a href="#${it.sec.id}" title="${it.name}" aria-label="${it.name}"><img src="${it.icon}" alt=""></a>`).join("");
+    const tip = document.createElement("div");
+    tip.className = "rail-tip"; tip.setAttribute("aria-hidden", "true");
+    document.body.append(rail, tip);
+    const links = [...rail.querySelectorAll("a")];
+    const article = document.querySelector(".doc-layout article");
+    let current = -1, tipTimer = 0;
+    const showTip = i => {
+      const r = links[i].getBoundingClientRect();
+      tip.textContent = items[i].name;
+      tip.style.top = (r.top + r.height / 2) + "px";
+      tip.classList.add("show");
+      clearTimeout(tipTimer); tipTimer = setTimeout(() => tip.classList.remove("show"), 1300);
+    };
+    const update = () => {
+      // the rail shows while the reader is inside the guide text
+      const ar = article.getBoundingClientRect();
+      const inside = ar.top < innerHeight * .35 && ar.bottom > innerHeight * .5;
+      rail.classList.toggle("show", inside);
+      if (!inside) { tip.classList.remove("show"); return; }
+      const line = innerHeight * .3;
+      let idx = 0;
+      items.forEach((it, i) => { if (it.sec.getBoundingClientRect().top < line) idx = i; });
+      if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) idx = items.length - 1;
+      if (idx !== current) {
+        links.forEach((l, i) => { l.classList.toggle("on", i === idx); if (i === idx) l.setAttribute("aria-current", "true"); else l.removeAttribute("aria-current"); });
+        if (current !== -1 && getComputedStyle(rail).display !== "none") showTip(idx);
+        current = idx;
+        // keep the active icon visible inside the rail (only the rail scrolls, never the page)
+        const l = links[idx];
+        if (l.offsetTop < rail.scrollTop) rail.scrollTop = l.offsetTop - 5;
+        else if (l.offsetTop + l.offsetHeight > rail.scrollTop + rail.clientHeight) rail.scrollTop = l.offsetTop + l.offsetHeight - rail.clientHeight + 5;
+      }
+    };
+    links.forEach((l, i) => {
+      l.addEventListener("pointerenter", () => showTip(i));
+      l.addEventListener("focus", () => showTip(i));
+    });
+    addEventListener("scroll", update, { passive: true });
+    addEventListener("resize", update);
+    update();
+  }
   const jump = document.querySelector(".toc-jump select");
   jump && jump.addEventListener("change", () => {
     const el = document.querySelector(jump.value);
