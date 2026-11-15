@@ -573,22 +573,10 @@ html { overflow-x: hidden; }
   font: 700 1rem var(--body); white-space: nowrap;
 }
 a.lang-item:hover, a.lang-item:focus-visible { background: var(--lamp-soft); outline: 0; }
-.lang-item .check, .seg-item .check { width: 14px; height: 11px; flex: none; visibility: hidden; color: var(--sage); }
+.lang-item .check { width: 14px; height: 11px; flex: none; visibility: hidden; color: var(--sage); }
 .lang-item.on { background: rgba(110, 138, 99, .14); }
-.lang-item.on .check, .seg-item.on .check { visibility: visible; }
+.lang-item.on .check { visibility: visible; }
 
-/* the same choice inside the cloud menu */
-.sheet-langs { margin-top: 6px; padding: 10px 6px 4px; border-top: 1.5px dashed rgba(58,47,42,.2); }
-.sheet-langs .sheet-label { display: flex; align-items: center; gap: 6px; }
-.sheet-langs .sheet-label .globe { width: 14px; height: 14px; }
-.lang-seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 6px; padding: 4px; border-radius: 14px; background: rgba(58,47,42,.07); }
-.menu-sheet .lang-seg .seg-item {
-  display: flex; align-items: center; justify-content: center; gap: 6px; padding: 7px 6px; border-radius: 10px; opacity: 1; transform: none;
-  text-decoration: none; color: var(--ink); font: 700 .95rem var(--body);
-}
-.menu-sheet .lang-seg .seg-item.on { background: var(--window); box-shadow: 0 1px 0 rgba(58,47,42,.25); }
-.menu-sheet .lang-seg a.seg-item:hover { background: var(--lamp-soft); }
-.menu-sheet .lang-seg .seg-item::after { content: none; }
 @media (max-width: 1200px) {
   .lang-menu { margin-left: auto; }
   .topbar .bar-cta { margin-left: 0; }

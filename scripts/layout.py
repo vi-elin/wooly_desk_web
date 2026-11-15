@@ -109,8 +109,6 @@ def header(page: str, lang: str = "en") -> str:
     switch = (f'<div class="lang-menu"><button class="lang-switch" type="button" aria-haspopup="true" aria-expanded="false" '
               f'aria-controls="langList" title="{t["lang"]}: {LANG_NAMES[lang]}">{GLOBE}<span class="lang-word">{t["lang"]}</span>{CARET}</button>'
               f'<div class="lang-list" id="langList" role="menu" aria-label="{t["lang"]}">{lang_items(page, lang, "lang-item")}</div></div>')
-    sheet_switch = (f'<div class="sheet-langs" role="group" aria-label="{t["lang"]}"><span class="sheet-label">{GLOBE}{t["lang"]}</span>'
-                    f'<div class="lang-seg">{lang_items(page, lang, "seg-item")}</div></div>')
     get = "#get" if home else "index.html#get"
     brand = "#top" if home else "index.html"
     return f"""<!--HEADER-->
@@ -128,7 +126,6 @@ def header(page: str, lang: str = "en") -> str:
   </div>
   <nav class="menu-sheet" id="menuSheet" aria-label="{t["menu"]}">
     {"".join(sheet)}
-    {sheet_switch}
     <a class="btn sheet-cta" href="{get}" data-umami-event="get-mac-menu">{t["get"]}</a>
     <button class="win-ask sheet-win" type="button" data-win-ask data-done="{t["win_done"]}">{WIN_ICON}<span>{t["win"]}</span></button>
   </nav>
