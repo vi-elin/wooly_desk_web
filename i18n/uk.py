@@ -74,7 +74,7 @@ PAGES = {
          "<s>відповісти на листи</s><br>купити сіна для Конюшинки<br>постригти Печеньку<br><s>полагодити паркан</s><br>заварити чай"),
         ("<span>Woolly Desk · Shop</span>", "<span>Woolly Desk · Магазин</span>"),
         ('alt="">Pink Cottage<b>new</b>', 'alt="">Рожевий котедж<b>новинка</b>'),
-        ('alt="">Seaside Cottage<b>new</b>', 'alt="">Будиночок біля моря<b>новинка</b>'),
+        ('alt="">Forest Cottage<b>new</b>', 'alt="">Лісовий будиночок<b>новинка</b>'),
         ('alt="">Lantern<b>new</b>', 'alt="">Ліхтар<b>новинка</b>'),
         ('<div class="note note-b">sheep wander behind your windows. click one!', '<div class="note note-b">вівці гуляють за вашими вікнами. клацніть одну!'),
 
@@ -195,8 +195,8 @@ PAGES = {
          '["whiteCottage", "Дерев\'яна хатинка", "Кругле віконце, червоні двері-арка, лижі під стіною і вогники під дахом.", 130, 55]'),
         ('["forestCottage", "Forest Cottage", "Sage-green walls, a steep black roof and firs on both sides.", 150, 65]',
          '["forestCottage", "Лісовий будиночок", "Шавлієво-зелені стіни, крутий чорний дах і ялинки з обох боків.", 150, 65]'),
-        ('["logCabin", "Seaside Cottage", "A red door, a dormer window and lamps that glow at night.", 160, 70]',
-         '["logCabin", "Будиночок біля моря", "Червоні двері, віконце в даху і лампи, що світяться вночі.", 160, 70]'),
+        ('["logCabin", "Red Door Cottage", "A red door, a dormer window and lamps that glow at night.", 160, 70]',
+         '["logCabin", "Котедж із червоними дверима", "Червоні двері, віконце в даху і лампи, що світяться вночі.", 160, 70]'),
         ('<span>unlocks at ${w} wool</span>', '<span>з ${w} клубків вовни</span>'),
 
         # holidays
