@@ -248,8 +248,8 @@ PAGES = {
          '["Лаванда", "#BBA9D6"], ["Жовте сіно", "#F2D27A"], ["Гарбуз", "#D98A5E"], ["Червоний хлів", "#C9645B"], ["Крафтовий", "#C9A47A"], ["Сніжно-сірий", "#D9DFE6"]]'),
         ('[["spring", "Spring"], ["summer", "Summer"], ["autumn", "Autumn"], ["winter", "Winter"]]', '[["spring", "Весна"], ["summer", "Літо"], ["autumn", "Осінь"], ["winter", "Зима"]]'),
         # Windows request
-        ('data-done="Thank you! We counted your request."', 'data-done="Дякуємо! Ми врахували ваш запит."'),
-        ("<span>Using Windows? Ask for a Windows version</span>", "<span>Маєте Windows? Попросіть версію для Windows</span>"),
+        ('data-done="Thanks! Your request is counted."', 'data-done="Дякуємо! Запит враховано."'),
+        ("<span>On Windows? Ask for a version</span>", "<span>Маєте Windows? Попросіть версію</span>"),
         # a whole life
         ('<span class="eyebrow">a whole life</span>', '<span class="eyebrow">ціле життя</span>'),
         ("<h2>From a wobbly lamb to an old friend</h2>", "<h2>Від маленького ягняти до старого друга</h2>"),
