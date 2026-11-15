@@ -157,7 +157,86 @@
     mark();
   }
   const jump = document.querySelector(".toc-jump select");
-  jump && jump.addEventListener("change", () => { location.hash = jump.value; });
+  jump && jump.addEventListener("change", () => {
+    const el = document.querySelector(jump.value);
+    if (el) el.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+  });
+
+  /* ── links inside the page scroll there, but the address stays clean, so a reload does not jump back to #get ── */
+  document.addEventListener("click", e => {
+    const a = e.target.closest("a[href*='#']");
+    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const url = new URL(a.href, location.href);
+    if (url.origin !== location.origin || url.pathname !== location.pathname || !url.hash) return;
+    const el = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+    if (!el) return;
+    e.preventDefault();
+    if (el.tagName === "DETAILS") el.open = true;
+    el.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+    if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+  });
+  /* the section at the top of the screen now (a language switch opens the same section) */
+  function currentSection() {
+    let id = "";
+    for (const s of document.querySelectorAll("main section[id], main .doc-sec[id]")) {
+      if (s.getBoundingClientRect().top <= 140) id = s.id; else break;
+    }
+    return scrollY < 200 ? "" : id;
+  }
+
+  /* ── header: use the cloud menu when the links do not fit in one row ── */
+  {
+    const bar = document.querySelector(".topbar"), inner = bar && bar.querySelector(".bar-inner");
+    const nav = inner && inner.querySelector(".nav-links");
+    if (nav) {
+      const px = v => parseFloat(getComputedStyle(document.documentElement).getPropertyValue(v)) || 1e9;
+      // measure against the narrower header (after scrolling), so the menu does not change while you scroll
+      const fits = () => {
+        const ir = inner.getBoundingClientRect(), cs = getComputedStyle(inner);
+        const shown = [...inner.children].filter(k => !k.classList.contains("trail") && getComputedStyle(k).display !== "none");
+        // the items' own widths (an auto margin only fills the free space, so it does not count)
+        const need = shown.reduce((sum, k) => sum + k.getBoundingClientRect().width, 0) + parseFloat(cs.columnGap || 0) * (shown.length - 1)
+          + parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight) + parseFloat(cs.borderLeftWidth) + parseFloat(cs.borderRightWidth);
+        return need <= Math.min(ir.width, px("--bar-max-s")) + 0.5 && nav.scrollWidth <= nav.clientWidth + 1;
+      };
+      const fit = () => {
+        bar.classList.remove("tight", "squeeze");
+        if (getComputedStyle(nav).display === "none") return;   // a media query already shows the cloud menu
+        if (fits()) return;
+        bar.classList.add("tight");
+        if (fits()) return;
+        bar.classList.add("squeeze");
+      };
+      let raf = 0;
+      const later = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(fit); };
+      fit();
+      addEventListener("resize", later);
+      if (document.fonts) document.fonts.ready.then(fit);
+      if ("ResizeObserver" in window) new ResizeObserver(later).observe(inner);
+    }
+  }
+
+  /* ── language menu ── */
+  document.querySelectorAll(".lang-menu").forEach(menu => {
+    const btn = menu.querySelector(".lang-switch"), list = menu.querySelector(".lang-list");
+    const set = open => {
+      btn.setAttribute("aria-expanded", open);
+      list.classList.toggle("open", open);
+      if (open) (list.querySelector("a") || list.firstElementChild).focus({ preventScroll: true });
+    };
+    btn.addEventListener("click", e => {
+      e.stopPropagation();
+      const open = btn.getAttribute("aria-expanded") !== "true";
+      const cloud = document.querySelector(".menu-btn[aria-expanded='true']");
+      if (open && cloud) cloud.click();   // one menu at a time
+      set(open);
+    });
+    const cloudBtn = document.querySelector(".menu-btn");
+    cloudBtn && cloudBtn.addEventListener("click", () => set(false));
+    list.querySelector(".on").addEventListener("click", () => { set(false); btn.focus(); });
+    document.addEventListener("click", e => { if (!menu.contains(e.target)) set(false); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape" && list.classList.contains("open")) { set(false); btn.focus(); } });
+  });
 
   /* ── FAQ: search and deep links ── */
   const q = document.getElementById("faqSearch");
@@ -177,8 +256,11 @@
     });
   }
   if (location.hash) {
-    const d = document.querySelector(location.hash);
+    let d = null;
+    try { d = document.querySelector(location.hash); } catch {}
     if (d && d.tagName === "DETAILS") d.open = true;
+    // the browser has jumped to the section: remove the #part, so a reload stays where the reader is
+    addEventListener("load", () => setTimeout(() => history.replaceState(null, "", location.pathname + location.search), 400), { once: true });
   }
 
   /* ── page transition: a meadow curtain rises, a sheep runs across, the next page opens ── */
@@ -212,7 +294,7 @@
     if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     if (a.target || a.hasAttribute("download")) return;
     const url = new URL(a.href, location.href);
-    if (a.hasAttribute("hreflang") && !url.hash && location.hash) url.hash = location.hash;   // keep the section
+    if (a.hasAttribute("hreflang") && !url.hash) { const id = currentSection(); if (id) url.hash = id; }   // keep the section
     if (url.origin !== location.origin) return;
     const file = url.pathname.split("/").pop();
     if (!(file in NAMES)) return;
@@ -344,29 +426,30 @@
     });
   });
 
-  /* ── guide: app window pictures; the tabs in the shop picture switch the list ── */
+  /* ── guide: app window pictures; the shop tabs (on the picture, or buttons on phones) switch the list ── */
   document.querySelectorAll("[data-app-win]").forEach(win => {
     const scroller = win.querySelector(".scroller"), head = win.querySelector(".head"), shot = win.querySelector(".shot");
-    const tabs = win.querySelectorAll(".hot button");
+    const source = win.querySelector("picture source");
+    const tabs = win.querySelectorAll("[data-tab]");
     head.style.setProperty("--src", `url("${shot.src}")`);
     const show = btn => {
       if (btn.getAttribute("aria-selected") === "true") return;
-      tabs.forEach(t => t.setAttribute("aria-selected", t === btn ? "true" : "false"));
-      const src = btn.dataset.src, next = new Image();
-      next.src = src;
+      const key = btn.dataset.tab;
+      tabs.forEach(t => t.setAttribute("aria-selected", t.dataset.tab === key ? "true" : "false"));
       shot.classList.add("swap");
-      next.decode().catch(() => {}).then(() => {
-        shot.src = src; shot.width = next.naturalWidth; shot.height = next.naturalHeight;
+      setTimeout(() => {
+        if (source && btn.dataset.srcM) source.srcset = btn.dataset.srcM;
         shot.alt = btn.dataset.alt || shot.alt;
-        head.style.setProperty("--src", `url("${shot.src}")`);
-        scroller.scrollTop = 0;
-        shot.classList.remove("swap");
-      });
+        shot.src = btn.dataset.src;
+        shot.decode().catch(() => {}).then(() => {
+          head.style.setProperty("--src", `url("${shot.src}")`);
+          scroller.scrollTop = 0;
+          shot.classList.remove("swap");
+        });
+      }, 150);
+      if (btn.closest(".mtabs")) btn.scrollIntoView({ block: "nearest", inline: "center", behavior: reduce ? "auto" : "smooth" });
     };
-    tabs.forEach(b => {
-      b.addEventListener("click", () => show(b));
-      b.addEventListener("pointerenter", () => { new Image().src = b.dataset.src; }, { once: true });
-    });
+    tabs.forEach(b => b.addEventListener("click", () => show(b)));
   });
   /* ── analytics: ?notrack turns Umami off in this browser, ?track turns it on again (the head script stores it) ── */
   {
