@@ -15,5 +15,6 @@ The Worker adds one row to the Notion database **Windows waitlist** (Side projec
 2. `npx wrangler@3 login`
 3. `npx wrangler@3 secret put NOTION_TOKEN` and paste the key.
 4. `npx wrangler@3 deploy` prints the address. Put it in `WAITLIST_URL` in `site.js`.
+   Now: https://woolly-waitlist.woollydesk.workers.dev
 
 `npx wrangler@3 tail` shows the Worker's log.

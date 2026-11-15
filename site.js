@@ -610,7 +610,7 @@
   /* ── "ask for a Windows version": counts one request per browser (Umami, no personal data),
         then a dialog explains the plan and can take an email for the Windows waitlist (Notion, via a Cloudflare Worker) ── */
   {
-    const WAITLIST_URL = "";   // the Worker address (worker/README.md); without it the email form is hidden
+    const WAITLIST_URL = "https://woolly-waitlist.woollydesk.workers.dev/";   // the Worker address (worker/README.md); without it the email form is hidden
     const KEY = "wd-windows-asked", JOINED = "wd-windows-joined";
     const T = UK ? {
       title: "Woolly Desk для Windows", counted: "Ваш запит враховано.",
