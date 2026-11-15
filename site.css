@@ -234,6 +234,33 @@ kbd {
 .win-card > .body { padding: 16px 18px; }
 .win-card table { margin: 0; }
 
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* app windows: real pictures of the app, in a frame that scrolls like the window */
+.app-win { --pw: 620; --ph: 138; position: relative; max-width: calc(var(--pw) * 1px); margin: 26px 0 10px; }
+.app-win .scroller {
+  max-height: min(600px, 72vh); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: rgba(58,47,42,.3) transparent;
+  border: 2.5px solid var(--ink); border-radius: 22px; box-shadow: 6px 7px 0 rgba(58,47,42,.16);
+  background: linear-gradient(180deg, #DCE7EC 0%, #EEF0E0 48%, #D3E0BC 100%);
+}
+.app-win .scroller:focus-visible { outline: 3px solid var(--barn); outline-offset: 3px; }
+.app-win .head {
+  position: sticky; top: 0; z-index: 2; aspect-ratio: var(--pw) / var(--ph);
+  background: var(--src) top / 100% auto no-repeat, rgba(226, 233, 232, .9);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  box-shadow: 0 6px 10px -10px rgba(58,47,42,.5);
+}
+.app-win .shot { display: block; width: 100%; height: auto; margin-top: calc(-100% * var(--ph) / var(--pw)); transition: opacity .18s; }
+.app-win .shot.swap { opacity: 0; }
+.app-win .lights { position: absolute; left: calc(14% / var(--pw) * 100); top: calc(20% / var(--ph) * 100); width: calc(52% / var(--pw) * 100); height: auto; }
+.app-win .hot { position: absolute; left: calc(20% / var(--pw) * 100); right: calc(20% / var(--pw) * 100); top: calc(102% / var(--ph) * 100); height: calc(28% / var(--ph) * 100); display: grid; grid-template-columns: repeat(7, 1fr); }
+.app-win .hot button { appearance: none; border: 0; background: transparent; border-radius: 999px; cursor: pointer; transition: background .2s, box-shadow .2s; }
+.app-win .hot button:hover { background: rgba(246, 207, 106, .22); }
+.app-win .hot button:focus-visible { outline: 0; box-shadow: 0 0 0 3px var(--barn); }
+.app-win .hot button[aria-selected="true"] { cursor: default; background: transparent; }
+.app-win figcaption { margin-top: 12px; font: 700 1.15rem var(--hand); color: var(--ink-soft); }
+.app-win.settings { --pw: 480; --ph: 50; }
+@media (prefers-reduced-motion: reduce) { .app-win .shot { transition: none; } }
+
 /* tables */
 .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 table { width: 100%; border-collapse: collapse; font-size: .95rem; }
