@@ -375,7 +375,7 @@ section[id] { scroll-margin-top: 90px; }
 .price-tag { border: 2px solid var(--ink); border-radius: 999px; padding: .2em .9em; background: var(--window); font-size: .92rem; font-variant-numeric: tabular-nums; }
 .price-tag b { font-family: var(--display); }
 #holidays.night .price-tag { background: var(--night-2); border-color: var(--on-night); color: var(--on-night); }
-#holidays.night @media (max-width: 700px) {
+@media (max-width: 700px) {
   #holidays { padding-top: 130px; }
   .hang { width: 60px; } .hang img { width: 60px; top: calc(var(--len, 60px) - 30px); }
   .holiday-yard { aspect-ratio: auto; height: 250px; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; background-size: auto 100%; }
@@ -1402,7 +1402,8 @@ hToggle.addEventListener("click", () => {
 
 /* Scroll reveal: blocks below the fold rise in as they come into view. */
 if ("IntersectionObserver" in window && !reduce) {
-  const targets = document.querySelectorAll(".sec-head, .live, .caption, .feature, .compare, .sheep-btn, .stage, .arrow, .tabs, .season-scene, .tidy-bar, .tidy, .house, .switch, .spirit-wrap, .holiday-yard, .sweater-head,   const io = new IntersectionObserver(entries => {
+  const targets = document.querySelectorAll(".sec-head, .live, .caption, .feature, .compare, .sheep-btn, .stage, .arrow, .tabs, .season-scene, .tidy-bar, .tidy, .house, .switch, .spirit-wrap, .holiday-yard, .sweater-head, .deco-head, .deco-mac, .deco-card, .final .wrap > *");
+  const io = new IntersectionObserver(entries => {
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
   }, { threshold: .12, rootMargin: "0px 0px -6% 0px" });
   const groups = new Map();
