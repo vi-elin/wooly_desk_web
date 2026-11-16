@@ -1,4 +1,4 @@
-// Woolly Desk — shared behaviour for every page.
+// WoollyDesk — shared behaviour for every page.
 (() => {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const UK = document.documentElement.lang === "uk";
@@ -613,18 +613,18 @@
     const WAITLIST_URL = "https://woolly-waitlist.woollydesk.workers.dev/";   // the Worker address (worker/README.md); without it the email form is hidden
     const KEY = "wd-windows-asked", JOINED = "wd-windows-joined";
     const T = UK ? {
-      title: "Woolly Desk для Windows", counted: "Ваш запит враховано.",
-      body: "Поки що Woolly Desk є лише для Mac. Якщо запитів буде достатньо, ми зробимо версію для Windows і повідомимо про це.",
+      title: "WoollyDesk для Windows", counted: "Ваш запит враховано.",
+      body: "Поки що WoollyDesk є лише для Mac. Якщо запитів буде достатньо, ми зробимо версію для Windows і повідомимо про це.",
       label: "Хочете дізнатися, коли вона вийде? Залиште свою пошту.", button: "Повідомити мене", sending: "Надсилаємо…",
       fine: "Лише один лист, коли вийде версія для Windows. Без спаму. Ви можете будь-коли попросити видалити адресу.", privacy: "Політика конфіденційності",
-      thanks: "Дякуємо! Ми напишемо вам, коли Woolly Desk для Windows буде готовий.",
+      thanks: "Дякуємо! Ми напишемо вам, коли WoollyDesk для Windows буде готовий.",
       bad: "Перевірте адресу пошти.", fail: "Не вдалося надіслати. Спробуйте ще раз або напишіть на vielindevelopment@gmail.com.", close: "Закрити",
     } : {
-      title: "Woolly Desk for Windows", counted: "Your request is counted.",
-      body: "Woolly Desk is only for Mac for now. If enough people ask, we will make a Windows version and announce it.",
+      title: "WoollyDesk for Windows", counted: "Your request is counted.",
+      body: "WoollyDesk is only for Mac for now. If enough people ask, we will make a Windows version and announce it.",
       label: "Want to know when it is ready? Leave your email.", button: "Notify me", sending: "Sending…",
       fine: "Only one email, when the Windows version is out. No spam. You can ask us to delete your address at any time.", privacy: "Privacy policy",
-      thanks: "Thank you! We will write to you when Woolly Desk for Windows is ready.",
+      thanks: "Thank you! We will write to you when WoollyDesk for Windows is ready.",
       bad: "Please check the email address.", fail: "Something went wrong. Please try again, or write to vielindevelopment@gmail.com.", close: "Close",
     };
     const WIN = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4.2 8.6 3.3v6.2H2Zm7.6-1 8.4-1.2v7.5H9.6ZM2 10.5h6.6v6.2L2 15.8Zm7.6 0H18V18l-8.4-1.2Z" fill="currentColor"/></svg>';

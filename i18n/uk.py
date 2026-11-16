@@ -1,4 +1,4 @@
-# Ukrainian translation of the Woolly Desk website.
+# Ukrainian translation of the WoollyDesk website.
 #
 # PAGES: (English, Ukrainian) pairs for each page. The English side must match the page exactly.
 # Long text pages (guide, FAQ, support, privacy) are translated as a whole in i18n/uk/<page>;
@@ -9,11 +9,8 @@
 
 # Words that may stay in English on the Ukrainian pages.
 KEEP_ENGLISH = """
-Woolly Desk Mac macOS App Store Apple silicon Intel Finder Dock Sonoma WeatherKit Open-Meteo GitHub Pages Google Fonts
-IP IP- cookie txt todo English Overview Umami Windows Cloudflare Notion Worker
-Settings Desktop Weather Sound Farm life Time Day Always Night Memories Sheep Home Tools Mow Sweep Move Remove
-Fir Eucalyptus Orange Holiday Build Animals Care Decoration Trading Post Store Refill Add hay Trade Status Apply
-Relaxed Normal Quick Shop Start new farm
+WoollyDesk Mac macOS App Store Apple silicon Intel Finder Dock Sonoma WeatherKit Stage Manager GitHub Pages Google Fonts
+IP IP- cookie txt English Firebase Analytics Crashlytics Umami Windows Cloudflare Notion Worker
 """.split()
 
 COMMON = [
@@ -25,36 +22,37 @@ COMMON = [
 
 PAGES = {
     "guide.html": [
-        ("<title>Woolly Desk Guide</title>", "<title>Woolly Desk — посібник</title>"),
-        ('content="A quick tour of Woolly Desk: where the farm lives, the menu bar, the desktop buttons, the settings and the shortcuts."',
-         'content="Коротка екскурсія Woolly Desk: де живе ферма, меню, кнопки на робочому столі, налаштування і швидкі клавіші."'),
+        ("<title>WoollyDesk Guide</title>", "<title>WoollyDesk — посібник</title>"),
+        ('content="A quick tour of WoollyDesk: where the farm lives, the menu bar, the desktop buttons, the settings and the shortcuts."',
+         'content="Коротка екскурсія WoollyDesk: де живе ферма, меню, кнопки на робочому столі, налаштування і швидкі клавіші."'),
     ],
     # the full farmer's guide (private, in the game repo; see scripts/layout.py)
     "private": [
-        ("<title>Woolly Desk Farmer's Guide</title>", "<title>Woolly Desk — посібник фермера</title>"),
-        ('content="How to play Woolly Desk: the menu bar, desktop buttons, sheep care, shearing, the shop and unlocks, tools, buildings, seasons and all settings."',
-         'content="Як грати у Woolly Desk: меню, кнопки на робочому столі, догляд за вівцями, стрижка, магазин і відкриття, інструменти, будівлі, сезони і всі налаштування."'),
+        ("<title>WoollyDesk Farmer's Guide</title>", "<title>WoollyDesk — посібник фермера</title>"),
+        ('content="How to play WoollyDesk: the menu bar, desktop buttons, sheep care, shearing, the shop and unlocks, tools, buildings, seasons and all settings."',
+         'content="Як грати у WoollyDesk: меню, кнопки на робочому столі, догляд за вівцями, стрижка, магазин і відкриття, інструменти, будівлі, сезони і всі налаштування."'),
     ],
     "questions.html": [
-        ("<title>Woolly Desk FAQ</title>", "<title>Woolly Desk — часті питання</title>"),
-        ('content="Answers to common questions about Woolly Desk: system needs, performance, privacy, sheep care and the shop."',
-         'content="Відповіді на часті питання про Woolly Desk: вимоги, швидкодія, конфіденційність, догляд за вівцями і магазин."'),
+        ("<title>WoollyDesk FAQ</title>", "<title>WoollyDesk — часті питання</title>"),
+        ('content="Answers to common questions about WoollyDesk: system needs, performance, privacy, sheep care and the shop."',
+         'content="Відповіді на часті питання про WoollyDesk: вимоги, швидкодія, конфіденційність, догляд за вівцями і магазин."'),
     ],
     "support.html": [
-        ("<title>Woolly Desk Support</title>", "<title>Woolly Desk — підтримка</title>"),
-        ('content="Get help with Woolly Desk. Write to vielindevelopment@gmail.com."',
-         'content="Допомога з Woolly Desk. Пишіть на vielindevelopment@gmail.com."'),
+        ("<title>WoollyDesk Support</title>", "<title>WoollyDesk — підтримка</title>"),
+        ('content="Get help with WoollyDesk. Write to vielindevelopment@gmail.com."',
+         'content="Допомога з WoollyDesk. Пишіть на vielindevelopment@gmail.com."'),
     ],
     "privacy.html": [
-        ("<title>Woolly Desk Privacy</title>", "<title>Woolly Desk — конфіденційність</title>"),
-        ('content="Woolly Desk privacy policy: no accounts, no ads, no tracking. Your farm stays on your Mac."',
-         'content="Політика конфіденційності Woolly Desk: без облікових записів, реклами і стеження. Ваша ферма залишається на вашому Mac."'),
+        ("<title>WoollyDesk Privacy</title>", "<title>WoollyDesk — конфіденційність</title>"),
+        ('content="WoollyDesk privacy policy: no accounts, no ads. Your farm stays on your Mac."',
+         'content="Політика конфіденційності WoollyDesk: без облікових записів і реклами. Ваша ферма залишається на вашому Mac."'),
     ],
     "index.html": [
+        ("</svg>todo.txt</div>", "</svg>справи.txt</div>"),
         # head
-        ("<title>Woolly Desk</title>", "<title>Woolly Desk — овеча ферма на робочому столі Mac</title>"),
-        ('content="Woolly Desk is a cozy desktop game for macOS: sheep live on your desktop behind your windows. Shear them, trade wool and build a tiny village."',
-         'content="Woolly Desk — затишна гра для macOS: вівці живуть на робочому столі за вашими вікнами. Стрижіть їх, продавайте вовну і будуйте маленьке село."'),
+        ("<title>WoollyDesk</title>", "<title>WoollyDesk — овеча ферма на робочому столі Mac</title>"),
+        ('content="WoollyDesk is a cozy desktop game for macOS: sheep live on your desktop behind your windows. Shear them, trade wool and build a tiny village."',
+         'content="WoollyDesk — затишна гра для macOS: вівці живуть на робочому столі за вашими вікнами. Стрижіть їх, продавайте вовну і будуйте маленьке село."'),
 
         # hero
         ('<span class="eyebrow">a cozy desktop game for macOS</span>', '<span class="eyebrow">затишна гра для робочого столу macOS</span>'),
@@ -62,7 +60,7 @@ PAGES = {
          '<h1>Маленька овеча ферма, яка живе на вашому <span class="squiggle">робочому столі<svg'),
         ("Sheep graze, play, sleep and grow wool behind your app windows. You look after them between emails, shear them, trade the wool and build a tiny village.",
          "Вівці пасуться, граються, сплять і обростають вовною за вікнами ваших застосунків. Ви доглядаєте за ними між листами, стрижете їх, продаєте вовну і будуєте маленьке село."),
-        ("<span><small>Mac App Store</small>Get Woolly Desk</span>", "<span><small>Mac App Store</small>Завантажити Woolly Desk</span>"),
+        ("<span><small>Mac App Store</small>Get WoollyDesk</span>", "<span><small>Mac App Store</small>Завантажити WoollyDesk</span>"),
         ('data-done="Thanks, counted!"', 'data-done="Дякуємо, враховано!"'),
         ("<span data-label>Ask for a version</span>", "<span data-label>Попросити версію</span>"),
         ("<span>macOS 14 or later</span><span>Lives in the menu bar</span><span>Real weather &amp; seasons</span>",
@@ -72,14 +70,14 @@ PAGES = {
          'aria-label="Робочий стіл Mac: ферма на шпалерах, вівці ходять за відкритими вікнами"'),
         ("<b>Notes</b><span>File</span><span>Edit</span><span>View</span><span>Window</span>",
          "<b>Нотатки</b><span>Файл</span><span>Редагувати</span><span>Перегляд</span><span>Вікно</span>"),
-        ('title="Woolly Desk menu: switch day and night"', 'title="Меню Woolly Desk: перемкнути день і ніч"'),
+        ('title="WoollyDesk menu: switch day and night"', 'title="Меню WoollyDesk: перемкнути день і ніч"'),
         ("<span>Farm</span>", "<span>Ферма</span>"),
         ("</svg>Projects</div>", "</svg>Проєкти</div>"),
         ("</svg>Recipes</div>", "</svg>Рецепти</div>"),
         ("<span>Saturday</span>", "<span>Субота</span>"),
         ("<s>answer emails</s><br>buy hay for Clover<br>shear Biscuit<br><s>fix the fence</s><br>make tea",
          "<s>відповісти на листи</s><br>купити сіна для Конюшинки<br>постригти Печеньку<br><s>полагодити паркан</s><br>заварити чай"),
-        ("<span>Woolly Desk · Shop</span>", "<span>Woolly Desk · Магазин</span>"),
+        ("<span>WoollyDesk · Shop</span>", "<span>WoollyDesk · Магазин</span>"),
         ('alt="">Pink Cottage<b>new</b>', 'alt="">Рожевий котедж<b>новинка</b>'),
         ('alt="">Forest Cottage<b>new</b>', 'alt="">Лісовий будиночок<b>новинка</b>'),
         ('alt="">Lantern<b>new</b>', 'alt="">Ліхтар<b>новинка</b>'),
@@ -102,22 +100,22 @@ PAGES = {
         ("<h2>Small lives, slow days</h2>", "<h2>Маленькі життя, повільні дні</h2>"),
         ("<h3>Sheep with their own lives</h3>", "<h3>Вівці з власним життям</h3>"),
         ("They get hungry and thirsty, play tag, make friends, pair up, have lambs and grow old. Each one has a personality: playful, shy, curious, calm, social or independent.",
-         "Вони голоднішають і хочуть пити, граються в квача, дружать, створюють пари, мають ягнят і старіють. У кожної свій характер: грайлива, сором'язлива, допитлива, спокійна, компанійська чи незалежна."),
+         "Вони голоднішають і хочуть пити, граються в квача, дружать, створюють пари, народжують ягнят і старіють. У кожної свій характер: грайлива, сором'язлива, допитлива, спокійна, компанійська чи незалежна."),
         ("<h3>Real weather and seasons</h3>", "<h3>Справжня погода і сезони</h3>"),
         ("Rain fills the troughs, storms send the flock to the barn, autumn leaves pile up and snow drifts in winter. The farm follows the weather where you live.",
-         "Дощ наповнює напувалки, гроза жене отару до хліва, восени збирається листя, а взимку — замети. Ферма живе за погодою там, де живете ви."),
+         "Дощ наповнює напувалки, гроза жене отару до хліва, восени збирається листя, а взимку — замети. Погода на фермі — така сама, як у вас за вікном."),
         ("<h3>Day and night with your clock</h3>", "<h3>День і ніч за вашим годинником</h3>"),
         ("Dusk fades in around your real sunset. Lanterns and windows glow, fireflies come out and the sheep go to sleep.",
          "Сутінки приходять разом зі справжнім заходом сонця. Світяться ліхтарі та вікна, вилітають світлячки, а вівці лягають спати."),
         ("<h3>Shear, trade, build</h3>", "<h3>Стрижіть, торгуйте, будуйте</h3>"),
         ("Shear full fleeces, sell the wool at the trading post, mow hay with a scythe and fence in your pens. Gates open with a click.",
-         "Стрижіть пухнастих овець, продавайте вовну в крамничці, косіть сіно косою і обгороджуйте загони. Ворота відчиняються одним клацанням."),
+         "Стрижіть пухнастих овець, продавайте вовну в крамничці, косіть сіно косою і обгороджуйте загони. Хвіртки відчиняються одним клацанням."),
         ("<h3>Tidy up with real tools</h3>", "<h3>Прибирайте справжніми інструментами</h3>"),
         ("Your pointer turns into a broom or a snow shovel. Sweep leaves away with a whoosh and watch them fly.",
          "Курсор перетворюється на мітлу або лопату для снігу. Змітайте листя зі свистом і дивіться, як воно летить."),
         ("<h3>Never in your way</h3>", "<h3>Ніколи не заважає</h3>"),
         ("The farm sits below your windows. Clicks pass through to your files and icons, except on sheep, gates and buildings.",
-         "Ферма лежить під вашими вікнами. Клацання проходять до файлів і значків, окрім клацань по вівцях, воротах і будівлях."),
+         "Ферма лежить під вашими вікнами. Клацання проходять до файлів і значків, окрім клацань по вівцях, хвіртках і будівлях."),
 
         # compare
         ('<span class="eyebrow">drag the lamp</span>', '<span class="eyebrow">потягніть ліхтарик</span>'),
@@ -161,7 +159,7 @@ PAGES = {
 
         # tidy
         ('<span class="eyebrow">grab the broom</span>', '<span class="eyebrow">беріть мітлу</span>'),
-        ("<h2>Leaves pile up. Snow drifts in.</h2>", "<h2>Листя збирається. Сніг замітає.</h2>"),
+        ("<h2>Leaves pile up, snow drifts in</h2>", "<h2>Листя опадає, сніг замітає</h2>"),
         ("In autumn and winter the farm gets messy, and grass under leaves or snow cannot grow. Your pointer turns into a broom or a snow shovel: hold and drag across the farm to clean it.",
          "Восени й узимку на фермі безлад, а трава під листям чи снігом не росте. Курсор перетворюється на мітлу або лопату для снігу: затисніть і ведіть по фермі, щоб прибрати."),
         ('aria-pressed="true">Autumn leaves</button>', 'aria-pressed="true">Осіннє листя</button>'),
@@ -236,13 +234,13 @@ PAGES = {
         ("<span>Notes</span></div><div class=\"body\">hang the stars<br><s>wrap presents</s><br>knit a sweater for Clover",
          "<span>Нотатки</span></div><div class=\"body\">повісити зірочки<br><s>загорнути подарунки</s><br>сплести светр Конюшинці"),
         ('style="transform:scale(2.3)">Hanging stars</h4>', 'style="transform:scale(2.3)">Зірочки на нитках</h4>'),
-        ("<p>On the Holiday tab of the shop. They sway a little and glow at night.</p>", "<p>На вкладці Holiday у магазині. Вони легенько гойдаються і світяться вночі.</p>"),
+        ("<p>On the Holiday tab of the shop. They sway a little and glow at night.</p>", "<p>На вкладці «Свята» в магазині. Вони легенько гойдаються і світяться вночі.</p>"),
         ('aria-label="Where the stars hang"', 'aria-label="Де висять зірочки"'),
         ('id="starsBehind" aria-pressed="false">Behind windows</button>', 'id="starsBehind" aria-pressed="false">За вікнами</button>'),
         ('id="starsOver" aria-pressed="true">Over all windows</button>', 'id="starsOver" aria-pressed="true">Над усіма вікнами</button>'),
         ('alt="">Farm folders</h4>', 'alt="">Фермерські папки</h4>'),
-        ("<p>Turn them on in Settings → Desktop. Folders with their own custom icon stay as they are.</p>",
-         "<p>Увімкніть їх у Settings → Desktop. Папки з власними значками залишаються як є.</p>"),
+        ("<p>Turn them on in Settings → Desktop folders. Folders with their own icon stay as they are.</p>",
+         "<p>Увімкніть їх у «Налаштування → Папки на робочому столі». Папки з власними значками залишаються як є.</p>"),
         ('aria-label="Folder colours"', 'aria-label="Кольори папок"'),
         ('id="folderSeason" aria-pressed="true">With the season</button>', 'id="folderSeason" aria-pressed="true">За сезоном</button>'),
         ('id="folderMixed" aria-pressed="false">Mixed colours</button>', 'id="folderMixed" aria-pressed="false">Різні кольори</button>'),
@@ -269,19 +267,19 @@ PAGES = {
         ("<h3>It finds a pair</h3>", "<h3>Знаходить пару</h3>"),
         ("<p>Two grown sheep that like to be close become a pair.</p>", "<p>Дві дорослі вівці, яким добре разом, стають парою.</p>"),
         ("<h3>New lambs arrive</h3>", "<h3>З'являються ягнята</h3>"),
-        ("<p>After five farm months a new lamb is born, and the flock grows.</p>", "<p>Через п'ять фермерських місяців народжується ягня, і отара росте.</p>"),
+        ("<p>After five farm months a new lamb is born, and the flock grows.</p>", "<p>Через п'ять місяців народжується ягня, і отара росте.</p>"),
         ("<h3>A long, calm old age</h3>", "<h3>Довга спокійна старість</h3>"),
         ("<p>Old sheep rest more. When a very old sheep's time comes, it becomes a soft little cloud that floats up over the farm. Its name stays in your Memories.</p>",
-         "<p>Старі вівці більше відпочивають. Коли приходить час дуже старої вівці, вона стає м'якою хмаринкою і злітає над фермою. Її ім'я залишається в Memories.</p>"),
+         "<p>Старі вівці більше відпочивають. Коли приходить час дуже старої вівці, вона стає м'якою хмаринкою і злітає над фермою. Її ім'я залишається у «Спогадах».</p>"),
         ("<p><b>Gentle by design.</b> Sheep never fall ill while your Mac is closed, and health drops only after long neglect, so a busy week is fine. In Settings you choose: lambs on or off, the size of the flock, and whether sheep can pass away at all.</p>",
-         "<p><b>Лагідна за задумом.</b> Поки ваш Mac закритий, вівці ніколи не хворіють, а здоров'я зменшується лише після довгої занедбаності, тож зайнятий тиждень — не біда. У Settings ви вирішуєте: чи народжуються ягнята, яка велика отара і чи можуть вівці взагалі піти з життя.</p>"),
+         "<p><b>Лагідна гра.</b> Поки ваш Mac закритий, вівці ніколи не хворіють, а здоров'я зменшується лише після довгої занедбаності, тож зайнятий тиждень — не біда. У налаштуваннях ви вирішуєте: чи народжуються ягнята, яка велика отара і чи можуть вівці взагалі піти з життя.</p>"),
 
         # final
         ('aria-label="The farm at night with glowing windows"', 'aria-label="Ферма вночі зі світлими вікнами"'),
         ('>ready when you are</span>', '>коли будете готові</span>'),
         ("<h2>Bring the flock home</h2>", "<h2>Заберіть отару додому</h2>"),
-        ("Woolly Desk is a menu bar app for macOS. Install it, close your windows for a second, and say hello.",
-         "Woolly Desk — застосунок у рядку меню для macOS. Установіть його, на мить закрийте вікна — і привітайтеся."),
+        ("WoollyDesk is a menu bar app for macOS. Install it, close your windows for a second, and say hello.",
+         "WoollyDesk — застосунок у рядку меню для macOS. Установіть його, на мить закрийте вікна — і привітайтеся."),
         ("<span>macOS 14 Sonoma or later</span><span>Apple silicon and Intel</span><span>Works offline</span>",
          "<span>macOS 14 Sonoma або новіша</span><span>Apple silicon та Intel</span><span>Працює без інтернету</span>"),
         ('<span class="hint" id="hint">pet me!</span>', '<span class="hint" id="hint">погладь мене!</span>'),

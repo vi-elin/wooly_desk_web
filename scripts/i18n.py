@@ -35,9 +35,7 @@ def visible_english(html: str) -> list[str]:
     """English words a visitor could read on the page (text, alt, aria-label, title, placeholder)."""
     html = re.sub(r'<meta name="viewport"[^>]*>', " ", html)
     attrs = " ".join(m.group(2) for m in re.finditer(r'\b(alt|aria-label|title|placeholder)="([^"]*)"', html))
-    # the app's own English names: bold UI names, and the English shop name that starts each guide description
-    html = re.sub(r"<b>.*?</b>", " ", html, flags=re.S)
-    html = re.sub(r"<small>[A-Z][A-Za-z' -]+\. ", "<small>", html)
+    # the app is in Ukrainian too, so its names must be in Ukrainian on these pages (no exception for <b>)
     html = re.sub(r"[\w.+-]+@[\w.-]+", " ", html)
     html = re.sub(r'<a [^>]*hreflang="en"[^>]*>.*?</a>', " ", html, flags=re.S)   # the "English" switch
     body = re.sub(r"<script\b.*?</script>|<style\b.*?</style>|<svg\b.*?</svg>|<code>.*?</code>|<kbd>.*?</kbd>", " ", html, flags=re.S)

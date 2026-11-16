@@ -1,6 +1,6 @@
-# Woolly Desk — website
+# WoollyDesk — website
 
-The landing page for **Woolly Desk**, a cozy sheep farm that lives on your Mac desktop.
+The landing page for **WoollyDesk**, a cozy sheep farm that lives on your Mac desktop.
 
 ## Run locally
 

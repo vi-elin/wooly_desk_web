@@ -34,20 +34,20 @@ T = {
                      "#village": "Build", "#holidays": "Holidays"},
         "pages": {"index.html": "Home", "guide.html": "Guide", "questions.html": "FAQ", "support.html": "Support"},
         "get": "Get it for Mac", "on_page": "On this page", "pages_label": "Pages", "menu": "Menu", "main": "Main",
-        "home_label": "Woolly Desk home", "switch": "УКР", "switch_label": "Українською", "lang": "Language", "win": "On Windows? Ask for a version", "win_done": "Thanks! Your request is counted.",
+        "home_label": "WoollyDesk home", "switch": "УКР", "switch_label": "Українською", "lang": "Language", "win": "On Windows? Ask for a version", "win_done": "Thanks! Your request is counted.",
         "about": "A cozy sheep farm that lives on your Mac desktop, behind every window.",
         "learn": "Learn", "help": "Help", "legal": "Legal", "shop": "The shop", "settings": "Settings",
-        "privacy": "Privacy policy", "copy": "© 2026 Woolly Desk. All rights reserved.",
+        "privacy": "Privacy policy", "copy": "© 2026 WoollyDesk. All rights reserved.",
     },
     "uk": {
         "sections": {"#watch": "Наживо", "#flock": "Отара", "#seasons": "Сезони", "#tidy": "Прибирання",
                      "#village": "Будівлі", "#holidays": "Свята"},
         "pages": {"index.html": "Головна", "guide.html": "Посібник", "questions.html": "Питання", "support.html": "Підтримка"},
         "get": "Отримати для Mac", "on_page": "На цій сторінці", "pages_label": "Сторінки", "menu": "Меню", "main": "Головне меню",
-        "home_label": "Woolly Desk, головна", "switch": "EN", "switch_label": "English", "lang": "Мова", "win": "Маєте Windows? Попросіть версію", "win_done": "Дякуємо! Запит враховано.",
+        "home_label": "WoollyDesk, головна", "switch": "EN", "switch_label": "English", "lang": "Мова", "win": "Маєте Windows? Попросіть версію", "win_done": "Дякуємо! Запит враховано.",
         "about": "Затишна ферма з вівцями, яка живе на робочому столі вашого Mac, за всіма вікнами.",
         "learn": "Дізнатися", "help": "Допомога", "legal": "Правове", "shop": "Магазин", "settings": "Налаштування",
-        "privacy": "Політика конфіденційності", "copy": "© 2026 Woolly Desk. Усі права захищено.",
+        "privacy": "Політика конфіденційності", "copy": "© 2026 WoollyDesk. Усі права захищено.",
     },
 }
 
@@ -126,7 +126,7 @@ def header(page: str, lang: str = "en") -> str:
     return f"""<!--HEADER-->
 <header class="topbar" id="topbar">
   <div class="bar-inner">
-    <a class="brand" href="{brand}" aria-label="{t["home_label"]}"><img src="assets/sheep_white_happy.png" alt="">Woolly Desk</a>
+    <a class="brand" href="{brand}" aria-label="{t["home_label"]}"><img src="assets/sheep_white_happy.png" alt="">WoollyDesk</a>
     <nav class="nav-links" aria-label="{t["main"]}">
       <span class="nav-blob" aria-hidden="true"></span>
       {"".join(links)}
@@ -154,7 +154,7 @@ def footer(page: str, lang: str = "en") -> str:
   <div class="wrap" style="position:relative">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a class="name" href="index.html"><img src="assets/sheep_white_sleep.png" alt="">Woolly Desk</a>
+        <a class="name" href="index.html"><img src="assets/sheep_white_sleep.png" alt="">WoollyDesk</a>
         <p>{t["about"]}</p>
       </div>
       <div>
