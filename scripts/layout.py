@@ -102,7 +102,9 @@ def header(page: str, lang: str = "en") -> str:
     else:
         links.append(f'<a href="index.html">{t["pages"]["index.html"]}</a>')
     links.append('<span class="sep" aria-hidden="true"></span>')
-    for h in PAGES_NAV:
+    # the full farmer's guide does not link to the short public guide: it already holds all of it
+    nav = [h for h in PAGES_NAV if not (is_private(page) and h == "guide.html")]
+    for h in nav:
         cur = ' aria-current="page"' if h == page else ""
         links.append(f'<a href="{h}"{cur}>{t["pages"][h]}</a>')
 
@@ -114,7 +116,7 @@ def header(page: str, lang: str = "en") -> str:
     else:
         sheet.append(f'<span class="sheet-label">{t["pages_label"]}</span>')
         sheet.append(f'<a href="index.html"><img src="assets/{SHEET_ICONS["index.html"]}.png" alt="">{t["pages"]["index.html"]}</a>')
-    for h in PAGES_NAV:
+    for h in nav:
         cur = ' aria-current="page"' if h == page else ""
         sheet.append(f'<a href="{h}"{cur}><img src="assets/{SHEET_ICONS[h]}.png" alt="">{t["pages"][h]}</a>')
     to = "uk" if lang == "en" else "en"
@@ -146,6 +148,11 @@ def header(page: str, lang: str = "en") -> str:
 
 
 def footer(page: str, lang: str = "en") -> str:
+    t_ = T[lang]
+    if is_private(page):   # the full guide: its own Settings section, no link to the short public guide
+        learn = f'<li><a href="#settings">{t_["settings"]}</a></li>'
+    else:
+        learn = f'<li><a href="guide.html">{t_["pages"]["guide.html"]}</a></li><li><a href="guide.html#settings">{t_["settings"]}</a></li>'
     t = T[lang]
     hill = "" if page == "index.html" else " hill"
     return f"""<!--FOOTER-->
@@ -159,7 +166,7 @@ def footer(page: str, lang: str = "en") -> str:
       </div>
       <div>
         <h4>{t["learn"]}</h4>
-        <ul><li><a href="guide.html">{t["pages"]["guide.html"]}</a></li><li><a href="guide.html#settings">{t["settings"]}</a></li><li><a href="questions.html">{t["pages"]["questions.html"]}</a></li></ul>
+        <ul>{learn}<li><a href="questions.html">{t["pages"]["questions.html"]}</a></li></ul>
       </div>
       <div>
         <h4>{t["help"]}</h4>

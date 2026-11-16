@@ -103,7 +103,7 @@ PAGES = {
          "Вони голоднішають і хочуть пити, граються в квача, дружать, створюють пари, народжують ягнят і старіють. У кожної свій характер: грайлива, сором'язлива, допитлива, спокійна, компанійська чи незалежна."),
         ("<h3>Real weather and seasons</h3>", "<h3>Справжня погода і сезони</h3>"),
         ("Rain fills the troughs, storms send the flock to the barn, autumn leaves pile up and snow drifts in winter. The farm follows the weather where you live.",
-         "Дощ наповнює напувалки, гроза жене отару до хліва, восени збирається листя, а взимку — замети. Погода на фермі — така сама, як у вас за вікном."),
+         "Дощ наповнює поїлки, гроза жене отару до хліва, восени збирається листя, а взимку — замети. Погода на фермі — така сама, як у вас за вікном."),
         ("<h3>Day and night with your clock</h3>", "<h3>День і ніч за вашим годинником</h3>"),
         ("Dusk fades in around your real sunset. Lanterns and windows glow, fireflies come out and the sheep go to sleep.",
          "Сутінки приходять разом зі справжнім заходом сонця. Світяться ліхтарі та вікна, вилітають світлячки, а вівці лягають спати."),
@@ -155,7 +155,7 @@ PAGES = {
         ('spring: "apple trees blossom, lambs are born and the grass grows fast"', 'spring: "яблуні цвітуть, народжуються ягнята, а трава росте швидко"'),
         ('summer: "long days, full fleeces and the best time to shear"', 'summer: "довгі дні, пухнасті вівці і найкращий час для стрижки"'),
         ('autumn: "leaves pile up by the fences: grab the broom"', 'autumn: "листя збирається біля парканів: беріть мітлу"'),
-        ('winter: "snow on the roofs, ice on the troughs, hay in the feeders"', 'winter: "сніг на дахах, лід на напувалках, сіно в годівницях"'),
+        ('winter: "snow on the roofs, ice on the troughs, hay in the feeders"', 'winter: "сніг на дахах, лід на поїлках, сіно в годівницях"'),
 
         # tidy
         ('<span class="eyebrow">grab the broom</span>', '<span class="eyebrow">беріть мітлу</span>'),
