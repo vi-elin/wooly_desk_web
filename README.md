@@ -16,7 +16,7 @@ Then open http://localhost:8791.
 ## Files
 
 - `index.html` — the home page (its own CSS and JS are inside the file).
-- `guide.html`, `faq.html`, `support.html`, `privacy.html` — the other pages.
+- `guide.html`, `questions.html`, `support.html`, `privacy.html` — the other pages.
 - `site.css`, `site.js` — shared styles and behaviour: the floating header, the footer, the guide contents, the FAQ search.
 - `scripts/layout.py` — writes the shared header and footer into every page. Edit the header or footer there, then run `python3 scripts/layout.py`.
 - `assets/` — not in git. The deploy workflow copies `landing/assets` from the private repo `vi-elin/woolly_desk`.

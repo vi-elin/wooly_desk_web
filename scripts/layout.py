@@ -11,7 +11,7 @@ import hashlib, pathlib, re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://woollydesk.com"
-PAGES = ["index.html", "guide.html", "faq.html", "support.html", "privacy.html"]
+PAGES = ["index.html", "guide.html", "questions.html", "support.html", "privacy.html"]
 
 # The full farmer's guide is for players only. Its source lives in the private game repo (landing/guide/),
 # under a page name nobody can guess. The app opens it from Settings. The deploy copies it next to the
@@ -32,7 +32,7 @@ T = {
     "en": {
         "sections": {"#watch": "Watch", "#flock": "The flock", "#seasons": "Seasons", "#tidy": "Tidy up",
                      "#village": "Build", "#holidays": "Holidays"},
-        "pages": {"index.html": "Home", "guide.html": "Guide", "faq.html": "FAQ", "support.html": "Support"},
+        "pages": {"index.html": "Home", "guide.html": "Guide", "questions.html": "FAQ", "support.html": "Support"},
         "get": "Get it for Mac", "on_page": "On this page", "pages_label": "Pages", "menu": "Menu", "main": "Main",
         "home_label": "Woolly Desk home", "switch": "УКР", "switch_label": "Українською", "lang": "Language", "win": "On Windows? Ask for a version", "win_done": "Thanks! Your request is counted.",
         "about": "A cozy sheep farm that lives on your Mac desktop, behind every window.",
@@ -42,7 +42,7 @@ T = {
     "uk": {
         "sections": {"#watch": "Наживо", "#flock": "Отара", "#seasons": "Сезони", "#tidy": "Прибирання",
                      "#village": "Будівлі", "#holidays": "Свята"},
-        "pages": {"index.html": "Головна", "guide.html": "Посібник", "faq.html": "Питання", "support.html": "Підтримка"},
+        "pages": {"index.html": "Головна", "guide.html": "Посібник", "questions.html": "Питання", "support.html": "Підтримка"},
         "get": "Отримати для Mac", "on_page": "На цій сторінці", "pages_label": "Сторінки", "menu": "Меню", "main": "Головне меню",
         "home_label": "Woolly Desk, головна", "switch": "EN", "switch_label": "English", "lang": "Мова", "win": "Маєте Windows? Попросіть версію", "win_done": "Дякуємо! Запит враховано.",
         "about": "Затишна ферма з вівцями, яка живе на робочому столі вашого Mac, за всіма вікнами.",
@@ -53,9 +53,9 @@ T = {
 
 SECTION_ICONS = {"#watch": "cloud_0", "#flock": "sheep_cream_idle", "#seasons": "decor_tree_autumn",
                  "#tidy": "broom", "#village": "house_pinkCottage_summer", "#holidays": "holiday_christmasTree"}
-PAGES_NAV = ["guide.html", "faq.html", "support.html"]
+PAGES_NAV = ["guide.html", "questions.html", "support.html"]
 SHEET_ICONS = {"index.html": "sheep_white_happy", "guide.html": "house_barn_summer",
-               "faq.html": "sheep_lamb_happy", "support.html": "house_whiteCottage_summer"}
+               "questions.html": "sheep_lamb_happy", "support.html": "house_whiteCottage_summer"}
 
 LANG_NAMES = {"en": "English", "uk": "Українська"}
 GLOBE = ('<svg class="globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>'
@@ -83,8 +83,8 @@ CLOUD = ('<svg viewBox="0 0 30 24" aria-hidden="true"><circle cx="9" cy="8" r="4
 
 
 def url(page: str, lang: str) -> str:
-    """Public address of a page in a language."""
-    path = "" if page == "index.html" else page
+    """Public address of a page in a language. Addresses have no ".html": GitHub Pages finds the file by itself."""
+    path = "" if page == "index.html" else page.removesuffix(".html")
     return f"{SITE}/{path}" if lang == "en" else f"{SITE}/uk/{path}"
 
 
@@ -159,7 +159,7 @@ def footer(page: str, lang: str = "en") -> str:
       </div>
       <div>
         <h4>{t["learn"]}</h4>
-        <ul><li><a href="guide.html">{t["pages"]["guide.html"]}</a></li><li><a href="guide.html#settings">{t["settings"]}</a></li><li><a href="faq.html">{t["pages"]["faq.html"]}</a></li></ul>
+        <ul><li><a href="guide.html">{t["pages"]["guide.html"]}</a></li><li><a href="guide.html#settings">{t["settings"]}</a></li><li><a href="questions.html">{t["pages"]["questions.html"]}</a></li></ul>
       </div>
       <div>
         <h4>{t["help"]}</h4>
@@ -209,11 +209,27 @@ def stamp(text: str) -> str:
     return text
 
 
+# Links to our own pages, written as "guide.html", "../index.html#get", "uk/questions.html", "https://woollydesk.com/faq.html"…
+OWN_LINK = re.compile(r'(href|content)="((?:https://woollydesk\.com/)?(?:\.\./|uk/)?)([a-z0-9-]+)\.html(#[^"]*)?"')
+
+
+def clean_links(text: str) -> str:
+    """Remove ".html" from the links to our own pages: "guide.html" → "guide", "index.html" → "./"."""
+    def fix(m: re.Match) -> str:
+        attr, base, name, frag = m.group(1), m.group(2), m.group(3), m.group(4) or ""
+        if name == "index":
+            target = base or "./"
+        else:
+            target = base + name
+        return f'{attr}="{target}{frag}"'
+    return OWN_LINK.sub(fix, text)
+
+
 def apply(text: str, page: str, lang: str = "en") -> str:
     text = stamp(text)
     text = fill(text, "BOOT", boot(page, lang))
     text = fill(text, "HEADER", header(page, lang))
-    return fill(text, "FOOTER", footer(page, lang))
+    return clean_links(fill(text, "FOOTER", footer(page, lang)))
 
 
 if __name__ == "__main__":

@@ -93,6 +93,7 @@ def build(page: str) -> tuple[str, list[str], list[str]]:
           .replace('src="assets/', 'src="../assets/').replace('srcset="assets/', 'srcset="../assets/').replace('data-src-m="assets/', 'data-src-m="../assets/').replace('url("assets/', 'url("../assets/')
           .replace("`assets/${n}.png`", "`../assets/${n}.png`"))
     assert 'src="assets/' not in t and 'url("assets/' not in t, f"{page}: a picture link was not moved"
+    t = layout.clean_links(t)   # the Ukrainian body comes in after layout.apply
     return t, missing, visible_english(t)
 
 

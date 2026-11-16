@@ -7,12 +7,12 @@
   // texts the script writes into the page, in the page's language
   const L = UK ? {
     top: "Нагору",
-    names: { "index.html": "головна", "": "головна", "guide.html": "посібник", "faq.html": "питання", "support.html": "підтримка", "privacy.html": "конфіденційність" },
+    names: { "index": "головна", "": "головна", "guide": "посібник", "questions": "питання", "faq": "питання", "support": "підтримка", "privacy": "конфіденційність" },
     langName: { uk: "українська", en: "English" },
     off: n => `вирушаємо: ${n}…`, hello: n => `вітаємо: ${n}!`,
   } : {
     top: "Back to the top",
-    names: { "index.html": "home", "": "home", "guide.html": "the guide", "faq.html": "the FAQ", "support.html": "support", "privacy.html": "privacy" },
+    names: { "index": "home", "": "home", "guide": "the guide", "questions": "the FAQ", "faq": "the FAQ", "support": "support", "privacy": "privacy" },
     langName: { uk: "українська", en: "English" },
     off: n => `off to ${n}…`, hello: n => `welcome to ${n}!`,
   };
@@ -373,7 +373,7 @@
     const url = new URL(a.href, location.href);
     if (a.hasAttribute("hreflang") && !url.hash) { const id = currentSection(); if (id) url.hash = id; }   // keep the section
     if (url.origin !== location.origin) return;
-    const file = url.pathname.split("/").pop();
+    const file = url.pathname.split("/").pop().replace(/\.html$/, "");   // links have no ".html"; old ones may
     if (!(file in NAMES)) return;
     if (url.pathname === location.pathname) return;   // same page: plain anchor scroll
     e.preventDefault();
@@ -656,7 +656,7 @@
           </div>
           <input class="wd-hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
           <p class="wd-msg" role="status" aria-live="polite"></p>
-          <p class="wd-fine">${T.fine} <a href="privacy.html#waitlist">${T.privacy}</a></p>
+          <p class="wd-fine">${T.fine} <a href="privacy#waitlist">${T.privacy}</a></p>
         </form>
         <p class="wd-thanks" hidden>${T.thanks}</p>`;
       document.body.append(dlg);

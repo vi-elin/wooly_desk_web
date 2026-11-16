@@ -35,7 +35,7 @@ PAGES = {
         ('content="How to play Woolly Desk: the menu bar, desktop buttons, sheep care, shearing, the shop and unlocks, tools, buildings, seasons and all settings."',
          'content="Як грати у Woolly Desk: меню, кнопки на робочому столі, догляд за вівцями, стрижка, магазин і відкриття, інструменти, будівлі, сезони і всі налаштування."'),
     ],
-    "faq.html": [
+    "questions.html": [
         ("<title>Woolly Desk FAQ</title>", "<title>Woolly Desk — часті питання</title>"),
         ('content="Answers to common questions about Woolly Desk: system needs, performance, privacy, sheep care and the shop."',
          'content="Відповіді на часті питання про Woolly Desk: вимоги, швидкодія, конфіденційність, догляд за вівцями і магазин."'),
