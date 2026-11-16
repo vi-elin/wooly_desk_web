@@ -58,21 +58,28 @@ def fingerprint(text: str) -> str:
     return hashlib.sha256(text.encode()).hexdigest()
 
 
+def sources(page: str) -> tuple[pathlib.Path, pathlib.Path]:
+    """The English page and the file with its Ukrainian body. The private guide keeps both in the game repo."""
+    if layout.is_private(page):
+        return layout.PRIVATE / page, layout.PRIVATE / "uk-body.html"
+    return ROOT / page, ROOT / "i18n" / "uk" / page
+
+
 def build(page: str) -> tuple[str, list[str], list[str]]:
-    en = (ROOT / page).read_text()
+    src, body_file = sources(page)
+    en = src.read_text()
     t = layout.apply(en, page, "uk")
-    body_file = ROOT / "i18n" / "uk" / page
     stale = []
     if body_file.exists():
         tr = body_file.read_text()
         m = STAMP.match(tr)
         if not m or m.group(1) != fingerprint(en_body(en)):
-            stale.append(f"the English body of {page} changed since it was translated (i18n/uk/{page})")
+            stale.append(f"the English body of {page} changed since it was translated ({body_file.name})")
         uk_body = STAMP.sub("", tr, count=1)
         t = BODY.sub(lambda mm: mm.group(1) + uk_body + mm.group(3), t, count=1)
     assert '<html lang="en">' in t, f"{page}: missing <html lang=\"en\">"
     t = t.replace('<html lang="en">', '<html lang="uk">', 1)
-    pairs = list(uk.COMMON) + list(uk.PAGES.get(page, []))
+    pairs = list(uk.COMMON) + list(uk.PAGES.get("private" if layout.is_private(page) else page, []))
     missing = list(stale)
     for src, dst in sorted(pairs, key=lambda p: -len(p[0])):
         n = t.count(src)
@@ -90,10 +97,13 @@ def build(page: str) -> tuple[str, list[str], list[str]]:
 
 
 def stamp(page: str) -> None:
-    f = ROOT / "i18n" / "uk" / page
+    """--stamp private stamps the private farmer's guide."""
+    if page == "private":
+        page = layout.private_pages()[0]
+    src, f = sources(page)
     tr = STAMP.sub("", f.read_text(), count=1)
-    f.write_text(f"<!-- en-sha256: {fingerprint(en_body((ROOT / page).read_text()))} -->\n" + tr)
-    print(f"stamped i18n/uk/{page}")
+    f.write_text(f"<!-- en-sha256: {fingerprint(en_body(src.read_text()))} -->\n" + tr)
+    print(f"stamped {f.name} for {page}")
 
 
 def main() -> int:
@@ -108,14 +118,25 @@ def main() -> int:
         t, missing, left = build(page)
         (out / page).write_text(t)
         print(f"uk/{page}: written")
-        for m in missing:
-            problems += 1
-            print(f"  ✗ {m[:110]}" if m.startswith("the English body") else f"  ✗ English text not found (it changed?): {m[:90]!r}")
-        if left:
-            print(f"  ! English words left on the page: {', '.join(left)}")
+        report(page, missing, left)
+        problems += len(missing)
+    for page in layout.private_pages():
+        t, missing, left = build(page)
+        (layout.PRIVATE / "uk").mkdir(exist_ok=True)
+        (layout.PRIVATE / "uk" / page).write_text(t)
+        print(f"uk/{page} (private): written")
+        report(page, missing, left)
+        problems += len(missing)
     if problems:
         print(f"\n{problems} translation(s) need an update in i18n/uk.py")
     return 1 if problems else 0
+
+
+def report(page: str, missing: list[str], left: list[str]) -> None:
+    for m in missing:
+        print(f"  ✗ {m[:110]}" if m.startswith("the English body") else f"  ✗ English text not found (it changed?): {m[:90]!r}")
+    if left:
+        print(f"  ! English words left on the page: {', '.join(left)}")
 
 
 if __name__ == "__main__":

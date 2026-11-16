@@ -26,6 +26,12 @@ COMMON = [
 PAGES = {
     "guide.html": [
         ("<title>Woolly Desk Guide</title>", "<title>Woolly Desk — посібник</title>"),
+        ('content="A quick tour of Woolly Desk: where the farm lives, the menu bar, the desktop buttons, the settings and the shortcuts."',
+         'content="Коротка екскурсія Woolly Desk: де живе ферма, меню, кнопки на робочому столі, налаштування і швидкі клавіші."'),
+    ],
+    # the full farmer's guide (private, in the game repo; see scripts/layout.py)
+    "private": [
+        ("<title>Woolly Desk Farmer's Guide</title>", "<title>Woolly Desk — посібник фермера</title>"),
         ('content="How to play Woolly Desk: the menu bar, desktop buttons, sheep care, shearing, the shop and unlocks, tools, buildings, seasons and all settings."',
          'content="Як грати у Woolly Desk: меню, кнопки на робочому столі, догляд за вівцями, стрижка, магазин і відкриття, інструменти, будівлі, сезони і всі налаштування."'),
     ],

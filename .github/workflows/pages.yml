@@ -32,7 +32,9 @@ jobs:
           repository: vi-elin/woolly_desk
           ssh-key: ${{ secrets.GAME_REPO_DEPLOY_KEY }}
           path: game
-          sparse-checkout: landing/assets
+          sparse-checkout: |
+            landing/assets
+            landing/guide
 
       - name: Build the page folder
         run: |
@@ -41,6 +43,9 @@ jobs:
           cp -R site/uk public/uk
           touch public/.nojekyll
           cp -R game/landing/assets public/assets
+          # the full farmer's guide: private, opened from the app's Settings
+          cp game/landing/guide/farmer-guide-*.html public/
+          cp game/landing/guide/uk/farmer-guide-*.html public/uk/
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

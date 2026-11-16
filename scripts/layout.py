@@ -12,6 +12,20 @@ import hashlib, pathlib, re
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://woollydesk.com"
 PAGES = ["index.html", "guide.html", "faq.html", "support.html", "privacy.html"]
+
+# The full farmer's guide is for players only. Its source lives in the private game repo (landing/guide/),
+# under a page name nobody can guess. The app opens it from Settings. The deploy copies it next to the
+# public pages. It has no links from the site, and search engines are asked not to list it.
+import os
+PRIVATE = pathlib.Path(os.environ.get("WD_GAME", ROOT.parent / "Sheep Farm")) / "landing" / "guide"
+
+
+def private_pages() -> list[str]:
+    return sorted(p.name for p in PRIVATE.glob("farmer-guide-*.html")) if PRIVATE.is_dir() else []
+
+
+def is_private(page: str) -> bool:
+    return page.startswith("farmer-guide-")
 LANGS = ["en", "uk"]
 
 T = {
@@ -145,7 +159,7 @@ def footer(page: str, lang: str = "en") -> str:
       </div>
       <div>
         <h4>{t["learn"]}</h4>
-        <ul><li><a href="guide.html">{t["pages"]["guide.html"]}</a></li><li><a href="guide.html#shop">{t["shop"]}</a></li><li><a href="guide.html#settings">{t["settings"]}</a></li><li><a href="faq.html">{t["pages"]["faq.html"]}</a></li></ul>
+        <ul><li><a href="guide.html">{t["pages"]["guide.html"]}</a></li><li><a href="guide.html#settings">{t["settings"]}</a></li><li><a href="faq.html">{t["pages"]["faq.html"]}</a></li></ul>
       </div>
       <div>
         <h4>{t["help"]}</h4>
@@ -163,8 +177,9 @@ def footer(page: str, lang: str = "en") -> str:
 
 
 def boot(page: str, lang: str = "en") -> str:
+    robots = '<meta name="robots" content="noindex, nofollow">\n' if is_private(page) else ""
     return f"""<!--BOOT-->
-<link rel="canonical" href="{url(page, lang)}">
+{robots}<link rel="canonical" href="{url(page, lang)}">
 <link rel="alternate" hreflang="en" href="{url(page, "en")}">
 <link rel="alternate" hreflang="uk" href="{url(page, "uk")}">
 <link rel="alternate" hreflang="x-default" href="{url(page, "en")}">
@@ -206,3 +221,7 @@ if __name__ == "__main__":
         path = ROOT / p
         path.write_text(apply(path.read_text(), p, "en"))
         print("updated", p)
+    for p in private_pages():
+        path = PRIVATE / p
+        path.write_text(apply(path.read_text(), p, "en"))
+        print("updated (private)", p)
