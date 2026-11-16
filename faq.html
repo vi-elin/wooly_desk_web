@@ -77,6 +77,10 @@
           <p>Woolly Desk has no Dock icon and no main window. Look for the small cloud-and-sun icon in the menu bar at the top of the screen. The farm itself is on your desktop, behind your app windows: move or hide your windows to see it.</p></div></details>
         <details class="qa" id="clicks"><summary>Does the farm get in the way of my files and icons?</summary><div class="a">
           <p>No. The farm sits under your windows. Clicks go through to Finder, except on sheep, gates, buildings and the two round buttons. If you want the farm to be only a wallpaper, turn off <b>Sheep Above Desktop Icons</b> in the menu.</p></div></details>
+        <details class="qa" id="reveal"><summary>My windows move aside when I click the farm. Why?</summary><div class="a">
+          <p>This is a macOS feature (since Sonoma): a click on the wallpaper moves all windows aside and shows the desktop. The farm lives on the wallpaper, so a click on empty grass or a path starts it. Clicks on sheep, buildings and the round buttons are not affected.</p>
+          <p>To turn it off, open <b>System Settings</b> → <b>Desktop &amp; Dock</b> and set <b>Click wallpaper to reveal desktop</b> to <b>Only in Stage Manager</b>. Woolly Desk shows this tip, with a button that opens the right place, in <b>Settings</b> → <b>Desktop</b>.</p>
+          <p>You can also run this command in Terminal: <code>defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false</code></p></div></details>
         <details class="qa" id="battery"><summary>Does it use a lot of battery or CPU?</summary><div class="a">
           <p>Not much. With 8 sheep and 12 buildings it uses about 6–10 % of one CPU core. It uses nothing while the farm is paused, while your Mac sleeps, or while the screen is locked.</p></div></details>
         <details class="qa" id="monitors"><summary>Does it work with several monitors?</summary><div class="a">
