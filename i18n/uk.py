@@ -47,15 +47,15 @@ PAGES = {
     "index.html": [
         # head
         ("<title>Woolly Desk</title>", "<title>Woolly Desk — овеча ферма на робочому столі Mac</title>"),
-        ('content="Woolly Desk is a cozy desktop game for macOS: hand-painted sheep live on your desktop behind your windows. Shear them, trade wool and build a tiny village."',
-         'content="Woolly Desk — затишна гра для macOS: намальовані вручну вівці живуть на робочому столі за вашими вікнами. Стрижіть їх, продавайте вовну і будуйте маленьке село."'),
+        ('content="Woolly Desk is a cozy desktop game for macOS: sheep live on your desktop behind your windows. Shear them, trade wool and build a tiny village."',
+         'content="Woolly Desk — затишна гра для macOS: вівці живуть на робочому столі за вашими вікнами. Стрижіть їх, продавайте вовну і будуйте маленьке село."'),
 
         # hero
         ('<span class="eyebrow">a cozy desktop game for macOS</span>', '<span class="eyebrow">затишна гра для робочого столу macOS</span>'),
         ('<h1>A little sheep farm that lives on your <span class="squiggle">desktop<svg',
          '<h1>Маленька овеча ферма, яка живе на вашому <span class="squiggle">робочому столі<svg'),
-        ("Hand-painted sheep graze, play, sleep and grow wool behind your app windows. You look after them between emails, shear them, trade the wool and build a tiny village.",
-         "Намальовані вручну вівці пасуться, граються, сплять і обростають вовною за вікнами ваших застосунків. Ви доглядаєте за ними між листами, стрижете їх, продаєте вовну і будуєте маленьке село."),
+        ("Sheep graze, play, sleep and grow wool behind your app windows. You look after them between emails, shear them, trade the wool and build a tiny village.",
+         "Вівці пасуться, граються, сплять і обростають вовною за вікнами ваших застосунків. Ви доглядаєте за ними між листами, стрижете їх, продаєте вовну і будуєте маленьке село."),
         ("<span><small>Mac App Store</small>Get Woolly Desk</span>", "<span><small>Mac App Store</small>Завантажити Woolly Desk</span>"),
         ('data-done="Thanks, counted!"', 'data-done="Дякуємо, враховано!"'),
         ("<span data-label>Ask for a version</span>", "<span data-label>Попросити версію</span>"),

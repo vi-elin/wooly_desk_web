@@ -21,10 +21,9 @@ T = {
         "pages": {"index.html": "Home", "guide.html": "Guide", "faq.html": "FAQ", "support.html": "Support"},
         "get": "Get it for Mac", "on_page": "On this page", "pages_label": "Pages", "menu": "Menu", "main": "Main",
         "home_label": "Woolly Desk home", "switch": "УКР", "switch_label": "Українською", "lang": "Language", "win": "On Windows? Ask for a version", "win_done": "Thanks! Your request is counted.",
-        "about": "A cozy, hand-painted sheep farm that lives on your Mac desktop, behind every window.",
+        "about": "A cozy sheep farm that lives on your Mac desktop, behind every window.",
         "learn": "Learn", "help": "Help", "legal": "Legal", "shop": "The shop", "settings": "Settings",
-        "privacy": "Privacy policy", "copy": "© 2026 Woolly Desk · hand-painted, sheep-approved",
-        "pictures": "Every picture on this site comes from the game.",
+        "privacy": "Privacy policy", "copy": "© 2026 Woolly Desk. All rights reserved.",
     },
     "uk": {
         "sections": {"#watch": "Наживо", "#flock": "Отара", "#seasons": "Сезони", "#tidy": "Прибирання",
@@ -32,10 +31,9 @@ T = {
         "pages": {"index.html": "Головна", "guide.html": "Посібник", "faq.html": "Питання", "support.html": "Підтримка"},
         "get": "Отримати для Mac", "on_page": "На цій сторінці", "pages_label": "Сторінки", "menu": "Меню", "main": "Головне меню",
         "home_label": "Woolly Desk, головна", "switch": "EN", "switch_label": "English", "lang": "Мова", "win": "Маєте Windows? Попросіть версію", "win_done": "Дякуємо! Запит враховано.",
-        "about": "Затишна ферма з намальованими вручну вівцями, яка живе на робочому столі вашого Mac, за всіма вікнами.",
+        "about": "Затишна ферма з вівцями, яка живе на робочому столі вашого Mac, за всіма вікнами.",
         "learn": "Дізнатися", "help": "Допомога", "legal": "Правове", "shop": "Магазин", "settings": "Налаштування",
-        "privacy": "Політика конфіденційності", "copy": "© 2026 Woolly Desk · намальовано вручну, схвалено вівцями",
-        "pictures": "Усі зображення на сайті взяті з гри.",
+        "privacy": "Політика конфіденційності", "copy": "© 2026 Woolly Desk. Усі права захищено.",
     },
 }
 
@@ -158,7 +156,7 @@ def footer(page: str, lang: str = "en") -> str:
         <ul><li><a href="privacy.html">{t["privacy"]}</a></li><li><a class="foot-lang" href="{other(page, lang)}" hreflang="{"uk" if lang == "en" else "en"}">{t["switch_label"]}</a></li></ul>
       </div>
     </div>
-    <div class="foot-base"><span>{t["copy"]}</span><span>{t["pictures"]}</span></div>
+    <div class="foot-base"><span>{t["copy"]}</span></div>
   </div>
 </footer>
 <!--/FOOTER-->"""
