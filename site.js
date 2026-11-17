@@ -34,8 +34,9 @@
       bar.classList.toggle("scrolled", y > 30);
       const d = y - lastY;
       travel = Math.sign(d) === Math.sign(travel) ? travel + d : d;
-      if (y < 120 || busy()) bar.classList.remove("away");
-      else if (travel > 24) bar.classList.add("away");
+      // it stays on the first screen (there it only turns into the floating bar), and hides after a real scroll down
+      if (y < Math.max(480, innerHeight * .9) || busy()) bar.classList.remove("away");
+      else if (travel > 90) bar.classList.add("away");
       else if (travel < -12) bar.classList.remove("away");
       const max = document.documentElement.scrollHeight - innerHeight;
       const p = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;

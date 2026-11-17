@@ -246,11 +246,19 @@ section[id] { scroll-margin-top: 90px; }
 .feature p { color: var(--ink-soft); }
 /* tidy up: leaves fly off a pile and snow puffs away, like under the broom and the shovel */
 .tidy-pic { position: relative; }
-.feature .tidy-pic .pile { position: absolute; left: 0; bottom: 0; width: 48%; max-height: none; }
-.tidy-pic .fly, .tidy-pic .flake { position: absolute; animation: swept 3s cubic-bezier(.2,.6,.4,1) infinite; opacity: 0; }
+.feature .tidy-pic .shovel { position: absolute; left: 30%; bottom: -6px; width: 132px; max-height: none; z-index: 1; transform-origin: 30% 80%; animation: shovel 3s ease-in-out infinite; }
+/* one scoop every 3 s: push into the snow, then toss; the snow flies off the blade at the toss */
+@keyframes shovel {
+  0% { transform: rotate(-6deg); }
+  10% { transform: translate(3px, -9px) rotate(-26deg); }
+  28% { transform: translate(0, -2px) rotate(-10deg); }
+  70% { transform: translate(-7px, 1px) rotate(2deg); }
+  100% { transform: rotate(-6deg); }
+}
+.tidy-pic .flake { position: absolute; z-index: 2; animation: swept 3s cubic-bezier(.2,.6,.4,1) infinite; opacity: 0; }
 .tidy-pic .flake { width: var(--s); height: var(--s); border-radius: 50%; background: radial-gradient(circle at 40% 35%, #fff 45%, #DCE6F0); box-shadow: 0 0 0 1px rgba(159,179,204,.55), 0 1px 3px rgba(90,110,140,.25); }
 .tidy-pic .snow-mound {
-  position: absolute; left: 56%; right: 6%; bottom: 0; height: 22px; border-radius: 50% 50% 8px 8px / 100% 100% 8px 8px;
+  position: absolute; left: 2%; right: 54%; bottom: 0; height: 38px; border-radius: 50% 50% 8px 8px / 100% 100% 8px 8px;
   background: linear-gradient(#fff, #E6EEF6); border: 2px solid #9FB3CC; border-bottom-width: 2px;
 }
 @keyframes swept {
@@ -260,7 +268,8 @@ section[id] { scroll-margin-top: 90px; }
   100% { transform: translate(var(--dx), calc(var(--dy) * .35)) rotate(var(--r, 0deg)); opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .tidy-pic .fly, .tidy-pic .flake { animation: none; opacity: 1; transform: translate(calc(var(--dx) * .4), calc(var(--dy) * .7)) rotate(calc(var(--r, 0deg) * .3)); }
+  .feature .tidy-pic .shovel { animation: none; }
+  .tidy-pic .flake { animation: none; opacity: 1; transform: translate(calc(var(--dx) * .4), calc(var(--dy) * .7)) rotate(calc(var(--r, 0deg) * .3)); }
 }
 @media (max-width: 900px) { .features { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .features { grid-template-columns: 1fr; } }
@@ -775,7 +784,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
           <p>Shear full fleeces, sell the wool at the trading post, mow hay with a scythe and fence in your pens. Gates open with a click.</p>
         </div>
         <div class="feature">
-          <div class="pic tidy-pic" aria-hidden="true"><img class="pile" src="assets/leaves.png" alt=""><img class="fly" src="assets/leaf_0.png" alt="" style="left:14%;bottom:22px;width:26px;--dx:120px;--dy:-78px;--r:380deg;animation-delay:-0.0s"><img class="fly" src="assets/leaf_1.png" alt="" style="left:22%;bottom:18px;width:22px;--dx:150px;--dy:-54px;--r:-300deg;animation-delay:-0.5s"><img class="fly" src="assets/leaf_2.png" alt="" style="left:8%;bottom:20px;width:24px;--dx:90px;--dy:-92px;--r:260deg;animation-delay:-1.0s"><img class="fly" src="assets/leaf_0.png" alt="" style="left:18%;bottom:26px;width:20px;--dx:135px;--dy:-66px;--r:-420deg;animation-delay:-1.6s"><img class="fly" src="assets/leaf_1.png" alt="" style="left:12%;bottom:16px;width:22px;--dx:105px;--dy:-48px;--r:320deg;animation-delay:-2.1s"><i class="flake" style="left:65%;bottom:10px;--s:8px;--dx:56px;--dy:-44px;animation-delay:-2.6s"></i><i class="flake" style="left:68%;bottom:9px;--s:7px;--dx:57px;--dy:-98px;animation-delay:-1.6s"></i><i class="flake" style="left:63%;bottom:7px;--s:5px;--dx:105px;--dy:-66px;animation-delay:-0.2s"></i><i class="flake" style="left:63%;bottom:8px;--s:9px;--dx:104px;--dy:-43px;animation-delay:-2.6s"></i><i class="flake" style="left:69%;bottom:9px;--s:6px;--dx:57px;--dy:-76px;animation-delay:-1.8s"></i><i class="flake" style="left:66%;bottom:7px;--s:6px;--dx:55px;--dy:-75px;animation-delay:-2.7s"></i><i class="flake" style="left:62%;bottom:15px;--s:8px;--dx:68px;--dy:-74px;animation-delay:-0.3s"></i><i class="flake" style="left:69%;bottom:15px;--s:9px;--dx:73px;--dy:-46px;animation-delay:-1.8s"></i><i class="flake" style="left:69%;bottom:12px;--s:7px;--dx:62px;--dy:-75px;animation-delay:-2.2s"></i><i class="flake" style="left:61%;bottom:7px;--s:9px;--dx:76px;--dy:-71px;animation-delay:-2.1s"></i><i class="flake" style="left:68%;bottom:19px;--s:7px;--dx:109px;--dy:-77px;animation-delay:-1.4s"></i><i class="flake" style="left:65%;bottom:15px;--s:6px;--dx:73px;--dy:-84px;animation-delay:-2.4s"></i><i class="flake" style="left:63%;bottom:8px;--s:9px;--dx:88px;--dy:-73px;animation-delay:-1.5s"></i><i class="flake" style="left:74%;bottom:16px;--s:8px;--dx:86px;--dy:-78px;animation-delay:-0.2s"></i><span class="snow-mound"></span></div>
+          <div class="pic tidy-pic" aria-hidden="true"><span class="snow-mound"></span><img class="shovel" src="assets/shovel_snow.png" alt=""><i class="flake" style="left:45%;bottom:18px;--s:8px;--dx:117px;--dy:-77px;animation-delay:0.18s"></i><i class="flake" style="left:41%;bottom:12px;--s:9px;--dx:120px;--dy:-85px;animation-delay:0.19s"></i><i class="flake" style="left:40%;bottom:11px;--s:8px;--dx:98px;--dy:-54px;animation-delay:0.02s"></i><i class="flake" style="left:46%;bottom:22px;--s:5px;--dx:110px;--dy:-73px;animation-delay:0.20s"></i><i class="flake" style="left:40%;bottom:19px;--s:5px;--dx:127px;--dy:-49px;animation-delay:0.01s"></i><i class="flake" style="left:38%;bottom:13px;--s:6px;--dx:63px;--dy:-94px;animation-delay:0.14s"></i><i class="flake" style="left:43%;bottom:17px;--s:9px;--dx:85px;--dy:-78px;animation-delay:0.07s"></i><i class="flake" style="left:42%;bottom:17px;--s:5px;--dx:70px;--dy:-74px;animation-delay:0.20s"></i><i class="flake" style="left:42%;bottom:16px;--s:9px;--dx:70px;--dy:-90px;animation-delay:0.08s"></i><i class="flake" style="left:43%;bottom:22px;--s:6px;--dx:125px;--dy:-63px;animation-delay:0.00s"></i><i class="flake" style="left:39%;bottom:19px;--s:5px;--dx:111px;--dy:-51px;animation-delay:0.09s"></i><i class="flake" style="left:44%;bottom:11px;--s:5px;--dx:60px;--dy:-58px;animation-delay:0.06s"></i><i class="flake" style="left:38%;bottom:17px;--s:8px;--dx:110px;--dy:-71px;animation-delay:0.02s"></i><i class="flake" style="left:41%;bottom:22px;--s:7px;--dx:103px;--dy:-50px;animation-delay:0.09s"></i></div>
           <h3>Tidy up with real tools</h3>
           <p>Your pointer turns into a broom or a snow shovel. Sweep leaves away with a whoosh and watch them fly.</p>
         </div>
@@ -1821,4 +1830,4 @@ if ("IntersectionObserver" in window) {
 
 requestAnimationFrame(loop);
 </script>
-<script src="site.js?v=351952217d"></script>
+<script src="site.js?v=7fdf0860a7"></script>
