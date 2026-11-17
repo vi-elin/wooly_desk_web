@@ -170,10 +170,8 @@ PAGES = {
          'aria-label="Ферма, вкрита купками листя. Затисніть і ведіть, щоб змести їх."'),
         ("All clean! Clover is happy.", "Чистота! Конюшинка щаслива."),
         ('id="tidyHint">hold and drag to sweep</p>', 'id="tidyHint">затисніть і ведіть, щоб підмести</p>'),
-        ('(m === "autumn" ? "swipe sideways to sweep" : "swipe sideways to shovel the snow")',
-         '(m === "autumn" ? "ведіть пальцем убік, щоб підмести" : "ведіть пальцем убік, щоб відкинути сніг")'),
-        ('(m === "autumn" ? "hold and drag to sweep" : "hold and drag to shovel the snow")',
-         '(m === "autumn" ? "затисніть і ведіть, щоб підмести" : "затисніть і ведіть, щоб відкинути сніг")'),
+        ('m === "autumn" ? "hold and drag to sweep" : "hold and drag to shovel the snow"',
+         'm === "autumn" ? "затисніть і ведіть, щоб підмести" : "затисніть і ведіть, щоб відкинути сніг"'),
         ('m === "autumn" ? "A farm covered with leaf piles. Hold and drag to sweep them away." : "A farm with snow drifts. Hold and drag to shovel them away."',
          'm === "autumn" ? "Ферма, вкрита купками листя. Затисніть і ведіть, щоб змести їх." : "Ферма із заметами. Затисніть і ведіть, щоб відкинути сніг."'),
 

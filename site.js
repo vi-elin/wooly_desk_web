@@ -26,19 +26,32 @@
     const frames = ["walk0", "walk1", "walk2", "walk3"].map(f => {
       const i = new Image(); i.src = `${AS}sheep_white_${f}.png`; return i.src;
     });
-    let lastY = scrollY, frame = 0, stepAcc = 0, idleTimer = 0, travel = 0;
-    // the header goes away while you read down, and comes back as soon as you scroll up a little
+    let lastY = scrollY, frame = 0, stepAcc = 0, idleTimer = 0, travel = 0, hideTimer = 0;
+    /* The header is a normal page header: it scrolls away with the page.
+       Only a real scroll up in the middle of the page brings it back as a floating bar ("pinned");
+       a scroll down sends it away again. Near the bottom of the page it never comes
+       (a trackpad bounce at the end is a small scroll up). */
     const busy = () => bar.querySelector(".menu-sheet.open, .lang-list.open, :focus-visible");   // a menu is open or the keyboard is in the header
+    const pin = () => {
+      clearTimeout(hideTimer);
+      bar.classList.remove("away");
+      bar.classList.add("pinned");
+    };
+    const unpin = () => {
+      if (!bar.classList.contains("pinned") || bar.classList.contains("away")) return;
+      bar.classList.add("away");
+      hideTimer = setTimeout(() => bar.classList.remove("pinned", "away"), reduce ? 0 : 360);
+    };
     const onScroll = () => {
       const y = scrollY;
-      bar.classList.toggle("scrolled", y > 30);
+      const max = document.documentElement.scrollHeight - innerHeight;
       const d = y - lastY;
       travel = Math.sign(d) === Math.sign(travel) ? travel + d : d;
-      // it stays on the first screen (there it only turns into the floating bar), and hides after a real scroll down
-      if (y < Math.max(480, innerHeight * .9) || busy()) bar.classList.remove("away");
-      else if (travel > 90) bar.classList.add("away");
-      else if (travel < -12) bar.classList.remove("away");
-      const max = document.documentElement.scrollHeight - innerHeight;
+      if (y <= 0) { clearTimeout(hideTimer); bar.classList.remove("pinned", "away"); }
+      else if (busy()) { /* leave it as it is while a menu is open */ }
+      else if (travel < -40 && y > 120 && y < max - 80) pin();
+      else if (travel > 12) unpin();
+      bar.classList.toggle("scrolled", y > 30 && bar.classList.contains("pinned"));
       const p = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
       if (sheep) {
         sheep.style.setProperty("--p", p.toFixed(4));

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700;800&family=Balsamiq+Sans:wght@400;700&family=Nunito:wght@400;600;700&family=Caveat:wght@500;700&display=swap">
-<link rel="stylesheet" href="../site.css?v=9f63f1fa92">
+<link rel="stylesheet" href="../site.css?v=c2baacd058">
 <!--BOOT-->
 <link rel="canonical" href="https://woollydesk.com/uk/">
 <link rel="alternate" hreflang="en" href="https://woollydesk.com/">
@@ -368,6 +368,20 @@ section[id] { scroll-margin-top: 90px; }
 @keyframes vane-spin { from { transform: perspective(120px) rotateY(0); } to { transform: perspective(120px) rotateY(1080deg); } }
 @keyframes sprout { 0% { transform: none; } 25% { transform: scale(1.06, 1.5); } 50% { transform: scale(1, .9); } 72% { transform: scale(1.02, 1.1); } 100% { transform: none; } }
 @keyframes sway { 0%, 100% { transform: none; } 18% { transform: rotate(-6deg); } 40% { transform: rotate(5deg); } 62% { transform: rotate(-3deg); } 82% { transform: rotate(1.5deg); } }
+/* a plant grows out of the ground */
+.pics.play .part.grow { animation: grow 1.3s cubic-bezier(.3,.7,.4,1) var(--gd, 0s) both; }
+@keyframes grow { 0% { transform: scale(.4, 0); } 55% { transform: scale(1.04, 1.1); } 78% { transform: scale(1, .97); } 100% { transform: none; } }
+/* daisies: a clean copy of the wall hides the painted ones, and drawn daisies grow one by one on top */
+.fx.daisy-bed { position: absolute; z-index: 2; pointer-events: none; transition: opacity .35s ease; }
+.fx.daisy-bed img, .fx.daisy-bed svg { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; }
+.fx.daisy-bed.night svg { filter: brightness(.6) saturate(.8); }
+.fx.daisy-bed.done { opacity: 0; }
+.daisy .stem { fill: none; stroke: #6E8B5A; stroke-width: 2.4; stroke-linecap: round; stroke-dasharray: 60; stroke-dashoffset: 60; animation: stem .45s ease-out var(--dd) forwards; }
+.daisy .head { transform-box: fill-box; transform-origin: 50% 50%; transform: scale(0); animation: bloom .5s cubic-bezier(.3,.7,.4,1.6) calc(var(--dd) + .32s) forwards; }
+.daisy .head ellipse { fill: #FFFDF6; stroke: #8C7B70; stroke-width: .7; }
+.daisy .head circle { fill: #E8B14C; stroke: #8C6A3A; stroke-width: .6; }
+@keyframes stem { to { stroke-dashoffset: 0; } }
+@keyframes bloom { from { transform: scale(0) rotate(-40deg); } to { transform: none; } }
 /* flying bits: petals, lavender, leaves, coins, wool, smoke */
 .fx.bit { left: var(--x); top: var(--y); width: var(--s); height: var(--s); margin: calc(var(--s) / -2) 0 0 calc(var(--s) / -2); border-radius: 50%; opacity: 0;
   animation: bit-fly var(--t, 1.2s) cubic-bezier(.2,.6,.4,1) var(--d, 0s) forwards; }
@@ -411,7 +425,7 @@ section[id] { scroll-margin-top: 90px; }
 .tidy-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; }
 .tidy-count { font: 700 1.35rem var(--hand); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 .tidy-count b { font-family: var(--display); color: var(--ink); font-size: 1.1rem; }
-.tidy { position: relative; aspect-ratio: 900 / 380; border: 3px solid var(--ink); border-radius: 18px; overflow: hidden; background: var(--meadow); box-shadow: 9px 11px 0 rgba(58,47,42,.2); touch-action: pan-y; cursor: none; }   /* up and down scrolls the page, sideways sweeps */
+.tidy { position: relative; aspect-ratio: 900 / 380; border: 3px solid var(--ink); border-radius: 18px; overflow: hidden; background: var(--meadow); box-shadow: 9px 11px 0 rgba(58,47,42,.2); touch-action: none; cursor: none; }   /* a finger here sweeps in any direction; the page does not move */
 .tidy canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 .tidy-done { position: absolute; left: 50%; top: 12%; transform: translateX(-50%); background: var(--window); border: 2.5px solid var(--ink); border-radius: 14px; padding: .1em .8em; font: 700 1.6rem var(--hand); white-space: nowrap; box-shadow: 4px 5px 0 var(--ink); }
 .tidy-wrap { position: relative; }
@@ -1408,7 +1422,11 @@ const vg = document.getElementById("villageGrid");
 const CABIN_BULBS = [[205, 275], [222, 275], [188, 296], [239, 296], [170, 315], [256, 315], [153, 333], [274, 332], [136, 349], [291, 349], [119, 365], [308, 365], [101, 380], [326, 380]];
 const HOUSE_FX = {
   barn: { clip: "inset(14.6% 0 0 0)", parts: [{ box: [38, 0, 24, 14.6], anim: "spin" }] },
-  pinkCottage: { parts: [{ box: [18.5, 81.5, 59.5, 10], anim: "sprout", origin: "50% 100%" }], bits: ["petal", 9, 48, 86, { spread: 70, up: -26, s: 4 }] },
+  // the side plants stand on a transparent background: they grow as real parts of the picture
+  pinkCottage: { clip: "polygon(0 0, 100% 0, 100% 70.5%, 82.5% 70.5%, 82.5% 91.5%, 100% 91.5%, 100% 100%, 0 100%, 0 91.5%, 16% 91.5%, 16% 70.5%, 0 70.5%)",
+                 parts: [{ box: [0, 70.5, 16, 21], anim: "grow", origin: "70% 100%" }, { box: [82.5, 70.5, 17.5, 21], anim: "grow", origin: "40% 100%", delay: .2 }],
+                 // the eight painted daisies (centre x, y in picture pixels; the picture is 427 x 586)
+                 daisies: [[95, 499], [135, 494], [170, 498], [198, 503], [228, 501], [259, 507], [291, 490], [317, 501]] },
   lavenderCottage: { parts: [{ box: [11, 79, 15.5, 12.5], anim: "sprout", origin: "50% 100%" }, { box: [76, 79, 13.5, 12.5], anim: "sprout", origin: "50% 100%" }],
                      bits: [["lav", 5, 18, 82, { spread: 30, up: -30, s: 3 }], ["lav", 5, 82, 82, { spread: 30, up: -30, s: 3 }]] },
   gardenShed: { parts: [{ box: [1.5, 76.5, 16.5, 21], anim: "sprout", origin: "50% 100%" }, { box: [83.5, 76.5, 16.5, 21], anim: "sprout", origin: "50% 100%" }],
@@ -1432,6 +1450,53 @@ function houseBits(pics, [kind, n, x, y, o]) {
     setTimeout(() => b.remove(), 2200);
   }
 }
+/* The wall strip with the daisies painted out: each daisy is filled from the wall to its left and right.
+   It is made once per picture (day and night) from the house picture itself. */
+const BED = { x: 80, y: 478, w: 254, h: 56, W: 427, H: 586 };
+const cleanBeds = {};
+function cleanBed(src, daisies) {
+  return cleanBeds[src] ||= new Promise(ok => {
+    const img = new Image();
+    img.onload = () => {
+      const c = document.createElement("canvas"); c.width = BED.w; c.height = BED.h;
+      const x = c.getContext("2d"); x.drawImage(img, -BED.x, -BED.y);
+      const d = x.getImageData(0, 0, BED.w, BED.h), px = d.data;
+      for (const [cx, cy] of daisies) {
+        const l = cx - 12 - BED.x, r = cx + 12 - BED.x;
+        for (let y = Math.max(0, cy - 12 - BED.y); y < BED.h - 2; y++) {
+          const a = (y * BED.w + l) * 4, b = (y * BED.w + r) * 4;
+          for (let X = l + 1; X < r; X++) {
+            const k = (X - l) / (r - l), i = (y * BED.w + X) * 4;
+            for (let ch = 0; ch < 4; ch++) px[i + ch] = px[a + ch] + (px[b + ch] - px[a + ch]) * k;
+          }
+        }
+      }
+      x.putImageData(d, 0, 0);
+      ok(c.toDataURL());
+    };
+    img.onerror = () => ok(null);
+    img.src = src;
+  });
+}
+function growDaisies(pics, daisies) {
+  const night = village.classList.contains("night");
+  const src = pics.querySelector(night ? ":scope > img.n" : ":scope > img.d").src;
+  cleanBed(src, daisies).then(clean => {
+    if (!clean) return;
+    pics.querySelectorAll(".daisy-bed").forEach(e => e.remove());
+    const bed = document.createElement("span");
+    bed.className = "fx daisy-bed" + (night ? " night" : "");
+    bed.style.cssText = `left:${BED.x / BED.W * 100}%;top:${BED.y / BED.H * 100}%;width:${BED.w / BED.W * 100}%;height:${BED.h / BED.H * 100}%`;
+    const petals = Array.from({ length: 8 }, (_, i) => `<ellipse cx="0" cy="-4.6" rx="2.6" ry="4.4" transform="rotate(${i * 45})"/>`).join("");
+    bed.innerHTML = `<img src="${clean}" alt=""><svg viewBox="${BED.x} ${BED.y} ${BED.w} ${BED.h}" aria-hidden="true">` +
+      daisies.map(([cx, cy], i) => `<g class="daisy" style="--dd:${(.15 + i * .1).toFixed(2)}s"><path class="stem" d="M${cx} ${BED.y + BED.h - 4} Q ${cx + (i % 2 ? 2 : -2)} ${(cy + BED.y + BED.h) / 2} ${cx} ${cy + 3}"/>` +
+        `<g transform="translate(${cx} ${cy})"><g class="head">${petals}<circle r="3"/></g></g></g>`).join("") + `</svg>`;
+    pics.appendChild(bed);
+    // when all daisies are open, the drawn bed fades into the painted one
+    setTimeout(() => bed.classList.add("done"), 2100);
+    setTimeout(() => bed.remove(), 2500);
+  });
+}
 function housePlay(pics, fx) {
   if (reduce) return;
   pics.classList.remove("play"); void pics.offsetWidth; pics.classList.add("play");
@@ -1447,6 +1512,7 @@ function housePlay(pics, fx) {
     const els = [...pics.querySelectorAll(".fx.bulb, .fx.glow, .fx.smoke")];
     setTimeout(() => els.forEach(e => e.remove()), 5500);
   }
+  if (fx.daisies) growDaisies(pics, fx.daisies);
   if (fx.sound) window.farmSound?.[fx.sound]();
 }
 for (const [k, n, d, c, w] of houses) {
@@ -1454,8 +1520,8 @@ for (const [k, n, d, c, w] of houses) {
   el.className = "house";
   const fx = HOUSE_FX[k] || {};
   const day = A(`house_${k}_summer`), night = A(`house_${k}_night`);
-  const parts = (fx.parts || []).map(({ box: [l, tp, wd, ht], anim, origin }) =>
-    `<span class="part ${anim}" style="left:${l}%;top:${tp}%;width:${wd}%;height:${ht}%;transform-origin:${origin || "50% 100%"}">` +
+  const parts = (fx.parts || []).map(({ box: [l, tp, wd, ht], anim, origin, delay }) =>
+    `<span class="part ${anim}" style="left:${l}%;top:${tp}%;width:${wd}%;height:${ht}%;transform-origin:${origin || "50% 100%"}${delay ? `;--gd:${delay}s` : ""}">` +
     [["d", day], ["n", night]].map(([cl, src]) => `<img class="${cl}" src="${src}" alt="" style="width:${(10000 / wd).toFixed(2)}%;left:${(-l * 100 / wd).toFixed(2)}%;top:${(-tp * 100 / ht).toFixed(2)}%"${cl === "n" ? ' loading="lazy"' : ""}>`).join("") +
     `</span>`).join("");
   el.innerHTML = `<div class="pics"${fx.clip ? ` style="--clip:${fx.clip}"` : ""}><img class="d" src="${day}" alt=""><img class="n" src="${night}" alt="" loading="lazy">${parts}</div><div><h3>${n}</h3><p>${d}</p>
@@ -1512,15 +1578,11 @@ function tidyReset() {
   tidyCount();
 }
 function tidyCount() { document.getElementById("tidyLeft").textContent = T.piles.length;  }
-// a finger: up and down scrolls the page, so the hint asks for a sideways swipe
-const touchUI = matchMedia("(hover: none)").matches;
 function tidyMode(m) {
   T.mode = m;
   document.getElementById("tidyAutumn").setAttribute("aria-pressed", m === "autumn");
   document.getElementById("tidyWinter").setAttribute("aria-pressed", m === "winter");
-  document.getElementById("tidyHint").textContent = touchUI
-    ? (m === "autumn" ? "ведіть пальцем убік, щоб підмести" : "ведіть пальцем убік, щоб відкинути сніг")
-    : (m === "autumn" ? "затисніть і ведіть, щоб підмести" : "затисніть і ведіть, щоб відкинути сніг");
+  document.getElementById("tidyHint").textContent = m === "autumn" ? "затисніть і ведіть, щоб підмести" : "затисніть і ведіть, щоб відкинути сніг";
   tc.setAttribute("aria-label", m === "autumn" ? "Ферма, вкрита купками листя. Затисніть і ведіть, щоб змести їх." : "Ферма із заметами. Затисніть і ведіть, щоб відкинути сніг.");
   tidyReset();
 }
@@ -1529,7 +1591,7 @@ document.getElementById("tidyWinter").onclick = () => tidyMode("winter");
 document.getElementById("tidyReset").onclick = () => tidyReset();
 function tPoint(e) { const r = tc.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; }
 tScene.addEventListener("pointerdown", e => { T.down = true; try { tScene.setPointerCapture(e.pointerId); } catch (_) {} [T.x, T.y] = tPoint(e); T.px = T.x; T.py = T.y; });
-// a finger has no hover: when it lifts (or the page takes it to scroll), the tool goes away
+// a finger has no hover: when it lifts, the tool goes away
 tScene.addEventListener("pointerup", e => { T.down = false; if (e.pointerType !== "mouse") T.x = -999; });
 tScene.addEventListener("pointercancel", () => { T.down = false; T.x = -999; });
 tScene.addEventListener("pointerleave", () => { if (!T.down) T.x = -999; });
@@ -1654,8 +1716,18 @@ hToggle.addEventListener("click", () => {
     // a click swings the star harder: a separate animation on top of the calm swing, so nothing jumps
     h.addEventListener("click", () => {
       window.farmSound?.chime();
-      if (!reduce && h.animate) h.animate([{ rotate: "0deg" }, { rotate: "18deg", offset: .2 }, { rotate: "-11deg", offset: .45 }, { rotate: "5deg", offset: .7 }, { rotate: "0deg" }],
-                                          { duration: 1300, easing: "ease-out" });
+      if (!reduce && h.animate) {
+        // a push: the star swings out and back like a real pendulum, a little less each time
+        // a new push during a swing starts from where the star is now, so it never jumps
+        const now = parseFloat(getComputedStyle(h).rotate) || 0;
+        h.getAnimations().filter(x => x.id === "push").forEach(x => x.cancel());
+        const T = 4200, P = 1400, frames = [];
+        for (let i = 0; i <= 70; i++) {
+          const s = i / 70 * T, w = 2 * Math.PI * s / P;
+          frames.push({ rotate: (Math.exp(-s / 1400) * (now * Math.cos(w) + 17 * Math.sin(w))).toFixed(2) + "deg" });
+        }
+        h.animate(frames, { duration: T, easing: "linear", id: "push" });
+      }
     });
     line.appendChild(h);
     return h;
@@ -1830,4 +1902,4 @@ if ("IntersectionObserver" in window) {
 
 requestAnimationFrame(loop);
 </script>
-<script src="../site.js?v=7fdf0860a7"></script>
+<script src="../site.js?v=f002e5fef1"></script>
