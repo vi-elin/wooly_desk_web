@@ -68,6 +68,7 @@ p { margin: 0; }
 /* ───────── header: a floating menu bar that a sheep walks along ───────── */
 .topbar {
   position: sticky; top: 0; z-index: 60;
+  transition: transform .35s cubic-bezier(.3,.8,.3,1);
   padding: 10px max(12px, env(safe-area-inset-left, 0px)) 0;
   pointer-events: none;
 }
@@ -712,3 +713,8 @@ a.lang-item:hover, a.lang-item:focus-visible { background: var(--lamp-soft); out
   .bar-inner:has(.sound-switch) .lang-switch .caret { display: none; }
   .sound-switch { width: 30px; height: 30px; margin-left: 0; }
 }
+
+/* the header hides while you scroll down (site.js adds .away) and comes back when you scroll up */
+.topbar.away { transform: translateY(calc(-100% - 16px)); }
+.topbar.away .bar-inner { box-shadow: none; }
+@media (prefers-reduced-motion: reduce) { .topbar { transition: none; } }

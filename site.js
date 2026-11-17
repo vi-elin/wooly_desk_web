@@ -26,10 +26,17 @@
     const frames = ["walk0", "walk1", "walk2", "walk3"].map(f => {
       const i = new Image(); i.src = `${AS}sheep_white_${f}.png`; return i.src;
     });
-    let lastY = scrollY, frame = 0, stepAcc = 0, idleTimer = 0;
+    let lastY = scrollY, frame = 0, stepAcc = 0, idleTimer = 0, travel = 0;
+    // the header goes away while you read down, and comes back as soon as you scroll up a little
+    const busy = () => bar.querySelector(".menu-sheet.open, .lang-list.open, :focus-visible");   // a menu is open or the keyboard is in the header
     const onScroll = () => {
       const y = scrollY;
       bar.classList.toggle("scrolled", y > 30);
+      const d = y - lastY;
+      travel = Math.sign(d) === Math.sign(travel) ? travel + d : d;
+      if (y < 120 || busy()) bar.classList.remove("away");
+      else if (travel > 24) bar.classList.add("away");
+      else if (travel < -12) bar.classList.remove("away");
       const max = document.documentElement.scrollHeight - innerHeight;
       const p = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
       if (sheep) {
