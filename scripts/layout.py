@@ -210,8 +210,8 @@ def version(name: str) -> str:
 
 
 def stamp(text: str) -> str:
-    """Add ?v=<hash> to the links to site.css and site.js."""
-    for name, attr in (("site.css", "href"), ("site.js", "src")):
+    """Add ?v=<hash> to the links to site.css, site.js and sound.js."""
+    for name, attr in (("site.css", "href"), ("site.js", "src"), ("sound.js", "src")):
         text = re.sub(rf'{attr}="((?:\.\./)?){re.escape(name)}(?:\?v=\w+)?"', rf'{attr}="\g<1>{name}?v={version(name)}"', text)
     return text
 

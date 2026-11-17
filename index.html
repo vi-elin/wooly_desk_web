@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700;800&family=Nunito:wght@400;600;700&family=Caveat:wght@500;700&display=swap">
-<link rel="stylesheet" href="site.css?v=5a5a5ed11a">
+<link rel="stylesheet" href="site.css?v=31c8b584dc">
 <!--BOOT-->
 <link rel="canonical" href="https://woollydesk.com/">
 <link rel="alternate" hreflang="en" href="https://woollydesk.com/">
@@ -963,6 +963,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 
 <div class="pasture" id="pasture" aria-hidden="true"><span class="hint" id="hint">pet me!</span></div>
 
+<script src="sound.js?v=9b43e58792"></script>
 <script>
 // Set this to the real store page when the app is published.
 const STORE_URL = "";
@@ -1007,6 +1008,7 @@ class Flock {
     sh.hopT = .62; sh.d.classList.remove("hop"); void sh.d.offsetWidth; sh.d.classList.add("hop");
     const r = sh.d.getBoundingClientRect(), c = this.el.getBoundingClientRect();
     heart(this.el, r.left - c.left + r.width * .5, r.top - c.top + r.height * .1);
+    window.farmSound?.bleat(sh.look === "lamb");
     this.opts.onPet?.(sh);
   }
   pose(sh) {
@@ -1078,6 +1080,7 @@ const heroToggle = document.getElementById("heroToggle");
 heroToggle.addEventListener("click", () => {
   const on = desk.classList.toggle("night");
   heroToggle.setAttribute("aria-pressed", on); heroFlock.night = on;
+  ambience();
 });
 function clock() {
   const d = new Date();
@@ -1094,10 +1097,10 @@ const liveFlock = new Flock(document.getElementById("liveFlock"), [
 ], { size: .085, depth: .3, speed: .03 });
 flocks.push(liveFlock);
 const btnNight = document.getElementById("liveNight"), btnRain = document.getElementById("liveRain"), btnPause = document.getElementById("livePause");
-btnNight.onclick = () => { const on = field.classList.toggle("night"); liveFlock.night = on; btnNight.setAttribute("aria-pressed", on); };
+btnNight.onclick = () => { const on = field.classList.toggle("night"); liveFlock.night = on; btnNight.setAttribute("aria-pressed", on); ambience(); };
 let raining = false;
-btnRain.onclick = () => { raining = !raining; btnRain.setAttribute("aria-pressed", raining); };
-btnPause.onclick = () => { liveFlock.paused = !liveFlock.paused; btnPause.setAttribute("aria-pressed", liveFlock.paused); btnPause.textContent = liveFlock.paused ? "Play" : "Pause"; };
+btnRain.onclick = () => { raining = !raining; btnRain.setAttribute("aria-pressed", raining); ambience(); };
+btnPause.onclick = () => { liveFlock.paused = !liveFlock.paused; btnPause.setAttribute("aria-pressed", liveFlock.paused); btnPause.textContent = liveFlock.paused ? "Play" : "Pause"; ambience(); };
 const wc = document.getElementById("weather"), wx = wc.getContext("2d");
 let drops = [];
 function rain(now) {
@@ -1146,6 +1149,7 @@ names.forEach(([look, name, say], i) => {
     b.classList.remove("hop"); void b.offsetWidth; b.classList.add("hop", "talk");
     const rr = b.getBoundingClientRect(), rc = row.getBoundingClientRect();
     heart(row, rr.left - rc.left + rr.width / 2, rr.top - rc.top + 20);
+    window.farmSound?.bleat(look === "lamb");
     clearTimeout(b._t); b._t = setTimeout(() => { b.classList.remove("talk"); img.src = A(`sheep_${look}_${pose}`); }, 1500);
   });
   row.appendChild(b);
@@ -1168,7 +1172,7 @@ function setSeason(s) {
   document.querySelectorAll(".tabs .chip").forEach(c => c.setAttribute("aria-pressed", c.dataset.s === s));
   document.getElementById("seasonText").textContent = seasonText[s];
 }
-document.querySelectorAll(".tabs .chip").forEach(c => c.addEventListener("click", () => setSeason(c.dataset.s)));
+document.querySelectorAll(".tabs .chip").forEach(c => c.addEventListener("click", () => { setSeason(c.dataset.s); ambience(); }));
 setSeason("summer");
 const leafCols = ["#E3AE4E", "#D9773F", "#C9483A", "#B98B34"];
 function seasonFx() {
@@ -1298,6 +1302,7 @@ function sweep(x, y, dx, dy) {
     const cx = p.x * T.w, cy = p.y * T.h;
     if (Math.hypot(cx - x, (cy - y) * 1.3) > reach) continue;
     p.amt -= moved * .006;
+    if (T.mode === "autumn") window.farmSound?.sweep(); else window.farmSound?.crunch();
     for (let k = 0; k < 2; k++) {
       if (T.mode === "autumn") {
         T.parts.push({ kind: "leaf", i: Math.floor(Math.random() * 3), x: cx + (Math.random() - .5) * 30, y: cy - 6, vx: dx * 9 + (Math.random() - .5) * 60,
@@ -1310,7 +1315,7 @@ function sweep(x, y, dx, dy) {
     }
     if (p.amt <= 0 && !p.gone) {
       p.gone = true;
-      if (p.coin) { T.coins++; T.parts.push({ kind: "coin", x: cx, y: cy - 10, vx: 0, vy: -60, r: 0, vr: 0, life: 1.4 }); }
+      if (p.coin) { T.coins++; window.farmSound?.coin(); T.parts.push({ kind: "coin", x: cx, y: cy - 10, vx: 0, vy: -60, r: 0, vr: 0, life: 1.4 }); }
     }
   }
   const before = T.piles.length;
@@ -1387,6 +1392,7 @@ const holidays = document.getElementById("holidays"), hToggle = document.getElem
 hToggle.addEventListener("click", () => {
   const on = holidays.classList.toggle("night");
   hToggle.setAttribute("aria-pressed", on);
+  if (on) window.farmSound?.chime();
   document.getElementById("holidayLabel").textContent = on ? "Lights on" : "Lights off";
 });
 (() => {
@@ -1397,7 +1403,7 @@ hToggle.addEventListener("click", () => {
     h.style.left = x + "%"; h.style.setProperty("--len", len + "px");
     h.style.animationDelay = (-i * 1.3) + "s"; h.style.animationDuration = (4 + (i % 3) * .7) + "s";
     h.innerHTML = `<img class="d" src="${A("star_" + k)}" alt=""><img class="n" src="${A("star_" + k + "_night")}" alt="">`;
-    h.addEventListener("click", () => { h.classList.remove("spin"); void h.offsetWidth; h.classList.add("spin"); setTimeout(() => h.classList.remove("spin"), 1300); });
+    h.addEventListener("click", () => { window.farmSound?.chime(); h.classList.remove("spin"); void h.offsetWidth; h.classList.add("spin"); setTimeout(() => h.classList.remove("spin"), 1300); });
     line.appendChild(h);
   });
   // a light snowfall
@@ -1437,6 +1443,7 @@ hToggle.addEventListener("click", () => {
       img.src = A(`sweater_${COLORS[k][0]}_jump`);
       nm.textContent = COLORS[k][1] + " Sweater";
       say.textContent = ["so cosy!", "baa!", "fits perfectly", "warm!", "new look!"][Math.floor(Math.random() * 5)];
+      window.farmSound?.bleat(false);
       b.classList.remove("hop", "talk"); void b.offsetWidth; b.classList.add("hop", "talk");
       setTimeout(() => { img.src = A(`sweater_${COLORS[k][0]}_happy`); }, 420);
       setTimeout(() => { b.classList.remove("hop", "talk"); show(); }, 1500);
@@ -1534,6 +1541,25 @@ addEventListener("pointermove", e => {
   const sh = pageSheep.sheep[0];
   if (sh.state !== "walk" && Math.random() < .5) { sh.state = "walk"; sh.tx = Math.min(.95, Math.max(.05, e.clientX / innerWidth)); sh.ty = .9; }
 });
+
+/* Farm sounds (sound.js): the loops follow what is on screen. */
+const seen = new Set();
+function ambience() {
+  const watch = seen.has("watch") && !liveFlock.paused, hero = seen.has("hero"), fieldNight = field.classList.contains("night");
+  window.farmSound?.ambience({
+    rain: watch && raining,
+    crickets: (watch && fieldNight && !raining) || (hero && desk.classList.contains("night")),
+    meadow: (watch && !fieldNight && !raining) || (hero && !desk.classList.contains("night")),
+    wind: seen.has("seasons") && season === "winter",
+  });
+}
+if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver(es => {
+    for (const e of es) e.isIntersecting ? seen.add(e.target.dataset.sound) : seen.delete(e.target.dataset.sound);
+    ambience();
+  }, { threshold: .35 });
+  [[document.querySelector(".mac-stage"), "hero"], [field, "watch"], [scene, "seasons"]].forEach(([el, k]) => { if (el) { el.dataset.sound = k; io.observe(el); } });
+}
 
 requestAnimationFrame(loop);
 </script>

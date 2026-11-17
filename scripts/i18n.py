@@ -16,7 +16,7 @@ How it works
   from. When the English body changes, the script says so; update the translation, then run
       python3 scripts/i18n.py --stamp guide.html
   to save the new fingerprint.
-- Links to pictures, site.css and site.js get "../" because the Ukrainian pages live one folder deeper.
+- Links to pictures, site.css, site.js and sound.js get "../" because the Ukrainian pages live one folder deeper.
 """
 import hashlib, importlib.util, pathlib, re, sys
 
@@ -87,7 +87,7 @@ def build(page: str) -> tuple[str, list[str], list[str]]:
             continue
         t = t.replace(src, dst)
     # the Ukrainian pages are one folder deeper
-    t = (t.replace('href="site.css', 'href="../site.css').replace('src="site.js', 'src="../site.js')
+    t = (t.replace('href="site.css', 'href="../site.css').replace('src="site.js', 'src="../site.js').replace('src="sound.js', 'src="../sound.js')
           .replace('src="assets/', 'src="../assets/').replace('srcset="assets/', 'srcset="../assets/').replace('data-src-m="assets/', 'data-src-m="../assets/').replace('url("assets/', 'url("../assets/')
           .replace("`assets/${n}.png`", "`../assets/${n}.png`"))
     assert 'src="assets/' not in t and 'url("assets/' not in t, f"{page}: a picture link was not moved"
