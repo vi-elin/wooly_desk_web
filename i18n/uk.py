@@ -60,7 +60,7 @@ PAGES = {
          '<h1>Маленька овеча ферма, яка живе на вашому <span class="squiggle">робочому столі<svg'),
         ("Sheep graze, play, sleep and grow wool behind your app windows. You look after them between emails, shear them, trade the wool and build a tiny village.",
          "Вівці пасуться, граються, сплять і обростають вовною за вікнами ваших застосунків. Ви доглядаєте за ними між листами, стрижете їх, продаєте вовну і будуєте маленьке село."),
-        ("<span><small>Mac App Store</small>Get WoollyDesk</span>", "<span><small>Mac App Store</small>Завантажити WoollyDesk</span>"),
+        ("<span><small>Coming soon for Mac</small>Join the waitlist</span>", "<span><small>Скоро для Mac</small>Записатися в чергу</span>"),
         ('data-done="Thanks, counted!"', 'data-done="Дякуємо, враховано!"'),
         ("<span data-label>Ask for a version</span>", "<span data-label>Попросити версію</span>"),
         ("<span>macOS 14 or later</span><span>Lives in the menu bar</span><span>Real weather &amp; seasons</span>",

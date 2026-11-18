@@ -33,7 +33,7 @@ T = {
         "sections": {"#watch": "Watch", "#flock": "The flock", "#seasons": "Seasons", "#tidy": "Tidy up",
                      "#village": "Build", "#holidays": "Holidays"},
         "pages": {"index.html": "Home", "guide.html": "Guide", "questions.html": "FAQ", "support.html": "Support"},
-        "get": "Get it for Mac", "on_page": "On this page", "pages_label": "Pages", "menu": "Menu", "main": "Main",
+        "get": "Join the waitlist", "on_page": "On this page", "pages_label": "Pages", "menu": "Menu", "main": "Main",
         "home_label": "WoollyDesk home", "switch": "УКР", "switch_label": "Українською", "lang": "Language", "win": "On Windows? Ask for a version", "win_done": "Thanks! Your request is counted.",
         "about": "A cozy sheep farm that lives on your Mac desktop, behind every window.",
         "learn": "Learn", "help": "Help", "legal": "Legal", "shop": "The shop", "settings": "Settings",
@@ -43,7 +43,7 @@ T = {
         "sections": {"#watch": "Наживо", "#flock": "Отара", "#seasons": "Сезони", "#tidy": "Прибирання",
                      "#village": "Будівлі", "#holidays": "Свята"},
         "pages": {"index.html": "Головна", "guide.html": "Посібник", "questions.html": "Питання", "support.html": "Підтримка"},
-        "get": "Отримати для Mac", "on_page": "На цій сторінці", "pages_label": "Сторінки", "menu": "Меню", "main": "Головне меню",
+        "get": "Список очікування", "on_page": "На цій сторінці", "pages_label": "Сторінки", "menu": "Меню", "main": "Головне меню",
         "home_label": "WoollyDesk, головна", "switch": "EN", "switch_label": "English", "lang": "Мова", "win": "Маєте Windows? Попросіть версію", "win_done": "Дякуємо! Запит враховано.",
         "about": "Затишна ферма з вівцями, яка живе на робочому столі вашого Mac, за всіма вікнами.",
         "learn": "Дізнатися", "help": "Допомога", "legal": "Правове", "shop": "Магазин", "settings": "Налаштування",
@@ -134,13 +134,13 @@ def header(page: str, lang: str = "en") -> str:
       {"".join(links)}
     </nav>
     {switch}
-    <a class="btn bar-cta" href="{get}" data-umami-event="get-mac-header">{t["get"]}</a>
+    <a class="btn bar-cta" href="{get}" data-mac-wait data-wait-src="header" data-umami-event="mac-waitlist-open-header">{t["get"]}</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menuSheet" aria-label="{t["menu"]}">{CLOUD}</button>
     <div class="trail" aria-hidden="true"><span class="trail-sheep"><img src="assets/sheep_white_graze0.png" alt=""></span></div>
   </div>
   <nav class="menu-sheet" id="menuSheet" aria-label="{t["menu"]}">
     {"".join(sheet)}
-    <a class="btn sheet-cta" href="{get}" data-umami-event="get-mac-menu">{t["get"]}</a>
+    <a class="btn sheet-cta" href="{get}" data-mac-wait data-wait-src="menu" data-umami-event="mac-waitlist-open-menu">{t["get"]}</a>
     <button class="win-ask sheet-win" type="button" data-win-ask data-win-src="menu" data-done="{t["win_done"]}">{WIN_ICON}<span>{t["win"]}</span></button>
   </nav>
 </header>

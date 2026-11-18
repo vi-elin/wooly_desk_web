@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700;800&family=Nunito:wght@400;600;700;800&family=Caveat:wght@500;700&display=swap">
-<link rel="stylesheet" href="site.css?v=c2baacd058">
+<link rel="stylesheet" href="site.css?v=76916c0ac2">
 <!--BOOT-->
 <link rel="canonical" href="https://woollydesk.com/privacy">
 <link rel="alternate" hreflang="en" href="https://woollydesk.com/privacy">
@@ -29,13 +29,13 @@
       <a href="./">Home</a><span class="sep" aria-hidden="true"></span><a href="guide">Guide</a><a href="questions">FAQ</a><a href="support">Support</a>
     </nav>
     <div class="lang-menu"><button class="lang-switch" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="langList" title="Language: English"><svg class="globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9s1.2-6.4 3.8-9Z" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="lang-word">Language</span><svg class="caret" viewBox="0 0 12 8" aria-hidden="true"><path d="M1.5 1.5 6 6l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="lang-list" id="langList" role="menu" aria-label="Language"><span class="lang-item on" role="menuitemradio" aria-checked="true" lang="en"><svg class="check" viewBox="0 0 16 12" aria-hidden="true"><path d="M1.5 6.5 6 10.5 14.5 1.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>English</span><a class="lang-item" role="menuitemradio" aria-checked="false" href="uk/privacy" hreflang="uk" lang="uk"><svg class="check" viewBox="0 0 16 12" aria-hidden="true"><path d="M1.5 6.5 6 10.5 14.5 1.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Українська</a></div></div>
-    <a class="btn bar-cta" href="./#get" data-umami-event="get-mac-header">Get it for Mac</a>
+    <a class="btn bar-cta" href="./#get" data-mac-wait data-wait-src="header" data-umami-event="mac-waitlist-open-header">Join the waitlist</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menuSheet" aria-label="Menu"><svg viewBox="0 0 30 24" aria-hidden="true"><circle cx="9" cy="8" r="4.6" fill="#F6CF6A" stroke="#3A2F2A" stroke-width="1.8"/><path d="M8 20.5h15a4.3 4.3 0 0 0 .4-8.6 6 6 0 0 0-11.5 1.2A3.7 3.7 0 0 0 8 20.5Z" fill="#FBF8F1" stroke="#3A2F2A" stroke-width="1.8"/></svg></button>
     <div class="trail" aria-hidden="true"><span class="trail-sheep"><img src="assets/sheep_white_graze0.png" alt=""></span></div>
   </div>
   <nav class="menu-sheet" id="menuSheet" aria-label="Menu">
     <span class="sheet-label">Pages</span><a href="./"><img src="assets/sheep_white_happy.png" alt="">Home</a><a href="guide"><img src="assets/house_barn_summer.png" alt="">Guide</a><a href="questions"><img src="assets/sheep_lamb_happy.png" alt="">FAQ</a><a href="support"><img src="assets/house_whiteCottage_summer.png" alt="">Support</a>
-    <a class="btn sheet-cta" href="./#get" data-umami-event="get-mac-menu">Get it for Mac</a>
+    <a class="btn sheet-cta" href="./#get" data-mac-wait data-wait-src="menu" data-umami-event="mac-waitlist-open-menu">Join the waitlist</a>
     <button class="win-ask sheet-win" type="button" data-win-ask data-win-src="menu" data-done="Thanks! Your request is counted."><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4.2 8.6 3.3v6.2H2Zm7.6-1 8.4-1.2v7.5H9.6ZM2 10.5h6.6v6.2L2 15.8Zm7.6 0H18V18l-8.4-1.2Z" fill="currentColor"/></svg><span>On Windows? Ask for a version</span></button>
   </nav>
 </header>
@@ -103,13 +103,13 @@
         <h2>6. When you write to support</h2>
         <p>If you email us, we receive your email address and what you write. We use it only to answer you and to fix problems. We do not add you to a mailing list. Ask us at any time and we delete your messages.</p>
 
-        <h2 id="waitlist">7. The Windows waitlist (optional)</h2>
-        <p>If you leave your email in the "WoollyDesk for Windows" window, we keep it in a private Notion database, together with the page language and the button you used. A small Cloudflare Worker passes it from this website to Notion. We use your email only to send you one message when the Windows version is out. We do not share or sell it, and we do not add it to any other list. Write to <a href="mailto:vielindevelopment@gmail.com">vielindevelopment@gmail.com</a> and we delete it. We also delete the whole list after the announcement. Notion and Cloudflare handle this data under their own privacy policies: <a href="https://www.notion.com/notion/privacy" rel="noopener">Notion</a>, <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare</a>.</p>
+        <h2 id="waitlist">7. The waitlists (optional)</h2>
+        <p>The website has two waitlists: one for the first release of WoollyDesk for Mac, and one for a Windows version. If you leave your email in one of them, we keep it in a private Notion database, together with the page language and the button you used. A small Cloudflare Worker passes it from this website to Notion. We use your email only to send you one message: on release day, or when the Windows version is out. We do not share or sell it, and we do not add it to any other list. Write to <a href="mailto:vielindevelopment@gmail.com">vielindevelopment@gmail.com</a> and we delete it. We also delete each list after its announcement. Notion and Cloudflare handle this data under their own privacy policies: <a href="https://www.notion.com/notion/privacy" rel="noopener">Notion</a>, <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare</a>.</p>
 
         <h2>8. This website</h2>
         <ul>
           <li>The website uses no cookies.</li>
-          <li>The website counts visits with <a href="https://umami.is/" rel="noopener">Umami</a>, a privacy-friendly analytics service. It counts which pages people open, where they come from (for example, a search engine), how far they scroll and how many people click “Get WoollyDesk” or ask for a Windows version. It stores no cookies and collects no personal information. It does not follow you to other websites, and nobody can identify you from it. See the <a href="https://umami.is/privacy" rel="noopener">Umami privacy policy</a>.</li>
+          <li>The website counts visits with <a href="https://umami.is/" rel="noopener">Umami</a>, a privacy-friendly analytics service. It counts which pages people open, where they come from (for example, a search engine), how far they scroll and how many people open a waitlist or ask for a Windows version. It stores no cookies and collects no personal information. It does not follow you to other websites, and nobody can identify you from it. See the <a href="https://umami.is/privacy" rel="noopener">Umami privacy policy</a>.</li>
           <li>It is hosted on GitHub Pages. GitHub may log technical data such as your IP address for security. See the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub Privacy Statement</a>.</li>
           <li>The fonts come from Google Fonts, so your browser connects to Google to load them. See the <a href="https://policies.google.com/privacy" rel="noopener">Google Privacy Policy</a>.</li>
         </ul>
@@ -118,7 +118,7 @@
         <p>WoollyDesk is suitable for all ages. The app does not ask anyone for personal information, including children. The optional usage data has no names or contact details.</p>
 
         <h2>10. Your rights</h2>
-        <p>The app sends no name or contact details, so we cannot link its usage data to you. To stop it, turn off <b>Share anonymous usage data</b>. For emails you sent us, or your address on the Windows waitlist, write to <a href="mailto:vielindevelopment@gmail.com">vielindevelopment@gmail.com</a> to see or delete them.</p>
+        <p>The app sends no name or contact details, so we cannot link its usage data to you. To stop it, turn off <b>Share anonymous usage data</b>. For emails you sent us, or your address on a waitlist, write to <a href="mailto:vielindevelopment@gmail.com">vielindevelopment@gmail.com</a> to see or delete them.</p>
 
         <h2>11. Changes</h2>
         <p>If this policy changes, we update this page and the date at the top. Important changes are also mentioned in the app's release notes.</p>
@@ -153,6 +153,6 @@
   </div>
 </footer>
 <!--/FOOTER-->
-<script src="site.js?v=f002e5fef1"></script>
+<script src="site.js?v=0d990f3dec"></script>
 </body>
 </html>

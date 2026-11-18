@@ -628,51 +628,73 @@
     }));
   }
 
-  /* ── "ask for a Windows version": counts one request per browser (Umami, no personal data),
-        then a dialog explains the plan and can take an email for the Windows waitlist (Notion, via a Cloudflare Worker) ── */
+  /* ── waitlists (Notion, via a Cloudflare Worker: worker/README.md). Two lists:
+        "mac":     the "Join the waitlist" buttons ([data-mac-wait]) — one email on the day of the first release;
+        "windows": "ask for a Windows version" ([data-win-ask]) — counts one request per browser (Umami, no personal data),
+                   then the dialog explains the plan and can take an email for the Windows waitlist ── */
   {
-    const WAITLIST_URL = "https://woolly-waitlist.woollydesk.workers.dev/";   // the Worker address (worker/README.md); without it the email form is hidden
-    const KEY = "wd-windows-asked", JOINED = "wd-windows-joined";
-    const T = UK ? {
-      title: "WoollyDesk для Windows", counted: "Ваш запит враховано.",
-      body: "Поки що WoollyDesk є лише для Mac. Якщо запитів буде достатньо, ми зробимо версію для Windows і повідомимо про це.",
-      label: "Хочете дізнатися, коли вона вийде? Залиште свою пошту.", button: "Повідомити мене", sending: "Надсилаємо…",
-      fine: "Лише один лист, коли вийде версія для Windows. Без спаму. Ви можете будь-коли попросити видалити адресу.", privacy: "Політика конфіденційності",
-      thanks: "Дякуємо! Ми напишемо вам, коли WoollyDesk для Windows буде готовий.",
+    const WAITLIST_URL = "https://woolly-waitlist.woollydesk.workers.dev/";   // the Worker address; without it the email form is hidden
+    const COMMON = UK ? {
+      button: "Повідомити мене", sending: "Надсилаємо…", privacy: "Політика конфіденційності",
       bad: "Перевірте адресу пошти.", fail: "Не вдалося надіслати. Спробуйте ще раз або напишіть на vielindevelopment@gmail.com.", close: "Закрити",
     } : {
-      title: "WoollyDesk for Windows", counted: "Your request is counted.",
-      body: "WoollyDesk is only for Mac for now. If enough people ask, we will make a Windows version and announce it.",
-      label: "Want to know when it is ready? Leave your email.", button: "Notify me", sending: "Sending…",
-      fine: "Only one email, when the Windows version is out. No spam. You can ask us to delete your address at any time.", privacy: "Privacy policy",
-      thanks: "Thank you! We will write to you when WoollyDesk for Windows is ready.",
+      button: "Notify me", sending: "Sending…", privacy: "Privacy policy",
       bad: "Please check the email address.", fail: "Something went wrong. Please try again, or write to vielindevelopment@gmail.com.", close: "Close",
     };
-    const WIN = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4.2 8.6 3.3v6.2H2Zm7.6-1 8.4-1.2v7.5H9.6ZM2 10.5h6.6v6.2L2 15.8Zm7.6 0H18V18l-8.4-1.2Z" fill="currentColor"/></svg>';
+    const LISTS = {
+      mac: {
+        joined: "wd-mac-joined", event: "mac-waitlist",
+        icon: '<img src="assets/sheep_white_happy.png" alt="">',
+        ...(UK ? {
+          title: "WoollyDesk майже готовий",
+          body: "Перша версія для Mac скоро вийде. Залиште свою пошту, і в день релізу ми надішлемо вам лист.",
+          label: "Ваша пошта", fine: "Лише один лист, у день релізу. Без спаму. Ви можете будь-коли попросити видалити адресу.",
+          thanks: "Дякуємо! Ми напишемо вам, щойно WoollyDesk вийде.",
+        } : {
+          title: "WoollyDesk is almost ready",
+          body: "The first version for Mac comes out soon. Leave your email, and we will write to you on release day.",
+          label: "Your email", fine: "Only one email, on release day. No spam. You can ask us to delete your address at any time.",
+          thanks: "Thank you! We will write to you when WoollyDesk is out.",
+        }),
+      },
+      windows: {
+        joined: "wd-windows-joined", event: "windows-waitlist",
+        icon: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4.2 8.6 3.3v6.2H2Zm7.6-1 8.4-1.2v7.5H9.6ZM2 10.5h6.6v6.2L2 15.8Zm7.6 0H18V18l-8.4-1.2Z" fill="currentColor"/></svg>',
+        ...(UK ? {
+          title: "WoollyDesk для Windows", counted: "Ваш запит враховано.",
+          body: "Поки що WoollyDesk є лише для Mac. Якщо запитів буде достатньо, ми зробимо версію для Windows і повідомимо про це.",
+          label: "Хочете дізнатися, коли вона вийде? Залиште свою пошту.",
+          fine: "Лише один лист, коли вийде версія для Windows. Без спаму. Ви можете будь-коли попросити видалити адресу.",
+          thanks: "Дякуємо! Ми напишемо вам, коли WoollyDesk для Windows буде готовий.",
+        } : {
+          title: "WoollyDesk for Windows", counted: "Your request is counted.",
+          body: "WoollyDesk is only for Mac for now. If enough people ask, we will make a Windows version and announce it.",
+          label: "Want to know when it is ready? Leave your email.",
+          fine: "Only one email, when the Windows version is out. No spam. You can ask us to delete your address at any time.",
+          thanks: "Thank you! We will write to you when WoollyDesk for Windows is ready.",
+        }),
+      },
+    };
+    const ASKED = "wd-windows-asked";
     const get = k => { try { return localStorage.getItem(k) === "1"; } catch { return false; } };
     const set = k => { try { localStorage.setItem(k, "1"); } catch {} };
-    let asked = get(KEY), joined = get(JOINED), source = "", dlg = null;
+    const dialogs = {};
+    let source = "";
 
-    const markAsked = b => {
-      b.classList.add("done");
-      const span = b.querySelector("[data-label]") || b.querySelector("span");
-      if (span && b.dataset.done) span.textContent = b.dataset.done;
-    };
-    const showThanks = () => { dlg.querySelector(".wd-form").hidden = true; const t = dlg.querySelector(".wd-thanks"); t.hidden = false; };
-
-    const build = () => {
-      dlg = document.createElement("dialog");
-      dlg.className = "win-dialog";
-      dlg.setAttribute("aria-labelledby", "wdTitle");
+    const build = list => {
+      const T = { ...COMMON, ...LISTS[list] };
+      const dlg = document.createElement("dialog");
+      dlg.className = `win-dialog wd-${list}`;
+      dlg.setAttribute("aria-labelledby", `wdTitle-${list}`);
       dlg.innerHTML = `
         <button class="wd-x" type="button" aria-label="${T.close}">×</button>
-        <div class="wd-head">${WIN}<h2 id="wdTitle">${T.title}</h2></div>
-        <p class="wd-counted"><svg viewBox="0 0 16 12" aria-hidden="true"><path d="M1.5 6.5 6 10.5 14.5 1.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>${T.counted}</p>
+        <div class="wd-head">${T.icon}<h2 id="wdTitle-${list}">${T.title}</h2></div>
+        ${T.counted ? `<p class="wd-counted"><svg viewBox="0 0 16 12" aria-hidden="true"><path d="M1.5 6.5 6 10.5 14.5 1.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>${T.counted}</p>` : ""}
         <p class="wd-body">${T.body}</p>
         <form class="wd-form" novalidate>
-          <label for="wdEmail">${T.label}</label>
+          <label for="wdEmail-${list}">${T.label}</label>
           <div class="wd-row">
-            <input id="wdEmail" name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder="name@example.com">
+            <input id="wdEmail-${list}" name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder="name@example.com">
             <button class="btn" type="submit">${T.button}</button>
           </div>
           <input class="wd-hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -681,8 +703,10 @@
         </form>
         <p class="wd-thanks" hidden>${T.thanks}</p>`;
       document.body.append(dlg);
-      const form = dlg.querySelector(".wd-form"), input = form.querySelector("#wdEmail"), msg = form.querySelector(".wd-msg"), btn = form.querySelector("button[type=submit]");
+      const form = dlg.querySelector(".wd-form"), input = form.querySelector("input[type=email]"), msg = form.querySelector(".wd-msg"), btn = form.querySelector("button[type=submit]");
       if (!WAITLIST_URL) form.hidden = true;
+      dlg.showThanks = () => { form.hidden = true; dlg.querySelector(".wd-thanks").hidden = false; };
+      dlg.input = input;
       dlg.querySelector(".wd-x").addEventListener("click", () => dlg.close());
       dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });   // a click on the dark backdrop
       form.addEventListener("submit", async e => {
@@ -694,33 +718,52 @@
         try {
           const r = await fetch(WAITLIST_URL, {
             method: "POST", headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, lang: UK ? "uk" : "en", source, website: form.website.value }),
+            body: JSON.stringify({ email, list, lang: UK ? "uk" : "en", source, website: form.website.value }),
           });
           const data = await r.json().catch(() => ({}));
           if (r.ok && data.ok) {
-            joined = true; set(JOINED);
-            if (window.umami) umami.track("windows-waitlist", { source });
-            showThanks();
+            set(T.joined);
+            if (window.umami) umami.track(T.event, { source });
+            dlg.showThanks();
           } else { msg.textContent = data.error === "email" ? T.bad : T.fail; msg.classList.add("err"); }
         } catch { msg.textContent = T.fail; msg.classList.add("err"); }
         btn.disabled = false; btn.textContent = label;
       });
+      return dlg;
     };
 
+    const open = (list, src) => {
+      source = src || "";
+      const dlg = dialogs[list] ||= build(list);
+      const joined = get(LISTS[list].joined);
+      if (joined) dlg.showThanks();
+      document.querySelector(".menu-btn[aria-expanded='true']")?.click();   // close the cloud menu
+      dlg.showModal();
+      if (!joined && WAITLIST_URL) setTimeout(() => dlg.input.focus(), 50);
+    };
+
+    // the Mac release waitlist: the buttons are links to #get, so they still work without this script
+    document.querySelectorAll("[data-mac-wait]").forEach(b => b.addEventListener("click", e => {
+      e.preventDefault();
+      open("mac", b.dataset.waitSrc);
+    }));
+
+    // the Windows version: the first click counts the request, then the dialog opens
+    let asked = get(ASKED);
+    const markAsked = b => {
+      b.classList.add("done");
+      const span = b.querySelector("[data-label]") || b.querySelector("span");
+      if (span && b.dataset.done) span.textContent = b.dataset.done;
+    };
     document.querySelectorAll("[data-win-ask]").forEach(b => {
       if (asked) markAsked(b);
       b.addEventListener("click", () => {
         if (!asked) {
-          asked = true; set(KEY);
+          asked = true; set(ASKED);
           if (window.umami) umami.track("request-windows");
           document.querySelectorAll("[data-win-ask]").forEach(markAsked);
         }
-        source = b.dataset.winSrc || "";
-        if (!dlg) build();
-        if (joined) showThanks();
-        document.querySelector(".menu-btn[aria-expanded='true']")?.click();   // close the cloud menu
-        dlg.showModal();
-        if (!joined && WAITLIST_URL) setTimeout(() => dlg.querySelector("#wdEmail").focus(), 50);
+        open("windows", b.dataset.winSrc);
       });
     });
   }

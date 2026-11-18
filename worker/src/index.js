@@ -1,9 +1,10 @@
-// Windows waitlist: takes { email, lang, source } from woollydesk.com and adds one row to Notion.
+// Waitlists: takes { email, list, lang, source } from woollydesk.com and adds one row to that list's Notion database.
+// list "mac" = the first release (env.NOTION_DB_MAC), list "windows" = the Windows version (env.NOTION_DB).
 // Only the site's own pages may call it; the Notion key stays in the Worker (env.NOTION_TOKEN).
 
 const ORIGINS = ["https://woollydesk.com", "https://www.woollydesk.com", "https://vi-elin.github.io", "http://localhost:8791"];
 const LANGS = ["en", "uk"];
-const SOURCES = ["hero", "final", "menu", "faq"];
+const SOURCES = ["hero", "final", "menu", "faq", "header"];
 const EMAIL = /^[^\s@<>()",;:]+@[^\s@<>()",;:]+\.[a-z]{2,}$/i;
 
 const reply = (status, data, cors) =>
@@ -52,10 +53,12 @@ export default {
     if (email.length > 254 || !EMAIL.test(email)) return reply(400, { ok: false, error: "email" }, cors);
     const lang = LANGS.includes(body.lang) ? body.lang : "en";
     const source = SOURCES.includes(body.source) ? body.source : null;
+    const db = body.list === "mac" ? env.NOTION_DB_MAC : env.NOTION_DB;
+    if (!db) return reply(503, { ok: false, error: "store" }, cors);
 
     try {
       // one row for each email
-      const found = await notion(env, `databases/${env.NOTION_DB}/query`, {
+      const found = await notion(env, `databases/${db}/query`, {
         filter: { property: "Email", title: { equals: email } }, page_size: 1,
       });
       if (found.results && found.results.length) return reply(200, { ok: true, already: true }, cors);
@@ -65,7 +68,7 @@ export default {
         Language: { select: { name: lang } },
       };
       if (source) properties.Source = { select: { name: source } };
-      await notion(env, "pages", { parent: { database_id: env.NOTION_DB }, properties });
+      await notion(env, "pages", { parent: { database_id: db }, properties });
       return reply(200, { ok: true }, cors);
     } catch (e) {
       console.error(e.message);

@@ -25,7 +25,8 @@ Then open http://localhost:8791.
 
 ## Store link
 
-Set `STORE_URL` near the top of the script in `index.html` when the store page exists.
+Before the release, the Mac buttons (`data-mac-wait`) open the Mac waitlist dialog (`site.js`, `worker/`).
+On release day, change them back to store links: remove `data-mac-wait`, change the button text in `index.html`, `scripts/layout.py` and `i18n/uk.py`, and set `STORE_URL` near the top of the script in `index.html`.
 
 ## Ukrainian version
 

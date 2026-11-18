@@ -1,4 +1,4 @@
-# Cloudflare Worker: the Windows waitlist form on woollydesk.com → the Notion database "Windows waitlist".
+# Cloudflare Worker: the waitlist forms on woollydesk.com → the Notion databases "Mac waitlist" and "Windows waitlist".
 # The Notion key is a secret (wrangler secret put NOTION_TOKEN). It is never in this repo or on the site.
 name = "woolly-waitlist"
 main = "src/index.js"
@@ -8,6 +8,8 @@ workers_dev = true
 [vars]
 # Notion database "Windows waitlist" (Side projects / Woolly Desk)
 NOTION_DB = "419849bc872f81f9aaccfb4cbc5d4b3b"
+# Notion database "Mac waitlist" (Side projects / Woolly Desk): the first release
+NOTION_DB_MAC = "e36849bc872f837cad62815f5aa8c4c5"
 
 # at most 5 sign-ups a minute from one address (Wrangler 3 writes the rate limit binding this way)
 [[unsafe.bindings]]
