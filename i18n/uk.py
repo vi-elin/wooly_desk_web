@@ -55,7 +55,7 @@ PAGES = {
          'content="WoollyDesk — затишна гра для macOS: вівці живуть на робочому столі за вашими вікнами. Стрижіть їх, продавайте вовну і будуйте маленьке село."'),
 
         # hero
-        ('<span class="eyebrow">a cozy desktop game for macOS</span>', '<span class="eyebrow">затишна гра для робочого столу macOS</span>'),
+        ('<span class="eyebrow">a cozy desktop game</span>', '<span class="eyebrow">затишна гра для робочого столу</span>'),
         ('<h1>A little sheep farm that lives on your <span class="squiggle">desktop<svg',
          '<h1>Маленька овеча ферма, яка живе на вашому <span class="squiggle">робочому столі<svg'),
         ("Sheep graze, play, sleep and grow wool behind your app windows. You look after them between emails, shear them, trade the wool and build a tiny village.",

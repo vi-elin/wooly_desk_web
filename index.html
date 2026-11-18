@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700;800&family=Nunito:wght@400;600;700&family=Caveat:wght@500;700&display=swap">
-<link rel="stylesheet" href="site.css?v=637729535b">
+<link rel="stylesheet" href="site.css?v=b71497d1d6">
 <!--BOOT-->
 <link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/brand/favicon-32.png" sizes="32x32" type="image/png">
@@ -80,12 +80,13 @@ p { margin: 0; }
   display: inline-flex; align-items: center; gap: .6em;
   font-family: var(--display); font-weight: 700; font-size: 1.08rem; text-decoration: none;
   padding: .78em 1.25em .7em; border-radius: 16px 18px 15px 19px / 18px 15px 19px 16px;
-  border: 2.5px solid var(--b); background: var(--lamp); color: var(--ink);
-  box-shadow: 4px 5px 0 var(--b); cursor: pointer;
+  --sh: rgba(58, 47, 42, .16);
+  border: 2px solid var(--b); background: var(--lamp); color: var(--ink);
+  box-shadow: 0 2px 6px var(--sh); cursor: pointer;
   transition: transform .15s ease, box-shadow .15s ease;
 }
-.btn:hover { transform: translate(-2px, -2px) rotate(-1deg); box-shadow: 6px 7px 0 var(--b); }
-.btn:active { transform: translate(2px, 3px); box-shadow: 1px 2px 0 var(--b); }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 6px 14px var(--sh); }
+.btn:active { transform: translateY(1px); box-shadow: 0 1px 3px var(--sh); }
 .btn.ghost { background: var(--window); }
 .btn svg { width: 1.25em; height: 1.25em; flex: none; }
 .btn small { display: block; font-family: var(--body); font-weight: 600; font-size: .7rem; letter-spacing: .04em; text-transform: uppercase; opacity: .75; line-height: 1; margin-bottom: 2px; }
@@ -639,7 +640,7 @@ section[id] { scroll-margin-top: 90px; }
 @keyframes blink { 0%,100% { opacity: .15 } 50% { opacity: 1 } }
 .final .wrap { position: relative; margin-top: -40px; text-align: center; display: grid; justify-items: center; gap: 16px; }
 .final .lede { color: #CFC8E3; }
-.final .btn { --b: var(--on-night); }
+.final .btn { --b: var(--on-night); --sh: rgba(0, 0, 0, .3); }
 .final .meta { justify-content: center; color: #CFC8E3; }
 .final .meta span::before { background: var(--lamp); }
 footer { background: var(--night); color: #A9A3C4; padding-block: 0 120px; font-size: .9rem; }
@@ -683,7 +684,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
     <div class="wrap">
       <div class="hero-top">
         <div>
-          <span class="eyebrow">a cozy desktop game for macOS</span>
+          <span class="eyebrow">a cozy desktop game</span>
           <h1>A little sheep farm that lives on your <span class="squiggle">desktop<svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 12 C 30 2, 50 20, 80 10 S 130 2, 160 12 S 190 14, 198 8" fill="none" stroke="#BC6250" stroke-width="5" stroke-linecap="round"/></svg></span></h1>
         </div>
         <div>
@@ -1707,7 +1708,8 @@ hToggle.addEventListener("click", () => {
 });
 (() => {
   const line = document.getElementById("starLine");
-  const STARS = [[6, 70, 0], [19, 110, 1], [33, 58, 2], [67, 96, 0], [81, 66, 2], [93, 118, 1]];
+  // the 4th value marks the two middle stars: a narrow screen has no room for them
+  const STARS = [[6, 70, 0], [19, 110, 1], [33, 58, 2], [45, 92, 1, 1], [56, 64, 0, 1], [67, 96, 0], [81, 66, 2], [93, 118, 1]];
   const hangs = STARS.map(([x, len, k], i) => {
     const h = document.createElement("span");
     h.className = "hang";
@@ -1741,10 +1743,12 @@ hToggle.addEventListener("click", () => {
     const W = line.clientWidth, half = parseFloat(getComputedStyle(hangs[0]).getPropertyValue("--w")) / 2 || 39;
     const lo = Math.ceil((half + 6) / JOINT) * JOINT, hi = Math.floor((W - half - 6) / JOINT) * JOINT;
     const gap = Math.ceil(half * 1.7 / JOINT) * JOINT;     // stars never pile up on each other
+    const use = STARS.map((s, i) => i).filter(i => !(STARS[i][3] && W < 700));
+    hangs.forEach((h, i) => { h.hidden = !use.includes(i); });
     let prev = -Infinity;
-    let at = STARS.map(([x]) => { const c = Math.max(prev + gap, Math.min(hi, Math.max(lo, Math.round(x / 100 * W / JOINT) * JOINT))); return prev = c; });
-    if (at[at.length - 1] > hi) at = STARS.map((_, i) => lo + Math.round(i * (hi - lo) / (STARS.length - 1) / JOINT) * JOINT);   // small screen: spread them evenly
-    at.forEach((c, i) => { hangs[i].style.left = c + "px"; });
+    let at = use.map(i => { const c = Math.max(prev + gap, Math.min(hi, Math.max(lo, Math.round(STARS[i][0] / 100 * W / JOINT) * JOINT))); return prev = c; });
+    if (at[at.length - 1] > hi) at = use.map((_, k) => lo + Math.round(k * (hi - lo) / (use.length - 1) / JOINT) * JOINT);   // small screen: spread them evenly
+    at.forEach((c, k) => { hangs[use[k]].style.left = c + "px"; });
   };
   placeStars();
   addEventListener("resize", placeStars);
@@ -1905,4 +1909,4 @@ if ("IntersectionObserver" in window) {
 
 requestAnimationFrame(loop);
 </script>
-<script src="site.js?v=0d990f3dec"></script>
+<script src="site.js?v=f95f3de065"></script>

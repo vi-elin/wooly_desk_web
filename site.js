@@ -644,7 +644,7 @@
     const LISTS = {
       mac: {
         joined: "wd-mac-joined", event: "mac-waitlist",
-        icon: '<img src="assets/sheep_white_happy.png" alt="">',
+        icon: `<img src="${AS}sheep_white_happy.png" alt="">`,
         ...(UK ? {
           title: "WoollyDesk майже готовий",
           body: "Перша версія для Mac скоро вийде. Залиште свою пошту, і в день релізу ми надішлемо вам лист.",
