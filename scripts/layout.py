@@ -128,7 +128,7 @@ def header(page: str, lang: str = "en") -> str:
     return f"""<!--HEADER-->
 <header class="topbar" id="topbar">
   <div class="bar-inner">
-    <a class="brand" href="{brand}" aria-label="{t["home_label"]}"><img src="assets/sheep_white_happy.png" alt="">WoollyDesk</a>
+    <a class="brand" href="{brand}" aria-label="{t["home_label"]}"><img src="/brand/logo.svg" alt="" width="40" height="40"><span>Woolly<b>Desk</b></span></a>
     <nav class="nav-links" aria-label="{t["main"]}">
       <span class="nav-blob" aria-hidden="true"></span>
       {"".join(links)}
@@ -161,7 +161,7 @@ def footer(page: str, lang: str = "en") -> str:
   <div class="wrap" style="position:relative">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a class="name" href="index.html"><img src="assets/sheep_white_sleep.png" alt="">WoollyDesk</a>
+        <a class="name" href="index.html"><img src="/brand/logo.svg" alt="" width="48" height="48"><span>Woolly<b>Desk</b></span></a>
         <p>{t["about"]}</p>
       </div>
       <div>
@@ -186,7 +186,10 @@ def footer(page: str, lang: str = "en") -> str:
 def boot(page: str, lang: str = "en") -> str:
     robots = '<meta name="robots" content="noindex, nofollow">\n' if is_private(page) else ""
     return f"""<!--BOOT-->
-{robots}<link rel="canonical" href="{url(page, lang)}">
+{robots}<link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
+<link rel="canonical" href="{url(page, lang)}">
 <link rel="alternate" hreflang="en" href="{url(page, "en")}">
 <link rel="alternate" hreflang="uk" href="{url(page, "uk")}">
 <link rel="alternate" hreflang="x-default" href="{url(page, "en")}">

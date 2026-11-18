@@ -20,6 +20,7 @@ Then open http://localhost:8791.
 - `site.css`, `site.js` — shared styles and behaviour: the floating header, the footer, the guide contents, the FAQ search.
 - `sound.js`, `sounds/` — farm sounds on the home page (rain, crickets, wind, birds, sheep) and the sound switch in the header. The sheep voice is a CC0 recording (`sounds/CREDITS.txt`); the other sounds are made in the browser, with the same formulas as the game.
 - `scripts/layout.py` — writes the shared header and footer into every page. Edit the header or footer there, then run `python3 scripts/layout.py`.
+- `brand/` — the logo: `logo.svg` (header and footer), `favicon.svg`, `favicon-32.png` and `apple-touch-icon.png`. The deploy copies this folder as it is.
 - `assets/` — not in git. The deploy workflow copies `landing/assets` from the private repo `vi-elin/woolly_desk`.
 - `.github/workflows/pages.yml` — builds the page with the pictures and publishes it to GitHub Pages.
 
