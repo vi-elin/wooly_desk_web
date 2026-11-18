@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700;800&family=Balsamiq+Sans:wght@400;700&family=Nunito:wght@400;600;700&family=Caveat:wght@500;700&display=swap">
-<link rel="stylesheet" href="../site.css?v=b71497d1d6">
+<link rel="stylesheet" href="../site.css?v=4b299b9b71">
 <!--BOOT-->
 <link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/brand/favicon-32.png" sizes="32x32" type="image/png">
@@ -71,7 +71,7 @@ p { margin: 0; }
 .hand { font-family: var(--hand); font-weight: 700; }
 .eyebrow {
   font-family: var(--hand); font-size: 1.55rem; font-weight: 700; color: var(--barn);
-  transform: rotate(-2deg); display: inline-block;
+  display: inline-block;
 }
 
 /* buttons */
@@ -185,12 +185,12 @@ section[id] { scroll-margin-top: 90px; }
   color: var(--ink); pointer-events: none; width: 13em;
 }
 .note svg { position: absolute; width: 90px; height: 70px; stroke: var(--ink); fill: none; stroke-width: 2.4; stroke-linecap: round; }
-.note-a { right: 70px; top: -50px; text-align: right; transform: rotate(3deg); width: auto; white-space: nowrap; }
+.note-a { right: 70px; top: -50px; text-align: right; width: auto; white-space: nowrap; }
 /* the arrow ends in the light menu bar, next to the farm icon; a light outline keeps it visible over the dark frame */
 .note-a svg { right: -22px; top: 16px; width: 70px; height: 54px; }
 .note svg .halo { stroke: var(--paper); stroke-width: 7; }
 /* the text sits below the end of its arrow, and the hero leaves room for it above the green edge */
-.note-b { left: -6px; bottom: -112px; transform: rotate(-2deg); }
+.note-b { left: -6px; bottom: -112px; }
 .note-b svg { left: 150px; top: -68px; transform: scaleY(-1); }
 @media (min-width: 981px) { .hero { padding-bottom: 160px; } }
 @media (max-width: 980px) { .note { display: none; } }
@@ -260,7 +260,10 @@ section[id] { scroll-margin-top: 90px; }
   100% { transform: rotate(-6deg); }
 }
 .tidy-pic .flake { position: absolute; z-index: 2; animation: swept 3s cubic-bezier(.2,.6,.4,1) infinite; opacity: 0; }
-.tidy-pic .flake { width: var(--s); height: var(--s); border-radius: 50%; background: radial-gradient(circle at 40% 35%, #fff 45%, #DCE6F0); box-shadow: 0 0 0 1px rgba(159,179,204,.55), 0 1px 3px rgba(90,110,140,.25); }
+/* snow crystals, drawn like the ones the shovel throws in the app (ToolArt.snowCrystal): three kinds */
+.tidy-pic .flake { width: calc(var(--s) * 2); height: calc(var(--s) * 2); background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 10L10 18M10 13.6L12.16 15.04M10 13.6L7.84 15.04M10 15.76L11.58 16.82M10 15.76L8.42 16.82M10 10L3.07 14M6.88 11.8L6.71 14.39M6.88 11.8L4.55 10.65M5.01 12.88L4.89 14.78M5.01 12.88L3.31 12.04M10 10L3.07 6M6.88 8.2L4.55 9.35M6.88 8.2L6.71 5.61M5.01 7.12L3.31 7.96M5.01 7.12L4.89 5.22M10 10L10 2M10 6.4L7.84 4.96M10 6.4L12.16 4.96M10 4.24L8.42 3.18M10 4.24L11.58 3.18M10 10L16.93 6M13.12 8.2L13.29 5.61M13.12 8.2L15.45 9.35M14.99 7.12L15.11 5.22M14.99 7.12L16.69 7.96M10 10L16.93 14M13.12 11.8L15.45 10.65M13.12 11.8L13.29 14.39M14.99 12.88L16.69 12.04M14.99 12.88L15.11 14.78' stroke='%239DB2CC' stroke-opacity='.75' stroke-width='2.4'/%3E%3Cpath d='M10 10L10 18M10 13.6L12.16 15.04M10 13.6L7.84 15.04M10 15.76L11.58 16.82M10 15.76L8.42 16.82M10 10L3.07 14M6.88 11.8L6.71 14.39M6.88 11.8L4.55 10.65M5.01 12.88L4.89 14.78M5.01 12.88L3.31 12.04M10 10L3.07 6M6.88 8.2L4.55 9.35M6.88 8.2L6.71 5.61M5.01 7.12L3.31 7.96M5.01 7.12L4.89 5.22M10 10L10 2M10 6.4L7.84 4.96M10 6.4L12.16 4.96M10 4.24L8.42 3.18M10 4.24L11.58 3.18M10 10L16.93 6M13.12 8.2L13.29 5.61M13.12 8.2L15.45 9.35M14.99 7.12L15.11 5.22M14.99 7.12L16.69 7.96M10 10L16.93 14M13.12 11.8L15.45 10.65M13.12 11.8L13.29 14.39M14.99 12.88L16.69 12.04M14.99 12.88L15.11 14.78' stroke='%23fff' stroke-width='1.2'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat; }
+.tidy-pic .flake:nth-of-type(3n) { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 10L10 18M10 10L3.07 14M10 10L3.07 6M10 10L10 2M10 10L16.93 6M10 10L16.93 14' stroke='%239DB2CC' stroke-opacity='.75' stroke-width='2.4'/%3E%3Cpath d='M10 10L10 18M10 10L3.07 14M10 10L3.07 6M10 10L10 2M10 10L16.93 6M10 10L16.93 14' stroke='%23fff' stroke-width='1.2'/%3E%3C/g%3E%3C/svg%3E"); }
+.tidy-pic .flake:nth-of-type(3n+1) { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 10L10 18M10 13.6L12.16 15.04M10 13.6L7.84 15.04M10 15.76L11.58 16.82M10 15.76L8.42 16.82M10 10L3.07 14M6.88 11.8L6.71 14.39M6.88 11.8L4.55 10.65M5.01 12.88L4.89 14.78M5.01 12.88L3.31 12.04M10 10L3.07 6M6.88 8.2L4.55 9.35M6.88 8.2L6.71 5.61M5.01 7.12L3.31 7.96M5.01 7.12L4.89 5.22M10 10L10 2M10 6.4L7.84 4.96M10 6.4L12.16 4.96M10 4.24L8.42 3.18M10 4.24L11.58 3.18M10 10L16.93 6M13.12 8.2L13.29 5.61M13.12 8.2L15.45 9.35M14.99 7.12L15.11 5.22M14.99 7.12L16.69 7.96M10 10L16.93 14M13.12 11.8L15.45 10.65M13.12 11.8L13.29 14.39M14.99 12.88L16.69 12.04M14.99 12.88L15.11 14.78' stroke='%239DB2CC' stroke-opacity='.75' stroke-width='2.4'/%3E%3Cpath d='M10 10L10 18M10 13.6L12.16 15.04M10 13.6L7.84 15.04M10 15.76L11.58 16.82M10 15.76L8.42 16.82M10 10L3.07 14M6.88 11.8L6.71 14.39M6.88 11.8L4.55 10.65M5.01 12.88L4.89 14.78M5.01 12.88L3.31 12.04M10 10L3.07 6M6.88 8.2L4.55 9.35M6.88 8.2L6.71 5.61M5.01 7.12L3.31 7.96M5.01 7.12L4.89 5.22M10 10L10 2M10 6.4L7.84 4.96M10 6.4L12.16 4.96M10 4.24L8.42 3.18M10 4.24L11.58 3.18M10 10L16.93 6M13.12 8.2L13.29 5.61M13.12 8.2L15.45 9.35M14.99 7.12L15.11 5.22M14.99 7.12L16.69 7.96M10 10L16.93 14M13.12 11.8L15.45 10.65M13.12 11.8L13.29 14.39M14.99 12.88L16.69 12.04M14.99 12.88L15.11 14.78' stroke='%23fff' stroke-width='1.2'/%3E%3C/g%3E%3Cpolygon points='10,12.6 7.75,11.3 7.75,8.7 10,7.4 12.25,8.7 12.25,11.3' fill='%23fff' stroke='%239DB2CC' stroke-opacity='.8' stroke-width='.6'/%3E%3C/svg%3E"); }
 .tidy-pic .snow-mound {
   position: absolute; left: 2%; right: 54%; bottom: 0; height: 38px; border-radius: 50% 50% 8px 8px / 100% 100% 8px 8px;
   background: linear-gradient(#fff, #E6EEF6); border: 2px solid #9FB3CC; border-bottom-width: 2px;
@@ -441,13 +444,14 @@ section[id] { scroll-margin-top: 90px; }
 /* holidays */
 #holidays { --hol-bg: #E7EEF1; overflow-x: clip; overflow-y: visible; z-index: 2; background: var(--hol-bg); transition: background-color .9s ease, color .9s ease; padding-top: 150px; }
 #holidays.night { --hol-bg: var(--night); }
+/* the edge overlaps the band by 2px, and a solid strip covers the joint: no thin line at fractional widths */
 #holidays::before, #holidays::after {
-  content: ""; position: absolute; left: 0; right: 0; height: 26px; background: var(--hol-bg); transition: background-color .9s ease; pointer-events: none;
-  -webkit-mask: radial-gradient(14px 12px at 14px 0, #000 98%, transparent) 0 0 / 28px 26px repeat-x;
-          mask: radial-gradient(14px 12px at 14px 0, #000 98%, transparent) 0 0 / 28px 26px repeat-x;
+  content: ""; position: absolute; left: 0; right: 0; height: 28px; background: var(--hol-bg); transition: background-color .9s ease; pointer-events: none;
+  -webkit-mask: linear-gradient(#000, #000) 0 0 / 100% 3px no-repeat, radial-gradient(14px 12px at 14px 0, #000 98%, transparent) 0 2px / 28px 26px repeat-x;
+          mask: linear-gradient(#000, #000) 0 0 / 100% 3px no-repeat, radial-gradient(14px 12px at 14px 0, #000 98%, transparent) 0 2px / 28px 26px repeat-x;
 }
-#holidays::before { top: -25px; transform: scaleY(-1); }
-#holidays::after { bottom: -25px; }
+#holidays::before { top: -26px; transform: scaleY(-1); }
+#holidays::after { bottom: -26px; }
 .band.meadow.flat::before, .band.meadow.flat::after { display: none; }
 #holidays.night { background: var(--night); color: var(--on-night); }
 #holidays.night .lede, #holidays.night .sweater-head p, #holidays.night .caption { color: #CFC8E3; }
@@ -894,7 +898,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
     <div class="wrap">
       <div class="sec-head center">
         <span class="eyebrow">потягніть ліхтарик</span>
-        <h2>Захід сонця — тоді ж, коли й у вас</h2>
+        <h2>Захід сонця — тоді&nbsp;ж, коли й у вас</h2>
       </div>
       <div class="compare" id="compare">
         <img src="../assets/farm_day.jpg" alt="Ферма вдень">
@@ -1562,10 +1566,12 @@ vToggle.addEventListener("click", () => {
 });
 
 /* Tidy up: sweep leaves with the broom, throw snow with the shovel. */
+// snow crystals like the ones the shovel throws in the app (ToolArt.snowCrystal)
+const CRYSTALS = ["data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 10L10 18M10 10L3.07 14M10 10L3.07 6M10 10L10 2M10 10L16.93 6M10 10L16.93 14' stroke='%239DB2CC' stroke-opacity='.75' stroke-width='2.4'/%3E%3Cpath d='M10 10L10 18M10 10L3.07 14M10 10L3.07 6M10 10L10 2M10 10L16.93 6M10 10L16.93 14' stroke='%23fff' stroke-width='1.2'/%3E%3C/g%3E%3C/svg%3E", "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 10L10 18M10 13.6L12.16 15.04M10 13.6L7.84 15.04M10 15.76L11.58 16.82M10 15.76L8.42 16.82M10 10L3.07 14M6.88 11.8L6.71 14.39M6.88 11.8L4.55 10.65M5.01 12.88L4.89 14.78M5.01 12.88L3.31 12.04M10 10L3.07 6M6.88 8.2L4.55 9.35M6.88 8.2L6.71 5.61M5.01 7.12L3.31 7.96M5.01 7.12L4.89 5.22M10 10L10 2M10 6.4L7.84 4.96M10 6.4L12.16 4.96M10 4.24L8.42 3.18M10 4.24L11.58 3.18M10 10L16.93 6M13.12 8.2L13.29 5.61M13.12 8.2L15.45 9.35M14.99 7.12L15.11 5.22M14.99 7.12L16.69 7.96M10 10L16.93 14M13.12 11.8L15.45 10.65M13.12 11.8L13.29 14.39M14.99 12.88L16.69 12.04M14.99 12.88L15.11 14.78' stroke='%239DB2CC' stroke-opacity='.75' stroke-width='2.4'/%3E%3Cpath d='M10 10L10 18M10 13.6L12.16 15.04M10 13.6L7.84 15.04M10 15.76L11.58 16.82M10 15.76L8.42 16.82M10 10L3.07 14M6.88 11.8L6.71 14.39M6.88 11.8L4.55 10.65M5.01 12.88L4.89 14.78M5.01 12.88L3.31 12.04M10 10L3.07 6M6.88 8.2L4.55 9.35M6.88 8.2L6.71 5.61M5.01 7.12L3.31 7.96M5.01 7.12L4.89 5.22M10 10L10 2M10 6.4L7.84 4.96M10 6.4L12.16 4.96M10 4.24L8.42 3.18M10 4.24L11.58 3.18M10 10L16.93 6M13.12 8.2L13.29 5.61M13.12 8.2L15.45 9.35M14.99 7.12L15.11 5.22M14.99 7.12L16.69 7.96M10 10L16.93 14M13.12 11.8L15.45 10.65M13.12 11.8L13.29 14.39M14.99 12.88L16.69 12.04M14.99 12.88L15.11 14.78' stroke='%23fff' stroke-width='1.2'/%3E%3C/g%3E%3C/svg%3E", "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 10L10 18M10 13.6L12.16 15.04M10 13.6L7.84 15.04M10 15.76L11.58 16.82M10 15.76L8.42 16.82M10 10L3.07 14M6.88 11.8L6.71 14.39M6.88 11.8L4.55 10.65M5.01 12.88L4.89 14.78M5.01 12.88L3.31 12.04M10 10L3.07 6M6.88 8.2L4.55 9.35M6.88 8.2L6.71 5.61M5.01 7.12L3.31 7.96M5.01 7.12L4.89 5.22M10 10L10 2M10 6.4L7.84 4.96M10 6.4L12.16 4.96M10 4.24L8.42 3.18M10 4.24L11.58 3.18M10 10L16.93 6M13.12 8.2L13.29 5.61M13.12 8.2L15.45 9.35M14.99 7.12L15.11 5.22M14.99 7.12L16.69 7.96M10 10L16.93 14M13.12 11.8L15.45 10.65M13.12 11.8L13.29 14.39M14.99 12.88L16.69 12.04M14.99 12.88L15.11 14.78' stroke='%239DB2CC' stroke-opacity='.75' stroke-width='2.4'/%3E%3Cpath d='M10 10L10 18M10 13.6L12.16 15.04M10 13.6L7.84 15.04M10 15.76L11.58 16.82M10 15.76L8.42 16.82M10 10L3.07 14M6.88 11.8L6.71 14.39M6.88 11.8L4.55 10.65M5.01 12.88L4.89 14.78M5.01 12.88L3.31 12.04M10 10L3.07 6M6.88 8.2L4.55 9.35M6.88 8.2L6.71 5.61M5.01 7.12L3.31 7.96M5.01 7.12L4.89 5.22M10 10L10 2M10 6.4L7.84 4.96M10 6.4L12.16 4.96M10 4.24L8.42 3.18M10 4.24L11.58 3.18M10 10L16.93 6M13.12 8.2L13.29 5.61M13.12 8.2L15.45 9.35M14.99 7.12L15.11 5.22M14.99 7.12L16.69 7.96M10 10L16.93 14M13.12 11.8L15.45 10.65M13.12 11.8L13.29 14.39M14.99 12.88L16.69 12.04M14.99 12.88L15.11 14.78' stroke='%23fff' stroke-width='1.2'/%3E%3C/g%3E%3Cpolygon points='10,12.6 7.75,11.3 7.75,8.7 10,7.4 12.25,8.7 12.25,11.3' fill='%23fff' stroke='%239DB2CC' stroke-opacity='.8' stroke-width='.6'/%3E%3C/svg%3E"].map(src => { const i = new Image(); i.src = src; return i; });
 const tScene = document.getElementById("tidyScene"), tc = document.getElementById("tidyCanvas"), tx = tc.getContext("2d");
 const IMG = {};
 ["ground_autumn", "ground_winter", "leaves_1", "leaves_2", "leaves_3", "drift_1", "drift_2", "drift_3", "broom", "shovel", "shovel_snow",
- "leaf_0", "leaf_1", "leaf_2", "clump_0", "clump_1", "clump_2", "sheep_white_idle", "sheep_white_happy", "sheep_white_jump", "sheep_white_graze0"]
+ "leaf_0", "leaf_1", "leaf_2", "sheep_white_idle", "sheep_white_happy", "sheep_white_jump", "sheep_white_graze0"]
   .forEach(n => { const i = new Image(); i.src = A(n); IMG[n] = i; });
 const T = { mode: "autumn", piles: [], parts: [], coins: 0, x: -999, y: -999, px: 0, py: 0, down: false, ang: 0, w: 0, h: 0, cleanT: 0, swept: false };
 function tidyReset() {
@@ -1679,7 +1685,7 @@ function tidyDraw(now) {
       tx.fillStyle = "#3A2F2A"; tx.font = `700 ${Math.round(14 * unit + 8)}px Grandstander, sans-serif`; tx.textAlign = "center"; tx.textBaseline = "middle";
       tx.fillText("+1", 0, -26 * unit - 10);
     } else {
-      const img = IMG[(p.kind === "leaf" ? "leaf_" : "clump_") + p.i], s = (p.kind === "leaf" ? 22 : 26) * unit + 6;
+      const img = p.kind === "leaf" ? IMG["leaf_" + p.i] : CRYSTALS[p.i], s = p.kind === "leaf" ? 22 * unit + 6 : 18 * unit + 8;
       tx.drawImage(img, -s / 2, -s / 2, s, s * img.naturalHeight / (img.naturalWidth || 1));
     }
     tx.restore();

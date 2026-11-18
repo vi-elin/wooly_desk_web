@@ -119,7 +119,7 @@ PAGES = {
 
         # compare
         ('<span class="eyebrow">drag the lamp</span>', '<span class="eyebrow">потягніть ліхтарик</span>'),
-        ("<h2>Sunset happens when yours does</h2>", "<h2>Захід сонця — тоді ж, коли й у вас</h2>"),
+        ("<h2>Sunset happens when yours does</h2>", "<h2>Захід сонця — тоді&nbsp;ж, коли й у вас</h2>"),
         ('alt="The farm by day"', 'alt="Ферма вдень"'),
         ('alt="The same farm at night, with lit windows and fireflies"', 'alt="Та сама ферма вночі, з освітленими вікнами і світлячками"'),
         ('<span class="tag d">day</span><span class="tag n">night</span>', '<span class="tag d">день</span><span class="tag n">ніч</span>'),
