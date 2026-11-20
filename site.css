@@ -227,6 +227,7 @@ p { margin: 0; }
 .prose li { margin-bottom: 6px; }
 .prose li::marker { color: var(--barn); font-weight: 800; }
 .prose a { text-decoration: underline wavy var(--barn) 1.5px; text-underline-offset: 4px; font-weight: 700; }
+.prose code { overflow-wrap: anywhere; } /* long folder paths wrap on phones */
 .muted { color: var(--ink-soft); }
 kbd {
   font: 700 .85em var(--body); padding: .05em .45em; border: 2px solid var(--ink); border-bottom-width: 3.5px;

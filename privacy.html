@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700;800&family=Nunito:wght@400;600;700;800&family=Caveat:wght@500;700&display=swap">
-<link rel="stylesheet" href="site.css?v=4b299b9b71">
+<link rel="stylesheet" href="site.css?v=b90debf4f8">
 <!--BOOT-->
 <link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/brand/favicon-32.png" sizes="32x32" type="image/png">
@@ -63,7 +63,7 @@
       <div>
         <span class="eyebrow">the short version: your farm stays on your Mac</span>
         <h1>Privacy policy</h1>
-        <p class="lede">Last updated: 17 November 2026</p>
+        <p class="lede">Last updated: 20 November 2026</p>
       </div>
       <div class="art" aria-hidden="true">
         <img src="assets/house_logCabin_night.png" alt="" style="left:0; width:150px">
@@ -84,7 +84,12 @@
         <p>This policy explains what the WoollyDesk app for macOS (the "app") and this website do with information. The app is made by an independent developer. Contact: <a href="mailto:vielindevelopment@gmail.com">vielindevelopment@gmail.com</a>.</p>
 
         <h2>1. Information the app keeps on your Mac</h2>
-        <p>The app saves your farm (sheep, names, buildings, coins, wool) and your settings on your Mac, in <code>~/Library/Application Support/SheepFarm/</code> and in the app's standard preferences. This information never leaves your Mac. We cannot see it. You can delete it at any time: delete that folder, or use click <b>Start over…</b> in Settings → Farm.</p>
+        <p>The app saves your farm (sheep, names, buildings, coins, wool) and your settings on your Mac, in the app's standard preferences and in this folder:</p>
+        <ul>
+          <li>Mac App Store version: <code>~/Library/Containers/com.sheepfarm.desktop/Data/Library/Application Support/SheepFarm/</code></li>
+          <li>Other versions: <code>~/Library/Application Support/SheepFarm/</code></li>
+        </ul>
+        <p>This information never leaves your Mac. We cannot see it. You can delete it at any time: delete that folder, or click <b>Start over…</b> in Settings → Farm.</p>
 
         <h2>2. Real weather and location (optional)</h2>
         <p><b>Real weather is off by default.</b> If you turn it on in Settings → Weather and time:</p>
@@ -96,8 +101,15 @@
         </ul>
         <p>Apple receives these requests like any internet request, including your IP address. Apple's privacy policy applies. You can turn real weather off at any time, and you can remove the location permission in System Settings → Privacy &amp; Security → Location Services.</p>
 
-        <h2>3. Finder permission (optional)</h2>
-        <p>If you allow autumn leaves on your desktop icons, macOS asks once if the app may control Finder. The app asks Finder only for the positions of the icons on your desktop. It does not read, change or send your files. You can turn this feature off in Settings → Desktop, and remove the permission in System Settings → Privacy &amp; Security → Automation.</p>
+        <h2>3. Your desktop folders and Finder (optional)</h2>
+        <p><b>Farm colours on folders</b> is off by default. If you turn it on in Settings → Desktop folders, the app gives the folders on your desktop farm-style icons:</p>
+        <ul>
+          <li>In the Mac App Store version, the first time, an Open panel asks you to choose your Desktop folder. The app keeps this permission for later. In other versions, macOS asks once if the app may use your Desktop folder.</li>
+          <li>The app reads only the list of items on your desktop, and changes only the icons of your folders. macOS keeps a custom icon in a hidden file named <code>Icon</code> inside each folder. Folders that already have their own icon do not change.</li>
+          <li>The app does not open, read, change or send the files in your folders.</li>
+          <li>Turn the setting off, and the app puts the normal icons back.</li>
+        </ul>
+        <p><b>Autumn leaves on icons</b> works differently in the two versions. In the Mac App Store version, the app never asks for Finder: leaves land only on roofs and the Dock. In other versions, macOS asks once if the app may control Finder. Then the app asks Finder only for the positions of the icons on your desktop. You can turn this feature off in Settings → Desktop, and remove the permission in System Settings → Privacy &amp; Security → Automation.</p>
 
         <h2 id="usage">4. Anonymous usage data and crash reports (optional)</h2>
         <p>To find bugs and see which parts of the game people use, the app sends anonymous usage data to Google Firebase (Firebase Analytics and Firebase Crashlytics). The switch <b>Share anonymous usage data</b> in Settings → Privacy turns this on or off. It is on by default.</p>
