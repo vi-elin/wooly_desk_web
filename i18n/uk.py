@@ -50,7 +50,7 @@ PAGES = {
     "index.html": [
         ("</svg>todo.txt</div>", "</svg>справи.txt</div>"),
         # head
-        ("<title>WoollyDesk</title>", "<title>WoollyDesk — овеча ферма на робочому столі Mac</title>"),
+        ("<title>WoollyDesk — a sheep farm on your Mac desktop</title>", "<title>WoollyDesk — овеча ферма на робочому столі Mac</title>"),
         ('content="WoollyDesk is a cozy desktop game for macOS: sheep live on your desktop behind your windows. Shear them, trade wool and build a tiny village."',
          'content="WoollyDesk — затишна гра для macOS: вівці живуть на робочому столі за вашими вікнами. Стрижіть їх, продавайте вовну і будуйте маленьке село."'),
 
@@ -86,10 +86,11 @@ PAGES = {
         # watch
         ('<span class="eyebrow">watch it live</span>', '<span class="eyebrow">дивіться наживо</span>'),
         ("<h2>Your desktop, but with grass</h2>", "<h2>Ваш робочий стіл, але з травою</h2>"),
-        ("This little window runs the farm with the game's own sprites. Make it rain, turn the night on, or click a sheep to say hello.",
-         "У вашому віконці живе ферма з ілюстраціями з гри. Увімкніть дощ чи ніч або клацніть овечку, щоб привітатися."),
+        ("This little window runs the farm with the game's own sprites. Make it rain or snow, turn the night on, or click a sheep to say hello.",
+         "У вашому віконці живе ферма з ілюстраціями з гри. Увімкніть дощ, сніг чи ніч або клацніть овечку, щоб привітатися."),
         ('aria-pressed="false">Night</button>', 'aria-pressed="false">Ніч</button>'),
         ('aria-pressed="false">Rain</button>', 'aria-pressed="false">Дощ</button>'),
+        ('aria-pressed="false">Snow</button>', 'aria-pressed="false">Сніг</button>'),
         ('aria-pressed="false">Pause</button>', 'aria-pressed="false">Пауза</button>'),
         ('btnPause.textContent = liveFlock.paused ? "Play" : "Pause";', 'btnPause.textContent = liveFlock.paused ? "Далі" : "Пауза";'),
         ("sheep graze, wander and nap · at night they sleep and the lanterns come on",

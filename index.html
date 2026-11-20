@@ -2,7 +2,7 @@
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WoollyDesk</title>
+<title>WoollyDesk — a sheep farm on your Mac desktop</title>
 <meta name="description" content="WoollyDesk is a cozy desktop game for macOS: sheep live on your desktop behind your windows. Shear them, trade wool and build a tiny village.">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,6 +21,19 @@
 <script defer src="https://cloud.umami.is/script.js" data-website-id="c4cd17dc-7bdd-45ed-8f7d-eefc8e028185" data-domains="woollydesk.com"></script>
 <script>try{if(sessionStorage.getItem("wd-curtain")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("wd-enter")}catch(e){}</script>
 <!--/BOOT-->
+<!--OG-->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="WoollyDesk">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="uk_UA">
+<meta property="og:url" content="https://woollydesk.com/">
+<meta property="og:title" content="WoollyDesk — a sheep farm on your Mac desktop">
+<meta property="og:description" content="WoollyDesk is a cozy desktop game for macOS: sheep live on your desktop behind your windows. Shear them, trade wool and build a tiny village.">
+<meta property="og:image" content="https://woollydesk.com/assets/farm_day.jpg">
+<meta property="og:image:width" content="2800">
+<meta property="og:image:height" content="1280">
+<meta name="twitter:card" content="summary_large_image">
+<!--/OG-->
 <style>
 /* Layout: a storybook page on warm paper. The hero is a Mac desktop whose wallpaper is the farm;
    sections alternate between paper and meadow bands, and a sheep wanders along the bottom of the window. */
@@ -754,7 +767,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
       <div class="sec-head">
         <span class="eyebrow">watch it live</span>
         <h2>Your desktop, but with grass</h2>
-        <p class="lede">This little window runs the farm with the game's own sprites. Make it rain, turn the night on, or click a sheep to say hello.</p>
+        <p class="lede">This little window runs the farm with the game's own sprites. Make it rain or snow, turn the night on, or click a sheep to say hello.</p>
       </div>
       <div class="live">
         <div class="bar">
@@ -762,6 +775,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
           <div class="toggles">
             <button class="chip" id="liveNight" aria-pressed="false">Night</button>
             <button class="chip" id="liveRain" aria-pressed="false">Rain</button>
+            <button class="chip" id="liveSnow" aria-pressed="false">Snow</button>
             <button class="chip" id="livePause" aria-pressed="false">Pause</button>
           </div>
         </div>
@@ -1221,10 +1235,17 @@ const liveFlock = new Flock(document.getElementById("liveFlock"), [
   { look: "cream", region: shore },
 ], { size: .085, depth: .3, speed: .03 });
 flocks.push(liveFlock);
-const btnNight = document.getElementById("liveNight"), btnRain = document.getElementById("liveRain"), btnPause = document.getElementById("livePause");
+const btnNight = document.getElementById("liveNight"), btnRain = document.getElementById("liveRain"), btnSnow = document.getElementById("liveSnow"), btnPause = document.getElementById("livePause");
 btnNight.onclick = () => { const on = field.classList.toggle("night"); liveFlock.night = on; btnNight.setAttribute("aria-pressed", on); ambience(); };
-let raining = false;
-btnRain.onclick = () => { raining = !raining; btnRain.setAttribute("aria-pressed", raining); ambience(); };
+let raining = false, snowing = false;
+// rain and snow never fall together: turning one on turns the other off
+const setWeather = (rainOn, snowOn) => {
+  raining = rainOn; snowing = snowOn;
+  btnRain.setAttribute("aria-pressed", raining); btnSnow.setAttribute("aria-pressed", snowing);
+  ambience();
+};
+btnRain.onclick = () => setWeather(!raining, false);
+btnSnow.onclick = () => setWeather(false, !snowing);
 btnPause.onclick = () => { liveFlock.paused = !liveFlock.paused; btnPause.setAttribute("aria-pressed", liveFlock.paused); btnPause.textContent = liveFlock.paused ? "Play" : "Pause"; ambience(); };
 const wc = document.getElementById("weather"), wx = wc.getContext("2d");
 /* rain: many thin streaks in three depths (far ones are short, pale and slow) and small splashes on the grass */
@@ -1273,7 +1294,35 @@ function rain(now) {
     }
     splashes = splashes.filter(s => s.t < .35);
   } else { splashes = []; }
+  if (snowing && !liveFlock.paused) snow(dt, r.width, r.height); else flakes = [];
   requestAnimationFrame(rain);
+}
+/* snow: soft round flakes in three depths; they sway a little and drift with a light wind */
+let flakes = [];
+const SNOW_LAYERS = [
+  { n: 140, r: [1.2, 1.8], a: .7, v: [22, 34] },
+  { n: 90, r: [2, 2.8], a: .88, v: [36, 52] },
+  { n: 40, r: [3, 4.2], a: 1, v: [55, 75] },
+];
+function newFlake(L, W, H, anywhere) {
+  const q = (a) => a[0] + Math.random() * (a[1] - a[0]);
+  return { L, x: Math.random() * (W + 40) - 20, y: anywhere ? Math.random() * H : -6, r: q(SNOW_LAYERS[L].r), v: q(SNOW_LAYERS[L].v), ph: Math.random() * 7 };
+}
+function snow(dt, W, H) {
+  wx.fillStyle = "rgba(225,234,246,.2)"; wx.fillRect(0, 0, W, H);   // the air gets a little paler
+  const scale = Math.max(.5, W / 1000);
+  if (!flakes.length) SNOW_LAYERS.forEach((l, L) => { for (let i = 0; i < l.n * scale; i++) flakes.push(newFlake(L, W, H, true)); });
+  SNOW_LAYERS.forEach((l, L) => {
+    // white flakes with a thin grey-blue edge, so they read on the pale grass too
+    wx.fillStyle = `rgba(255,255,255,${l.a})`; wx.strokeStyle = `rgba(120,140,170,${l.a * .45})`; wx.lineWidth = .8; wx.beginPath();
+    for (const f of flakes) {
+      if (f.L !== L) continue;
+      if (!reduce) { f.ph += dt * 1.3; f.y += f.v * dt; f.x += (Math.sin(f.ph) * 9 - 6) * dt; }
+      if (f.y - f.r > H || f.x < -10) Object.assign(f, newFlake(L, W, H, false));
+      wx.moveTo(f.x + f.r, f.y); wx.arc(f.x, f.y, f.r, 0, 7);
+    }
+    wx.fill(); wx.stroke();
+  });
 }
 requestAnimationFrame(rain);
 field.addEventListener("click", e => {   // a click on the grass makes the nearest sheep look up
@@ -1900,9 +1949,9 @@ function ambience() {
   const watch = seen.has("watch") && !liveFlock.paused, hero = seen.has("hero"), fieldNight = field.classList.contains("night");
   window.farmSound?.ambience({
     rain: watch && raining,
-    crickets: (watch && fieldNight && !raining) || (hero && desk.classList.contains("night")),
-    meadow: (watch && !fieldNight && !raining) || (hero && !desk.classList.contains("night")),
-    wind: seen.has("seasons") && season === "winter",
+    crickets: (watch && fieldNight && !raining && !snowing) || (hero && desk.classList.contains("night")),
+    meadow: (watch && !fieldNight && !raining && !snowing) || (hero && !desk.classList.contains("night")),
+    wind: (watch && snowing) || (seen.has("seasons") && season === "winter"),
   });
 }
 if ("IntersectionObserver" in window) {

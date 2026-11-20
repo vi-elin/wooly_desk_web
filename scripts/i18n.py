@@ -92,6 +92,7 @@ def build(page: str) -> tuple[str, list[str], list[str]]:
           .replace("`assets/${n}.png`", "`../assets/${n}.png`"))
     assert 'src="assets/' not in t and 'url("assets/' not in t, f"{page}: a picture link was not moved"
     t = layout.clean_links(t)   # the Ukrainian body comes in after layout.apply
+    t = layout.social(t, page, "uk")   # the preview tags take the Ukrainian title and description
     return t, missing, visible_english(t)
 
 

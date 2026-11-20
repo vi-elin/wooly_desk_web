@@ -235,9 +235,40 @@ def clean_links(text: str) -> str:
     return OWN_LINK.sub(fix, text)
 
 
+OG_LOCALE = {"en": "en_US", "uk": "uk_UA"}
+OG_IMAGE = f"{SITE}/assets/farm_day.jpg"
+
+
+def social(text: str, page: str, lang: str = "en") -> str:
+    """Link preview tags (Telegram, Slack, iMessage, Facebook…) from the page's own <title> and description.
+    Run it again after a translation: it reads the title and description that are in the text now."""
+    esc = lambda v: v.replace("&", "&amp;").replace('"', "&quot;") if "&" not in v else v.replace('"', "&quot;")
+    title = re.search(r"<title>(.*?)</title>", text, re.S).group(1).strip()
+    m = re.search(r'<meta name="description" content="([^"]*)"', text)
+    desc = m.group(1) if m else ""
+    other_lang = "uk" if lang == "en" else "en"
+    block = f"""<!--OG-->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="WoollyDesk">
+<meta property="og:locale" content="{OG_LOCALE[lang]}">
+<meta property="og:locale:alternate" content="{OG_LOCALE[other_lang]}">
+<meta property="og:url" content="{url(page, lang)}">
+<meta property="og:title" content="{esc(title)}">
+<meta property="og:description" content="{desc}">
+<meta property="og:image" content="{OG_IMAGE}">
+<meta property="og:image:width" content="2800">
+<meta property="og:image:height" content="1280">
+<meta name="twitter:card" content="summary_large_image">
+<!--/OG-->"""
+    if "<!--OG-->" in text:
+        return fill(text, "OG", block)
+    return text.replace("<!--/BOOT-->", "<!--/BOOT-->\n" + block, 1)
+
+
 def apply(text: str, page: str, lang: str = "en") -> str:
     text = stamp(text)
     text = fill(text, "BOOT", boot(page, lang))
+    text = social(text, page, lang)
     text = fill(text, "HEADER", header(page, lang))
     return clean_links(fill(text, "FOOTER", footer(page, lang)))
 
